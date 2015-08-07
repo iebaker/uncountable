@@ -1,7 +1,9 @@
 package world;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -13,6 +15,7 @@ public class Module {
     private Map<Portal, Module> m_neighbors = new HashMap<Portal, Module>();
     private String m_name;
     private int m_openPortals;
+    private List<Renderable> m_stagedRenderables = new ArrayList<Renderable>();
 
     public Module(ModuleTemplate type, String name) {
         m_template = type;
@@ -76,6 +79,14 @@ public class Module {
         for(Module neighbor : getNeighbors()) {
             neighbor.stageScene();
         }
+    }
+
+    public List<Renderable> getStagedRenderables() {
+        return m_stagedRenderables;
+    }
+
+    public void clearStagedRenderables() {
+        m_stagedRenderables.clear();
     }
 
     private void stage(Renderable renderable) {

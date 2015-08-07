@@ -86,18 +86,18 @@ public class Camera {
     public void captureToScreen(Module module) {
        for(Renderable renderable : module.getStagedRenderables()) {
 
-           if(renderable.shouldBeRebuffered()) {
+           if(renderable.needsToBeBuffered()) {
                Graphics.buffer(renderable);
            }
 
-           Shaders.useShader(renderable.getShaderName());
+           Shaders.useShader(renderable.getActiveShaderName());
 
            Shaders.setShaderUniform("model", renderable.getModelMatrix());
            Shaders.setShaderUniform("view", getViewMatrix());
            Shaders.setShaderUniform("projection", getProjectionMatrix());
            Shaders.setShaderUniform("cameraEye", getEye());
 
-           Graphics.draw(renderable.getVertexArrayObjectId());
+           Graphics.draw(renderable);
        }
        module.clearStagedRenderables();
     }

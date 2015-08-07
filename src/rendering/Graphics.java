@@ -20,8 +20,7 @@ public class Graphics {
     public static void buffer(Renderable renderable) {
         GL30.glBindVertexArray(renderable.getVertexArrayId());
 
-        int vertexBufferId;
-        GL15.glGenBuffers();
+        int vertexBufferId = GL15.glGenBuffers();
         GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, vertexBufferId);
         GL15.glBufferData(GL15.GL_ARRAY_BUFFER, renderable.getVertexData(), GL15.GL_STATIC_DRAW);
 
@@ -40,12 +39,18 @@ public class Graphics {
                     attribute.getLength(),
                     GL11.GL_FLOAT,
                     false,
-                    Shaders.getAttributeStrideFor(shaderName),
-                    attribute.getOffset());
+                    floatSize * Shaders.getAttributeStrideFor(shaderName),
+                    floatSize * attribute.getOffset());
         }
 
         GL30.glBindVertexArray(0);
         GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, 0);
         renderable.onBuffer();
+    }
+
+    public static void draw(Renderable renderable) {
+        GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
+        GL30.glBindVertexArray(renderable.getVertexArrayId());
+        GL11.glDrawArrays(renderable.getDrawingMode(), 0, renderable.getVertexCount());
     }
 }
