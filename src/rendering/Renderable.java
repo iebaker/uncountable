@@ -12,11 +12,11 @@ public class Renderable {
 
     private Map<String, Boolean> m_bufferStatus = new HashMap<String, Boolean>();
     private Map<String, Integer> m_vertexArrayIds = new HashMap<String, Integer>();
-    private FloatBuffer m_vertexData;
-    private String m_activeShaderName;
-    private Matrix4f m_modelMatrix;
-    private int m_drawingMode;
-    private int m_vertexCount;
+    protected FloatBuffer m_vertexData;
+    protected String m_activeShaderName;
+    protected Matrix4f m_modelMatrix;
+    protected int m_drawingMode;
+    protected int m_vertexCount;
 
     public Renderable() {
 
