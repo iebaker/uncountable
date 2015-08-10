@@ -10,11 +10,10 @@ import org.lwjgl.opengl.GL30;
 public class Graphics {
 
     public static void initialize() throws IOException {
-        Shaders.createShader("basic", "basic.vert", "basic.frag");
+        Shaders.createShader("basic", "shaders/basic.vert", "shaders/basic.frag");
         Shaders.addVertexAttribute("basic", "position", 3);
         Shaders.addVertexAttribute("basic", "normal", 3);
-        Shaders.addVertexAttribute("basic", "fillColor", 3);
-        Shaders.addVertexAttribute("basic", "strokeColor", 3);
+        Shaders.addVertexAttribute("basic", "color", 3);
     }
 
     public static void buffer(Renderable renderable) {

@@ -15,6 +15,7 @@ public class Module {
     private Map<Portal, Module> m_neighbors = new HashMap<Portal, Module>();
     private String m_name;
     private int m_openPortals;
+    private boolean m_isStaged;
     private List<Renderable> m_stagedRenderables = new ArrayList<Renderable>();
 
     public Module(ModuleTemplate type, String name) {
@@ -74,11 +75,10 @@ public class Module {
 
     public void stageScene() {
 
-        // draw self
 
-        for(Module neighbor : getNeighbors()) {
-            neighbor.stageScene();
-        }
+//        for(Module neighbor : getNeighbors()) {
+//            neighbor.stageScene();
+//        }
     }
 
     public List<Renderable> getStagedRenderables() {

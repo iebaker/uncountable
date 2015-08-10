@@ -80,7 +80,7 @@ public class Camera {
     }
 
     public void capture(Module module) {
-        captureToConsole(module);
+        captureToScreen(module);
     }
 
     public void captureToScreen(Module module) {

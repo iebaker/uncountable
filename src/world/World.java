@@ -15,18 +15,18 @@ public class World {
     public World() {
         m_camera = new Camera();
         m_currentModule = Treadmill.getInitialModule();
-        Treadmill.buildAround(m_currentModule, new Ray());
+        //Treadmill.buildAround(m_currentModule, new Ray());
     }
 
     public void update(float seconds) {
-        Treadmill.buildAround(m_currentModule, new Ray());
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        try {
-            String command = br.readLine();
-            parseTypedCommand(command);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        Treadmill.buildAround(m_currentModule, new Ray());
+//        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//        try {
+//            String command = br.readLine();
+//            parseTypedCommand(command);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
     public void render() {

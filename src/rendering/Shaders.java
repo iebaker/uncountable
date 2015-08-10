@@ -1,9 +1,6 @@
 package rendering;
 
 import java.io.IOException;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,6 +10,7 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
 
+import application.App;
 import joml.Matrix3f;
 import joml.Matrix4f;
 import joml.Vector2f;
@@ -30,7 +28,7 @@ public class Shaders {
         int status;
 
         int vertexShader = GL20.glCreateShader(GL20.GL_VERTEX_SHADER);
-        String vertexShaderSource = new String(Files.readAllBytes(Paths.get(vertexFilename)), Charset.defaultCharset());
+        String vertexShaderSource = App.stringFromFile(shaderName);
         GL20.glShaderSource(vertexShader, vertexShaderSource);
         GL20.glCompileShader(vertexShader);
 
@@ -40,7 +38,7 @@ public class Shaders {
         }
 
         int fragmentShader = GL20.glCreateShader(GL20.GL_FRAGMENT_SHADER);
-        String fragmentShaderSource = new String(Files.readAllBytes(Paths.get(fragmentFilename)), Charset.defaultCharset());
+        String fragmentShaderSource = App.stringFromFile(shaderName);
         GL20.glShaderSource(fragmentShader, fragmentShaderSource);
         GL20.glCompileShader(fragmentShader);
 
@@ -93,6 +91,10 @@ public class Shaders {
         GL20.glUseProgram(getProgram(name));
     }
 
+    public static void useProgram(int shaderProgram) {
+        GL20.glUseProgram(shaderProgram);
+    }
+
     public static int getProgram(String name) {
         return m_shaderPrograms.get(name);
     }
@@ -127,5 +129,9 @@ public class Shaders {
 
     public static void setShaderUniform(String name, int value) {
         GL20.glUniform1i(getUniformLocation(name), value);
+    }
+
+    public static boolean exists(String shaderName) {
+        return m_shaderPrograms.containsKey(shaderName);
     }
 }
