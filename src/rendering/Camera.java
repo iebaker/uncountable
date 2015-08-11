@@ -79,11 +79,11 @@ public class Camera {
         return new Matrix4f();
     }
 
-    public void capture(Module module) {
+    public void capture(Module module) throws RenderingException {
         captureToScreen(module);
     }
 
-    public void captureToScreen(Module module) {
+    public void captureToScreen(Module module) throws RenderingException {
        for(Renderable renderable : module.getStagedRenderables()) {
 
            if(renderable.needsToBeBuffered()) {

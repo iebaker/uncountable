@@ -30,6 +30,7 @@ import static org.lwjgl.opengl.GL11.glClear;
 import static org.lwjgl.opengl.GL11.glClearColor;
 import static org.lwjgl.system.MemoryUtil.NULL;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
@@ -43,6 +44,8 @@ import org.lwjgl.glfw.GLFWvidmode;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GLContext;
 
+import rendering.Graphics;
+
 public class App {
 
     private List<Screen> m_screens = new ArrayList<Screen>();
@@ -53,12 +56,21 @@ public class App {
     private long m_window;
 
     public static String stringFromFile(String filepath) {
-        InputStream inputStream = App.class.getClassLoader().getResourceAsStream(filepath);
-        Scanner scanner = new Scanner(inputStream);
-        scanner.useDelimiter("\\A");
+        Scanner scanner = App.scannerForFile(filepath, "\\A");
         String result = scanner.hasNext() ? scanner.next() : "";
         scanner.close();
         return result;
+    }
+
+    public static Scanner scannerForFile(String filepath) {
+        return App.scannerForFile(filepath, null);
+    }
+
+    public static Scanner scannerForFile(String filepath, String delimiter) {
+        InputStream inputStream = App.class.getClassLoader().getResourceAsStream(filepath);
+        Scanner scanner = new Scanner(inputStream);
+        if(delimiter != null) scanner.useDelimiter(delimiter);
+        return scanner;
     }
 
     public void pushScreen(Screen newScreen) {
@@ -137,6 +149,13 @@ public class App {
     private void execute() {
         GLContext.createFromCurrent();
         glClearColor(1.0f, 0.0f, 0.0f, 0.0f);
+
+        try {
+            Graphics.initialize();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
 
         while (glfwWindowShouldClose(m_window) == GL_FALSE) {
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

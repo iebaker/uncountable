@@ -1,50 +1,112 @@
 package rendering;
 
 import java.nio.FloatBuffer;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-import org.lwjgl.opengl.GL30;
+import org.lwjgl.BufferUtils;
 
 import joml.Matrix4f;
+import joml.Vector2f;
+import joml.Vector3f;
+import joml.Vector4f;
 
-public class Renderable {
+public abstract class Renderable {
 
-    private Map<String, Boolean> m_bufferStatus = new HashMap<String, Boolean>();
-    private Map<String, Integer> m_vertexArrayIds = new HashMap<String, Integer>();
-    private FloatBuffer m_vertexData;
-    private String m_activeShaderName;
+    private boolean m_bufferStatus = false;
+    private int m_vertexArrayId;
+    private Map<String, List<Float>> m_vertexData = new HashMap<String, List<Float>>();
+    private String m_shaderName;
     private Matrix4f m_modelMatrix;
     private int m_drawingMode;
     private int m_vertexCount;
 
-    public Renderable() {
-
+    public Renderable(int count, int drawingMode) {
+        m_vertexCount = count;
+        m_drawingMode = drawingMode;
+        m_modelMatrix = new Matrix4f();
     }
 
-    public void addShader(String shaderName) throws IllegalArgumentException {
+    public abstract void specifyVertices();
+
+    public void setVertexAttribute(String attributeName, Vector2f value) {
+        setVertexAttribute(attributeName, value.x, value.y);
+    }
+
+    public void setVertexAttribute(String attributeName, Vector3f value) {
+        setVertexAttribute(attributeName, value.x, value.y, value.z);
+    }
+
+    public void setVertexAttribute(String attributeName, Vector4f value) {
+        setVertexAttribute(attributeName, value.x, value.y, value.z, value.w);
+    }
+
+    public void setVertexAttribute(String attributeName, float... values) {
+        if(!m_vertexData.containsKey(attributeName)) {
+            m_vertexData.put(attributeName, new ArrayList<Float>());
+        }
+        for(float value : values) {
+            m_vertexData.get(attributeName).add(value);
+        }
+    }
+
+    public void setShader(String shaderName) {
         if(Shaders.exists(shaderName)) {
-            m_bufferStatus.put(shaderName, false);
-            m_vertexArrayIds.put(shaderName, GL30.glGenVertexArrays());
+            m_shaderName = shaderName;
         } else {
             throw new IllegalArgumentException(String.format("%s is not a valid shader", shaderName));
         }
     }
 
-    public void setAttribute() {
+    public FloatBuffer getVertexData() throws RenderingException {
+        if(!Shaders.exists(m_shaderName)) return BufferUtils.createFloatBuffer(0);
 
-    }
+        //Allocate a float buffer to store the vertex data
+        int bufferSize = m_vertexCount * Shaders.getAttributeStrideFor(m_shaderName);
+        FloatBuffer result = BufferUtils.createFloatBuffer(bufferSize);
 
-    public FloatBuffer getVertexData() {
-        return m_vertexData;
+        // Grab the attributes for this shader, and sort them in increasing order by offset
+        List<VertexAttribute> attributes = Shaders.getVertexAttributesFor(m_shaderName);
+        Collections.sort(attributes, new Comparator<VertexAttribute>() {
+            @Override
+            public int compare(VertexAttribute va1, VertexAttribute va2) {
+                Integer offset1 = va1.getOffset();
+                Integer offset2 = va2.getOffset();
+                return offset1.compareTo(offset2);
+            }
+        });
+
+        // Fill in vertex data for each vertex
+        for(int i = 0; i < m_vertexCount; ++i) {
+            for(VertexAttribute attribute : attributes) {
+                String attributeName = attribute.getName();
+                int attributeLength = attribute.getLength();
+
+                if(!m_vertexData.containsKey(attributeName)) {
+                    String message = String.format("Renderable of class %s does not have data for attribute %s required by shader %s",
+                            getClass().getName(), attributeName, m_shaderName);
+                    throw new RenderingException(message);
+                }
+
+                for(int j = 0; j < attributeLength; ++j) {
+                    result.put(m_vertexData.get(attributeName).remove(0));
+                }
+            }
+        }
+
+        return result;
     }
 
     public String getActiveShaderName() {
-        return m_activeShaderName;
+        return m_shaderName;
     }
 
     public int getVertexArrayId() {
-        return m_vertexArrayIds.get(m_activeShaderName);
+        return m_vertexArrayId;
     }
 
     public int getDrawingMode() {
@@ -56,11 +118,11 @@ public class Renderable {
     }
 
     public void onBuffer() {
-        m_bufferStatus.put(m_activeShaderName, true);
+        m_bufferStatus = true;
     }
 
     public boolean needsToBeBuffered() {
-        return !m_bufferStatus.get(m_activeShaderName);
+        return !m_bufferStatus;
     }
 
     public Matrix4f getModelMatrix() {

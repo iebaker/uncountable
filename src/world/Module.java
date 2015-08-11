@@ -7,7 +7,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import rendering.Points;
 import rendering.Renderable;
+import world.setpieces.BasicColoredQuad;
 
 public class Module {
 
@@ -74,11 +76,7 @@ public class Module {
     }
 
     public void stageScene() {
-
-
-//        for(Module neighbor : getNeighbors()) {
-//            neighbor.stageScene();
-//        }
+        stage(new BasicColoredQuad(Points.BLUE));
     }
 
     public List<Renderable> getStagedRenderables() {

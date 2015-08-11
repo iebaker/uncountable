@@ -16,7 +16,7 @@ public class Graphics {
         Shaders.addVertexAttribute("basic", "color", 3);
     }
 
-    public static void buffer(Renderable renderable) {
+    public static void buffer(Renderable renderable) throws RenderingException {
         GL30.glBindVertexArray(renderable.getVertexArrayId());
 
         int vertexBufferId = GL15.glGenBuffers();

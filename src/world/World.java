@@ -1,11 +1,7 @@
 package world;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
 import rendering.Camera;
-import rendering.Ray;
+import rendering.RenderingException;
 
 public class World {
 
@@ -31,7 +27,12 @@ public class World {
 
     public void render() {
         m_currentModule.stageScene();
-        m_camera.capture(m_currentModule);
+        try {
+            m_camera.capture(m_currentModule);
+        } catch (RenderingException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     private void parseTypedCommand(String command) {
