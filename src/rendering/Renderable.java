@@ -26,7 +26,6 @@ public abstract class Renderable {
     private int m_vertexCount;
 
     public Renderable(int count, int drawingMode) {
-        System.out.println("Renderable constructor");
         m_vertexCount = count;
         m_drawingMode = drawingMode;
         m_modelMatrix = new Matrix4f();
