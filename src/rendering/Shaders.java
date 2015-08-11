@@ -28,7 +28,7 @@ public class Shaders {
         int status;
 
         int vertexShader = GL20.glCreateShader(GL20.GL_VERTEX_SHADER);
-        String vertexShaderSource = App.stringFromFile(shaderName);
+        String vertexShaderSource = App.stringFromFile(vertexFilename);
         GL20.glShaderSource(vertexShader, vertexShaderSource);
         GL20.glCompileShader(vertexShader);
 
@@ -38,7 +38,7 @@ public class Shaders {
         }
 
         int fragmentShader = GL20.glCreateShader(GL20.GL_FRAGMENT_SHADER);
-        String fragmentShaderSource = App.stringFromFile(shaderName);
+        String fragmentShaderSource = App.stringFromFile(fragmentFilename);
         GL20.glShaderSource(fragmentShader, fragmentShaderSource);
         GL20.glCompileShader(fragmentShader);
 

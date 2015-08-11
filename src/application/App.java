@@ -1,6 +1,11 @@
 package application;
 
 import static org.lwjgl.glfw.Callbacks.errorCallbackPrint;
+import static org.lwjgl.glfw.GLFW.GLFW_CONTEXT_VERSION_MAJOR;
+import static org.lwjgl.glfw.GLFW.GLFW_CONTEXT_VERSION_MINOR;
+import static org.lwjgl.glfw.GLFW.GLFW_OPENGL_PROFILE;
+import static org.lwjgl.glfw.GLFW.GLFW_OPENGL_CORE_PROFILE;
+import static org.lwjgl.glfw.GLFW.GLFW_OPENGL_FORWARD_COMPAT;
 import static org.lwjgl.glfw.GLFW.GLFW_KEY_ESCAPE;
 import static org.lwjgl.glfw.GLFW.GLFW_RELEASE;
 import static org.lwjgl.glfw.GLFW.GLFW_RESIZABLE;
@@ -84,7 +89,7 @@ public class App {
     }
 
     public void start() {
-        System.out.println("Starting application (running LWJGL " + Sys.getVersion() + ")");
+        System.out.println("Running LWJGL " + Sys.getVersion());
 
         try {
             initialize();
@@ -106,6 +111,10 @@ public class App {
 
         glfwWindowHint(GLFW_VISIBLE, GL_FALSE);
         glfwWindowHint(GLFW_RESIZABLE, GL_TRUE);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
+        glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+        glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 
         int WIDTH = 600;
         int HEIGHT = 600;
@@ -149,6 +158,8 @@ public class App {
     private void execute() {
         GLContext.createFromCurrent();
         glClearColor(1.0f, 0.0f, 0.0f, 0.0f);
+
+        System.out.println("Using OpenGL version: " + GL11.glGetString(GL11.GL_VERSION));
 
         try {
             Graphics.initialize();
