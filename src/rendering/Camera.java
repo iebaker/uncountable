@@ -16,7 +16,7 @@ public class Camera {
     public static final int ASPECT_RATIO = 6;
 
     private Module m_previous;
-    private Vector3f m_eye;
+    private Vector3f m_eye = Points.___;
     private float[] m_params = new float[7];
 
     public float get(int parameterIndex) {

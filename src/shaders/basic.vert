@@ -12,5 +12,5 @@ uniform mat4 projection;
 
 void main() {
     vertexColor = color;
-    gl_Position = projection * view * model * vec4(position, 1.0);
+    projection * view * model * vec4(position, 1.0);
 }

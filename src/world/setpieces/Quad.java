@@ -8,18 +8,23 @@ import rendering.Renderable;
 public abstract class Quad extends Renderable {
 
     public Quad() {
-        super(6, GL11.GL_TRIANGLE_STRIP);
+        super(4, GL11.GL_TRIANGLE_STRIP);
+        System.out.println("Quad constructor");
     }
 
     @Override
-    public void specifyVertices() {
-        setVertexAttribute("position", Points.___);
-        setVertexAttribute("normal",   Points._Y_);
-        setVertexAttribute("position", Points.X__);
-        setVertexAttribute("normal",   Points._Y_);
-        setVertexAttribute("position", Points.__Z);
-        setVertexAttribute("normal",   Points._Y_);
-        setVertexAttribute("position", Points.X_Z);
-        setVertexAttribute("normal",   Points._Y_);
+    public void build() {
+        System.out.println("Quad");
+        setVertexAttribute("position", Points.xY_);
+        setVertexAttribute("normal",   Points.__z);
+
+        setVertexAttribute("position", Points.xy_);
+        setVertexAttribute("normal",   Points.__z);
+
+        setVertexAttribute("position", Points.XY_);
+        setVertexAttribute("normal",   Points.__z);
+
+        setVertexAttribute("position", Points.Xy_);
+        setVertexAttribute("normal",   Points.__z);
     }
 }

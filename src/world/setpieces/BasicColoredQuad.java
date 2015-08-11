@@ -8,13 +8,15 @@ public class BasicColoredQuad extends Quad {
 
     public BasicColoredQuad(Vector3f color) {
         super();
+        System.out.println("BasicColoredQuad constructor");
         m_color = color;
         setShader("basic");
     }
 
     @Override
-    public void specifyVertices() {
-        super.specifyVertices();
+    public void build() {
+        super.build();
+        System.out.println("BasicColoredQuad");
         setVertexAttribute("color", m_color);
         setVertexAttribute("color", m_color);
         setVertexAttribute("color", m_color);

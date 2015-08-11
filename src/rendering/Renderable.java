@@ -26,12 +26,13 @@ public abstract class Renderable {
     private int m_vertexCount;
 
     public Renderable(int count, int drawingMode) {
+        System.out.println("Renderable constructor");
         m_vertexCount = count;
         m_drawingMode = drawingMode;
         m_modelMatrix = new Matrix4f();
     }
 
-    public abstract void specifyVertices();
+    public abstract void build();
 
     public void setVertexAttribute(String attributeName, Vector2f value) {
         setVertexAttribute(attributeName, value.x, value.y);
@@ -87,17 +88,20 @@ public abstract class Renderable {
                 int attributeLength = attribute.getLength();
 
                 if(!m_vertexData.containsKey(attributeName)) {
-                    String message = String.format("Renderable of class %s does not have data for attribute %s required by shader %s",
+                    String message = String.format("%s does not have data for attribute '%s' required by shader '%s'",
                             getClass().getName(), attributeName, m_shaderName);
                     throw new RenderingException(message);
                 }
 
                 for(int j = 0; j < attributeLength; ++j) {
-                    result.put(m_vertexData.get(attributeName).remove(0));
+                    float datum = m_vertexData.get(attributeName).remove(0);
+                    result.put(datum);
+                    m_vertexData.get(attributeName).add(datum);
                 }
             }
         }
 
+        result.flip();
         return result;
     }
 

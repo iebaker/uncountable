@@ -10,6 +10,7 @@ import java.util.Set;
 import rendering.Points;
 import rendering.Renderable;
 import world.setpieces.BasicColoredQuad;
+import world.setpieces.Triangle;
 
 public class Module {
 
@@ -19,6 +20,9 @@ public class Module {
     private int m_openPortals;
     private boolean m_isStaged;
     private List<Renderable> m_stagedRenderables = new ArrayList<Renderable>();
+
+    private BasicColoredQuad m_quad;
+    private Triangle m_triangle;
 
     public Module(ModuleTemplate type, String name) {
         m_template = type;
@@ -76,7 +80,9 @@ public class Module {
     }
 
     public void stageScene() {
-        stage(new BasicColoredQuad(Points.BLUE));
+        if(m_quad == null) m_quad = new BasicColoredQuad(Points.BLUE);
+        if(m_triangle == null) m_triangle = new Triangle();
+        stage(m_triangle);
     }
 
     public List<Renderable> getStagedRenderables() {
@@ -88,7 +94,7 @@ public class Module {
     }
 
     private void stage(Renderable renderable) {
-
+        m_stagedRenderables.add(renderable);
     }
 
     private void stage(Portal portal) {

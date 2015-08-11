@@ -1,6 +1,7 @@
 package rendering;
 
 import java.io.IOException;
+import java.nio.FloatBuffer;
 
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL15;
@@ -19,9 +20,12 @@ public class Graphics {
     public static void buffer(Renderable renderable) throws RenderingException {
         GL30.glBindVertexArray(renderable.getVertexArrayId());
 
+        renderable.build();
+        FloatBuffer vertexData = renderable.getVertexData();
+
         int vertexBufferId = GL15.glGenBuffers();
         GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, vertexBufferId);
-        GL15.glBufferData(GL15.GL_ARRAY_BUFFER, renderable.getVertexData(), GL15.GL_STATIC_DRAW);
+        GL15.glBufferData(GL15.GL_ARRAY_BUFFER, vertexData, GL15.GL_STATIC_DRAW);
 
         String shaderName = renderable.getActiveShaderName();
         int floatSize = 4;
@@ -51,5 +55,6 @@ public class Graphics {
         GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
         GL30.glBindVertexArray(renderable.getVertexArrayId());
         GL11.glDrawArrays(renderable.getDrawingMode(), 0, renderable.getVertexCount());
+        GL30.glBindVertexArray(0);
     }
 }

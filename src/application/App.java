@@ -157,7 +157,7 @@ public class App {
 
     private void execute() {
         GLContext.createFromCurrent();
-        glClearColor(1.0f, 0.0f, 0.0f, 0.0f);
+        glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
         System.out.println("Using OpenGL version: " + GL11.glGetString(GL11.GL_VERSION));
 

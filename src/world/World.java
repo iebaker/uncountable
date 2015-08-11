@@ -30,7 +30,6 @@ public class World {
         try {
             m_camera.capture(m_currentModule);
         } catch (RenderingException e) {
-            System.out.println(e.getMessage());
             e.printStackTrace();
         }
     }

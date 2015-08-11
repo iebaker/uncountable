@@ -89,10 +89,7 @@ public class Shaders {
 
     public static void useShader(String name) {
         GL20.glUseProgram(getProgram(name));
-    }
-
-    public static void useProgram(int shaderProgram) {
-        GL20.glUseProgram(shaderProgram);
+        m_activeShader = name;
     }
 
     public static int getProgram(String name) {
