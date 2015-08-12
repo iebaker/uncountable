@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.lwjgl.BufferUtils;
+import org.lwjgl.opengl.GL30;
 
 import joml.Matrix4f;
 import joml.Vector2f;
@@ -29,6 +30,7 @@ public abstract class Renderable {
         m_vertexCount = count;
         m_drawingMode = drawingMode;
         m_modelMatrix = new Matrix4f();
+        m_vertexArrayId = GL30.glGenVertexArrays();
     }
 
     public abstract void build();

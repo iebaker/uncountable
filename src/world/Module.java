@@ -81,7 +81,6 @@ public class Module {
 
     public void stageScene() {
         if(m_quad == null) m_quad = new BasicColoredQuad(Points.BLUE);
-        if(m_triangle == null) m_triangle = new Triangle();
         stage(m_quad);
     }
 
