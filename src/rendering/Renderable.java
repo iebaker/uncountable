@@ -69,7 +69,8 @@ public abstract class Renderable {
 
         //Allocate a float buffer to store the vertex data
         int bufferSize = m_vertexCount * Shaders.getAttributeStrideFor(m_shaderName);
-        FloatBuffer result = BufferUtils.createFloatBuffer(bufferSize);
+        float data[] = new float[bufferSize];
+        int index = 0;
 
         // Grab the attributes for this shader, and sort them in increasing order by offset
         List<VertexAttribute> attributes = Shaders.getVertexAttributesFor(m_shaderName);
@@ -96,14 +97,16 @@ public abstract class Renderable {
 
                 for(int j = 0; j < attributeLength; ++j) {
                     float datum = m_vertexData.get(attributeName).remove(0);
-                    result.put(datum);
+                    data[index++] = datum;
                     m_vertexData.get(attributeName).add(datum);
                 }
             }
         }
 
-        result.flip();
-        return result;
+        FloatBuffer dataBuffer = BufferUtils.createFloatBuffer(bufferSize);
+        dataBuffer.put(data);
+        dataBuffer.flip();
+        return dataBuffer;
     }
 
     public String getActiveShaderName() {

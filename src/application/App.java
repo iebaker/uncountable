@@ -1,220 +1,189 @@
 package application;
 
-import static org.lwjgl.glfw.Callbacks.errorCallbackPrint;
-import static org.lwjgl.glfw.GLFW.GLFW_CONTEXT_VERSION_MAJOR;
-import static org.lwjgl.glfw.GLFW.GLFW_CONTEXT_VERSION_MINOR;
-import static org.lwjgl.glfw.GLFW.GLFW_OPENGL_PROFILE;
-import static org.lwjgl.glfw.GLFW.GLFW_OPENGL_CORE_PROFILE;
-import static org.lwjgl.glfw.GLFW.GLFW_OPENGL_FORWARD_COMPAT;
-import static org.lwjgl.glfw.GLFW.GLFW_KEY_ESCAPE;
-import static org.lwjgl.glfw.GLFW.GLFW_RELEASE;
-import static org.lwjgl.glfw.GLFW.GLFW_RESIZABLE;
-import static org.lwjgl.glfw.GLFW.GLFW_VISIBLE;
-import static org.lwjgl.glfw.GLFW.glfwCreateWindow;
-import static org.lwjgl.glfw.GLFW.glfwDestroyWindow;
-import static org.lwjgl.glfw.GLFW.glfwGetPrimaryMonitor;
-import static org.lwjgl.glfw.GLFW.glfwGetVideoMode;
-import static org.lwjgl.glfw.GLFW.glfwInit;
-import static org.lwjgl.glfw.GLFW.glfwMakeContextCurrent;
-import static org.lwjgl.glfw.GLFW.glfwPollEvents;
-import static org.lwjgl.glfw.GLFW.glfwSetErrorCallback;
-import static org.lwjgl.glfw.GLFW.glfwSetKeyCallback;
-import static org.lwjgl.glfw.GLFW.glfwSetWindowPos;
-import static org.lwjgl.glfw.GLFW.glfwSetWindowShouldClose;
-import static org.lwjgl.glfw.GLFW.glfwShowWindow;
-import static org.lwjgl.glfw.GLFW.glfwSwapBuffers;
-import static org.lwjgl.glfw.GLFW.glfwSwapInterval;
-import static org.lwjgl.glfw.GLFW.glfwTerminate;
-import static org.lwjgl.glfw.GLFW.glfwWindowHint;
-import static org.lwjgl.glfw.GLFW.glfwWindowShouldClose;
-import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
-import static org.lwjgl.opengl.GL11.GL_DEPTH_BUFFER_BIT;
-import static org.lwjgl.opengl.GL11.GL_FALSE;
-import static org.lwjgl.opengl.GL11.GL_TRUE;
-import static org.lwjgl.opengl.GL11.glClear;
-import static org.lwjgl.opengl.GL11.glClearColor;
-import static org.lwjgl.system.MemoryUtil.NULL;
+import static org.lwjgl.glfw.Callbacks.*;
+import static org.lwjgl.glfw.GLFW.*;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.nio.ByteBuffer;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.nio.FloatBuffer;
 
-import org.lwjgl.Sys;
+import org.lwjgl.BufferUtils;
 import org.lwjgl.glfw.GLFWErrorCallback;
-import org.lwjgl.glfw.GLFWKeyCallback;
+import org.lwjgl.glfw.GLFWWindowSizeCallback.SAM;
 import org.lwjgl.glfw.GLFWvidmode;
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL15;
 import org.lwjgl.opengl.GL20;
-import org.lwjgl.opengl.GL30;
+import org.lwjgl.opengl.GL32;
 import org.lwjgl.opengl.GLContext;
+import org.lwjgl.system.MemoryUtil;
 
-import joml.Matrix4f;
-import rendering.Graphics;
-import rendering.Shaders;
+public class App{
+    private GLFWErrorCallback errorCallback;
+    private long window;
+    boolean resized=false;
+    int WIDTH = 600;
+    int HEIGHT = 600;
 
-public class App {
 
-    private List<Screen> m_screens = new ArrayList<Screen>();
+    public App() {
+        try{
+            glfwSetErrorCallback(errorCallback = errorCallbackPrint(System.err));
+            if ( glfwInit() != GL11.GL_TRUE )throw new IllegalStateException("Unable to initialize GLFW");
+            glfwDefaultWindowHints();
+            glfwWindowHint(GLFW_VISIBLE, GL11.GL_FALSE); // the window will stay hidden after creation
+            glfwWindowHint(GLFW_RESIZABLE, GL11.GL_TRUE); // the window will be resizable
 
-    private GLFWErrorCallback m_errorCallback;
-    private GLFWKeyCallback m_keyCallback;
-
-    private long m_window;
-
-    public static String stringFromFile(String filepath) {
-        Scanner scanner = App.scannerForFile(filepath, "\\A");
-        String result = scanner.hasNext() ? scanner.next() : "";
-        scanner.close();
-        return result;
-    }
-
-    public static Scanner scannerForFile(String filepath) {
-        return App.scannerForFile(filepath, null);
-    }
-
-    public static Scanner scannerForFile(String filepath, String delimiter) {
-        InputStream inputStream = App.class.getClassLoader().getResourceAsStream(filepath);
-        Scanner scanner = new Scanner(inputStream);
-        if(delimiter != null) scanner.useDelimiter(delimiter);
-        return scanner;
-    }
-
-    public void pushScreen(Screen newScreen) {
-        newScreen.initialize(m_window);
-        m_screens.add(newScreen);
-    }
-
-    public void reapScreen(Screen oldScreen) {
-        oldScreen.cleanUp();
-        m_screens.remove(oldScreen);
-    }
-
-    public void start() {
-        System.out.println("Running LWJGL " + Sys.getVersion());
-
-        try {
-            initialize();
-            execute();
-            glfwDestroyWindow(m_window);
-            m_keyCallback.release();
-        } finally {
-            glfwTerminate();
-            m_errorCallback.release();
-        }
-    }
-
-    private void initialize() {
-        glfwSetErrorCallback(m_errorCallback = errorCallbackPrint(System.err));
-
-        if (glfwInit() != GL11.GL_TRUE) {
-            throw new IllegalStateException("Couldn't initialize GLFW");
-        }
-
-        glfwWindowHint(GLFW_VISIBLE, GL_FALSE);
-        glfwWindowHint(GLFW_RESIZABLE, GL_TRUE);
-        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
-        glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-        glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-
-        int WIDTH = 600;
-        int HEIGHT = 600;
-
-        m_window = glfwCreateWindow(WIDTH, HEIGHT, "Uncountable", NULL, NULL);
-        if (m_window == NULL) {
-            throw new RuntimeException("Failed to create the GLFW window");
-        }
-
-        glfwSetKeyCallback(m_window, m_keyCallback = new GLFWKeyCallback() {
-            @Override
-            public void invoke(long window, int key, int scancode, int action, int mods) {
-                if (key == GLFW_KEY_ESCAPE && action == GLFW_RELEASE) {
-                    glfwSetWindowShouldClose(window, GL_TRUE);
+            window = glfwCreateWindow(WIDTH, HEIGHT, "Hello World!", MemoryUtil.NULL, MemoryUtil.NULL);
+            if ( window == MemoryUtil.NULL )
+                throw new RuntimeException("Failed to create the GLFW window");
+            // Get the resolution of the primary monitor
+            ByteBuffer vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+            // Center our window
+            glfwSetWindowPos(
+                window,
+                (GLFWvidmode.width(vidmode) - WIDTH) / 2,
+                (GLFWvidmode.height(vidmode) - HEIGHT) / 2
+            );
+            glfwSetCallback(window, GLFWWindowSizeCallback(new SAM() {
+                @Override
+                public void invoke(long window, int width, int height) {
+                    resized=true;
+                    WIDTH=width;
+                    HEIGHT=height;
                 }
-            }
-        });
+            }));
+            // Make the OpenGL context current
+            glfwMakeContextCurrent(window);
+            // Enable v-sync
+            glfwSwapInterval(1);
 
-        ByteBuffer videoMode = glfwGetVideoMode(glfwGetPrimaryMonitor());
-        glfwSetWindowPos(
-                m_window,
-                (GLFWvidmode.width(videoMode) - WIDTH) / 2,
-                (GLFWvidmode.height(videoMode) - HEIGHT) / 2);
-        glfwMakeContextCurrent(m_window);
-        glfwSwapInterval(1);
-        glfwShowWindow(m_window);
-    }
+            // Make the window visible
+            glfwShowWindow(window);
+            GLContext.createFromCurrent();
+            ////////////////Prepare the Data////////////////
+            float[] data= new float[]{
+                    -0.5f, -0.5f,
+                    -0.5f,  0.5f,
+                     0.5f, -0.5f,
+                     0.5f,  0.5f,
+                    -0.5f,  0.5f,
+                     0.5f, -0.5f,
+            };
+            FloatBuffer DataBuffer= BufferUtils.createFloatBuffer(data.length);//position at 0.
+            DataBuffer.put(data);//put all the data in the buffer, position at the end of the data
+            DataBuffer.flip();//set the limit at the position=end of the data(ie no effect right now),and sets the position at 0 again
 
-    protected void update(float seconds) {
-        for (Screen screen : m_screens) {
-            screen.update(seconds);
-        }
-    }
+            int buffer = GL15.glGenBuffers();
+            GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, buffer);
+            GL15.glBufferData(GL15.GL_ARRAY_BUFFER, DataBuffer, GL15.GL_STATIC_DRAW);
+            GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, 0);
 
-    protected void render() {
-        for (Screen screen : m_screens) {
-            screen.render();
-        }
-    }
+            ////////////////End////////////////
+            ////////////////Prepare the Shader////////////////
+            String vert=
+                    "#version 330                                \n"+
+                    "in vec2 position;                            \n"+
+                    "void main(){                                \n"+
+                    "    gl_Position= vec4(position,0,1);        \n"+
+                    "}                                            \n";
+            String frag=
+                    "#version 330                                \n"+
+                    "out vec4 out_color;                        \n"+
+                    "void main(){                                \n"+
+                    "    out_color= vec4(0f, 1f, 1f, 1f);        \n"+
+                    "}                                            \n";
+            int shader = createShaderProgramme(new int[]{
+                    GL20.GL_VERTEX_SHADER,GL20.GL_FRAGMENT_SHADER
+            }, new String[]{
+                    vert,frag
+            });
 
-    private void execute() {
-        GLContext.createFromCurrent();
-        glClearColor(0.0f, 1.0f, 0.0f, 1.0f);
+            ////////////////End////////////////
+            GL11.glClearColor(0.0f, 0.0f, 0.5f, 1.0f);
 
-        System.out.println("Using OpenGL version: " + GL11.glGetString(GL11.GL_VERSION));
+            while ( glfwWindowShouldClose(window) == GL11.GL_FALSE ) {
+                if(resized){
+                    GL11.glViewport(0, 0, WIDTH, HEIGHT);
+                    resized=false;
+                }
+                GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT); // clear the framebuffer
+                GL20.glUseProgram(shader);
 
-        try {
-            Graphics.initialize();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-            e.printStackTrace();
-        }
+                GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, buffer);
+                GL20.glBindAttribLocation(shader, 0, "position");
+                GL20.glEnableVertexAttribArray(0);
+                GL20.glVertexAttribPointer(0, 2, GL11.GL_FLOAT, false, 0, 0);
 
-        while (glfwWindowShouldClose(m_window) == GL_FALSE) {
-            App.exitOnGLErrorWithMessage("Before main loop");
 
-            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-            glfwSwapBuffers(m_window);
+                GL11.glDrawArrays(GL11.GL_TRIANGLES, 0, 6);
+
+            GL20.glDisableVertexAttribArray(0);
+            GL20.glUseProgram(0);
+
+
+            glfwSwapBuffers(window); // swap the color buffers
+
+            // Poll for window events. The key callback above will only be
+            // invoked during this call.
             glfwPollEvents();
-
-            render();
-            update(0);
-
-            App.exitOnGLErrorWithMessage("After Main Loop");
-        }
-    }
-
-    public static void exitOnGLErrorWithMessage(String message) {
-        App.exitOnGLErrorWithMessage(message, false);
-    }
-
-    public static void exitOnGLErrorWithMessage(String message, boolean printSuccessOutput) {
-        int errorValue = GL11.glGetError();
-
-        switch(errorValue) {
-        case GL11.GL_INVALID_ENUM:
-            System.err.println(message + "(Invalid Enum, an unacceptable value is specified for an enumerated argument)"); break;
-        case GL11.GL_INVALID_VALUE:
-            System.err.println(message + " (Invalid Value, a numeric argument is out of range)"); break;
-        case GL11.GL_INVALID_OPERATION:
-            System.err.println(message + " (Invalid Operation, the specified operation is not allowed in the current state)"); break;
-        case GL30.GL_INVALID_FRAMEBUFFER_OPERATION:
-            System.err.println(message + " (Invalid Framebuffer Operation, the framebuffer object is not complete)"); break;
-        case GL11.GL_OUT_OF_MEMORY:
-            System.err.println(message + " (Out of Memory, there is not enough memory left to execute the command)"); break;
-        case GL11.GL_STACK_OVERFLOW:
-            System.err.println(message + " (An attempt has been made to perform an operation that would cause an internal stack to underflow)"); break;
-        case GL11.GL_STACK_UNDERFLOW:
-            System.err.println(message + " (An attempt has been made to perform an operation that would cause an internal stack to overflow)"); break;
-        case GL11.GL_NO_ERROR:
-            if(printSuccessOutput) {
-                System.out.println(message + " (No GL Error Detected!)");
-            }
-            return;
         }
 
-        System.exit(errorValue);
     }
+    finally{
+        glfwTerminate();
+        errorCallback.release();
+    }
+}
+
+int CreateShader(int shadertype,String shaderString){
+    int shader = GL20.glCreateShader(shadertype);
+    GL20.glShaderSource(shader, shaderString);
+    GL20.glCompileShader(shader);
+    int status = GL20.glGetShaderi(shader, GL20.GL_COMPILE_STATUS);
+    if (status == GL11.GL_FALSE){
+
+        String error=GL20.glGetShaderInfoLog(shader);
+
+        String ShaderTypeString = null;
+        switch(shadertype)
+        {
+        case GL20.GL_VERTEX_SHADER: ShaderTypeString = "vertex"; break;
+        case GL32.GL_GEOMETRY_SHADER: ShaderTypeString = "geometry"; break;
+        case GL20.GL_FRAGMENT_SHADER: ShaderTypeString = "fragment"; break;
+        }
+
+        System.err.println( "Compile failure in %s shader:\n%s\n"+ShaderTypeString+error);
+    }
+    return shader;
+}
+
+public int createShaderProgramme(int[] shadertypes, String[] shaders){
+    int[] shaderids= new int[shaders.length];
+    for (int i = 0; i < shaderids.length; i++) {
+        shaderids[i]=CreateShader(shadertypes[i], shaders[i]);
+    }
+    return createShaderProgramme(shaderids);
+}
+
+public int createShaderProgramme(int[] shaders){
+    int program = GL20.glCreateProgram();
+    for (int i = 0; i < shaders.length; i++) {
+        GL20.glAttachShader(program, shaders[i]);
+    }
+    GL20.glLinkProgram(program);
+
+    int status = GL20.glGetShaderi(program, GL20.GL_LINK_STATUS);
+    if (status == GL11.GL_FALSE){
+        String error=GL20.glGetProgramInfoLog(program);
+        System.err.println( "Linker failure: %s\n"+error);
+    }
+    for (int i = 0; i < shaders.length; i++) {
+        GL20.glDetachShader(program, shaders[i]);
+    }
+    return program;
+}
+
+public static void main(String... args) {
+    new App();
+}
 }

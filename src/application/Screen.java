@@ -4,10 +4,10 @@ import org.lwjgl.glfw.GLFWKeyCallback;
 
 public class Screen {
 
-    protected App m_parentApplication;
+    protected Application m_parentApplication;
     protected GLFWKeyCallback m_keyCallback;
 
-    public Screen(App parent) {
+    public Screen(Application parent) {
         m_parentApplication = parent;
     }
 

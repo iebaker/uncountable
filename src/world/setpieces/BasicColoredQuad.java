@@ -1,6 +1,7 @@
 package world.setpieces;
 
 import joml.Vector3f;
+import rendering.Points;
 
 public class BasicColoredQuad extends Quad {
 
@@ -16,8 +17,10 @@ public class BasicColoredQuad extends Quad {
     public void build() {
         super.build();
         setVertexAttribute("color", m_color);
+        setVertexAttribute("color", Points.GREEN);
+        setVertexAttribute("color", Points.BLACK);
         setVertexAttribute("color", m_color);
-        setVertexAttribute("color", m_color);
-        setVertexAttribute("color", m_color);
+        setVertexAttribute("color", Points.GREEN);
+        setVertexAttribute("color", Points.BLACK);
     }
 }

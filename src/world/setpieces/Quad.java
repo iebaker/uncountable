@@ -8,21 +8,17 @@ import rendering.Renderable;
 public abstract class Quad extends Renderable {
 
     public Quad() {
-        super(4, GL11.GL_TRIANGLE_STRIP);
+        super(6, GL11.GL_TRIANGLES);
     }
 
     @Override
     public void build() {
-        setVertexAttribute("position", Points.xY_);
-        setVertexAttribute("normal",   Points.__z);
-
-        setVertexAttribute("position", Points.xy_);
-        setVertexAttribute("normal",   Points.__z);
-
-        setVertexAttribute("position", Points.XY_);
-        setVertexAttribute("normal",   Points.__z);
-
-        setVertexAttribute("position", Points.Xy_);
-        setVertexAttribute("normal",   Points.__z);
+        // First triangle
+        setVertexAttribute("position", Points.xy);
+        setVertexAttribute("position", Points.xY);
+        setVertexAttribute("position", Points.Xy);
+        setVertexAttribute("position", Points.XY);
+        setVertexAttribute("position", Points.xY);
+        setVertexAttribute("position", Points.Xy);
     }
 }

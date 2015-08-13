@@ -10,7 +10,7 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
 
-import application.App;
+import application.Application;
 import joml.Matrix3f;
 import joml.Matrix4f;
 import joml.Vector2f;
@@ -28,7 +28,7 @@ public class Shaders {
         int status;
 
         int vertexShader = GL20.glCreateShader(GL20.GL_VERTEX_SHADER);
-        String vertexShaderSource = App.stringFromFile(vertexFilename);
+        String vertexShaderSource = Application.stringFromFile(vertexFilename);
         GL20.glShaderSource(vertexShader, vertexShaderSource);
         GL20.glCompileShader(vertexShader);
 
@@ -38,7 +38,7 @@ public class Shaders {
         }
 
         int fragmentShader = GL20.glCreateShader(GL20.GL_FRAGMENT_SHADER);
-        String fragmentShaderSource = App.stringFromFile(fragmentFilename);
+        String fragmentShaderSource = Application.stringFromFile(fragmentFilename);
         GL20.glShaderSource(fragmentShader, fragmentShaderSource);
         GL20.glCompileShader(fragmentShader);
 
@@ -57,6 +57,9 @@ public class Shaders {
         if(status != GL11.GL_TRUE) {
             throw new RuntimeException(GL20.glGetProgramInfoLog(shaderProgram));
         }
+
+        GL20.glDetachShader(shaderProgram, vertexShader);
+        GL20.glDetachShader(shaderProgram, fragmentShader);
 
         m_shaderPrograms.put(shaderName, shaderProgram);
     }

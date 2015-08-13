@@ -8,7 +8,7 @@ public class UncountableGameScreen extends Screen {
 
     World m_world;
 
-    public UncountableGameScreen(App parent) {
+    public UncountableGameScreen(Application parent) {
         super(parent);
     }
 
