@@ -28,6 +28,14 @@ public class Camera {
         m_params[parameterIndex] = value;
     }
 
+    public void add(int parameterIndex, float value) {
+        m_params[parameterIndex] += value;
+    }
+
+    public void sub(int parameterIndex, float value) {
+        m_params[parameterIndex] -= value;
+    }
+
     public Vector3f getEye() {
         return m_eye;
     }
@@ -73,15 +81,11 @@ public class Camera {
     }
 
     public Matrix4f getViewMatrix() {
-        Matrix4f matrix = new Matrix4f();
-        //matrix.lookAt(m_eye, getLook(), getUp(), matrix);
-        return matrix;
+        return new Matrix4f().setLookAt(m_eye, getLook(), getUp());
     }
 
     public Matrix4f getProjectionMatrix() {
-        Matrix4f matrix =  new Matrix4f();
-        //matrix.perspective(m_params[FOV], m_params[ASPECT_RATIO], m_params[NEAR_PLANE], m_params[FAR_PLANE], matrix);
-        return matrix;
+        return new Matrix4f().setPerspective(m_params[FOV], m_params[ASPECT_RATIO], m_params[NEAR_PLANE], m_params[FAR_PLANE]);
     }
 
     public void capture(Module module) throws RenderingException {
@@ -89,7 +93,8 @@ public class Camera {
     }
 
     public void captureToScreen(Module module) throws RenderingException {
-       for(Renderable renderable : module.getStagedRenderables()) {
+        System.out.println(getProjectionMatrix());
+        for(Renderable renderable : module.getStagedRenderables()) {
 
            if(renderable.needsToBeBuffered()) {
                Graphics.buffer(renderable);
