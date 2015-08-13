@@ -26,14 +26,17 @@ public class Camera {
 
     public void set(int parameterIndex, float value) {
         m_params[parameterIndex] = value;
+        limitPitch();
     }
 
     public void add(int parameterIndex, float value) {
         m_params[parameterIndex] += value;
+        limitPitch();
     }
 
     public void sub(int parameterIndex, float value) {
         m_params[parameterIndex] -= value;
+        limitPitch();
     }
 
     public Vector3f getEye() {
@@ -43,7 +46,7 @@ public class Camera {
     public Vector3f getLook() {
         float x = (float)(Math.cos(m_params[YAW]) * Math.cos(m_params[PITCH]));
         float y = (float)(Math.sin(m_params[PITCH]));
-        float z = (float)(Math.sin(m_params[YAW]) * Math.cos(m_params[PITCH]));
+        float z = (float)(Math.sin(-m_params[YAW]) * Math.cos(m_params[PITCH]));
         return new Vector3f(x, y, z).normalize();
     }
 
@@ -66,6 +69,10 @@ public class Camera {
     public void rotate(float yaw, float pitch) {
         m_params[PITCH] += pitch;
         m_params[YAW] += yaw;
+        limitPitch();
+    }
+
+    private void limitPitch() {
         m_params[PITCH] = m_params[PITCH] > m_params[PITCH_LIMIT] ?
             m_params[PITCH_LIMIT] : m_params[PITCH];
         m_params[PITCH] = m_params[PITCH] < -m_params[PITCH_LIMIT] ?
@@ -81,7 +88,7 @@ public class Camera {
     }
 
     public Matrix4f getViewMatrix() {
-        return new Matrix4f().setLookAt(m_eye, getLook(), getUp());
+        return new Matrix4f().setLookAt(m_eye, getLook(), Points._Y_);
     }
 
     public Matrix4f getProjectionMatrix() {
@@ -93,7 +100,6 @@ public class Camera {
     }
 
     public void captureToScreen(Module module) throws RenderingException {
-        System.out.println(getProjectionMatrix());
         for(Renderable renderable : module.getStagedRenderables()) {
 
            if(renderable.needsToBeBuffered()) {

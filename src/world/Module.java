@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import joml.Vector3f;
 import rendering.Points;
 import rendering.Renderable;
 import world.setpieces.BasicColoredQuad;
@@ -22,10 +23,37 @@ public class Module {
 
     private BasicColoredQuad m_quad;
 
+    private BasicColoredQuad m_X;
+    private BasicColoredQuad m_Y;
+    private BasicColoredQuad m_Z;
+    private BasicColoredQuad m_x;
+    private BasicColoredQuad m_y;
+    private BasicColoredQuad m_z;
+
     public Module(ModuleTemplate type, String name) {
         m_template = type;
         m_name = name;
         m_openPortals = m_template.getPortals().size();
+
+        m_X = new BasicColoredQuad(Points.RED);
+        m_x = new BasicColoredQuad(Points.BLUE);
+        m_Y = new BasicColoredQuad(Points.GREEN);
+        m_y = new BasicColoredQuad(Points.MAGENTA);
+        m_Z = new BasicColoredQuad(Points.YELLOW);
+        m_z = new BasicColoredQuad(Points.CYAN);
+
+        m_Z.translate(Points.__Z);
+        m_z.translate(Points.__z);
+
+        m_Y.rotate(Points.piOver(2), Points.X__);
+        m_y.rotate(Points.piOver(2), Points.X__);
+        m_Y.translate(Points._Y_);
+        m_y.translate(Points._y_);
+
+        m_X.rotate(Points.piOver(2), Points._Y_);
+        m_x.rotate(Points.piOver(2), Points._Y_);
+        m_X.translate(Points.X__);
+        m_x.translate(Points.x__);
     }
 
     public String getName() {
@@ -78,9 +106,7 @@ public class Module {
     }
 
     public void stageScene() {
-        if(m_quad == null) m_quad = new BasicColoredQuad(Points.MAGENTA);
-        m_quad.rotate(0.05f, Points._Y_);
-        stage(m_quad);
+        stage(m_X, m_x, m_Y, m_y, m_Z, m_z);
     }
 
     public List<Renderable> getStagedRenderables() {
@@ -91,8 +117,10 @@ public class Module {
         m_stagedRenderables.clear();
     }
 
-    private void stage(Renderable renderable) {
-        m_stagedRenderables.add(renderable);
+    private void stage(Renderable... renderables) {
+        for(Renderable renderable : renderables) {
+            m_stagedRenderables.add(renderable);
+        }
     }
 
     private void stage(Portal portal) {

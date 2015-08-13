@@ -61,7 +61,6 @@ public class Graphics {
     }
 
     public static void draw(Renderable renderable) {
-        GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
         GL30.glBindVertexArray(renderable.getVertexArrayId());
 
         GL20.glValidateProgram(Graphics.getActiveShader());

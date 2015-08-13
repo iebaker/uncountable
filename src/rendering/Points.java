@@ -66,6 +66,34 @@ public class Points {
     public static final Vector3f WHITE = XYZ;
     public static final Vector3f BLACK = ___;
 
+    public static Vector3f aug3f(String name, float aug) {
+        try {
+            return new Vector3f((Vector3f)(Points.class.getField(name).get(null))).mul(aug);
+        } catch (NoSuchFieldException e) {
+            System.err.println("Unknown point " + name);
+            return ORIGIN_3D;
+        } catch (IllegalAccessException e) {
+            System.err.println("Illegal access on " + name);
+            return ORIGIN_3D;
+        }
+    }
+
+    public static Vector2f aug2f(String name, float aug) {
+        try {
+            return new Vector2f((Vector2f)(Points.class.getField(name).get(null))).mul(aug);
+        } catch (NoSuchFieldException e) {
+            System.err.println("Unknown point " + name);
+            return ORIGIN_2D;
+        } catch (IllegalAccessException e) {
+            System.err.println("Illegal access on " + name);
+            return ORIGIN_2D;
+        }
+    }
+
+    public static float piOver(float denominator) {
+        return (float)(Math.PI/denominator);
+    }
+
     public static Vector4f homogeneousVector(Vector3f vector)
     {
         return new Vector4f(vector.x, vector.y, vector.z, 0.0f);

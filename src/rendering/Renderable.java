@@ -76,6 +76,10 @@ public abstract class Renderable {
         m_modelMatrix = new Matrix4f().rotation(new AxisAngle4f(amount, x, y, z)).mul(m_modelMatrix);
     }
 
+    public void clearTransforms() {
+        m_modelMatrix = new Matrix4f();
+    }
+
     public String getActiveShaderName() {
         return m_shaderName;
     }

@@ -74,7 +74,6 @@ public class Application {
             glfwShowWindow(m_window);
             GLContext.createFromCurrent();
 
-            GL11.glClearColor(0.0f,  0.0f,  0.0f,  0.0f);
             try {
                 Graphics.initialize();
             } catch (IOException e) {
@@ -96,6 +95,7 @@ public class Application {
                 glfwSwapBuffers(m_window);
                 glfwPollEvents();
 
+                Application.exitOnGLErrorWithMessage("Error!");
             }
 
         } finally {
