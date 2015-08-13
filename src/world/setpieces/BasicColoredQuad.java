@@ -2,7 +2,7 @@ package world.setpieces;
 
 import joml.Vector3f;
 
-public class BasicColoredQuad extends Quad {
+public class BasicColoredQuad extends AbstractQuad {
 
     private Vector3f m_color;
 

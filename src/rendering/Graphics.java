@@ -22,8 +22,6 @@ public class Graphics {
 
     public static void initialize() throws IOException {
         Shaders.createShader("basic", "shaders/basic.vert", "shaders/basic.frag");
-        Shaders.addVertexAttribute("basic", "position", 2);
-        Shaders.addVertexAttribute("basic", "color", 3);
     }
 
     public static void buffer(Renderable renderable) throws RenderingException {

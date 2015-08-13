@@ -29,6 +29,7 @@ public class Shaders {
 
         int vertexShader = GL20.glCreateShader(GL20.GL_VERTEX_SHADER);
         String vertexShaderSource = Application.stringFromFile(vertexFilename);
+        parseForVertexAttributes(shaderName, vertexShaderSource);
         GL20.glShaderSource(vertexShader, vertexShaderSource);
         GL20.glCompileShader(vertexShader);
 
@@ -64,7 +65,24 @@ public class Shaders {
         m_shaderPrograms.put(shaderName, shaderProgram);
     }
 
-    public static void addVertexAttribute(String shaderName, String attributeName, int attributeLength) {
+    private static void parseForVertexAttributes(String shaderName, String shaderSource) {
+        String attributeName;
+        int attributeLength;
+        for(String line : shaderSource.split("\n")) {
+            if(line.startsWith("in")) {
+                String[] tokens = line.split(" ");
+                attributeName = tokens[2].substring(0, tokens[2].length() - 1);
+                try {
+                    attributeLength = Integer.parseInt(tokens[1].substring(tokens[1].length() - 1));
+                } catch (NumberFormatException e) {
+                    attributeLength = 1;
+                }
+                addVertexAttribute(shaderName, attributeName, attributeLength);
+            }
+        }
+    }
+
+    private static void addVertexAttribute(String shaderName, String attributeName, int attributeLength) {
         if(!m_vertexAttributes.containsKey(shaderName)) {
             m_vertexAttributes.put(shaderName, new ArrayList<VertexAttribute>());
         }
