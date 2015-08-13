@@ -35,6 +35,8 @@ public class Application {
 
     private List<Screen> m_screens = new ArrayList<Screen>();
 
+    private static Application m_application;
+
     public Application() {
 
         try {
@@ -79,6 +81,7 @@ public class Application {
                 e.printStackTrace();
             }
 
+            m_application = this;
             initialize();
 
             while(glfwWindowShouldClose(m_window) == GL11.GL_FALSE) {
@@ -142,6 +145,22 @@ public class Application {
         for (Screen screen : m_screens) {
             screen.render();
         }
+    }
+
+    public static float getAppWidth() {
+        return m_application.getWidth();
+    }
+
+    public static float getAppHeight() {
+        return m_application.getHeight();
+    }
+
+    public float getWidth() {
+        return m_width;
+    }
+
+    public float getHeight() {
+        return m_height;
     }
 
     public static void exitOnGLErrorWithMessage(String message) {

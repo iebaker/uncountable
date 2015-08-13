@@ -1,6 +1,8 @@
 package world;
 
+import application.Application;
 import rendering.Camera;
+import rendering.Points;
 import rendering.RenderingException;
 
 public class World {
@@ -9,20 +11,24 @@ public class World {
     private Camera m_camera;
 
     public World() {
-        m_camera = new Camera();
+
+        m_camera = new Camera() {{
+           set(Camera.YAW, (float)Math.PI);
+           set(Camera.PITCH, 0.0f);
+           set(Camera.HEIGHT_ANGLE, 60.0f);
+           set(Camera.NEAR_PLANE, 1.0f);
+           set(Camera.FAR_PLANE, 500.0f);
+           set(Camera.PITCH_LIMIT, (float)(Math.PI/2.0f - 0.001f));
+           set(Camera.ASPECT_RATIO, 1.0f);
+
+           translateTo(Points.ORIGIN_3D);
+        }};
+
         m_currentModule = Treadmill.getInitialModule();
-        //Treadmill.buildAround(m_currentModule, new Ray());
     }
 
     public void update(float seconds) {
-//        Treadmill.buildAround(m_currentModule, new Ray());
-//        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-//        try {
-//            String command = br.readLine();
-//            parseTypedCommand(command);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+
     }
 
     public void render() {
@@ -31,29 +37,6 @@ public class World {
             m_camera.capture(m_currentModule);
         } catch (RenderingException e) {
             e.printStackTrace();
-        }
-    }
-
-    private void parseTypedCommand(String command) {
-        String[] tokenized = command.split("\\s+");
-        switch (tokenized[0]) {
-        case "move":
-            String where = tokenized[1];
-            for (Portal portal : m_currentModule.getTemplate().getPortals()) {
-                if (portal.getName().equalsIgnoreCase(where)) {
-                    if (m_currentModule.hasNeighbor(portal)) {
-                        m_currentModule = m_currentModule.getNeighbor(portal);
-                        return;
-                    } else {
-                        System.out.println("Portal " + where + " has no loaded neighbor.");
-                        return;
-                    }
-                }
-            }
-            System.out.println("Couldn't find exit " + where);
-            break;
-        default:
-            System.out.println("Unknown command");
         }
     }
 }

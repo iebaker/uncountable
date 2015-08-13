@@ -79,6 +79,7 @@ public class Module {
 
     public void stageScene() {
         if(m_quad == null) m_quad = new BasicColoredQuad(Points.MAGENTA);
+        m_quad.rotate(0.05f, Points._Y_);
         stage(m_quad);
     }
 

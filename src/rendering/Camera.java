@@ -14,10 +14,11 @@ public class Camera {
     public static final int FAR_PLANE = 4;
     public static final int PITCH_LIMIT = 5;
     public static final int ASPECT_RATIO = 6;
+    public static final int FOV = 7;
 
     private Module m_previous;
     private Vector3f m_eye = Points.___;
-    private float[] m_params = new float[7];
+    private float[] m_params = new float[8];
 
     public float get(int parameterIndex) {
         return m_params[parameterIndex];
@@ -72,11 +73,15 @@ public class Camera {
     }
 
     public Matrix4f getViewMatrix() {
-        return new Matrix4f();
+        Matrix4f matrix = new Matrix4f();
+        //matrix.lookAt(m_eye, getLook(), getUp(), matrix);
+        return matrix;
     }
 
     public Matrix4f getProjectionMatrix() {
-        return new Matrix4f();
+        Matrix4f matrix =  new Matrix4f();
+        //matrix.perspective(m_params[FOV], m_params[ASPECT_RATIO], m_params[NEAR_PLANE], m_params[FAR_PLANE], matrix);
+        return matrix;
     }
 
     public void capture(Module module) throws RenderingException {

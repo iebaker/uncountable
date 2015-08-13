@@ -11,6 +11,7 @@ import java.util.Map;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL30;
 
+import joml.AxisAngle4f;
 import joml.Matrix4f;
 import joml.Vector2f;
 import joml.Vector3f;
@@ -45,6 +46,62 @@ public abstract class Renderable {
 
     public void setVertexAttribute(String attributeName, Vector4f value) {
         setVertexAttribute(attributeName, value.x, value.y, value.z, value.w);
+    }
+
+    public void scale(float factor) {
+        m_modelMatrix = new Matrix4f().scaling(factor).mul(m_modelMatrix);
+    }
+
+    public void scale(float x, float y, float z) {
+        m_modelMatrix = new Matrix4f().scaling(x, y, z).mul(m_modelMatrix);
+    }
+
+    public void scale(Vector3f factor) {
+        m_modelMatrix = new Matrix4f().scaling(factor.x, factor.y, factor.z).mul(m_modelMatrix);
+    }
+
+    public void translate(float x, float y, float z) {
+        m_modelMatrix = new Matrix4f().translation(x, y, z).mul(m_modelMatrix);
+    }
+
+    public void translate(Vector3f distance) {
+        m_modelMatrix = new Matrix4f().translation(distance).mul(m_modelMatrix);
+    }
+
+    public void rotate(float amount, Vector3f axis) {
+        m_modelMatrix = new Matrix4f().rotation(new AxisAngle4f(amount, axis)).mul(m_modelMatrix);
+    }
+
+    public void rotate(float amount, float x, float y, float z) {
+        m_modelMatrix = new Matrix4f().rotation(new AxisAngle4f(amount, x, y, z)).mul(m_modelMatrix);
+    }
+
+    public String getActiveShaderName() {
+        return m_shaderName;
+    }
+
+    public int getVertexArrayId() {
+        return m_vertexArrayId;
+    }
+
+    public int getDrawingMode() {
+        return m_drawingMode;
+    }
+
+    public int getVertexCount() {
+        return m_vertexCount;
+    }
+
+    public void onBuffer() {
+        m_bufferStatus = true;
+    }
+
+    public boolean needsToBeBuffered() {
+        return !m_bufferStatus;
+    }
+
+    public Matrix4f getModelMatrix() {
+        return m_modelMatrix;
     }
 
     public void setVertexAttribute(String attributeName, float... values) {
@@ -107,33 +164,5 @@ public abstract class Renderable {
         dataBuffer.put(data);
         dataBuffer.flip();
         return dataBuffer;
-    }
-
-    public String getActiveShaderName() {
-        return m_shaderName;
-    }
-
-    public int getVertexArrayId() {
-        return m_vertexArrayId;
-    }
-
-    public int getDrawingMode() {
-        return m_drawingMode;
-    }
-
-    public int getVertexCount() {
-        return m_vertexCount;
-    }
-
-    public void onBuffer() {
-        m_bufferStatus = true;
-    }
-
-    public boolean needsToBeBuffered() {
-        return !m_bufferStatus;
-    }
-
-    public Matrix4f getModelMatrix() {
-        return m_modelMatrix;
     }
 }
