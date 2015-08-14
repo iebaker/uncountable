@@ -2,7 +2,6 @@ package world;
 
 import org.lwjgl.opengl.GL11;
 
-import application.Application;
 import rendering.Camera;
 import rendering.Points;
 import rendering.RenderingException;
@@ -26,19 +25,15 @@ public class World {
            translateTo(Points.ORIGIN_3D);
         }};
 
+        Treadmill.importModuleTemplates("/Users/ibaker/modules_test_1.xml");
         m_currentModule = Treadmill.getInitialModule();
     }
 
-    public void update(float seconds) {
-        m_camera.add(Camera.YAW, Points.piOver(50));
+    public Camera getCamera() {
+        return m_camera;
     }
 
-    public void render() {
-        m_currentModule.stageScene();
-        try {
-            m_camera.capture(m_currentModule);
-        } catch (RenderingException e) {
-            e.printStackTrace();
-        }
+    public Module getCurrentModule() {
+        return m_currentModule;
     }
 }
