@@ -31,12 +31,12 @@ public class Camera {
 
     public void add(int parameterIndex, float value) {
         m_params[parameterIndex] += value;
-        //limitPitch();
+        limitPitch();
     }
 
     public void sub(int parameterIndex, float value) {
         m_params[parameterIndex] -= value;
-        //limitPitch();
+        limitPitch();
     }
 
     public Vector3f getEye() {
