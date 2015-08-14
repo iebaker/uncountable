@@ -1,10 +1,8 @@
 package world;
 
-import org.lwjgl.opengl.GL11;
-
+import application.Uncountable;
 import rendering.Camera;
 import rendering.Points;
-import rendering.RenderingException;
 
 public class World {
 
@@ -20,7 +18,7 @@ public class World {
            set(Camera.FOV, Points.piOver(1.5f));
            set(Camera.NEAR_PLANE, 0.1f);
            set(Camera.FAR_PLANE, 500.0f);
-           set(Camera.ASPECT_RATIO, 1.0f);
+           set(Camera.ASPECT_RATIO, Uncountable.game.getWidth() / Uncountable.game.getHeight());
 
            translateTo(Points.ORIGIN_3D);
         }};

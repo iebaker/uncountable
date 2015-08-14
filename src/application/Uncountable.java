@@ -57,8 +57,8 @@ public class Uncountable {
     public static Uncountable game;
 
     private long m_window;
-    private int m_width = 600;
-    private int m_height = 600;
+    private int m_width = 800;
+    private int m_height = 800;
     private boolean m_resized;
     private World m_world;
 

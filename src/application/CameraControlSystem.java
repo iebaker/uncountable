@@ -11,7 +11,6 @@ import rendering.Camera;
 
 public class CameraControlSystem extends GameSystem {
 
-    private float m_rotateSpeedFactor = 150.0f;
     private float m_movementSpeedFactor = 0.1f;
 
     public CameraControlSystem() {
@@ -20,13 +19,17 @@ public class CameraControlSystem extends GameSystem {
 
     @Override
     public void onMouseMove(Vector2f position, Vector2f delta) {
+        Camera camera = Uncountable.game.getWorld().getCamera();
+        float width = Uncountable.game.getWidth();
+        float height = Uncountable.game.getHeight();
+
         if(!inWindow(position)) return;
 
-        float xDiff = delta.x / m_rotateSpeedFactor;
-        float yDiff = delta.y / m_rotateSpeedFactor;
+        float xDiff = (delta.x / width) * camera.get(Camera.FOV);
+        float yDiff = (delta.y / height) * camera.get(Camera.FOV) / camera.get(Camera.ASPECT_RATIO);
 
-        Uncountable.game.getWorld().getCamera().sub(Camera.YAW, xDiff);
-        Uncountable.game.getWorld().getCamera().add(Camera.PITCH, yDiff);
+        camera.sub(Camera.YAW, xDiff);
+        camera.add(Camera.PITCH, yDiff);
     }
 
     @Override
