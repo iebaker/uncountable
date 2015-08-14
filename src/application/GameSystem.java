@@ -7,7 +7,7 @@ public class GameSystem {
 
     protected GameSystem() {}
 
-    public void tick(World world, float seconds) {}
+    public void tick(float seconds) {}
 
     public void onKeyDown(int key) {}
     public void onKeyHeld(int key) {}

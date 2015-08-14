@@ -57,6 +57,11 @@ public class Camera {
         return new Vector3f(x, y, z).normalize();
     }
 
+    public Vector3f getRight() {
+        Vector3f heading = getHeading();
+        return new Vector3f(heading.z, 0.0f, -heading.x);
+    }
+
     public Vector3f getUp() {
         if(m_params[PITCH] < 0) {
             Vector3f look = getLook();

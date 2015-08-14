@@ -66,6 +66,10 @@ public class Uncountable {
     private Vector2f m_prevMousePos = Points.ORIGIN_2D;
 
     private GLFWErrorCallback m_errorCallback;
+    private GLFWKeyCallback m_keyCallback;
+    private GLFWCursorPosCallback m_cursorPosCallback;
+    private GLFWMouseButtonCallback m_mouseButtonCallback;
+
     private List<GameSystem> m_gameSystems = new ArrayList<GameSystem>();
 
     public Uncountable() {
@@ -77,11 +81,12 @@ public class Uncountable {
         addGameSystem(new CameraControlSystem());
         addGameSystem(new RenderingSystem());
 
+        Uncountable.game = this;
         gameLoop();
     }
 
     public static void main(String... args) {
-        Uncountable.game = new Uncountable();
+        new Uncountable();
     }
 
     private void addGameSystem(GameSystem system) {
@@ -120,7 +125,7 @@ public class Uncountable {
     private void setCallbacks() {
         glfwSetErrorCallback(m_errorCallback = errorCallbackPrint(System.err));
 
-        glfwSetKeyCallback(m_window, new GLFWKeyCallback() {
+        glfwSetKeyCallback(m_window, m_keyCallback = new GLFWKeyCallback() {
             @Override
             public void invoke(long window, int key, int scancode, int action, int mods) {
                 switch(action) {
@@ -145,7 +150,7 @@ public class Uncountable {
             }
         });
 
-        glfwSetCursorPosCallback(m_window, new GLFWCursorPosCallback() {
+        glfwSetCursorPosCallback(m_window, m_cursorPosCallback = new GLFWCursorPosCallback() {
             @Override
             public void invoke(long window, double xpos, double ypos) {
                 Vector2f delta = new Vector2f((float)xpos, (float)ypos).sub(m_prevMousePos);
@@ -156,7 +161,7 @@ public class Uncountable {
             }
         });
 
-        glfwSetMouseButtonCallback(m_window, new GLFWMouseButtonCallback() {
+        glfwSetMouseButtonCallback(m_window, m_mouseButtonCallback = new GLFWMouseButtonCallback() {
            @Override
            public void invoke(long window, int button, int action, int mods) {
                switch(action) {
@@ -187,6 +192,7 @@ public class Uncountable {
 
     private void gameLoop() {
         m_world = new World();
+
         while(glfwWindowShouldClose(m_window) == GL11.GL_FALSE) {
 
             float rightNow = (float)glfwGetTime();
@@ -194,7 +200,7 @@ public class Uncountable {
             m_prevTime = rightNow;
 
             for(GameSystem system : m_gameSystems) {
-                system.tick(m_world, elapsedTime);
+                system.tick(elapsedTime);
             }
 
             glfwSwapBuffers(m_window);
@@ -202,6 +208,23 @@ public class Uncountable {
 
             Uncountable.exitOnGLErrorWithMessage("Error!");
         }
+
+        m_errorCallback.release();
+        m_keyCallback.release();
+        m_cursorPosCallback.release();
+        m_mouseButtonCallback.release();
+    }
+
+    public World getWorld() {
+        return m_world;
+    }
+
+    public int getWidth() {
+        return m_width;
+    }
+
+    public int getHeight() {
+        return m_height;
     }
 
     public static String stringFromFile(String filepath) {
