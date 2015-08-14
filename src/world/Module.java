@@ -35,6 +35,8 @@ public class Module {
         m_name = name;
         m_openPortals = m_template.getPortals().size();
 
+        float d = 1.0f;
+
         m_X = new BasicColoredQuad(Points.RED);
         m_x = new BasicColoredQuad(Points.BLUE);
         m_Y = new BasicColoredQuad(Points.GREEN);
@@ -42,18 +44,18 @@ public class Module {
         m_Z = new BasicColoredQuad(Points.YELLOW);
         m_z = new BasicColoredQuad(Points.CYAN);
 
-        m_Z.translate(Points.__Z);
-        m_z.translate(Points.__z);
+        m_Z.translate(Points.aug3f("__Z", d));
+        m_z.translate(Points.aug3f("__z", d));
 
         m_Y.rotate(Points.piOver(2), Points.X__);
         m_y.rotate(Points.piOver(2), Points.X__);
-        m_Y.translate(Points._Y_);
-        m_y.translate(Points._y_);
+        m_Y.translate(Points.aug3f("_Y_", d));
+        m_y.translate(Points.aug3f("_y_", d));
 
         m_X.rotate(Points.piOver(2), Points._Y_);
         m_x.rotate(Points.piOver(2), Points._Y_);
-        m_X.translate(Points.X__);
-        m_x.translate(Points.x__);
+        m_X.translate(Points.aug3f("X__", d));
+        m_x.translate(Points.aug3f("x__", d));
     }
 
     public String getName() {

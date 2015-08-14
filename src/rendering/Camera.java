@@ -31,12 +31,12 @@ public class Camera {
 
     public void add(int parameterIndex, float value) {
         m_params[parameterIndex] += value;
-        limitPitch();
+        //limitPitch();
     }
 
     public void sub(int parameterIndex, float value) {
         m_params[parameterIndex] -= value;
-        limitPitch();
+        //limitPitch();
     }
 
     public Vector3f getEye() {
@@ -46,7 +46,7 @@ public class Camera {
     public Vector3f getLook() {
         float x = (float)(Math.cos(m_params[YAW]) * Math.cos(m_params[PITCH]));
         float y = (float)(Math.sin(m_params[PITCH]));
-        float z = (float)(Math.sin(-m_params[YAW]) * Math.cos(m_params[PITCH]));
+        float z = (float)(Math.sin(m_params[YAW]) * Math.cos(m_params[PITCH]));
         return new Vector3f(x, y, z).normalize();
     }
 
@@ -73,14 +73,16 @@ public class Camera {
     }
 
     private void limitPitch() {
-        m_params[PITCH] = m_params[PITCH] > m_params[PITCH_LIMIT] ?
-            m_params[PITCH_LIMIT] : m_params[PITCH];
-        m_params[PITCH] = m_params[PITCH] < -m_params[PITCH_LIMIT] ?
-            -m_params[PITCH_LIMIT] : m_params[PITCH];
+        if(m_params[PITCH] > m_params[PITCH_LIMIT]) {
+            m_params[PITCH] = m_params[PITCH_LIMIT];
+        }
+        if(m_params[PITCH] < -m_params[PITCH_LIMIT]) {
+            m_params[PITCH] = -m_params[PITCH_LIMIT];
+        }
     }
 
     public void translate(Vector3f vector) {
-        m_eye = m_eye.add(vector);
+        m_eye.add(vector);
     }
 
     public void translateTo(Vector3f vector) {
@@ -88,7 +90,7 @@ public class Camera {
     }
 
     public Matrix4f getViewMatrix() {
-        return new Matrix4f().setLookAt(m_eye, getLook(), Points._Y_);
+        return new Matrix4f().setLookAt(m_eye, new Vector3f(m_eye).add(getLook()), Points._Y_);
     }
 
     public Matrix4f getProjectionMatrix() {
