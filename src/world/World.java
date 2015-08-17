@@ -15,7 +15,7 @@ public class World {
            set(Camera.PITCH_LIMIT, Points.piOver(2) - 0.001f);
            set(Camera.YAW, 0.0f);
            set(Camera.PITCH, 0.0f);
-           set(Camera.FOV, Points.piOver(1.5f));
+           set(Camera.FOV, Points.piOver(2.0f));
            set(Camera.NEAR_PLANE, 0.1f);
            set(Camera.FAR_PLANE, 500.0f);
            set(Camera.ASPECT_RATIO, Uncountable.game.getWidth() / Uncountable.game.getHeight());
@@ -23,8 +23,8 @@ public class World {
            translateTo(Points.ORIGIN_3D);
         }};
 
-        Treadmill.importModuleTemplates("/Users/ibaker/modules_test_1.xml");
-        m_currentModule = Treadmill.getInitialModule();
+        Architect.importModuleTemplates("/Users/ibaker/modules_test_1.xml");
+        m_currentModule = Architect.getInitialModule();
     }
 
     public Camera getCamera() {

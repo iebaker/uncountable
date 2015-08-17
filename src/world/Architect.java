@@ -6,7 +6,7 @@ import java.util.Set;
 
 import rendering.Ray;
 
-public class Treadmill {
+public class Architect {
 
     private static final float m_connectivity = 0.1f;
     private static final int m_maxBuildDepth = 5;
@@ -30,7 +30,7 @@ public class Treadmill {
     }
 
     public static void buildAround(Module module, Ray lineOfSight) {
-        Treadmill.buildAround(0, null, module, lineOfSight);
+        Architect.buildAround(0, null, module, lineOfSight);
     }
 
     private static void buildAround(int depth, Portal entryPortal, Module module, Ray lineOfSight) {
@@ -57,11 +57,11 @@ public class Treadmill {
                         //System.out.println(String.format("Constructed new module %s with %d open portals", neighbor.getName(), neighbor.getOpenPortalCount()));
                     }
                     neighborPortal = neighbor.selectOpenPortal();
-                    Treadmill.link(module, portal, neighborPortal, neighbor);
+                    Architect.link(module, portal, neighborPortal, neighbor);
                     if(module.hasOpenPortals()) m_modulesWithOpenPortals.add(module);
                     if(neighbor.hasOpenPortals()) m_modulesWithOpenPortals.add(neighbor);
                 }
-                Treadmill.buildAround(depth + 1, neighborPortal, module.getNeighbor(portal), lineOfSight);
+                Architect.buildAround(depth + 1, neighborPortal, module.getNeighbor(portal), lineOfSight);
             }
         }
     }

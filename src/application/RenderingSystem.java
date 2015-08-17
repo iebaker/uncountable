@@ -1,10 +1,14 @@
 package application;
 
-import org.lwjgl.opengl.GL11;
+import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
+import static org.lwjgl.opengl.GL11.GL_DEPTH_BUFFER_BIT;
+import static org.lwjgl.opengl.GL11.glClear;
 
 import rendering.Camera;
 import rendering.RenderingException;
 import world.Module;
+
+class Link {}
 
 public class RenderingSystem extends GameSystem {
     public RenderingSystem() {
@@ -13,7 +17,7 @@ public class RenderingSystem extends GameSystem {
 
     @Override
     public void tick(float seconds) {
-        GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         Camera camera = Uncountable.game.getWorld().getCamera();
         Module module = Uncountable.game.getWorld().getCurrentModule();
