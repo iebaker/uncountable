@@ -115,7 +115,7 @@ public class Module {
         return m_stagedRenderables;
     }
 
-    public void clearStagedRenderables() {
+    public void clearScene() {
         m_stagedRenderables.clear();
     }
 

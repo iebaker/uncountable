@@ -1,5 +1,8 @@
 package rendering;
 
+import java.util.Arrays;
+import java.util.List;
+
 import joml.Matrix4f;
 import joml.Vector3f;
 import world.Module;
@@ -102,41 +105,33 @@ public class Camera {
         return new Matrix4f().setPerspective(m_params[FOV], m_params[ASPECT_RATIO], m_params[NEAR_PLANE], m_params[FAR_PLANE]);
     }
 
-    public void capture(Module module) throws RenderingException {
-        captureToScreen(module);
+    public void capture(Renderable... renderables) throws RenderingException {
+        captureToScreen(Arrays.asList(renderables));
     }
 
-    public void captureToScreen(Module module) throws RenderingException {
-        for(Renderable renderable : module.getStagedRenderables()) {
-
-           if(renderable.needsToBeBuffered()) {
-               Graphics.buffer(renderable);
-           }
-
-           Shaders.useShader(renderable.getActiveShaderName());
-
-           Shaders.setShaderUniform("model", renderable.getModelMatrix());
-           Shaders.setShaderUniform("view", getViewMatrix());
-           Shaders.setShaderUniform("projection", getProjectionMatrix());
-           Shaders.setShaderUniform("cameraEye", getEye());
-
-           Graphics.draw(renderable);
-       }
-       module.clearStagedRenderables();
+    public void capture(List<Renderable> renderables) throws RenderingException {
+        captureToScreen(renderables);
     }
 
-    public void captureToConsole(Module module) {
-        if(module == m_previous) return;
-        System.out.print("You are in " + module.getName() + ", \nexits:");
-        int portalIndex = 0;
-        for (Portal portal : module.getTemplate().getPortals()) {
-            System.out.print("\t" + (portalIndex++) + " " + portal.getName() + " to ");
-            if (module.hasNeighbor(portal)) {
-                System.out.println(module.getNeighbor(portal).getName());
-            } else {
-                System.out.println("UNLOADED");
+    private void captureToScreen(List<Renderable> renderables) throws RenderingException {
+        for(Renderable renderable : renderables) {
+
+            if(renderable.needsToBeBuffered()) {
+                Graphics.buffer(renderable);
             }
+
+            Shaders.useShader(renderable.getActiveShaderName());
+
+            Shaders.setShaderUniform("model", renderable.getModelMatrix());
+            Shaders.setShaderUniform("view", getViewMatrix());
+            Shaders.setShaderUniform("projection", getProjectionMatrix());
+            Shaders.setShaderUniform("cameraEye", getEye());
+
+            Graphics.draw(renderable);
         }
-        m_previous = module;
+    }
+
+    public Camera exchangeForProxy(Portal portal) {
+        return new Camera();
     }
 }

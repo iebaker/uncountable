@@ -1,8 +1,9 @@
 package world;
 
 import rendering.Ray;
+import world.setpieces.AbstractQuad;
 
-public class Portal {
+public class Portal extends AbstractQuad {
 
     private String m_name;
 
