@@ -1,8 +1,8 @@
 package world;
 
 import application.Uncountable;
-import rendering.Camera;
-import rendering.Points;
+import gamesystems.rendering.Camera;
+import gamesystems.rendering.Points;
 
 public class World {
 

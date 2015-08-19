@@ -1,4 +1,4 @@
-package rendering;
+package world;
 
 public class Ray {
 

@@ -7,9 +7,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import gamesystems.rendering.Points;
+import gamesystems.rendering.Renderable;
 import joml.Vector3f;
-import rendering.Points;
-import rendering.Renderable;
 import world.setpieces.BasicColoredQuad;
 
 public class Module {

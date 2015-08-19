@@ -1,4 +1,4 @@
-package rendering;
+package gamesystems.rendering;
 
 import static org.lwjgl.glfw.GLFW.glfwPollEvents;
 import static org.lwjgl.glfw.GLFW.glfwSwapBuffers;

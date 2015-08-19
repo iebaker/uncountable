@@ -2,8 +2,8 @@ package world.setpieces;
 
 import org.lwjgl.opengl.GL11;
 
-import rendering.Points;
-import rendering.Renderable;
+import gamesystems.rendering.Points;
+import gamesystems.rendering.Renderable;
 
 public abstract class AbstractQuad extends Renderable {
 

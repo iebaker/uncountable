@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
-import rendering.Ray;
+import world.parsing.ModuleTemplateFileParser;
 
 public class Architect {
 

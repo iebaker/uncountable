@@ -1,5 +1,4 @@
 package application;
-
 import static org.lwjgl.glfw.Callbacks.errorCallbackPrint;
 import static org.lwjgl.glfw.GLFW.GLFW_CONTEXT_VERSION_MAJOR;
 import static org.lwjgl.glfw.GLFW.GLFW_CONTEXT_VERSION_MINOR;
@@ -47,9 +46,12 @@ import org.lwjgl.opengl.GL30;
 import org.lwjgl.opengl.GLContext;
 import org.lwjgl.system.MemoryUtil;
 
+import gamesystems.GameSystem;
+import gamesystems.cameracontrol.CameraControlSystem;
+import gamesystems.rendering.Graphics;
+import gamesystems.rendering.Points;
+import gamesystems.rendering.RenderingSystem;
 import joml.Vector2f;
-import rendering.Graphics;
-import rendering.Points;
 import world.World;
 
 /**

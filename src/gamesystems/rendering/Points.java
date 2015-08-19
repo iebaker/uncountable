@@ -1,4 +1,4 @@
-package rendering;
+package gamesystems.rendering;
 
 import joml.Vector2f;
 import joml.Vector3f;

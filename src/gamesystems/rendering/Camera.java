@@ -1,4 +1,4 @@
-package rendering;
+package gamesystems.rendering;
 
 import java.util.Arrays;
 import java.util.List;

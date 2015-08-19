@@ -1,6 +1,5 @@
 package world;
 
-import rendering.Ray;
 import world.setpieces.AbstractQuad;
 
 public class Portal extends AbstractQuad {

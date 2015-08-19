@@ -1,4 +1,4 @@
-package world;
+package world.parsing;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -12,6 +12,10 @@ import javax.xml.parsers.SAXParserFactory;
 
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
+
+import world.ModuleTemplate;
+import world.Portal;
+
 import org.xml.sax.Attributes;
 
 public class ModuleTemplateFileParser {

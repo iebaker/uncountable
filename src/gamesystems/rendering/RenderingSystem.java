@@ -1,4 +1,4 @@
-package application;
+package gamesystems.rendering;
 
 //import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
@@ -11,8 +11,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import rendering.Camera;
-import rendering.RenderingException;
+import application.Uncountable;
+import gamesystems.GameSystem;
 import world.Module;
 import world.Portal;
 

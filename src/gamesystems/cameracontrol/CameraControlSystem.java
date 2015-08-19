@@ -1,16 +1,18 @@
-package application;
+package gamesystems.cameracontrol;
 
 import static org.lwjgl.glfw.GLFW.GLFW_KEY_A;
 import static org.lwjgl.glfw.GLFW.GLFW_KEY_D;
-import static org.lwjgl.glfw.GLFW.GLFW_KEY_S;
-import static org.lwjgl.glfw.GLFW.GLFW_KEY_W;
-import static org.lwjgl.glfw.GLFW.GLFW_KEY_SPACE;
 import static org.lwjgl.glfw.GLFW.GLFW_KEY_LEFT_SHIFT;
+import static org.lwjgl.glfw.GLFW.GLFW_KEY_S;
+import static org.lwjgl.glfw.GLFW.GLFW_KEY_SPACE;
+import static org.lwjgl.glfw.GLFW.GLFW_KEY_W;
 
+import application.Uncountable;
+import gamesystems.GameSystem;
+import gamesystems.rendering.Camera;
+import gamesystems.rendering.Points;
 import joml.Vector2f;
 import joml.Vector3f;
-import rendering.Camera;
-import rendering.Points;
 
 /**
  * This is a GameSystem responsible for collecting input events and using them to move the camera

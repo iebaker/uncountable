@@ -1,4 +1,4 @@
-package rendering;
+package gamesystems.rendering;
 
 import java.io.IOException;
 import java.util.ArrayList;
