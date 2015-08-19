@@ -68,7 +68,9 @@ public class Architect {
 
     private static void link(Module module1, Portal portal1, Portal portal2, Module module2) {
         module1.setNeighbor(portal1, module2);
+        module1.linkPortals(portal1, portal2);
         module2.setNeighbor(portal2, module1);
+        module2.linkPortals(portal2, portal1);
         //System.out.println(String.format("Made link %s -> %s:%s -> %s", module1.getName(), portal1.getName(), portal2.getName(), module2.getName()));
         //if(!module1.hasOpenPortals()) m_modulesWithOpenPortals.remove(module1);
         //if(!module2.hasOpenPortals()) m_modulesWithOpenPortals.remove(module2);

@@ -16,6 +16,7 @@ public class Module {
 
     private ModuleTemplate m_template;
     private Map<Portal, Module> m_neighbors = new HashMap<Portal, Module>();
+    private Map<Portal, Portal> m_links = new HashMap<Portal, Portal>();
     private String m_name;
     private int m_openPortals;
     private boolean m_isStaged;
@@ -70,6 +71,10 @@ public class Module {
         return m_neighbors.get(portal);
     }
 
+    public Portal getLinkedPortal(Portal portal) {
+        return m_links.get(portal);
+    }
+
     public Set<Module> getNeighbors() {
         Set<Module> allNeighbors = new HashSet<Module>();
         for(Portal portal : m_template.getPortals()) {
@@ -83,6 +88,10 @@ public class Module {
     public void setNeighbor(Portal portal, Module module) {
         m_neighbors.put(portal, module);
         m_openPortals--;
+    }
+
+    public void linkPortals(Portal entry, Portal exit) {
+        m_links.put(entry, exit);
     }
 
     public boolean hasNeighbor(Portal portal) {
