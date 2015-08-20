@@ -1,22 +1,22 @@
 package world;
 
+import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Random;
+import java.util.Map;
 import java.util.Set;
 
 import world.parsing.ModuleTemplateDirectoryParser;
-import world.parsing.ModuleTemplateFileParser;
 
 public class Architect {
 
-    private static final float m_connectivity = 0.1f;
-    private static final int m_maxBuildDepth = 5;
     private static Set<ModuleTemplate> m_moduleTemplates = new HashSet<ModuleTemplate>();
-    private static Set<Module> m_modulesWithOpenPortals = new HashSet<Module>();
-    private static Random m_random = new Random();
+    private static Map<String, ModuleTemplate> m_moduleTemplatesByName = new HashMap<String, ModuleTemplate>();
 
     public static void importModuleTemplates() {
         m_moduleTemplates = ModuleTemplateDirectoryParser.getModuleTemplates();
+        for(ModuleTemplate template : m_moduleTemplates) {
+            m_moduleTemplatesByName.put(template.getName(), template);
+        }
     }
 
     @SuppressWarnings("unused")
@@ -27,7 +27,12 @@ public class Architect {
     }
 
     public static Module getInitialModule() {
-        return ((ModuleTemplate)(m_moduleTemplates.toArray()[0])).getInstance();
+        ModuleTemplate leafRoomTemplate = m_moduleTemplatesByName.get("leafroom");
+        Module firstRoom = leafRoomTemplate.getInstance();
+        Module secondRoom = leafRoomTemplate.getInstance();
+        Portal portal = (Portal)(leafRoomTemplate.getPortals().toArray()[0]);
+        link(firstRoom, portal, portal, secondRoom);
+        return firstRoom;
     }
 
     public static void buildAround(Module module, Ray lineOfSight) {
@@ -35,36 +40,7 @@ public class Architect {
     }
 
     private static void buildAround(int depth, Portal entryPortal, Module module, Ray lineOfSight) {
-        if (depth > m_maxBuildDepth) {
-            return;
-        }
 
-        //System.out.println(String.format("Building around module %s", module.getName()));
-        for (Portal portal : module.getTemplate().getPortals()) {
-            if(portal == entryPortal) continue;
-            //System.out.println(String.format("Attempting link at portal %s", portal.getName()));
-            if (portal.visibleFrom(lineOfSight)) {
-                Portal neighborPortal = null;
-                if (!module.hasNeighbor(portal)) {
-                    //System.out.println("No neighbor!");
-                    m_modulesWithOpenPortals.remove(module);
-                    Module neighbor;
-                    if (m_random.nextFloat() < m_connectivity && m_modulesWithOpenPortals.size() > 0) {
-                        neighbor = (Module)(m_modulesWithOpenPortals.toArray()[m_random.nextInt(m_modulesWithOpenPortals.size())]);
-                        m_modulesWithOpenPortals.remove(neighbor);
-                        //System.out.println(String.format("Selected existing module %s with %d open portals", neighbor.getName(), neighbor.getOpenPortalCount()));
-                    } else {
-                        neighbor = module.getTemplate().chooseNeighborTemplate(portal).getInstance();
-                        //System.out.println(String.format("Constructed new module %s with %d open portals", neighbor.getName(), neighbor.getOpenPortalCount()));
-                    }
-                    neighborPortal = neighbor.selectOpenPortal();
-                    Architect.link(module, portal, neighborPortal, neighbor);
-                    if(module.hasOpenPortals()) m_modulesWithOpenPortals.add(module);
-                    if(neighbor.hasOpenPortals()) m_modulesWithOpenPortals.add(neighbor);
-                }
-                Architect.buildAround(depth + 1, neighborPortal, module.getNeighbor(portal), lineOfSight);
-            }
-        }
     }
 
     private static void link(Module module1, Portal portal1, Portal portal2, Module module2) {
@@ -72,8 +48,5 @@ public class Architect {
         module1.linkPortals(portal1, portal2);
         module2.setNeighbor(portal2, module1);
         module2.linkPortals(portal2, portal1);
-        //System.out.println(String.format("Made link %s -> %s:%s -> %s", module1.getName(), portal1.getName(), portal2.getName(), module2.getName()));
-        //if(!module1.hasOpenPortals()) m_modulesWithOpenPortals.remove(module1);
-        //if(!module2.hasOpenPortals()) m_modulesWithOpenPortals.remove(module2);
     }
 }

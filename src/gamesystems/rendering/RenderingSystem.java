@@ -142,7 +142,7 @@ public class RenderingSystem extends GameSystem {
                 }
 
                 // Swap the current camera for a camera in the frame of reference of the the adjacent Module
-                Camera external = m_camera.exchangeForProxy(remotePortal);
+                Camera external = m_camera.exchangeForProxy(localPortal, remotePortal);
 
                 // Render the world through that portal onto the stenciled part of the screen
                 if(depth < m_maxDepth) render(depth + 1, nextModule, remotePortal);

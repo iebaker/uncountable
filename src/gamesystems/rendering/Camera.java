@@ -19,9 +19,23 @@ public class Camera {
     public static final int ASPECT_RATIO = 6;
     public static final int FOV = 7;
 
-    private Module m_previous;
     private Vector3f m_eye = Points.___;
     private float[] m_params = new float[8];
+
+    public Camera() {
+
+    }
+
+    public Camera(Camera other) {
+        set(Camera.YAW, other.get(Camera.YAW));
+        set(Camera.PITCH, other.get(Camera.PITCH));
+        set(Camera.HEIGHT_ANGLE, other.get(Camera.HEIGHT_ANGLE));
+        set(Camera.NEAR_PLANE, other.get(Camera.NEAR_PLANE));
+        set(Camera.PITCH_LIMIT, other.get(Camera.PITCH_LIMIT));
+        set(Camera.ASPECT_RATIO, other.get(Camera.ASPECT_RATIO));
+        set(Camera.FOV, other.get(Camera.FOV));
+        translateTo(other.getEye());
+    }
 
     public float get(int parameterIndex) {
         return m_params[parameterIndex];
@@ -131,7 +145,18 @@ public class Camera {
         }
     }
 
-    public Camera exchangeForProxy(Portal portal) {
-        return new Camera();
+    public Camera exchangeForProxy(Portal local, Portal remote) {
+        Camera saved = new Camera(this);
+
+        Vector3f localNormal = new Vector3f(local.getNormal());
+        Vector3f negativeRemoteNormal = new Vector3f(remote.getNormal()).mul(-1.0f);
+
+        float angle = Math.signum(new Vector3f(localNormal).cross(negativeRemoteNormal).y) * localNormal.dot(negativeRemoteNormal);
+
+        translate(new Vector3f(local.getBasePosition()).mul(-1.0f));
+        add(Camera.YAW, angle);
+        translate(new Vector3f(remote.getBasePosition()));
+
+        return saved;
     }
 }

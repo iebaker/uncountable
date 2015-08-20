@@ -11,6 +11,8 @@ import java.util.Set;
 
 import application.Uncountable;
 import gamesystems.rendering.Points;
+import joml.AxisAngle4f;
+import joml.Quaternionf;
 import joml.Vector3f;
 import world.ModuleTemplate;
 import world.Portal;
@@ -58,7 +60,7 @@ public class ModuleTemplateDirectoryParser {
             Vector3f dimensions = new Vector3f(scanner.nextFloat(), scanner.nextFloat(), scanner.nextFloat());
             Vector3f color = new Vector3f(scanner.nextFloat(), scanner.nextFloat(), scanner.nextFloat());
 
-            BasicColoredQuad floor = new BasicColoredQuad(Points.WHITE);
+            BasicColoredQuad floor = new BasicColoredQuad(Points.aug3f("WHITE", 0.7f));
             BasicColoredQuad ceiling = new BasicColoredQuad(Points.WHITE);
             BasicColoredQuad rightWall = new BasicColoredQuad(new Vector3f(color).mul(0.5f));
             BasicColoredQuad leftWall = new BasicColoredQuad(new Vector3f(color).mul(0.5f));
@@ -101,8 +103,9 @@ public class ModuleTemplateDirectoryParser {
 
                 Vector3f basePosition = new Vector3f(scanner.nextFloat(), scanner.nextFloat(), scanner.nextFloat());
                 float rotation = scanner.nextFloat() * Points.piOver(180);
+                Vector3f normal = new Vector3f(Points.__Z).rotate(new Quaternionf(new AxisAngle4f(rotation, Points._Y_)));
 
-                Portal portal = new Portal(i++ + "");
+                Portal portal = new Portal(i++ + "", basePosition, normal);
                 portal.translate(0.0f, 0.0f, 0.001f);
                 portal.rotate(rotation, Points._Y_);
                 portal.translate(basePosition);

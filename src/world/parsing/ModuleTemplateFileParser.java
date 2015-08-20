@@ -10,13 +10,13 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
+import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import gamesystems.rendering.Points;
 import world.ModuleTemplate;
 import world.Portal;
-
-import org.xml.sax.Attributes;
 
 public class ModuleTemplateFileParser {
 
@@ -84,7 +84,7 @@ public class ModuleTemplateFileParser {
                     break;
                 case "portal":
                     if (m_currentParseMode == ParseMode.PORTAL_LIST) {
-                        m_portalBeingBuilt = new Portal(attributes.getValue("name"));
+                        m_portalBeingBuilt = new Portal(attributes.getValue("name"), Points.___, Points.___);
                         m_portalRuleBeingBuilt = new HashMap<ModuleTemplate, Integer>();
                         m_currentParseMode = ParseMode.PORTAL_RULE;
                     } else {
