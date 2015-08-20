@@ -20,10 +20,10 @@ public class World {
            set(Camera.FAR_PLANE, 500.0f);
            set(Camera.ASPECT_RATIO, Uncountable.game.getWidth() / Uncountable.game.getHeight());
 
-           translateTo(Points.ORIGIN_3D);
+           translateTo(Points.XYZ);
         }};
 
-        Architect.importModuleTemplates("/Users/ibaker/modules_test_1.xml");
+        Architect.importModuleTemplates();
         m_currentModule = Architect.getInitialModule();
     }
 

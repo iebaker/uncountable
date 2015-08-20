@@ -1,9 +1,13 @@
 package world;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
+
+import gamesystems.rendering.Renderable;
 
 public class ModuleTemplate {
 
@@ -11,6 +15,7 @@ public class ModuleTemplate {
     private int m_instanceCount = 0;
     private Map<Portal, Map<ModuleTemplate, Integer>> m_rules = new HashMap<Portal, Map<ModuleTemplate, Integer>>();
     private Map<Portal, Integer> m_ruleSums = new HashMap<Portal, Integer>();
+    private List<Renderable> m_walls = new ArrayList<Renderable>();
 
     public ModuleTemplate(String name, Map<Portal, Map<ModuleTemplate, Integer>> rules) {
         m_name = name;
@@ -27,6 +32,16 @@ public class ModuleTemplate {
         m_rules.put(portal, rule);
         m_ruleSums.put(portal, 0);
         computeRuleSums();
+    }
+
+    public void addWalls(Renderable... walls) {
+        for(Renderable wall : walls) {
+            m_walls.add(wall);
+        }
+    }
+
+    public List<Renderable> getWalls() {
+        return m_walls;
     }
 
     private void computeRuleSums() {

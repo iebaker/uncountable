@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
+import world.parsing.ModuleTemplateDirectoryParser;
 import world.parsing.ModuleTemplateFileParser;
 
 public class Architect {
@@ -14,8 +15,8 @@ public class Architect {
     private static Set<Module> m_modulesWithOpenPortals = new HashSet<Module>();
     private static Random m_random = new Random();
 
-    public static void importModuleTemplates(String xmlFilename) {
-        m_moduleTemplates = ModuleTemplateFileParser.parseToModuleTemplateSet(xmlFilename);
+    public static void importModuleTemplates() {
+        m_moduleTemplates = ModuleTemplateDirectoryParser.getModuleTemplates();
     }
 
     @SuppressWarnings("unused")
@@ -26,7 +27,7 @@ public class Architect {
     }
 
     public static Module getInitialModule() {
-        return ((ModuleTemplate)(m_moduleTemplates.toArray()[m_random.nextInt(m_moduleTemplates.size())])).getInstance();
+        return ((ModuleTemplate)(m_moduleTemplates.toArray()[0])).getInstance();
     }
 
     public static void buildAround(Module module, Ray lineOfSight) {

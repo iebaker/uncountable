@@ -1,6 +1,7 @@
 package world;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -9,7 +10,6 @@ import java.util.Set;
 
 import gamesystems.rendering.Points;
 import gamesystems.rendering.Renderable;
-import joml.Vector3f;
 import world.setpieces.BasicColoredQuad;
 
 public class Module {
@@ -117,7 +117,8 @@ public class Module {
     }
 
     public void stageScene() {
-        stage(m_X, m_x, m_Y, m_y, m_Z, m_z);
+        stage(m_template.getWalls());
+        for(Portal portal : m_template.getPortals()) stage(portal);
     }
 
     public List<Renderable> getStagedRenderables() {
@@ -134,7 +135,7 @@ public class Module {
         }
     }
 
-    private void stage(Portal portal) {
-
+    private void stage(List<Renderable> renderables) {
+        m_stagedRenderables.addAll(renderables);
     }
 }
