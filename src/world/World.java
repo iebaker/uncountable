@@ -13,7 +13,7 @@ public class World {
 
         m_camera = new Camera() {{
            set(Camera.PITCH_LIMIT, Points.piOver(2) - 0.001f);
-           set(Camera.YAW, 0.0f);
+           set(Camera.YAW, Points.piOver(1));
            set(Camera.PITCH, 0.0f);
            set(Camera.FOV, Points.piOver(2.0f));
            set(Camera.NEAR_PLANE, 0.1f);

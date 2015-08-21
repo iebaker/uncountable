@@ -14,8 +14,8 @@ public class Portal extends BasicColoredQuad {
         super(new Vector3f(1.0f, 0.5f, 0.0f));
         m_name = name;
 
-        translate(Points._Y_);
-        scale(0.5f, 0.75f, 0.5f);
+        translate(Points.aug3f("_Y_", 0.5f));
+        scale(1.0f, 1.5f, 1.0f);
 
         m_basePosition = basePosition;
         m_normal = normal;

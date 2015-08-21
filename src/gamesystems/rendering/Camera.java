@@ -1,21 +1,23 @@
 package gamesystems.rendering;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import joml.AxisAngle4f;
 import joml.Matrix4f;
+import joml.Quaternionf;
 import joml.Vector3f;
-import world.Module;
 import world.Portal;
 
 public class Camera {
 
     public static final int YAW = 0;
-    public static final int PITCH = 1;
+    public static final int PITCH_LIMIT = 1;
     public static final int HEIGHT_ANGLE = 2;
     public static final int NEAR_PLANE = 3;
     public static final int FAR_PLANE = 4;
-    public static final int PITCH_LIMIT = 5;
+    public static final int PITCH = 5;
     public static final int ASPECT_RATIO = 6;
     public static final int FOV = 7;
 
@@ -27,14 +29,10 @@ public class Camera {
     }
 
     public Camera(Camera other) {
-        set(Camera.YAW, other.get(Camera.YAW));
-        set(Camera.PITCH, other.get(Camera.PITCH));
-        set(Camera.HEIGHT_ANGLE, other.get(Camera.HEIGHT_ANGLE));
-        set(Camera.NEAR_PLANE, other.get(Camera.NEAR_PLANE));
-        set(Camera.PITCH_LIMIT, other.get(Camera.PITCH_LIMIT));
-        set(Camera.ASPECT_RATIO, other.get(Camera.ASPECT_RATIO));
-        set(Camera.FOV, other.get(Camera.FOV));
         translateTo(other.getEye());
+        for(int i = 0; i < 8; ++i) {
+            set(i, other.get(i));
+        }
     }
 
     public float get(int parameterIndex) {
@@ -145,18 +143,22 @@ public class Camera {
         }
     }
 
-    public Camera exchangeForProxy(Portal local, Portal remote) {
-        Camera saved = new Camera(this);
+    public Camera proxy(Portal local, Portal remote) {
+        Camera proxyCamera = new Camera(this);
 
         Vector3f localNormal = new Vector3f(local.getNormal());
         Vector3f negativeRemoteNormal = new Vector3f(remote.getNormal()).mul(-1.0f);
 
-        float angle = Math.signum(new Vector3f(localNormal).cross(negativeRemoteNormal).y) * localNormal.dot(negativeRemoteNormal);
+        float sign = Math.signum(new Vector3f(localNormal).cross(negativeRemoteNormal).y);
+        float angle = sign * (float)Math.acos(localNormal.dot(negativeRemoteNormal));
 
-        translate(new Vector3f(local.getBasePosition()).mul(-1.0f));
-        add(Camera.YAW, angle);
-        translate(new Vector3f(remote.getBasePosition()));
+        proxyCamera.translate(new Vector3f(local.getBasePosition()).mul(-1.0f));
+        Vector3f newCameraEye = new Vector3f(proxyCamera.getEye());
+        newCameraEye.rotate(new Quaternionf(new AxisAngle4f(angle, Points._Y_)));
+        proxyCamera.translateTo(newCameraEye);
+        proxyCamera.add(Camera.YAW, angle + Points.piOver(1));
+        proxyCamera.translate(new Vector3f(remote.getBasePosition()));
 
-        return saved;
+        return proxyCamera;
     }
 }

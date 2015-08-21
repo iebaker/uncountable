@@ -28,11 +28,23 @@ public class Architect {
 
     public static Module getInitialModule() {
         ModuleTemplate leafRoomTemplate = m_moduleTemplatesByName.get("leafroom");
-        Module firstRoom = leafRoomTemplate.getInstance();
-        Module secondRoom = leafRoomTemplate.getInstance();
-        Portal portal = (Portal)(leafRoomTemplate.getPortals().toArray()[0]);
-        link(firstRoom, portal, portal, secondRoom);
-        return firstRoom;
+        ModuleTemplate hallwayTemplate = m_moduleTemplatesByName.get("hallway");
+        ModuleTemplate cubeRoomTemplate = m_moduleTemplatesByName.get("cuberoom");
+
+        Module leafRoom1 = leafRoomTemplate.getInstance();
+        Module hallway = hallwayTemplate.getInstance();
+        Module leafRoom2 = leafRoomTemplate.getInstance();
+
+        Module cubeRoom = cubeRoomTemplate.getInstance();
+
+        Portal leafRoomPortal = leafRoomTemplate.getPortal("0");
+        Portal hallwayPortal1 = hallwayTemplate.getPortal("0");
+        Portal hallwayPortal2 = hallwayTemplate.getPortal("1");
+        Portal cubeRoomPortal = cubeRoomTemplate.getPortal("0");
+
+        link(hallway, hallwayPortal1, leafRoomPortal, leafRoom1);
+        link(hallway, hallwayPortal2, leafRoomPortal, leafRoom2);
+        return hallway;
     }
 
     public static void buildAround(Module module, Ray lineOfSight) {

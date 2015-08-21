@@ -61,6 +61,7 @@ public abstract class Renderable {
     }
 
     public void translate(float x, float y, float z) {
+        System.out.println("hi");
         m_modelMatrix = new Matrix4f().translation(x, y, z).mul(m_modelMatrix);
     }
 

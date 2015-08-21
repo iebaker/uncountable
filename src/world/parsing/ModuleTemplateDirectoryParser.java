@@ -67,27 +67,28 @@ public class ModuleTemplateDirectoryParser {
             BasicColoredQuad farWall = new BasicColoredQuad(color);
             BasicColoredQuad nearWall = new BasicColoredQuad(color);
 
-            floor.rotate(Points.piOver(2), Points.X__);
-            floor.translate(1.0f, 0.0f, 1.0f);
-            floor.scale(dimensions.x/2, 1.0f, dimensions.z/2);
+            floor.rotate(3 * Points.piOver(2), Points.X__);
+            floor.translate(0.5f, 0.0f, 0.5f);
+            floor.scale(dimensions.x, 1.0f, dimensions.z);
 
             ceiling.rotate(Points.piOver(2), Points.X__);
-            ceiling.translate(1.0f, dimensions.y, 1.0f);
-            ceiling.scale(dimensions.x/2, 1.0f, dimensions.z/2);
+            ceiling.translate(0.5f, dimensions.y, 0.5f);
+            ceiling.scale(dimensions.x, 1.0f, dimensions.z);
 
             leftWall.rotate(Points.piOver(2), Points._Y_);
-            leftWall.translate(0.0f, 1.0f, 1.0f);
-            leftWall.scale(1.0f, dimensions.y/2, dimensions.z/2);
+            leftWall.translate(0.0f, 0.5f, 0.5f);
+            leftWall.scale(1.0f, dimensions.y, dimensions.z);
 
-            rightWall.rotate(Points.piOver(2), Points._Y_);
-            rightWall.translate(dimensions.x, 1.0f, 1.0f);
-            rightWall.scale(1.0f, dimensions.y/2, dimensions.z/2);
+            rightWall.rotate(3 * Points.piOver(2), Points._Y_);
+            rightWall.translate(dimensions.x, 0.5f, 0.5f);
+            rightWall.scale(1.0f, dimensions.y, dimensions.z);
 
-            farWall.translate(1.0f, 1.0f, 0.0f);
-            farWall.scale(dimensions.x/2, dimensions.y/2, 1.0f);
+            farWall.translate(0.5f, 0.5f, 0.0f);
+            farWall.scale(dimensions.x, dimensions.y, 1.0f);
 
-            nearWall.translate(1.0f, 1.0f, dimensions.z);
-            nearWall.scale(dimensions.x/2, dimensions.y/2, 1.0f);
+            nearWall.rotate(Points.piOver(1), Points._Y_);
+            nearWall.translate(0.5f, 0.5f, dimensions.z);
+            nearWall.scale(dimensions.x, dimensions.y, 1.0f);
 
             template.addWalls(floor, ceiling, leftWall, rightWall, farWall, nearWall);
 
@@ -104,6 +105,8 @@ public class ModuleTemplateDirectoryParser {
                 Vector3f basePosition = new Vector3f(scanner.nextFloat(), scanner.nextFloat(), scanner.nextFloat());
                 float rotation = scanner.nextFloat() * Points.piOver(180);
                 Vector3f normal = new Vector3f(Points.__Z).rotate(new Quaternionf(new AxisAngle4f(rotation, Points._Y_)));
+
+                System.out.println("parser " + template.getName() + " " + normal);
 
                 Portal portal = new Portal(i++ + "", basePosition, normal);
                 portal.translate(0.0f, 0.0f, 0.001f);

@@ -14,11 +14,12 @@ public abstract class AbstractQuad extends Renderable {
     @Override
     public void build() {
         // First triangle
-        setVertexAttribute("position", Points.xy_);
-        setVertexAttribute("position", Points.xY_);
-        setVertexAttribute("position", Points.Xy_);
-        setVertexAttribute("position", Points.XY_);
-        setVertexAttribute("position", Points.xY_);
-        setVertexAttribute("position", Points.Xy_);
+        setVertexAttribute("position", Points.aug3f("xy_", 0.5f));
+        setVertexAttribute("position", Points.aug3f("Xy_", 0.5f));
+        setVertexAttribute("position", Points.aug3f("xY_", 0.5f));
+        setVertexAttribute("position", Points.aug3f("XY_", 0.5f));
+        setVertexAttribute("position", Points.aug3f("xY_", 0.5f));
+        setVertexAttribute("position", Points.aug3f("Xy_", 0.5f));
+
     }
 }

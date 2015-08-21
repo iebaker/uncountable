@@ -15,6 +15,7 @@ public class ModuleTemplate {
     private int m_instanceCount = 0;
     private Map<Portal, Map<ModuleTemplate, Integer>> m_rules = new HashMap<Portal, Map<ModuleTemplate, Integer>>();
     private Map<Portal, Integer> m_ruleSums = new HashMap<Portal, Integer>();
+    private Map<String, Portal> m_portalsByName = new HashMap<String, Portal>();
     private List<Renderable> m_walls = new ArrayList<Renderable>();
 
     public ModuleTemplate(String name, Map<Portal, Map<ModuleTemplate, Integer>> rules) {
@@ -31,7 +32,12 @@ public class ModuleTemplate {
     public void addPortal(Portal portal, Map<ModuleTemplate, Integer> rule) {
         m_rules.put(portal, rule);
         m_ruleSums.put(portal, 0);
+        m_portalsByName.put(portal.getName(), portal);
         computeRuleSums();
+    }
+
+    public Portal getPortal(String name) {
+        return m_portalsByName.get(name);
     }
 
     public void addWalls(Renderable... walls) {

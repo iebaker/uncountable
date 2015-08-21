@@ -118,7 +118,6 @@ public class Module {
 
     public void stageScene() {
         stage(m_template.getWalls());
-        for(Portal portal : m_template.getPortals()) stage(portal);
     }
 
     public List<Renderable> getStagedRenderables() {
