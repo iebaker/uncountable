@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Set;
 
 import world.parsing.ModuleTemplateDirectoryParser;
+import world.setpieces.Portal;
 
 public class Architect {
 
@@ -26,13 +27,18 @@ public class Architect {
         }
     }
 
+    public static ModuleTemplate getModuleTemplate(String name) {
+        return m_moduleTemplatesByName.get(name);
+    }
+
     public static Module getInitialModule() {
         ModuleTemplate leafRoomTemplate = m_moduleTemplatesByName.get("leafroom");
         ModuleTemplate hallwayTemplate = m_moduleTemplatesByName.get("hallway");
         ModuleTemplate cubeRoomTemplate = m_moduleTemplatesByName.get("cuberoom");
 
         Module leafRoom1 = leafRoomTemplate.getInstance();
-        Module hallway = hallwayTemplate.getInstance();
+        Module hallway1 = hallwayTemplate.getInstance();
+        Module hallway2 = hallwayTemplate.getInstance();
         Module leafRoom2 = leafRoomTemplate.getInstance();
 
         Module cubeRoom = cubeRoomTemplate.getInstance();
@@ -42,9 +48,10 @@ public class Architect {
         Portal hallwayPortal2 = hallwayTemplate.getPortal("1");
         Portal cubeRoomPortal = cubeRoomTemplate.getPortal("0");
 
-        link(hallway, hallwayPortal1, leafRoomPortal, leafRoom1);
-        link(hallway, hallwayPortal2, leafRoomPortal, leafRoom2);
-        return hallway;
+        link(leafRoom1, leafRoomPortal, hallwayPortal1, hallway1);
+        //link(hallway1, hallwayPortal2, leafRoomPortal, leafRoom2);
+        //link(hallway2, hallwayPortal2, leafRoomPortal, leafRoom2);
+        return leafRoom1;
     }
 
     public static void buildAround(Module module, Ray lineOfSight) {

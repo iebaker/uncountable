@@ -11,6 +11,7 @@ import java.util.Set;
 import gamesystems.rendering.Points;
 import gamesystems.rendering.Renderable;
 import world.setpieces.BasicColoredQuad;
+import world.setpieces.Portal;
 
 public class Module {
 
@@ -22,41 +23,10 @@ public class Module {
     private boolean m_isStaged;
     private List<Renderable> m_stagedRenderables = new ArrayList<Renderable>();
 
-    private BasicColoredQuad m_quad;
-
-    private BasicColoredQuad m_X;
-    private BasicColoredQuad m_Y;
-    private BasicColoredQuad m_Z;
-    private BasicColoredQuad m_x;
-    private BasicColoredQuad m_y;
-    private BasicColoredQuad m_z;
-
     public Module(ModuleTemplate type, String name) {
         m_template = type;
         m_name = name;
         m_openPortals = m_template.getPortals().size();
-
-        float d = 1.0f;
-
-        m_X = new BasicColoredQuad(Points.RED);
-        m_x = new BasicColoredQuad(Points.BLUE);
-        m_Y = new BasicColoredQuad(Points.GREEN);
-        m_y = new BasicColoredQuad(Points.MAGENTA);
-        m_Z = new BasicColoredQuad(Points.YELLOW);
-        m_z = new BasicColoredQuad(Points.CYAN);
-
-        m_Z.translate(Points.aug3f("__Z", d));
-        m_z.translate(Points.aug3f("__z", d));
-
-        m_Y.rotate(Points.piOver(2), Points.X__);
-        m_y.rotate(Points.piOver(2), Points.X__);
-        m_Y.translate(Points.aug3f("_Y_", d));
-        m_y.translate(Points.aug3f("_y_", d));
-
-        m_X.rotate(Points.piOver(2), Points._Y_);
-        m_x.rotate(Points.piOver(2), Points._Y_);
-        m_X.translate(Points.aug3f("X__", d));
-        m_x.translate(Points.aug3f("x__", d));
     }
 
     public String getName() {

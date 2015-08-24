@@ -1,5 +1,7 @@
 package gamesystems.rendering;
 
+import static org.lwjgl.opengl.GL30.glGenVertexArrays;
+
 import java.nio.FloatBuffer;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -9,7 +11,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.lwjgl.BufferUtils;
-import org.lwjgl.opengl.GL30;
 
 import joml.AxisAngle4f;
 import joml.Matrix4f;
@@ -31,7 +32,7 @@ public abstract class Renderable {
         m_vertexCount = count;
         m_drawingMode = drawingMode;
         m_modelMatrix = new Matrix4f();
-        m_vertexArrayId = GL30.glGenVertexArrays();
+        m_vertexArrayId = glGenVertexArrays();
     }
 
     public abstract void build();
@@ -61,7 +62,6 @@ public abstract class Renderable {
     }
 
     public void translate(float x, float y, float z) {
-        System.out.println("hi");
         m_modelMatrix = new Matrix4f().translation(x, y, z).mul(m_modelMatrix);
     }
 
@@ -132,7 +132,6 @@ public abstract class Renderable {
         //Allocate a float buffer to store the vertex data
         int bufferSize = m_vertexCount * Shaders.getAttributeStrideFor(m_shaderName);
         float data[] = new float[bufferSize];
-        int index = 0;
 
         // Grab the attributes for this shader, and sort them in increasing order by offset
         List<VertexAttribute> attributes = Shaders.getVertexAttributesFor(m_shaderName);
@@ -146,6 +145,7 @@ public abstract class Renderable {
         });
 
         // Fill in vertex data for each vertex
+        int index = 0;
         for(int i = 0; i < m_vertexCount; ++i) {
             for(VertexAttribute attribute : attributes) {
                 String attributeName = attribute.getName();

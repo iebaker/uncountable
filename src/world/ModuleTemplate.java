@@ -8,6 +8,7 @@ import java.util.Random;
 import java.util.Set;
 
 import gamesystems.rendering.Renderable;
+import world.setpieces.Portal;
 
 public class ModuleTemplate {
 

@@ -64,6 +64,10 @@ public class Vector3f implements Externalizable {
         return buffer;
     }
 
+    public Vector3f get() {
+        return new Vector3f(this);
+    }
+
     /**
      * Create a new {@link Vector3f} of <tt>(0, 0, 0)</tt>.
      */

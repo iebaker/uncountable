@@ -1,20 +1,29 @@
 package gamesystems.rendering;
 
-//import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.glfw.GLFW.GLFW_KEY_Q;
 import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
+import static org.lwjgl.opengl.GL11.GL_DECR;
 import static org.lwjgl.opengl.GL11.GL_DEPTH_BUFFER_BIT;
+import static org.lwjgl.opengl.GL11.GL_EQUAL;
+import static org.lwjgl.opengl.GL11.GL_INCR;
+import static org.lwjgl.opengl.GL11.GL_KEEP;
+import static org.lwjgl.opengl.GL11.GL_STENCIL_BUFFER_BIT;
+import static org.lwjgl.opengl.GL11.GL_STENCIL_TEST;
 import static org.lwjgl.opengl.GL11.glClear;
-import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL11.glColorMask;
+import static org.lwjgl.opengl.GL11.glDepthMask;
+import static org.lwjgl.opengl.GL11.glDisable;
+import static org.lwjgl.opengl.GL11.glEnable;
+import static org.lwjgl.opengl.GL11.glStencilFunc;
+import static org.lwjgl.opengl.GL11.glStencilOp;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import application.Uncountable;
 import gamesystems.GameSystem;
 import world.Module;
-import world.Portal;
+import world.setpieces.Portal;
 
 /**
  * This is where some crazy stuff is starting to go down. This is the rendering system which must
@@ -28,6 +37,7 @@ public class RenderingSystem extends GameSystem {
     private int m_maxDepth = 10;
     private boolean m_useNewRenderer = true;
     private RecursiveRenderer m_renderer = new RecursiveRenderer();
+    private boolean m_stencilOn = true;
 
     public RenderingSystem() {
         super();
@@ -39,13 +49,13 @@ public class RenderingSystem extends GameSystem {
 
         if(m_useNewRenderer) {
             try {
-                glEnable(GL_STENCIL_TEST);
+                if(m_stencilOn) glEnable(GL_STENCIL_TEST);
                 m_renderer.reset();
                 m_renderer.setCamera(Uncountable.game.getWorld().getCamera());
                 m_renderer.setInitialModule(Uncountable.game.getWorld().getCurrentModule());
                 m_renderer.setMaxDepth(m_maxDepth);
                 m_renderer.render();
-                glDisable(GL_STENCIL_TEST);
+                if(m_stencilOn) glDisable(GL_STENCIL_TEST);
             } catch (RenderingException e) {
                 e.printStackTrace();
                 System.exit(1);
@@ -63,6 +73,11 @@ public class RenderingSystem extends GameSystem {
                 System.exit(1);
             }
         }
+    }
+
+    @Override
+    public void onKeyUp(int key) {
+        if(key == GLFW_KEY_Q) m_stencilOn = !m_stencilOn;
     }
 
     /**
@@ -148,13 +163,13 @@ public class RenderingSystem extends GameSystem {
                     render(camera.proxy(localPortal, remotePortal), depth + 1, nextModule, remotePortal);
                 }
 
+                glStencilFunc(GL_EQUAL, depth, 0xFF);
+
                 glClear(GL_DEPTH_BUFFER_BIT);
                 glStencilOp(GL_KEEP, GL_KEEP, GL_DECR);
                 glColorMask(false, false, false, false);
                 glDepthMask(true);
                 camera.capture(localPortal);
-
-                glStencilFunc(GL_EQUAL, depth, 0xFF);
             }
 
             glColorMask(true, true, true, true);

@@ -48,6 +48,8 @@ import org.lwjgl.system.MemoryUtil;
 
 import gamesystems.GameSystem;
 import gamesystems.cameracontrol.CameraControlSystem;
+import gamesystems.portaldebug.PortalDebugSystem;
+import gamesystems.quit.QuitSystem;
 import gamesystems.rendering.Graphics;
 import gamesystems.rendering.Points;
 import gamesystems.rendering.RenderingSystem;
@@ -99,7 +101,9 @@ public class Uncountable {
         setCallbacks();
         initGraphics();
 
+        addGameSystem(new QuitSystem());
         addGameSystem(new CameraControlSystem());
+        addGameSystem(new PortalDebugSystem());
         addGameSystem(new RenderingSystem());
 
         Uncountable.game = this;    // <-- Important, setting this variable lets game systems refer to the running

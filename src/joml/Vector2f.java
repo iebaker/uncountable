@@ -58,6 +58,10 @@ public class Vector2f implements Externalizable {
         return buffer;
     }
 
+    public Vector2f get() {
+        return new Vector2f(this);
+    }
+
     /**
      * Create a new {@link Vector2f} and initialize its components to zero.
      */

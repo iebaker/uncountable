@@ -67,6 +67,10 @@ public class Vector4f implements Externalizable {
         return buffer;
     }
 
+    public Vector4f get() {
+        return new Vector4f(this);
+    }
+
     /**
      * Create a new {@link Vector4f} of <code>(0, 0, 0, 1)</code>.
      */

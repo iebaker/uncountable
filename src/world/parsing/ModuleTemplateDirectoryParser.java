@@ -12,11 +12,12 @@ import java.util.Set;
 import application.Uncountable;
 import gamesystems.rendering.Points;
 import joml.AxisAngle4f;
+import joml.Matrix3f;
 import joml.Quaternionf;
 import joml.Vector3f;
 import world.ModuleTemplate;
-import world.Portal;
 import world.setpieces.BasicColoredQuad;
+import world.setpieces.Portal;
 
 public class ModuleTemplateDirectoryParser {
 
@@ -60,12 +61,12 @@ public class ModuleTemplateDirectoryParser {
             Vector3f dimensions = new Vector3f(scanner.nextFloat(), scanner.nextFloat(), scanner.nextFloat());
             Vector3f color = new Vector3f(scanner.nextFloat(), scanner.nextFloat(), scanner.nextFloat());
 
-            BasicColoredQuad floor = new BasicColoredQuad(Points.aug3f("WHITE", 0.7f));
+            BasicColoredQuad floor = new BasicColoredQuad(Points.WHITE.get().mul(0.5f));
             BasicColoredQuad ceiling = new BasicColoredQuad(Points.WHITE);
-            BasicColoredQuad rightWall = new BasicColoredQuad(new Vector3f(color).mul(0.5f));
-            BasicColoredQuad leftWall = new BasicColoredQuad(new Vector3f(color).mul(0.5f));
-            BasicColoredQuad farWall = new BasicColoredQuad(color);
-            BasicColoredQuad nearWall = new BasicColoredQuad(color);
+            BasicColoredQuad rightWall = new BasicColoredQuad(color.get().mul(0.4f));
+            BasicColoredQuad leftWall = new BasicColoredQuad(color.get().mul(0.8f));
+            BasicColoredQuad farWall = new BasicColoredQuad(color.get().mul(0.2f));
+            BasicColoredQuad nearWall = new BasicColoredQuad(color.get().mul(0.6f));
 
             floor.rotate(3 * Points.piOver(2), Points.X__);
             floor.translate(0.5f, 0.0f, 0.5f);
@@ -106,9 +107,7 @@ public class ModuleTemplateDirectoryParser {
                 float rotation = scanner.nextFloat() * Points.piOver(180);
                 Vector3f normal = new Vector3f(Points.__Z).rotate(new Quaternionf(new AxisAngle4f(rotation, Points._Y_)));
 
-                System.out.println("parser " + template.getName() + " " + normal);
-
-                Portal portal = new Portal(i++ + "", basePosition, normal);
+                Portal portal = new Portal(i++ + "", basePosition, normal, Points._Y_);
                 portal.translate(0.0f, 0.0f, 0.001f);
                 portal.rotate(rotation, Points._Y_);
                 portal.translate(basePosition);

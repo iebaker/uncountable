@@ -8,7 +8,8 @@ import joml.AxisAngle4f;
 import joml.Matrix4f;
 import joml.Quaternionf;
 import joml.Vector3f;
-import world.Portal;
+import world.Basis;
+import world.setpieces.Portal;
 
 public class Camera {
 
@@ -55,7 +56,7 @@ public class Camera {
     }
 
     public Vector3f getEye() {
-        return m_eye;
+        return m_eye.get();
     }
 
     public Vector3f getLook() {
@@ -106,7 +107,13 @@ public class Camera {
     }
 
     public void translateTo(Vector3f vector) {
-        m_eye = new Vector3f(vector);
+        m_eye = vector.get();
+    }
+
+    public void setLook(Vector3f vector) {
+        vector.normalize();
+        set(Camera.PITCH, (float)Math.asin(vector.y));
+        set(Camera.YAW, (float)Math.atan2(vector.z, vector.x));
     }
 
     public Matrix4f getViewMatrix() {
@@ -146,18 +153,22 @@ public class Camera {
     public Camera proxy(Portal local, Portal remote) {
         Camera proxyCamera = new Camera(this);
 
-        Vector3f localNormal = new Vector3f(local.getNormal());
-        Vector3f negativeRemoteNormal = new Vector3f(remote.getNormal()).mul(-1.0f);
+        Vector3f delta = proxyCamera.getEye().sub(local.getBasePosition());
+        System.out.println("Delta in standard basis " + delta);
+        delta = Basis.change(delta, Basis.STANDARD, local.getFrontBasis());
+        System.out.println("Delta in local basis " + delta);
+        delta = Basis.change(delta, remote.getBackBasis(), Basis.STANDARD);
 
-        float sign = Math.signum(new Vector3f(localNormal).cross(negativeRemoteNormal).y);
-        float angle = sign * (float)Math.acos(localNormal.dot(negativeRemoteNormal));
+        Vector3f look = proxyCamera.getLook();
+        System.out.println("Look in standard basis " + look);
+        look = Basis.change(look, Basis.STANDARD, local.getFrontBasis());
+        System.out.println("Look in local basis " + look);
+        look = Basis.change(look, remote.getBackBasis(), Basis.STANDARD);
 
-        proxyCamera.translate(new Vector3f(local.getBasePosition()).mul(-1.0f));
-        Vector3f newCameraEye = new Vector3f(proxyCamera.getEye());
-        newCameraEye.rotate(new Quaternionf(new AxisAngle4f(angle, Points._Y_)));
-        proxyCamera.translateTo(newCameraEye);
-        proxyCamera.add(Camera.YAW, angle + Points.piOver(1));
-        proxyCamera.translate(new Vector3f(remote.getBasePosition()));
+        proxyCamera.translateTo(remote.getBasePosition().add(delta));
+        proxyCamera.setLook(look);
+
+        System.exit(0);
 
         return proxyCamera;
     }
