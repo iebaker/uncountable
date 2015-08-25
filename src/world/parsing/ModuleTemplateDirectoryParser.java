@@ -64,10 +64,11 @@ public class ModuleTemplateDirectoryParser {
             BasicColoredQuad floor = new BasicColoredQuad(Points.WHITE.get().mul(0.5f));
             BasicColoredQuad ceiling = new BasicColoredQuad(Points.WHITE);
             BasicColoredQuad rightWall = new BasicColoredQuad(color.get().mul(0.4f));
-            BasicColoredQuad leftWall = new BasicColoredQuad(color.get().mul(0.8f));
-            BasicColoredQuad farWall = new BasicColoredQuad(color.get().mul(0.2f));
+            BasicColoredQuad leftWall = new BasicColoredQuad(color.get().mul(0.2f));
+            BasicColoredQuad farWall = new BasicColoredQuad(color.get().mul(0.8f));
             BasicColoredQuad nearWall = new BasicColoredQuad(color.get().mul(0.6f));
 
+            floor.scale(1.01f);
             floor.rotate(3 * Points.piOver(2), Points.X__);
             floor.translate(0.5f, 0.0f, 0.5f);
             floor.scale(dimensions.x, 1.0f, dimensions.z);

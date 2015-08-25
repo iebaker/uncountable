@@ -1,14 +1,11 @@
 package gamesystems.rendering;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import joml.AxisAngle4f;
 import joml.Matrix4f;
-import joml.Quaternionf;
 import joml.Vector3f;
-import world.Basis;
+import world.Seam;
 import world.setpieces.Portal;
 
 public class Camera {
@@ -152,23 +149,10 @@ public class Camera {
 
     public Camera proxy(Portal local, Portal remote) {
         Camera proxyCamera = new Camera(this);
+        Seam seam = new Seam(local, remote);
 
-        Vector3f delta = proxyCamera.getEye().sub(local.getBasePosition());
-        System.out.println("Delta in standard basis " + delta);
-        delta = Basis.change(delta, Basis.STANDARD, local.getFrontBasis());
-        System.out.println("Delta in local basis " + delta);
-        delta = Basis.change(delta, remote.getBackBasis(), Basis.STANDARD);
-
-        Vector3f look = proxyCamera.getLook();
-        System.out.println("Look in standard basis " + look);
-        look = Basis.change(look, Basis.STANDARD, local.getFrontBasis());
-        System.out.println("Look in local basis " + look);
-        look = Basis.change(look, remote.getBackBasis(), Basis.STANDARD);
-
-        proxyCamera.translateTo(remote.getBasePosition().add(delta));
-        proxyCamera.setLook(look);
-
-        System.exit(0);
+        proxyCamera.translateTo(seam.transformPoint(proxyCamera.getEye()));
+        proxyCamera.setLook(seam.transformVector(proxyCamera.getLook()));
 
         return proxyCamera;
     }

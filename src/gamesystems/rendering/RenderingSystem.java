@@ -34,7 +34,7 @@ import world.setpieces.Portal;
  */
 public class RenderingSystem extends GameSystem {
 
-    private int m_maxDepth = 10;
+    private int m_maxDepth = 5;
     private boolean m_useNewRenderer = true;
     private RecursiveRenderer m_renderer = new RecursiveRenderer();
     private boolean m_stencilOn = true;
@@ -165,7 +165,6 @@ public class RenderingSystem extends GameSystem {
 
                 glStencilFunc(GL_EQUAL, depth, 0xFF);
 
-                glClear(GL_DEPTH_BUFFER_BIT);
                 glStencilOp(GL_KEEP, GL_KEEP, GL_DECR);
                 glColorMask(false, false, false, false);
                 glDepthMask(true);

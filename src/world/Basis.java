@@ -13,10 +13,6 @@ public class Basis {
 
     public static Vector3f change(Vector3f vector, Basis from, Basis to) {
         Vector3f result = vector.get();
-
-        System.out.println("From\n" + from.getMatrix());
-        System.out.println("To\n" + to.getMatrix());
-
         to.getMatrix().invert().mul(from.getMatrix()).transform(result);
         return result;
     }
@@ -44,6 +40,6 @@ public class Basis {
            m_xAxis.x, m_yAxis.x, m_zAxis.x,
            m_xAxis.y, m_yAxis.y, m_zAxis.y,
            m_xAxis.z, m_yAxis.z, m_zAxis.z
-        );
+        ).transpose();
     }
 }

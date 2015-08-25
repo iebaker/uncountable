@@ -18,7 +18,7 @@ public class World {
            set(Camera.FAR_PLANE, 500.0f);
            set(Camera.ASPECT_RATIO, Uncountable.game.getWidth() / Uncountable.game.getHeight());
 
-           translateTo(Points.X_Z.get().mul(1.5f));
+           translateTo(Points.XYZ);
            setLook(Points.__z.get());
         }};
 
@@ -32,5 +32,9 @@ public class World {
 
     public Module getCurrentModule() {
         return m_currentModule;
+    }
+
+    public void setCurrentModule(Module module) {
+        m_currentModule = module;
     }
 }

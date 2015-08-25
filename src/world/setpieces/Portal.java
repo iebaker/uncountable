@@ -2,8 +2,10 @@ package world.setpieces;
 
 import gamesystems.rendering.Points;
 import joml.AxisAngle4f;
+import joml.Matrix4f;
 import joml.Quaternionf;
 import joml.Vector3f;
+import joml.Vector4f;
 import world.Basis;
 import world.Ray;
 
@@ -56,6 +58,34 @@ public class Portal extends BasicColoredQuad {
 
     public Basis getBackBasis() {
         return new Basis(m_normal.get().negate(), m_up);
+    }
+
+    public boolean crossedBy(Vector3f startPosition, Vector3f endPosition) {
+        Vector4f start = Points.homogeneousPoint(startPosition.get());
+        Vector4f ray = Points.homogeneousVector(endPosition.get().sub(startPosition));
+
+        Vector4f normal = new Vector4f(0, 0, 1, 0);
+        Vector4f point = new Vector4f(0, 0, 0, 1);
+
+        Matrix4f inverse = new Matrix4f(getModelMatrix()).invert();
+        inverse.transform(start);
+        inverse.transform(ray);
+
+        float term1 = normal.dot(point);
+        float term2 = normal.dot(start);
+        float term3 = normal.dot(ray);
+
+        if(term3 == 0) return false;
+
+        float t = (term1 - term2) / term3;
+        if(t >= 0 && t <= 1) {
+            start.add(ray.mul(t));
+            if(Math.abs(start.x) <= 1 && Math.abs(start.y) <= 1) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     // DEBUG METHODS

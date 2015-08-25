@@ -13,6 +13,10 @@ import gamesystems.rendering.Camera;
 import gamesystems.rendering.Points;
 import joml.Vector2f;
 import joml.Vector3f;
+import world.Module;
+import world.Seam;
+import world.World;
+import world.setpieces.Portal;
 
 /**
  * This is a GameSystem responsible for collecting input events and using them to move the camera
@@ -22,17 +26,11 @@ import joml.Vector3f;
  */
 public class CameraControlSystem extends GameSystem {
 
-    // two velocity parameters used for smooth acceleration
-    private Vector3f m_goalVelocity = new Vector3f(Points.ORIGIN_3D);
-    private Vector3f m_realVelocity = new Vector3f(Points.ORIGIN_3D);
-
-    // how rapidly the camera accelerates and decelerates
+    private Vector3f m_goalVelocity = Points.ORIGIN_3D.get();
+    private Vector3f m_realVelocity = Points.ORIGIN_3D.get();
+    private Vector3f m_previousLocation = Points.ORIGIN_3D.get();
     private float m_accelerationFactor = 0.1f;
-
-    // how rapidly the camera can rotate
     private float m_rotationFactor = 2.0f;
-
-    // the maximum speed of the camera
     private float m_speed = 5.0f;
 
     public CameraControlSystem() {
@@ -47,8 +45,36 @@ public class CameraControlSystem extends GameSystem {
     @Override
     public void tick(float seconds) {
         Camera camera = Uncountable.game.getWorld().getCamera();
+        m_previousLocation = camera.getEye();
+
         m_realVelocity.add(new Vector3f(m_goalVelocity).sub(m_realVelocity).mul(m_accelerationFactor));
         camera.translate(new Vector3f(m_realVelocity).mul(seconds));
+        checkPortals();
+    }
+
+    public void checkPortals() {
+        World world = Uncountable.game.getWorld();
+        Camera camera = world.getCamera();
+        Module currentModule = world.getCurrentModule();
+
+        for(Portal portal : currentModule.getTemplate().getPortals()) {
+            if(portal.crossedBy(m_previousLocation, camera.getEye())) {
+                Seam seam = new Seam(portal, currentModule.getLinkedPortal(portal));
+
+                camera.translateTo(seam.transformPoint(camera.getEye()));
+                camera.setLook(seam.transformVector(camera.getLook()));
+
+                m_realVelocity = seam.transformVector(m_realVelocity);
+                m_goalVelocity = seam.transformVector(m_goalVelocity);
+
+                Module nextModule = currentModule.getNeighbor(portal);
+                if(nextModule != null) {
+                    world.setCurrentModule(nextModule);
+                } else {
+                    System.out.println("Null next");
+                }
+            }
+        }
     }
 
     /**

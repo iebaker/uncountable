@@ -35,23 +35,31 @@ public class Architect {
         ModuleTemplate leafRoomTemplate = m_moduleTemplatesByName.get("leafroom");
         ModuleTemplate hallwayTemplate = m_moduleTemplatesByName.get("hallway");
         ModuleTemplate cubeRoomTemplate = m_moduleTemplatesByName.get("cuberoom");
+        ModuleTemplate flatRoomTemplate = m_moduleTemplatesByName.get("flatroom");
+
+        Module flatRoom = flatRoomTemplate.getInstance();
+        Portal flat0 = flatRoomTemplate.getPortal("0");
+        Portal flat1 = flatRoomTemplate.getPortal("1");
+        Portal flat2 = flatRoomTemplate.getPortal("2");
+
+        Module leafRoom0 = leafRoomTemplate.getInstance();
+        Portal leaf00 = leafRoomTemplate.getPortal("0");
 
         Module leafRoom1 = leafRoomTemplate.getInstance();
-        Module hallway1 = hallwayTemplate.getInstance();
-        Module hallway2 = hallwayTemplate.getInstance();
-        Module leafRoom2 = leafRoomTemplate.getInstance();
+        Portal leaf10 = leafRoomTemplate.getPortal("0");
 
         Module cubeRoom = cubeRoomTemplate.getInstance();
+        Portal cube0 = cubeRoomTemplate.getPortal("0");
+        Portal cube1 = cubeRoomTemplate.getPortal("1");
+        Portal cube2 = cubeRoomTemplate.getPortal("2");
+        Portal cube3 = cubeRoomTemplate.getPortal("3");
 
-        Portal leafRoomPortal = leafRoomTemplate.getPortal("0");
-        Portal hallwayPortal1 = hallwayTemplate.getPortal("0");
-        Portal hallwayPortal2 = hallwayTemplate.getPortal("1");
-        Portal cubeRoomPortal = cubeRoomTemplate.getPortal("0");
+        Module hallway = hallwayTemplate.getInstance();
+        Portal hall0 = hallwayTemplate.getPortal("0");
+        Portal hall1 = hallwayTemplate.getPortal("1");
 
-        link(leafRoom1, leafRoomPortal, hallwayPortal1, hallway1);
-        //link(hallway1, hallwayPortal2, leafRoomPortal, leafRoom2);
-        //link(hallway2, hallwayPortal2, leafRoomPortal, leafRoom2);
-        return leafRoom1;
+        link(hallway, hall0, hall1, hallway);
+        return hallway;
     }
 
     public static void buildAround(Module module, Ray lineOfSight) {
