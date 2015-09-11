@@ -126,6 +126,10 @@ public abstract class Renderable {
         }
     }
 
+    public void setShaderUniforms() {
+        Shaders.setShaderUniform("model", getModelMatrix());
+    }
+
     public FloatBuffer getVertexData() throws RenderingException {
         if(!Shaders.exists(m_shaderName)) return BufferUtils.createFloatBuffer(0);
 

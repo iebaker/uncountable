@@ -1,6 +1,10 @@
 package gamesystems.rendering;
 
 import static org.lwjgl.glfw.GLFW.GLFW_KEY_Q;
+import static org.lwjgl.glfw.GLFW.GLFW_KEY_R;
+import static org.lwjgl.glfw.GLFW.GLFW_KEY_E;
+import static org.lwjgl.glfw.GLFW.GLFW_KEY_0;
+import static org.lwjgl.glfw.GLFW.GLFW_KEY_9;
 import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
 import static org.lwjgl.opengl.GL11.GL_DECR;
 import static org.lwjgl.opengl.GL11.GL_DEPTH_BUFFER_BIT;
@@ -35,8 +39,9 @@ import world.setpieces.Portal;
 public class RenderingSystem extends GameSystem {
 
     private int m_maxDepth = 5;
-    private boolean m_useNewRenderer = true;
+    private boolean m_useNewRenderer = false;
     private RecursiveRenderer m_renderer = new RecursiveRenderer();
+    private boolean m_portalDebug = true;
     private boolean m_stencilOn = true;
 
     public RenderingSystem() {
@@ -78,43 +83,27 @@ public class RenderingSystem extends GameSystem {
     @Override
     public void onKeyUp(int key) {
         if(key == GLFW_KEY_Q) m_stencilOn = !m_stencilOn;
+        if(key == GLFW_KEY_E) m_useNewRenderer = !m_useNewRenderer;
+        if(key == GLFW_KEY_0) m_maxDepth++;
+        if(key == GLFW_KEY_9) m_maxDepth--;
+        if(key == GLFW_KEY_R) m_portalDebug = !m_portalDebug;
     }
 
-    /**
-     * This is an inner class which will eventually support functionality for performing recursive
-     * rendering of many modules connected together with portals. The structure is here, but a lot
-     * of the methods it depends on are only skeletally implemented.
-     */
     private class RecursiveRenderer {
 
-        // The camera used for rendering
         private Camera m_camera;
-
-        // The maximum recursion depth for portal rendering
         private int m_maxDepth;
-
-        // Any module that's already been visited during this rendering cycle
         private Set<Module> m_visitedModules = new HashSet<Module>();
 
-        /**
-         * Sets the Camera to begin the rendering cycle with
-         */
         public void setCamera(Camera camera) {
             m_camera = camera;
         }
 
-        /**
-         * Sets the module to begin rendering from. This is the module the Camera is
-         * currently in.
-         */
         public void setInitialModule(Module module) {
             m_visitedModules.add(module);
             module.stageScene();
         }
 
-        /**
-         * Sets the maximum number of portals to render through
-         */
         public void setMaxDepth(int maxDepth) {
             m_maxDepth = maxDepth;
         }
@@ -131,15 +120,10 @@ public class RenderingSystem extends GameSystem {
             m_visitedModules.clear();
         }
 
-        /**
-         * Actually performs recursive rendering through portals using stencil buffering
-         * to render the view through portals on only part of the screen.
-         * @throws RenderingException
-         */
         private void render(Camera camera, int depth, Module currentModule, Portal previousRemotePortal)
                 throws RenderingException {
 
-            if(depth == m_maxDepth || currentModule == null) return;
+            if(depth > m_maxDepth || currentModule == null) return;
             for(Portal localPortal : currentModule.getTemplate().getPortals()) {
 
                 if(localPortal == previousRemotePortal) {
@@ -149,6 +133,8 @@ public class RenderingSystem extends GameSystem {
                 glStencilOp(GL_KEEP, GL_KEEP, GL_INCR);
                 glColorMask(false, false, false, false);
                 glDepthMask(false);
+
+                localPortal.setShader("portal1");
                 camera.capture(localPortal);
 
                 glStencilFunc(GL_EQUAL, depth + 1, 0xFF);
@@ -168,6 +154,8 @@ public class RenderingSystem extends GameSystem {
                 glStencilOp(GL_KEEP, GL_KEEP, GL_DECR);
                 glColorMask(false, false, false, false);
                 glDepthMask(true);
+
+                if(m_portalDebug) localPortal.setShader("basic");
                 camera.capture(localPortal);
             }
 

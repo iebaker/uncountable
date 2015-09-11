@@ -29,27 +29,23 @@ public class CameraControlSystem extends GameSystem {
     private Vector3f m_goalVelocity = Points.ORIGIN_3D.get();
     private Vector3f m_realVelocity = Points.ORIGIN_3D.get();
     private Vector3f m_previousLocation = Points.ORIGIN_3D.get();
-    private float m_accelerationFactor = 0.1f;
-    private float m_rotationFactor = 2.0f;
-    private float m_speed = 5.0f;
+    private float m_accelerationFactor = 0.2f;
+    private float m_rotationFactor = 2.4f;
+    private float m_speed = 4.0f;
 
     public CameraControlSystem() {
         super();
     }
 
-    /**
-     * During each frame, accelerate the camera by some fraction of the difference between its current
-     * velocity and a goal velocity, which is set by key presses. This lets the camera smoothly
-     * accelerate and decelerate.
-     */
     @Override
     public void tick(float seconds) {
         Camera camera = Uncountable.game.getWorld().getCamera();
         m_previousLocation = camera.getEye();
 
-        m_realVelocity.add(new Vector3f(m_goalVelocity).sub(m_realVelocity).mul(m_accelerationFactor));
-        camera.translate(new Vector3f(m_realVelocity).mul(seconds));
+        m_realVelocity.add(m_goalVelocity.get().sub(m_realVelocity).mul(m_accelerationFactor));
+        camera.translate(m_realVelocity.get().mul(seconds));
         checkPortals();
+        m_goalVelocity = Points.ORIGIN_3D.get();
     }
 
     public void checkPortals() {
@@ -73,14 +69,11 @@ public class CameraControlSystem extends GameSystem {
                 } else {
                     System.out.println("Null next");
                 }
+                break;
             }
         }
     }
 
-    /**
-     * Mouse motion rotates the camera around the world by altering the pitch (vertical) and yaw
-     * (horizontal) components of the camera's orientation.
-     */
     @Override
     public void onMouseMove(Vector2f position, Vector2f delta) {
         Camera camera = Uncountable.game.getWorld().getCamera();
@@ -94,12 +87,17 @@ public class CameraControlSystem extends GameSystem {
         camera.sub(Camera.PITCH, yDiff);
     }
 
-    /**
-     * Key presses move the camera laterally by setting the goal velocity to cardinal directions relative
-     * to where the camera is pointing. Camera responds to WASD/SHIFT/SPACE.
-     */
+    @Override
+    public void onKeyHeld(int key) {
+        doKeys(key);
+    }
+
     @Override
     public void onKeyDown(int key) {
+        doKeys(key);
+    }
+
+    private void doKeys(int key) {
         Camera camera = Uncountable.game.getWorld().getCamera();
         switch(key) {
         case GLFW_KEY_W:
@@ -121,14 +119,5 @@ public class CameraControlSystem extends GameSystem {
             m_goalVelocity = new Vector3f(Points._y_).mul(m_speed);
             break;
         }
-    }
-
-    /**
-     * Once the user lets go of the key, set the goal velocity back to 0, so that the camera
-     * will drift to a stop.
-     */
-    @Override
-    public void onKeyUp(int key) {
-        m_goalVelocity = new Vector3f(Points.ORIGIN_3D);
     }
 }

@@ -21,7 +21,7 @@ import world.setpieces.Portal;
 
 public class ModuleTemplateDirectoryParser {
 
-    private static final String m_modulesDirectoryName = "modules";
+    private static final String m_modulesDirectoryName = "resources/modules";
     private static final String m_moduleTemplateFilename = "module.txt";
     private static final String m_modulePortalsFilename = "portals.txt";
 

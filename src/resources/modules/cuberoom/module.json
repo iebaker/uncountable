@@ -1,0 +1,5 @@
+{
+	name: "cuberoom",
+	dimensions: [2, 2, 2],
+	color: [1, 0, 0],
+}

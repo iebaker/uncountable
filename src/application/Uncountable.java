@@ -48,7 +48,6 @@ import org.lwjgl.system.MemoryUtil;
 
 import gamesystems.GameSystem;
 import gamesystems.cameracontrol.CameraControlSystem;
-import gamesystems.portaldebug.PortalDebugSystem;
 import gamesystems.quit.QuitSystem;
 import gamesystems.rendering.Graphics;
 import gamesystems.rendering.Points;
@@ -103,7 +102,6 @@ public class Uncountable {
 
         addGameSystem(new QuitSystem());
         addGameSystem(new CameraControlSystem());
-        addGameSystem(new PortalDebugSystem());
         addGameSystem(new RenderingSystem());
 
         Uncountable.game = this;    // <-- Important, setting this variable lets game systems refer to the running
@@ -235,7 +233,7 @@ public class Uncountable {
             e.printStackTrace();
         }
 
-        GL11.glClearColor(0.0f,  0.0f,  0.0f,  0.0f);
+        GL11.glClearColor(1.0f,  0.5f,  0.5f,  0.0f);
         GL11.glEnable(GL11.GL_DEPTH_TEST);
         GL11.glEnable(GL11.GL_CULL_FACE);
         GL11.glCullFace(GL11.GL_BACK);

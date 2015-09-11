@@ -17,7 +17,9 @@ public class Portal extends BasicColoredQuad {
     private Vector3f m_up;
 
     public Portal(String name, Vector3f basePosition, Vector3f normal, Vector3f up) {
-        super(new Vector3f(1.0f, 0.5f, 0.0f));
+        super(new Vector3f(0.7f, 0.5f, 0.2f));
+        setShader("portal1");
+
         m_name = name;
 
         translate(Points.aug3f("_Y_", 0.5f));
@@ -75,7 +77,7 @@ public class Portal extends BasicColoredQuad {
         float term2 = normal.dot(start);
         float term3 = normal.dot(ray);
 
-        if(term3 == 0) return false;
+        if(term3 >= 0) return false;
 
         float t = (term1 - term2) / term3;
         if(t >= 0 && t <= 1) {

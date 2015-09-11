@@ -137,8 +137,8 @@ public class Camera {
             }
 
             Shaders.useShader(renderable.getActiveShaderName());
+            renderable.setShaderUniforms();
 
-            Shaders.setShaderUniform("model", renderable.getModelMatrix());
             Shaders.setShaderUniform("view", getViewMatrix());
             Shaders.setShaderUniform("projection", getProjectionMatrix());
             Shaders.setShaderUniform("cameraEye", getEye());

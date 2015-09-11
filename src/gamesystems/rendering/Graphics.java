@@ -21,7 +21,8 @@ public class Graphics {
     public static int theVAO;
 
     public static void initialize() throws IOException {
-        Shaders.createShader("basic", "shaders/basic.vert", "shaders/basic.frag");
+        Shaders.createShader("basic", "resources/shaders/basic.vert", "resources/shaders/basic.frag");
+        Shaders.createShader("portal1", "resources/shaders/portal1.vert", "resources/shaders/portal1.frag");
     }
 
     public static void buffer(Renderable renderable) throws RenderingException {

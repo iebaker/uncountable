@@ -15,11 +15,11 @@ public class BasicColoredQuad extends AbstractQuad {
     @Override
     public void build() {
         super.build();
-        setVertexAttribute("color", m_color);
-        setVertexAttribute("color", m_color);
-        setVertexAttribute("color", m_color);
-        setVertexAttribute("color", m_color);
-        setVertexAttribute("color", m_color);
-        setVertexAttribute("color", m_color);
+        setVertexAttribute("vertexColor", m_color);
+        setVertexAttribute("vertexColor", m_color);
+        setVertexAttribute("vertexColor", m_color);
+        setVertexAttribute("vertexColor", m_color);
+        setVertexAttribute("vertexColor", m_color);
+        setVertexAttribute("vertexColor", m_color);
     }
 }
