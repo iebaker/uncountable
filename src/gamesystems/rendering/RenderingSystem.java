@@ -29,20 +29,13 @@ import gamesystems.GameSystem;
 import world.Module;
 import world.setpieces.Portal;
 
-/**
- * This is where some crazy stuff is starting to go down. This is the rendering system which must
- * eventually support recursively rendering through multiple portals, some of which may open back
- * onto rooms which have already been rendered in that sequence. As of right now, the skeletal
- * recursive rendering code does not get used and many methods it requires are stubs. In its place,
- * a simple renderer uses the basic shader to draw the colorful cube defined in Module.
- */
 public class RenderingSystem extends GameSystem {
 
     private int m_maxDepth = 5;
     private boolean m_useNewRenderer = false;
-    private RecursiveRenderer m_renderer = new RecursiveRenderer();
     private boolean m_portalDebug = true;
     private boolean m_stencilOn = true;
+    private Set<Module> m_visitedModules = new HashSet<Module>();
 
     public RenderingSystem() {
         super();
@@ -55,11 +48,8 @@ public class RenderingSystem extends GameSystem {
         if(m_useNewRenderer) {
             try {
                 if(m_stencilOn) glEnable(GL_STENCIL_TEST);
-                m_renderer.reset();
-                m_renderer.setCamera(Uncountable.game.getWorld().getCamera());
-                m_renderer.setInitialModule(Uncountable.game.getWorld().getCurrentModule());
-                m_renderer.setMaxDepth(m_maxDepth);
-                m_renderer.render();
+                reset();
+                render(Uncountable.game.getWorld().getCurrentModule());
                 if(m_stencilOn) glDisable(GL_STENCIL_TEST);
             } catch (RenderingException e) {
                 e.printStackTrace();
@@ -89,79 +79,60 @@ public class RenderingSystem extends GameSystem {
         if(key == GLFW_KEY_R) m_portalDebug = !m_portalDebug;
     }
 
-    private class RecursiveRenderer {
+    public void render(Module initialModule) throws RenderingException {
+        m_visitedModules.add(initialModule);
+        initialModule.stageScene();
+        render(new Camera(Uncountable.game.getWorld().getCamera()), 0, initialModule, null);
+    }
 
-        private Camera m_camera;
-        private int m_maxDepth;
-        private Set<Module> m_visitedModules = new HashSet<Module>();
-
-        public void setCamera(Camera camera) {
-            m_camera = camera;
+    public void reset() {
+        for(Module module : m_visitedModules) {
+            module.clearScene();
         }
+        m_visitedModules.clear();
+    }
 
-        public void setInitialModule(Module module) {
-            m_visitedModules.add(module);
-            module.stageScene();
-        }
+    private void render(Camera camera, int depth, Module currentModule, Portal previousRemotePortal)
+            throws RenderingException {
 
-        public void setMaxDepth(int maxDepth) {
-            m_maxDepth = maxDepth;
-        }
+        if(depth > m_maxDepth || currentModule == null) return;
+        for(Portal localPortal : currentModule.getTemplate().getPortals()) {
 
-        public void render() throws RenderingException {
-            Module first = (Module)(m_visitedModules.toArray()[0]);
-            render(new Camera(m_camera), 0, first, null);
-        }
-
-        public void reset() {
-            for(Module module : m_visitedModules) {
-                module.clearScene();
-            }
-            m_visitedModules.clear();
-        }
-
-        private void render(Camera camera, int depth, Module currentModule, Portal previousRemotePortal)
-                throws RenderingException {
-
-            if(depth > m_maxDepth || currentModule == null) return;
-            for(Portal localPortal : currentModule.getTemplate().getPortals()) {
-
-                if(localPortal == previousRemotePortal) {
-                    continue;
-                }
-
-                glStencilOp(GL_KEEP, GL_KEEP, GL_INCR);
-                glColorMask(false, false, false, false);
-                glDepthMask(false);
-
-                localPortal.setShader("portal1");
-                camera.capture(localPortal);
-
-                glStencilFunc(GL_EQUAL, depth + 1, 0xFF);
-
-                Module nextModule = currentModule.getNeighbor(localPortal);
-                if(nextModule != null) {
-                    Portal remotePortal = currentModule.getLinkedPortal(localPortal);
-                    if(!m_visitedModules.contains(nextModule)) {
-                        m_visitedModules.add(nextModule);
-                        nextModule.stageScene();
-                    }
-                    render(camera.proxy(localPortal, remotePortal), depth + 1, nextModule, remotePortal);
-                }
-
-                glStencilFunc(GL_EQUAL, depth, 0xFF);
-
-                glStencilOp(GL_KEEP, GL_KEEP, GL_DECR);
-                glColorMask(false, false, false, false);
-                glDepthMask(true);
-
-                if(m_portalDebug) localPortal.setShader("basic");
-                camera.capture(localPortal);
+            if(localPortal == previousRemotePortal) {
+                continue;
             }
 
-            glColorMask(true, true, true, true);
+            glStencilOp(GL_KEEP, GL_KEEP, GL_INCR);
+            glColorMask(false, false, false, false);
+            glDepthMask(false);
+
+            localPortal.setShader("portal1");
+            camera.capture(localPortal);
+
+            glStencilFunc(GL_EQUAL, depth + 1, 0xFF);
+
+            Module nextModule = currentModule.getNeighbor(localPortal);
+            if(nextModule != null) {
+                Portal remotePortal = currentModule.getLinkedPortal(localPortal);
+                if(!m_visitedModules.contains(nextModule)) {
+                    m_visitedModules.add(nextModule);
+                    nextModule.stageScene();
+                }
+                render(camera.proxy(localPortal, remotePortal), depth + 1, nextModule, remotePortal);
+            }
+
+            glStencilFunc(GL_EQUAL, depth, 0xFF);
+
+            glStencilOp(GL_KEEP, GL_KEEP, GL_DECR);
+            glColorMask(false, false, false, false);
             glDepthMask(true);
-            camera.capture(currentModule.getStagedRenderables());
+
+            if(m_portalDebug) localPortal.setShader("basic");
+            camera.capture(localPortal);
         }
+
+        glColorMask(true, true, true, true);
+        glDepthMask(true);
+        camera.capture(currentModule.getStagedRenderables());
     }
 }
