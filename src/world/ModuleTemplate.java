@@ -1,11 +1,6 @@
 package world;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 import gamesystems.rendering.Renderable;
 import world.setpieces.Portal;
@@ -14,10 +9,10 @@ public class ModuleTemplate {
 
     private String m_name;
     private int m_instanceCount = 0;
-    private Map<Portal, Map<ModuleTemplate, Integer>> m_rules = new HashMap<Portal, Map<ModuleTemplate, Integer>>();
-    private Map<Portal, Integer> m_ruleSums = new HashMap<Portal, Integer>();
-    private Map<String, Portal> m_portalsByName = new HashMap<String, Portal>();
-    private List<Renderable> m_walls = new ArrayList<Renderable>();
+    private Map<Portal, Map<ModuleTemplate, Integer>> m_rules = new HashMap<>();
+    private Map<Portal, Integer> m_ruleSums = new HashMap<>();
+    private Map<String, Portal> m_portalsByName = new HashMap<>();
+    private List<Renderable> m_walls = new ArrayList<>();
 
     public ModuleTemplate(String name, Map<Portal, Map<ModuleTemplate, Integer>> rules) {
         m_name = name;
@@ -27,7 +22,7 @@ public class ModuleTemplate {
 
     public ModuleTemplate(String name) {
         m_name = name;
-        m_rules = new HashMap<Portal, Map<ModuleTemplate, Integer>>();
+        m_rules = new HashMap<>();
     }
 
     public void addPortal(Portal portal, Map<ModuleTemplate, Integer> rule) {
@@ -42,9 +37,7 @@ public class ModuleTemplate {
     }
 
     public void addWalls(Renderable... walls) {
-        for(Renderable wall : walls) {
-            m_walls.add(wall);
-        }
+        m_walls.addAll(Arrays.asList(walls));
     }
 
     public List<Renderable> getWalls() {

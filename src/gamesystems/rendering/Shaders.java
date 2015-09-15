@@ -40,6 +40,7 @@ import joml.Vector2f;
 import joml.Vector3f;
 import joml.Vector4f;
 
+@SuppressWarnings("unused")
 public class Shaders {
 
     private static Map<String, Integer> m_shaderPrograms = new HashMap<String, Integer>();
@@ -108,7 +109,7 @@ public class Shaders {
 
     private static void addVertexAttribute(String shaderName, String attributeName, int attributeLength) {
         if(!m_vertexAttributes.containsKey(shaderName)) {
-            m_vertexAttributes.put(shaderName, new ArrayList<VertexAttribute>());
+            m_vertexAttributes.put(shaderName, new ArrayList<>());
         }
         int computedOffset = getAttributeStrideFor(shaderName);
         m_vertexAttributes.get(shaderName).add(new VertexAttribute(attributeName, attributeLength, computedOffset));
@@ -116,7 +117,7 @@ public class Shaders {
 
     public static List<VertexAttribute> getVertexAttributesFor(String shaderName) {
         if(!m_vertexAttributes.containsKey(shaderName)) {
-            return new ArrayList<VertexAttribute>();
+            return new ArrayList<>();
         }
         return m_vertexAttributes.get(shaderName);
     }

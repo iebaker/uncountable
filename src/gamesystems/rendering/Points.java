@@ -6,6 +6,7 @@ import joml.Vector2f;
 import joml.Vector3f;
 import joml.Vector4f;
 
+@SuppressWarnings("unused")
 public class Points {
 
     // Corners of cube
@@ -103,6 +104,10 @@ public class Points {
 
     public static Vector4f homogeneousPoint(Vector3f vector) {
         return new Vector4f(vector.x, vector.y, vector.z, 1.0f);
+    }
+
+    public static Vector3f hsbToRgb(float hue) {
+        return hsbToRgb(hue, 1.0f, 1.0f);
     }
 
     public static Vector3f hsbToRgb(float hue, float saturation, float brightness) {

@@ -26,7 +26,7 @@ public class DebugArtist {
             glColorMask(true, true, true, true);
             glDepthMask(false);
 
-            final Vector3f drawColor = Points.hsbToRgb(hue, 0.9f, 0.9f);
+            final Vector3f drawColor = Points.hsbToRgb(hue);
             camera.capture(() -> {
                 Shaders.setShaderUniform("drawColor", drawColor);
             }, m_quad);

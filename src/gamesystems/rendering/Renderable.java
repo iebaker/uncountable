@@ -4,8 +4,6 @@ import static org.lwjgl.opengl.GL30.glGenVertexArrays;
 
 import java.nio.FloatBuffer;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -139,7 +137,7 @@ public abstract class Renderable {
 
         // Grab the attributes for this shader, and sort them in increasing order by offset
         List<VertexAttribute> attributes = Shaders.getVertexAttributesFor(m_shaderName);
-        Collections.sort(attributes, (va1, va2) -> {
+        attributes.sort((va1, va2) -> {
             Integer offset1 = va1.getOffset();
             Integer offset2 = va2.getOffset();
             return offset1.compareTo(offset2);

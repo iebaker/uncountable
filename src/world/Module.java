@@ -1,12 +1,7 @@
 package world;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import gamesystems.rendering.Points;
 import gamesystems.rendering.Renderable;
@@ -16,12 +11,12 @@ import world.setpieces.Portal;
 public class Module {
 
     private ModuleTemplate m_template;
-    private Map<Portal, Module> m_neighbors = new HashMap<Portal, Module>();
-    private Map<Portal, Portal> m_links = new HashMap<Portal, Portal>();
+    private Map<Portal, Module> m_neighbors = new HashMap<>();
+    private Map<Portal, Portal> m_links = new HashMap<>();
     private String m_name;
     private int m_openPortals;
     private boolean m_isStaged;
-    private List<Renderable> m_stagedRenderables = new ArrayList<Renderable>();
+    private List<Renderable> m_stagedRenderables = new ArrayList<>();
 
     public Module(ModuleTemplate type, String name) {
         m_template = type;
@@ -46,13 +41,11 @@ public class Module {
     }
 
     public Set<Module> getNeighbors() {
-        Set<Module> allNeighbors = new HashSet<Module>();
-        for(Portal portal : m_template.getPortals()) {
-            if(hasNeighbor(portal)) {
-                allNeighbors.add(getNeighbor(portal));
-            }
-        }
-        return allNeighbors;
+        return m_template.getPortals()
+                .stream()
+                .filter(this::hasNeighbor)
+                .map(this::getNeighbor)
+                .collect(Collectors.toSet());
     }
 
     public void setNeighbor(Portal portal, Module module) {
@@ -87,16 +80,13 @@ public class Module {
     }
 
     public void setShaderForStagedRenderables(String shaderName) {
-        for(Renderable renderable : m_stagedRenderables) {
-            renderable.setShader(shaderName);
-        }
+        m_stagedRenderables
+                .stream()
+                .forEach((renderable) -> renderable.setShader(shaderName));
     }
 
     public void stageScene() {
         stage(m_template.getWalls());
-//        for(Portal p : m_template.getPortals()) {
-//            stage(p);
-//        }
     }
 
     public List<Renderable> getStagedRenderables() {
@@ -108,9 +98,7 @@ public class Module {
     }
 
     private void stage(Renderable... renderables) {
-        for(Renderable renderable : renderables) {
-            m_stagedRenderables.add(renderable);
-        }
+        m_stagedRenderables.addAll(Arrays.asList(renderables));
     }
 
     private void stage(List<Renderable> renderables) {
