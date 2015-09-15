@@ -9,12 +9,14 @@ uniform mat4 projection;
 uniform vec3 cameraEye;
 
 out vec3 color;
-out vec3 position;
+out vec3 screenPosition;
+out vec3 worldPosition;
 
 void main() {
     mat4 mvp = projection * view * model;
     gl_Position = (mvp * vec4(vertexPosition, 1));
     
     color = vertexColor;
-    position = gl_Position.xyz;
+    screenPosition = gl_Position.xyz;
+    worldPosition = (model * vec4(vertexPosition, 1)).xyz;
 }

@@ -18,7 +18,7 @@ public class Portal extends BasicColoredQuad {
 
     public Portal(String name, Vector3f basePosition, Vector3f normal, Vector3f up) {
         super(new Vector3f(0.7f, 0.5f, 0.2f));
-        setShader("portal1");
+        setShader("stenciler");
 
         m_name = name;
 
@@ -28,10 +28,6 @@ public class Portal extends BasicColoredQuad {
         m_basePosition = basePosition.get();
         m_normal = normal.get();
         m_up = up.get();
-    }
-
-    public boolean visibleFrom(Ray lineOfSight) {
-        return true;
     }
 
     public String getName() {
@@ -62,6 +58,14 @@ public class Portal extends BasicColoredQuad {
         return new Basis(m_normal.get().negate(), m_up);
     }
 
+    public Vector4f getFrontPlane() {
+        return new Vector4f(m_normal.x, m_normal.y, m_normal.z, -m_normal.dot(m_basePosition));
+    }
+
+    public Vector4f getBackPlane() {
+        return new Vector4f();
+    }
+
     public boolean crossedBy(Vector3f startPosition, Vector3f endPosition) {
         Vector4f start = Points.homogeneousPoint(startPosition.get());
         Vector4f ray = Points.homogeneousVector(endPosition.get().sub(startPosition));
@@ -88,23 +92,5 @@ public class Portal extends BasicColoredQuad {
         }
 
         return false;
-    }
-
-    // DEBUG METHODS
-    public void debugTranslate(Vector3f vector) {
-        m_basePosition.add(vector);
-    }
-
-    public void rotateAboutUp(float angle) {
-        m_normal.rotate(new Quaternionf(new AxisAngle4f(angle, m_up)));
-        System.out.println("Normal is now " + m_normal);
-    }
-
-    public void rotateAboutNormal(float angle) {
-        m_up.rotate(new Quaternionf(new AxisAngle4f(angle, m_normal)));
-    }
-
-    public void rotateAboutLeft(float angle) {
-
     }
 }

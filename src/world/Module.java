@@ -86,11 +86,17 @@ public class Module {
         return m_openPortals;
     }
 
+    public void setShaderForStagedRenderables(String shaderName) {
+        for(Renderable renderable : m_stagedRenderables) {
+            renderable.setShader(shaderName);
+        }
+    }
+
     public void stageScene() {
         stage(m_template.getWalls());
-        for(Portal p : m_template.getPortals()) {
-            stage(p);
-        }
+//        for(Portal p : m_template.getPortals()) {
+//            stage(p);
+//        }
     }
 
     public List<Renderable> getStagedRenderables() {

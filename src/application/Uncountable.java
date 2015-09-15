@@ -29,6 +29,7 @@ import static org.lwjgl.glfw.GLFW.glfwSwapInterval;
 import static org.lwjgl.glfw.GLFW.glfwWindowHint;
 import static org.lwjgl.glfw.GLFW.glfwWindowShouldClose;
 
+import java.awt.Color;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
@@ -86,7 +87,7 @@ public class Uncountable {
     private GLFWMouseButtonCallback m_mouseButtonCallback;
 
     // All the processes which run the game, and the world representation
-    private List<GameSystem> m_gameSystems = new ArrayList<GameSystem>();
+    private List<GameSystem> m_gameSystems;
     private World m_world;
 
     /**
@@ -99,6 +100,8 @@ public class Uncountable {
         createWindow();
         setCallbacks();
         initGraphics();
+
+        m_gameSystems = new ArrayList<>();
 
         addGameSystem(new QuitSystem());
         addGameSystem(new CameraControlSystem());
@@ -233,7 +236,8 @@ public class Uncountable {
             e.printStackTrace();
         }
 
-        GL11.glClearColor(1.0f,  0.5f,  0.5f,  0.0f);
+        GL11.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+        GL11.glClearStencil(1);
         GL11.glEnable(GL11.GL_DEPTH_TEST);
         GL11.glEnable(GL11.GL_CULL_FACE);
         GL11.glCullFace(GL11.GL_BACK);

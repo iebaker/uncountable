@@ -146,31 +146,43 @@ public class Shaders {
     }
 
     public static void setShaderUniform(String name, Matrix4f value) {
-        glUniformMatrix4fv(getUniformLocation(name), false, value.getBuffer());
+        int uniformLocation = getUniformLocation(name);
+        if(uniformLocation >= 0) glUniformMatrix4fv(uniformLocation, false, value.getBuffer());
     }
 
     public static void setShaderUniform(String name, Matrix3f value) {
-        glUniformMatrix3fv(getUniformLocation(name), false, value.getBuffer());
+        int uniformLocation = getUniformLocation(name);
+        if(uniformLocation >= 0) glUniformMatrix3fv(uniformLocation, false, value.getBuffer());
     }
 
     public static void setShaderUniform(String name, Vector4f value) {
-        glUniform4fv(getUniformLocation(name), value.getBuffer());
+        int uniformLocation = getUniformLocation(name);
+        if(uniformLocation >= 0) glUniform4fv(uniformLocation, value.getBuffer());
     }
 
     public static void setShaderUniform(String name, Vector3f value) {
-        glUniform3fv(getUniformLocation(name), value.getBuffer());
+        int uniformLocation = getUniformLocation(name);
+        if(uniformLocation >= 0) glUniform3fv(uniformLocation, value.getBuffer());
     }
 
     public static void setShaderUniform(String name, Vector2f value) {
-        glUniform2fv(getUniformLocation(name), value.getBuffer());
+        int uniformLocation = getUniformLocation(name);
+        if(uniformLocation >= 0) glUniform2fv(uniformLocation, value.getBuffer());
     }
 
     public static void setShaderUniform(String name, float value) {
-        glUniform1f(getUniformLocation(name), value);
+        int uniformLocation = getUniformLocation(name);
+        if(uniformLocation >= 0) glUniform1f(uniformLocation, value);
     }
 
     public static void setShaderUniform(String name, int value) {
-        glUniform1i(getUniformLocation(name), value);
+        int uniformLocation = getUniformLocation(name);
+        if(uniformLocation >= 0) glUniform1i(uniformLocation, value);
+    }
+
+    public static void setShaderUniform(String name, boolean value) {
+        int uniformLocation = getUniformLocation(name);
+        if(uniformLocation >= 0) glUniform1i(uniformLocation, value ? 1 : 0);
     }
 
     public static boolean exists(String shaderName) {

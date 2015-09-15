@@ -22,7 +22,8 @@ public class Graphics {
 
     public static void initialize() throws IOException {
         Shaders.createShader("basic", "resources/shaders/basic.vert", "resources/shaders/basic.frag");
-        Shaders.createShader("portal1", "resources/shaders/portal1.vert", "resources/shaders/portal1.frag");
+        Shaders.createShader("stenciler", "resources/shaders/stenciler.vert", "resources/shaders/stenciler.frag");
+        Shaders.createShader("flat", "resources/shaders/flat.vert", "resources/shaders/flat.frag");
     }
 
     public static void buffer(Renderable renderable) throws RenderingException {

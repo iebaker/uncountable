@@ -139,13 +139,10 @@ public abstract class Renderable {
 
         // Grab the attributes for this shader, and sort them in increasing order by offset
         List<VertexAttribute> attributes = Shaders.getVertexAttributesFor(m_shaderName);
-        Collections.sort(attributes, new Comparator<VertexAttribute>() {
-            @Override
-            public int compare(VertexAttribute va1, VertexAttribute va2) {
-                Integer offset1 = va1.getOffset();
-                Integer offset2 = va2.getOffset();
-                return offset1.compareTo(offset2);
-            }
+        Collections.sort(attributes, (va1, va2) -> {
+            Integer offset1 = va1.getOffset();
+            Integer offset2 = va2.getOffset();
+            return offset1.compareTo(offset2);
         });
 
         // Fill in vertex data for each vertex

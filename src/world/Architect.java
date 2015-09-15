@@ -59,12 +59,9 @@ public class Architect {
         Portal hall0 = hallwayTemplate.getPortal("0");
         Portal hall1 = hallwayTemplate.getPortal("1");
 
-        link(cubeRoom, cube0, hall0, hallway);
-        link(hallway, hall1, cube2, cubeRoom);
-        link(cubeRoom, cube1, hall0, hallway2);
-        link(hallway2, hall1, cube3, cubeRoom);
+        link(hallway, hall0, hall1, hallway);
 
-        return cubeRoom;
+        return hallway;
     }
 
     public static void buildAround(Module module, Ray lineOfSight) {

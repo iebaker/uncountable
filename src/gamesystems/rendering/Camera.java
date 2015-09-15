@@ -2,9 +2,11 @@ package gamesystems.rendering;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import joml.Matrix4f;
 import joml.Vector3f;
+import joml.Vector4f;
 import world.Seam;
 import world.setpieces.Portal;
 
@@ -22,12 +24,15 @@ public class Camera {
     private Vector3f m_eye = Points.___;
     private float[] m_params = new float[8];
 
+    private Optional<Vector4f> m_discardPlane = Optional.empty();
+
     public Camera() {
 
     }
 
     public Camera(Camera other) {
         translateTo(other.getEye());
+        setDiscardPlane(other.getDiscardPlane());
         for(int i = 0; i < 8; ++i) {
             set(i, other.get(i));
         }
@@ -113,6 +118,14 @@ public class Camera {
         set(Camera.YAW, (float)Math.atan2(vector.z, vector.x));
     }
 
+    public void setDiscardPlane(Vector4f plane) {
+        m_discardPlane = Optional.ofNullable(plane);
+    }
+
+    public Vector4f getDiscardPlane() {
+        return m_discardPlane.orElse(null);
+    }
+
     public Matrix4f getViewMatrix() {
         return new Matrix4f().setLookAt(m_eye, new Vector3f(m_eye).add(getLook()), Points._Y_);
     }
@@ -121,15 +134,19 @@ public class Camera {
         return new Matrix4f().setPerspective(m_params[FOV], m_params[ASPECT_RATIO], m_params[NEAR_PLANE], m_params[FAR_PLANE]);
     }
 
+    public void capture(UniformSettings uniforms, Renderable... renderables) throws RenderingException {
+        capture(uniforms, Arrays.asList(renderables));
+    }
+
     public void capture(Renderable... renderables) throws RenderingException {
-        captureToScreen(Arrays.asList(renderables));
+        capture(() -> {}, Arrays.asList(renderables));
     }
 
     public void capture(List<Renderable> renderables) throws RenderingException {
-        captureToScreen(renderables);
+        capture(() -> {}, renderables);
     }
 
-    private void captureToScreen(List<Renderable> renderables) throws RenderingException {
+    private void capture(UniformSettings uniforms, List<Renderable> renderables) throws RenderingException {
         for(Renderable renderable : renderables) {
 
             if(renderable.needsToBeBuffered()) {
@@ -138,10 +155,17 @@ public class Camera {
 
             Shaders.useShader(renderable.getActiveShaderName());
             renderable.setShaderUniforms();
+            uniforms.set();
 
             Shaders.setShaderUniform("view", getViewMatrix());
             Shaders.setShaderUniform("projection", getProjectionMatrix());
             Shaders.setShaderUniform("cameraEye", getEye());
+            if(m_discardPlane.isPresent()) {
+                Shaders.setShaderUniform("discardPlane", m_discardPlane.get());
+                Shaders.setShaderUniform("useDiscardPlane", true);
+            } else {
+                Shaders.setShaderUniform("useDiscardPlane", false);
+            }
 
             Graphics.draw(renderable);
         }
