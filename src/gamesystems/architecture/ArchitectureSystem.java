@@ -48,7 +48,7 @@ public class ArchitectureSystem extends GameSystem {
         link(hallway2, "1", "3", cubeRoom);
         link(cubeRoom, "2", "0", leafRoom);
 
-        Uncountable.game.world.currentModule = hallway1;
+        Uncountable.game.world.currentModule = flatRoom;
     }
 
     private ModuleTemplate getTemplate(String name) {
