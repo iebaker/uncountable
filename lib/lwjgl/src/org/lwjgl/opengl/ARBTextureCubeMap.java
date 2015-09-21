@@ -22,7 +22,7 @@ package org.lwjgl.opengl;
  * without the singularity inherent in sphere mapping. The normal map mode generates texture coordinates (s,t,r) matching the vertex's transformed
  * eye-space normal. The normal map mode is useful for sophisticated cube map texturing-based diffuse lighting models.</p>
  * 
- * <p>The intent of the new texgen functionality is that an application using cube map texturing can use the new texgen modes to automatically generate the
+ * <p>The intent of the new texgen functionality is that an core using cube map texturing can use the new texgen modes to automatically generate the
  * reflection or normal vectors used to look up into the cube map texture.</p>
  * 
  * <p>Promoted to core in {@link GL13 OpenGL 1.3}.</p>

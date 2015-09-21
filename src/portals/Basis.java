@@ -1,4 +1,4 @@
-package world;
+package portals;
 
 import gamesystems.rendering.Points;
 import joml.Matrix3f;

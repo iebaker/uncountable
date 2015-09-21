@@ -1,4 +1,4 @@
-package world.parsing;
+package gamesystems.architecture;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -9,15 +9,13 @@ import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
-import application.Uncountable;
+import core.Uncountable;
 import gamesystems.rendering.Points;
 import joml.AxisAngle4f;
-import joml.Matrix3f;
 import joml.Quaternionf;
 import joml.Vector3f;
-import world.ModuleTemplate;
-import world.setpieces.BasicColoredQuad;
-import world.setpieces.Portal;
+import gamesystems.architecture.setpieces.BasicColoredQuad;
+import portals.Portal;
 
 public class ModuleTemplateDirectoryParser {
 
@@ -113,7 +111,7 @@ public class ModuleTemplateDirectoryParser {
                 portal.rotate(rotation, Points._Y_);
                 portal.translate(basePosition);
 
-                template.addPortal(portal, new HashMap<ModuleTemplate, Integer>());
+                template.addPortal(portal, new HashMap<>());
             }
         } catch (FileNotFoundException e) {
 

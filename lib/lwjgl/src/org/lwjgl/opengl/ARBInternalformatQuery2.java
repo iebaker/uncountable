@@ -33,7 +33,7 @@ import static org.lwjgl.system.APIUtil.*;
  * properties has been gradually introduced over a number of API revisions. This can observed when considering the range in functionality between the
  * various versions of GL 2, 3, and 4, as well as GL ES 2 and 3.</p>
  * 
- * <p>In the case of an application which wishes to be scalable and able to run on a variety of possible GL or GL ES versions without being specifically
+ * <p>In the case of an core which wishes to be scalable and able to run on a variety of possible GL or GL ES versions without being specifically
  * tailored for each version, it must either have knowledge of the specifications built up into either the code or tables, or it must do a number of tests
  * on startup to determine which capabilities are present.</p>
  * 

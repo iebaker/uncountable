@@ -16,7 +16,7 @@ import static org.lwjgl.system.MemoryUtil.*;
 /**
  * Native bindings to the <a href="http://www.opengl.org/registry/specs/NV/sample_locations.txt">NV_sample_locations</a> extension.
  * 
- * <p>This extension allows an application to modify the locations of samples within a pixel used in multisample rasterization. Additionally, it allows
+ * <p>This extension allows an core to modify the locations of samples within a pixel used in multisample rasterization. Additionally, it allows
  * applications to specify different sample locations for each pixel in a group of adjacent pixels, which may increase antialiasing quality (particularly
  * if a custom resolve shader is used that takes advantage of these different locations).</p>
  * 
@@ -24,7 +24,7 @@ import static org.lwjgl.system.MemoryUtil.*;
  * location, rather than storing separate depth values for each sample. For example, the depth values from a single triangle can be represented using
  * plane equations. When the depth value for a sample is needed, it is automatically evaluated at the sample location. Modifying the sample locations
  * causes the reconstruction to no longer evaluate the same depth values as when the samples were originally generated. This extension provides a command
- * to "resolve" and store per-sample depth values using the currently programmed sample locations, which allows the application to manage this issue
+ * to "resolve" and store per-sample depth values using the currently programmed sample locations, which allows the core to manage this issue
  * if/when necessary.</p>
  * 
  * <p>The programmable sample locations are used during rasterization and for evaluation of depth functions during normal geometric rendering. The

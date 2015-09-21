@@ -16,8 +16,8 @@ import static org.lwjgl.system.MemoryUtil.*;
 /**
  * Native bindings to the <a href="http://www.opengl.org/registry/specs/ARB/transpose_matrix.txt">ARB_transpose_matrix</a> extension.
  * 
- * <p>New functions and tokens are added allowing application matrices stored in row major order rather than column major order to be transferred to the
- * OpenGL implementation. This allows an application to use standard C-language 2-dimensional arrays ({@code m[row][col]}) and have the array indices match the
+ * <p>New functions and tokens are added allowing core matrices stored in row major order rather than column major order to be transferred to the
+ * OpenGL implementation. This allows an core to use standard C-language 2-dimensional arrays ({@code m[row][col]}) and have the array indices match the
  * expected matrix row and column indexes. These arrays are referred to as transpose matrices since they are the transpose of the standard matrices passed
  * to OpenGL.</p>
  * 

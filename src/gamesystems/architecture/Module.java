@@ -1,12 +1,10 @@
-package world;
+package gamesystems.architecture;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
-import gamesystems.rendering.Points;
 import gamesystems.rendering.Renderable;
-import world.setpieces.BasicColoredQuad;
-import world.setpieces.Portal;
+import portals.Portal;
 
 public class Module {
 
@@ -80,9 +78,7 @@ public class Module {
     }
 
     public void setShaderForStagedRenderables(String shaderName) {
-        m_stagedRenderables
-                .stream()
-                .forEach((renderable) -> renderable.setShader(shaderName));
+        m_stagedRenderables.forEach((renderable) -> renderable.setShader(shaderName));
     }
 
     public void stageScene() {
@@ -101,7 +97,7 @@ public class Module {
         m_stagedRenderables.addAll(Arrays.asList(renderables));
     }
 
-    private void stage(List<Renderable> renderables) {
+    private <R extends Renderable> void stage(Collection<R> renderables) {
         m_stagedRenderables.addAll(renderables);
     }
 }

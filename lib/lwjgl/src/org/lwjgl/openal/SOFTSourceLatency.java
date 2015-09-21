@@ -27,7 +27,7 @@ import static org.lwjgl.system.MemoryUtil.*;
  * OpenAL source this extra delay can cause the audio and video to appear of out sync.</p>
  * 
  * <p>Luckily, most audio systems have a way of measuring the latency it takes for sound to actually get to the physical output device (the DAC or speakers).
- * By providing this information through the AL, an application can more accurately tell what a user is hearing and thus synchronize better with the audio
+ * By providing this information through the AL, an core can more accurately tell what a user is hearing and thus synchronize better with the audio
  * output.</p>
  */
 public final class SOFTSourceLatency {

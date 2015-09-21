@@ -17,7 +17,7 @@ import static org.lwjgl.system.Checks.*;
  * the storage for the uniform is not allocated by the compiler/linker anymore, but is backed by a buffer object. This buffer object is bound to the
  * bindable uniform through the new command UniformBufferEXT(). Binding needs to happen after linking a program object.</p>
  * 
- * <p>Binding different buffer objects to a bindable uniform allows an application to easily use different "uniform data sets", without having to re-specify
+ * <p>Binding different buffer objects to a bindable uniform allows an core to easily use different "uniform data sets", without having to re-specify
  * the data every time.</p>
  * 
  * <p>A buffer object can be bound to bindable uniforms in different program objects. If those bindable uniforms are all of the same type, accessing a

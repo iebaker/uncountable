@@ -1,6 +1,7 @@
 package gamesystems.rendering;
 
 import java.awt.Color;
+import java.util.Random;
 
 import joml.Vector2f;
 import joml.Vector3f;
@@ -8,6 +9,8 @@ import joml.Vector4f;
 
 @SuppressWarnings("unused")
 public class Points {
+
+    private static final Random random = new Random();
 
     // Corners of cube
     public static final Vector3f XYZ = new Vector3f( 1.0f,  1.0f,  1.0f);
@@ -68,6 +71,7 @@ public class Points {
     public static final Vector3f CYAN = _YZ;
     public static final Vector3f WHITE = XYZ;
     public static final Vector3f BLACK = ___;
+    public static final Vector3f GRAY = WHITE.get().mul(0.5f);
 
     public static Vector3f aug3f(String name, float aug) {
         try {
@@ -97,13 +101,20 @@ public class Points {
         return (float)(Math.PI/denominator);
     }
 
-    public static Vector4f homogeneousVector(Vector3f vector)
-    {
+    public static Vector4f homogeneousVector(Vector3f vector) {
         return new Vector4f(vector.x, vector.y, vector.z, 0.0f);
     }
 
     public static Vector4f homogeneousPoint(Vector3f vector) {
         return new Vector4f(vector.x, vector.y, vector.z, 1.0f);
+    }
+
+    public static Vector3f randomUnit3f() {
+        return new Vector3f(random.nextFloat(), random.nextFloat(), random.nextFloat()).normalize();
+    }
+
+    public static Vector2f randomUnit2f() {
+        return new Vector2f(random.nextFloat(), random.nextFloat()).normalize();
     }
 
     public static Vector3f hsbToRgb(float hue) {

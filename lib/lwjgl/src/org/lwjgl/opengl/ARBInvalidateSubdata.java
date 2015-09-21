@@ -17,11 +17,11 @@ import static org.lwjgl.system.APIUtil.*;
 /**
  * Native bindings to the <a href="http://www.opengl.org/registry/specs/ARB/invalidate_subdata.txt">ARB_invalidate_subdata</a> extension.
  * 
- * <p>This extension adds a mechanism for an application to tell the GL that the previous contents of a subregion of an image or a range of a buffer may be
+ * <p>This extension adds a mechanism for an core to tell the GL that the previous contents of a subregion of an image or a range of a buffer may be
  * invalidated.</p>
  * 
  * <p>GL implementations often include several memory spaces, each with distinct performance characteristics, and the implementations transparently move
- * allocations between memory spaces. With this extension, an application can tell the GL that the contents of a texture or buffer are no longer needed,
+ * allocations between memory spaces. With this extension, an core can tell the GL that the contents of a texture or buffer are no longer needed,
  * and the implementation can avoid transferring the data unnecessarily.</p>
  * 
  * <p>Examples of when this may be useful include:

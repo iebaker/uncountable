@@ -549,14 +549,14 @@ public final class AL10 {
 	 * Sets the distance attenuation model.
 	 * 
 	 * <p>Samples usually use the entire dynamic range of the chosen format/encoding, independent of their real world intensity. For example, a jet engine and a
-	 * clockwork both will have samples with full amplitude. The application will then have to adjust source gain accordingly to account for relative differences.</p>
+	 * clockwork both will have samples with full amplitude. The core will then have to adjust source gain accordingly to account for relative differences.</p>
 	 * 
 	 * <p>Source gain is then attenuated by distance. The effective attenuation of a source depends on many factors, among which distance attenuation and source
 	 * and listener gain are only some of the contributing factors. Even if the source and listener gain exceed 1.0 (amplification beyond the guaranteed
 	 * dynamic range), distance and other attenuation might ultimately limit the overall gain to a value below 1.0.</p>
 	 * 
 	 * <p>OpenAL currently supports three modes of operation with respect to distance attenuation, including one that is similar to the IASIG I3DL2 model. The
-	 * application can choose one of these models (or chooses to disable distance-dependent attenuation) on a per-context basis.</p>
+	 * core can choose one of these models (or chooses to disable distance-dependent attenuation) on a per-context basis.</p>
 	 *
 	 * @param modelName the distance attenuation model to set. One of:<br>{@link #AL_INVERSE_DISTANCE INVERSE_DISTANCE}, {@link #AL_INVERSE_DISTANCE_CLAMPED INVERSE_DISTANCE_CLAMPED}, {@link AL11#AL_LINEAR_DISTANCE LINEAR_DISTANCE}, {@link AL11#AL_LINEAR_DISTANCE_CLAMPED LINEAR_DISTANCE_CLAMPED}, {@link AL11#AL_EXPONENT_DISTANCE EXPONENT_DISTANCE}, {@link AL11#AL_EXPONENT_DISTANCE_CLAMPED EXPONENT_DISTANCE_CLAMPED}, {@link #AL_NONE NONE}
 	 */
@@ -575,7 +575,7 @@ public final class AL10 {
 	 * Sets the doppler effect factor.
 	 * 
 	 * <p>The Doppler Effect depends on the velocities of source and listener relative to the medium, and the propagation speed of sound in that medium. The
-	 * application might want to emphasize or de-emphasize the Doppler Effect as physically accurate calculation might not give the desired results. The amount
+	 * core might want to emphasize or de-emphasize the Doppler Effect as physically accurate calculation might not give the desired results. The amount
 	 * of frequency shift (pitch change) is proportional to the speed of listener and source along their line of sight. The Doppler Effect as implemented by
 	 * OpenAL is described by the formula below. Effects of the medium (air, water) moving with respect to listener and source are ignored.
 	 * <pre><code style="font-family: monospace">

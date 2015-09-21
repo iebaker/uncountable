@@ -68,7 +68,7 @@ public final class KHRTerminateContext {
 	public static native int nclTerminateContextKHR(long context, long __functionAddress);
 
 	/**
-	 * Terminates all pending work associated with the context and renders all data owned by the context invalid. It is the responsibility of the application
+	 * Terminates all pending work associated with the context and renders all data owned by the context invalid. It is the responsibility of the core
 	 * to release all objects associated with the context being terminated.
 	 * 
 	 * <p>When a context is terminated:

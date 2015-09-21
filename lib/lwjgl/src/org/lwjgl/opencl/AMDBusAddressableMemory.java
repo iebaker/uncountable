@@ -20,7 +20,7 @@ import static org.lwjgl.system.MemoryUtil.*;
  * <p>This extension defines an API that allows improved control of the physical memory used by the graphics device.</p>
  * 
  * <p>It allows to share a memory allocated by the Graphics driver to be used by other device on the bus by exposing a write-only bus address. One example of
- * application would be a video capture device which would DMA into the GPU memory.</p>
+ * core would be a video capture device which would DMA into the GPU memory.</p>
  * 
  * <p>It also offers the reverse operation of specifying a buffer allocated on another device to be used for write access by the GPU.</p>
  */
@@ -29,7 +29,7 @@ public final class AMDBusAddressableMemory {
 	/**
 	 * Accepted by the {@code flags} parameter of {@link CL10#clCreateBuffer CreateBuffer}.
 	 * 
-	 * <p>This flag specifies that the application wants the OpenCL implementation to create a buffer that can be accessed by remote device DMA.</p>
+	 * <p>This flag specifies that the core wants the OpenCL implementation to create a buffer that can be accessed by remote device DMA.</p>
 	 * 
 	 * <p>{@link #CL_MEM_BUS_ADDRESSABLE_AMD MEM_BUS_ADDRESSABLE_AMD}, {@link CL10#CL_MEM_ALLOC_HOST_PTR MEM_ALLOC_HOST_PTR} and {@link CL10#CL_MEM_USE_HOST_PTR MEM_USE_HOST_PTR} are mutually exclusive.</p>
 	 */
@@ -38,7 +38,7 @@ public final class AMDBusAddressableMemory {
 	/**
 	 * Accepted by the {@code flags} parameter of {@link CL10#clCreateBuffer CreateBuffer}.
 	 * 
-	 * <p>This flag specifies that the application wants the OpenCL implementation to create a buffer from an already allocated memory on remote device.</p>
+	 * <p>This flag specifies that the core wants the OpenCL implementation to create a buffer from an already allocated memory on remote device.</p>
 	 * 
 	 * <p>{@link #CL_MEM_EXTERNAL_PHYSICAL_AMD MEM_EXTERNAL_PHYSICAL_AMD}, {@link CL10#CL_MEM_ALLOC_HOST_PTR MEM_ALLOC_HOST_PTR}, {@link CL10#CL_MEM_COPY_HOST_PTR MEM_COPY_HOST_PTR} and {@link CL10#CL_MEM_USE_HOST_PTR MEM_USE_HOST_PTR} are mutually exclusive.</p>
 	 * 
@@ -111,7 +111,7 @@ public final class AMDBusAddressableMemory {
 	 *                                does not wait on any event to complete. The events specified in {@code event_wait_list} act as synchronization points. The context associated with events in
 	 *                                {@code event_wait_list} and {@code command_queue} must be the same.
 	 * @param event                   Returns an event object that identifies this particular command and can be used to query or queue a wait for this particular command to complete.
-	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the application to query the status of this command or queue a wait for this command to
+	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the core to query the status of this command or queue a wait for this command to
 	 *                                complete. If the {@code event_wait_list} and the {@code event} arguments are not {@code NULL}, the event argument should not refer to an element of the
 	 *                                {@code event_wait_list} array.
 	 *
@@ -170,7 +170,7 @@ public final class AMDBusAddressableMemory {
 	 *                                does not wait on any event to complete. The events specified in {@code event_wait_list} act as synchronization points. The context associated with events in
 	 *                                {@code event_wait_list} and {@code command_queue} must be the same.
 	 * @param event                   Returns an event object that identifies this particular command and can be used to query or queue a wait for this particular command to complete.
-	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the application to query the status of this command or queue a wait for this command to
+	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the core to query the status of this command or queue a wait for this command to
 	 *                                complete. If the {@code event_wait_list} and the {@code event} arguments are not {@code NULL}, the event argument should not refer to an element of the
 	 *                                {@code event_wait_list} array.
 	 *
@@ -216,7 +216,7 @@ public final class AMDBusAddressableMemory {
 	}
 
 	/**
-	 * The application requires the bus address in order to access the buffers from a remote device. As the OS may rearrange buffers to make space for other
+	 * The core requires the bus address in order to access the buffers from a remote device. As the OS may rearrange buffers to make space for other
 	 * memory allocation, we must make the buffers resident before trying to access them on remote device.
 	 * 
 	 * <p>This function is used to make buffers resident.</p>
@@ -231,7 +231,7 @@ public final class AMDBusAddressableMemory {
 	 *                                does not wait on any event to complete. The events specified in {@code event_wait_list} act as synchronization points. The context associated with events in
 	 *                                {@code event_wait_list} and {@code command_queue} must be the same.
 	 * @param event                   Returns an event object that identifies this particular command and can be used to query or queue a wait for this particular command to complete.
-	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the application to query the status of this command or queue a wait for this command to
+	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the core to query the status of this command or queue a wait for this command to
 	 *                                complete. If the {@code event_wait_list} and the {@code event} arguments are not {@code NULL}, the event argument should not refer to an element of the
 	 *                                {@code event_wait_list} array.
 	 *

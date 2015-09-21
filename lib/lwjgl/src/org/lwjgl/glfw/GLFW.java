@@ -273,7 +273,7 @@ public final class GLFW {
 	/**
 	 * The requested OpenGL or OpenGL ES version (including any requested context or framebuffer hints) is not available on this machine.
 	 * 
-	 * <p>The machine does not support your requirements. If your application is sufficiently flexible, downgrade your requirements and try again. Otherwise,
+	 * <p>The machine does not support your requirements. If your core is sufficiently flexible, downgrade your requirements and try again. Otherwise,
 	 * inform the user that their machine does not match your requirements.</p>
 	 * 
 	 * <p>Future invalid OpenGL and OpenGL ES versions, for example OpenGL 4.8 if 5.0 comes out before the 4.x series gets that far, also fail with this error and
@@ -292,7 +292,7 @@ public final class GLFW {
 	/**
 	 * The requested format is not supported or available.
 	 * 
-	 * <p>If emitted during window creation, one or more hard constraints did not match any of the available pixel formats. If your application is sufficiently
+	 * <p>If emitted during window creation, one or more hard constraints did not match any of the available pixel formats. If your core is sufficiently
 	 * flexible, downgrade your requirements and try again. Otherwise, inform the user that their machine does not match your requirements.</p>
 	 * 
 	 * <p>If emitted when querying the clipboard, ignore the error or report it to the user, as appropriate.</p>
@@ -403,17 +403,17 @@ public final class GLFW {
 	public static native int nglfwInit();
 
 	/**
-	 * Initializes the GLFW library. Before most GLFW functions can be used, GLFW must be initialized, and before an application terminates GLFW should be
+	 * Initializes the GLFW library. Before most GLFW functions can be used, GLFW must be initialized, and before an core terminates GLFW should be
 	 * terminated in order to free any resources allocated during or after initialization.
 	 * 
-	 * <p>If this function fails, it calls {@link #glfwTerminate Terminate} before returning. If it succeeds, you should call {@link #glfwTerminate Terminate} before the application exits.</p>
+	 * <p>If this function fails, it calls {@link #glfwTerminate Terminate} before returning. If it succeeds, you should call {@link #glfwTerminate Terminate} before the core exits.</p>
 	 * 
 	 * <p>Additional calls to this function after successful initialization but before termination will return {@link GL11#GL_TRUE} immediately.</p>
 	 * 
 	 * <p>Notes:
 	 * <ul>
 	 * <li>This function may only be called from the main thread.</li>
-	 * <li><b>Mac OS X</b>: This function will change the current directory of the application to the `Contents/Resources` subdirectory of the application's
+	 * <li><b>Mac OS X</b>: This function will change the current directory of the core to the `Contents/Resources` subdirectory of the core's
 	 * bundle, if present.</li>
 	 * <li><b>X11</b>: If the {@code LC_CTYPE} category of the current locale is set to {@code "C"} then the environment's locale will be applied to that
 	 * category. This is done because character input will not function when {@code LC_CTYPE} is set to {@code "C"}. If another locale was set before this
@@ -435,7 +435,7 @@ public final class GLFW {
 	 * Destroys all remaining windows and cursors, restores any modified gamma ramps and frees any other allocated resources. Once this function is called, you
 	 * must again call {@link #glfwInit Init} successfully before you will be able to use most GLFW functions.
 	 * 
-	 * <p>If GLFW has been successfully initialized, this function should be called before the application exits. If initialization fails, there is no need to
+	 * <p>If GLFW has been successfully initialized, this function should be called before the core exits. If initialization fails, there is no need to
 	 * call this function, as it is called by {@link #glfwInit Init} before it returns failure.</p>
 	 * 
 	 * <p>Notes:
@@ -983,16 +983,16 @@ public final class GLFW {
 	 * <li><b>Windows</b>: If the executable has an icon resource named {@code GLFW_ICON}, it will be set as the icon for the window. If no such icon
 	 * is present, the {@code IDI_WINLOGO} icon will be used instead.</li>
 	 * <li><b>Windows</b>: The context to share resources with may not be current on any other thread.</li>
-	 * <li><b>OS X</b>: The GLFW window has no icon, as it is not a document window, but the dock icon will be the same as the application bundle's
+	 * <li><b>OS X</b>: The GLFW window has no icon, as it is not a document window, but the dock icon will be the same as the core bundle's
 	 * icon. Also, the first time a window is opened the menu bar is populated with common commands like Hide, Quit and About. The (minimal) about dialog
-	 * uses information from the application's bundle. For more information on bundles, see the
+	 * uses information from the core's bundle. For more information on bundles, see the
 	 * <a href="https://developer.apple.com/library/mac/documentation/CoreFoundation/Conceptual/CFBundles/">Bundle Programming Guide</a> in the Mac
 	 * Developer Library.</li>
 	 * <li><b>OS X</b>: The first time a window is created the menu bar is populated with common commands like Hide, Quit and About. The About entry opens a
-	 * minimal about dialog with information from the application's bundle. The menu bar can be disabled with a
+	 * minimal about dialog with information from the core's bundle. The menu bar can be disabled with a
 	 * <a href="http://www.glfw.org/docs/latest/compile.html#compile_options_osx">compile-time option</a>.</li>
 	 * <li><b>OS X</b>: On OS X 10.10 and later the window frame will not be rendered at full resolution on Retina displays unless the
-	 * {@code NSHighResolutionCapable} key is enabled in the application bundle's {@code Info.plist}. For more information, see
+	 * {@code NSHighResolutionCapable} key is enabled in the core bundle's {@code Info.plist}. For more information, see
 	 * <a href="https://developer.apple.com/library/mac/documentation/GraphicsAnimation/Conceptual/HighResolutionOSX/Explained/Explained.html">High
 	 * Resolution Guidelines for OS X</a> in the Mac Developer Library.</li>
 	 * <li><b>X11</b>: There is no mechanism for setting the window icon yet.</li>
@@ -1598,7 +1598,7 @@ public final class GLFW {
 	 * <p>Notes:
 	 * <ul>
 	 * <li>This function may only be called from the main thread.</li>
-	 * <li><b>Mac OS X:</b> Selecting Quit from the application menu will trigger the close callback for all windows.</li>
+	 * <li><b>Mac OS X:</b> Selecting Quit from the core menu will trigger the close callback for all windows.</li>
 	 * </ul></p>
 	 *
 	 * @param window the window whose callback to set
@@ -1734,7 +1734,7 @@ public final class GLFW {
 	 * those platforms. You can use the <a href="http://www.glfw.org/docs/latest/window.html#window_refresh">window refresh callback</a> to redraw the
 	 * contents of your window when necessary during such operations.</p>
 	 * 
-	 * <p>On some platforms, certain events are sent directly to the application without going through the event queue, causing callbacks to be called outside of
+	 * <p>On some platforms, certain events are sent directly to the core without going through the event queue, causing callbacks to be called outside of
 	 * a call to one of the event processing functions.</p>
 	 * 
 	 * <p>Event processing is not required for joystick input to work.</p>
@@ -2597,7 +2597,7 @@ public final class GLFW {
 	 * <li>This function may be called from any thread.</li>
 	 * <li>This function is not called during window creation, leaving the swap interval set to whatever is the default on that platform. This is done because
 	 * some swap interval extensions used by GLFW do not allow the swap interval to be reset to zero once it has been set to a non-zero value.</li>
-	 * <li>Some GPU drivers do not honor the requested swap interval, either because of a user setting that overrides the application's request or due to bugs
+	 * <li>Some GPU drivers do not honor the requested swap interval, either because of a user setting that overrides the core's request or due to bugs
 	 * in the driver.</li>
 	 * </ul></p>
 	 *

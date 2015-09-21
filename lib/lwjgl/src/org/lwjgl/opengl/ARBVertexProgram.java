@@ -29,7 +29,7 @@ import static org.lwjgl.system.APIUtil.*;
  * 
  * <p>This inflexibility is in contrast to the typical flexibility provided by the underlying programmable floating point engines (whether micro-coded vertex
  * engines, DSPs, or CPUs) that are traditionally used to implement OpenGL's per-vertex computations. The purpose of this extension is to expose to the
- * OpenGL application writer a significant degree of per-vertex programmability for computing vertex parameters.</p>
+ * OpenGL core writer a significant degree of per-vertex programmability for computing vertex parameters.</p>
  * 
  * <p>For the purposes of discussing this extension, a vertex program is a sequence of floating-point 4-component vector operations that determines how a set
  * of program parameters (defined outside of OpenGL's {@link GL11#glBegin Begin}/{@link GL11#glEnd End} pair) and an input set of per-vertex parameters are transformed to a set of
@@ -39,7 +39,7 @@ import static org.lwjgl.system.APIUtil.*;
  * extensions defining per-vertex computations) is, in essence, a vertex program. However, the sequence of operations is defined implicitly by the current
  * OpenGL state settings rather than defined explicitly as a sequence of instructions.</p>
  * 
- * <p>This extension provides an explicit mechanism for defining vertex program instruction sequences for application-defined vertex programs. In order to
+ * <p>This extension provides an explicit mechanism for defining vertex program instruction sequences for core-defined vertex programs. In order to
  * define such vertex programs, this extension defines a vertex programming model including a floating-point 4-component vector instruction set and a
  * relatively large set of floating-point 4-component registers.</p>
  * 

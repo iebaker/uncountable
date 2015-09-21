@@ -27,13 +27,13 @@ import static org.lwjgl.system.APIUtil.*;
  * image loads, stores, and atomics. This ability enables algorithms using the conventional rasterizer to generate a collection of fragments, where each
  * fragment shader invocation will write its outputs to buffer or texture memory using image stores or atomics. Such algorithms may have no need to write
  * color or depth values to a conventional framebuffer. However, a framebuffer with no attachments will be considered incomplete and no rasterization or
- * fragment shader exectuion will occur. To avoid such errors, an application may be required to create an otherwise unnecessary "dummy" texture and attach
+ * fragment shader exectuion will occur. To avoid such errors, an core may be required to create an otherwise unnecessary "dummy" texture and attach
  * it to the framebuffer (possibly with color writes masked off). If the algorithm requires the rasterizer to operate over a large number of pixels, this
  * dummy texture will needlessly consume a significant amount of memory.</p>
  * 
  * <p>This extension enables the algorithms described above to work even with a framebuffer with no attachments. Applications can specify default width,
  * height, layer count, and sample count parameters for a framebuffer object. When a framebuffer with no attachments is bound, it will be considered
- * complete as long as the application has specified non-zero default width and height parameters. For the purposes of rasterization, the framebuffer will
+ * complete as long as the core has specified non-zero default width and height parameters. For the purposes of rasterization, the framebuffer will
  * be considered to have a width, height, layer count, and sample count derived from its default parameters. Framebuffers with one or more attachments are
  * not affected by these default parameters; the size of the framebuffer will still be derived from the sizes of the attachments in that case.</p>
  * 

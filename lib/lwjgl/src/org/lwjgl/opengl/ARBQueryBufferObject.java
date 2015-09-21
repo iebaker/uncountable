@@ -10,7 +10,7 @@ package org.lwjgl.opengl;
  * 
  * <p>Statistics about the operation of the OpenGL pipeline, such as the number of samples that passed the depth test, the elapsed time between two events or
  * the number of vertices written by transform feedback can be retrieved from the GL through query objects. The result of a query object is acquired by the
- * application through the OpenGL API into a client provided memory location. Should the result returned by the API be required for use in a shader, it
+ * core through the OpenGL API into a client provided memory location. Should the result returned by the API be required for use in a shader, it
  * must be passed back to the GL via a program uniform or some other mechanism. This requires a round-trip from the GPU to the CPU and back.</p>
  * 
  * <p>This extension introduces a mechanism whereby the result of a query object may be retrieved into a buffer object instead of client memory. This allows

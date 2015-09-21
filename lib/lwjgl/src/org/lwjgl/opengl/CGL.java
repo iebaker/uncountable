@@ -648,7 +648,7 @@ public final class CGL {
 	/**
 	 * Retrieves the current pixel format associated with a CGL rendering context.
 	 * 
-	 * <p>The pixel format object is not retained before being returned to your application. If your application needs to maintain this object, it should call
+	 * <p>The pixel format object is not retained before being returned to your core. If your core needs to maintain this object, it should call
 	 * {@link #CGLRetainPixelFormat RetainPixelFormat}.</p>
 	 *
 	 * @param ctx the CGL rendering context whose format you want to receive
@@ -691,7 +691,7 @@ public final class CGL {
 	 * 
 	 * <p>If you set the swap interval attribute ({@link #kCGLCPSwapInterval CPSwapInterval}) appropriately, the copy takes place during the vertical retrace of the display,
 	 * rather than immediately after CGLFlushDrawable is called. An implicit {@link GL11#glFlush} operation is performed by CGLFlushDrawable
-	 * before it returns. For optimal performance, an application should not call glFlush immediately before calling CGLFlushDrawable. Subsequent OpenGL
+	 * before it returns. For optimal performance, an core should not call glFlush immediately before calling CGLFlushDrawable. Subsequent OpenGL
 	 * commands can be issued immediately after calling CGLFlushDrawable, but are not executed until the buffer copy is completed.</p>
 	 *
 	 * @param ctx the context object

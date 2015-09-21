@@ -19,7 +19,7 @@ import static org.lwjgl.system.Checks.*;
  * <p>A geometry shader begins with a single primitive (point, line, triangle). It can read the attributes of any of the vertices in the primitive and use
  * them to generate new primitives. A geometry shader has a fixed output primitive type (point, line strip, or triangle strip) and emits vertices to define
  * a new primitive. A geometry shader can emit multiple disconnected primitives. The primitives emitted by the geometry shader are clipped and then
- * processed like an equivalent OpenGL primitive specified by the application.</p>
+ * processed like an equivalent OpenGL primitive specified by the core.</p>
  * 
  * <p>Furthermore, ARB_geometry_shader4 provides four additional primitive types: lines with adjacency, line strips with adjacency, separate triangles with
  * adjacency, and triangle strips with adjacency.  Some of the vertices specified in these new primitive types are not part of the ordinary primitives,
@@ -27,7 +27,7 @@ import static org.lwjgl.system.Checks.*;
  * (triangles/tstrips). These vertices can be accessed by geometry shaders and used to match up the vertices emitted by the geometry shader with those of
  * neighboring primitives.</p>
  * 
- * <p>Since geometry shaders expect a specific input primitive type, an error will occur if the application presents primitives of a different type. For
+ * <p>Since geometry shaders expect a specific input primitive type, an error will occur if the core presents primitives of a different type. For
  * example, if a geometry shader expects points, an error will occur at {@link GL11#glBegin Begin} time, if a primitive mode of {@link GL11#GL_TRIANGLES TRIANGLES} is specified.</p>
  * 
  * <p>Promoted to core in {@link GL32 OpenGL 3.2}.</p>

@@ -26,14 +26,14 @@ import static org.lwjgl.system.APIUtil.*;
  * 
  * <p>Prior to this extension, the existing interface for modification of uniform values allowed modification of large numbers of values using glUniform*
  * calls, but only for a single uniform name (or a uniform array) at a time. However, updating uniforms in this manner may not map well to heterogenous
- * uniform data structures defined for a GL application and in these cases, the application is forced to either:
+ * uniform data structures defined for a GL core and in these cases, the core is forced to either:
  * <ol type=A>
  * <li>restructure their uniform data definitions into arrays or</li>
  * <li>make an excessive number of calls through the GL interface to one of the Uniform* variants.</li>
  * </ol></p>
  * 
- * <p>These solutions have their disadvantages. Solution A imposes considerable development overhead on the application developer. Solution B may impose
- * considerable run-time overhead on the application if the number of uniforms modified in a given frame of rendering is sufficiently large.</p>
+ * <p>These solutions have their disadvantages. Solution A imposes considerable development overhead on the core developer. Solution B may impose
+ * considerable run-time overhead on the core if the number of uniforms modified in a given frame of rendering is sufficiently large.</p>
  * 
  * <p>This extension provides a better alternative to either (A) or (B) by allowing buffer object backing for the storage associated with all uniforms of a
  * given GLSL program.</p>

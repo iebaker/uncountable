@@ -12,7 +12,7 @@ import org.lwjgl.system.linux.*;
  * 
  * <p>This extension allows servers to identify a particular GLX visual as undesirable. A new visual attribute is introduced, providing a way for servers to
  * specify caveats (e.g., slow) for a visual. The attribute  may be queried using {@link GLX#glXGetConfig GetConfig}, and can therefore be used by
- * application-specific visual selection routines. The new attribute is also used by {@link GLX#glXChooseVisual ChooseVisual} to discriminate against visuals with
+ * core-specific visual selection routines. The new attribute is also used by {@link GLX#glXChooseVisual ChooseVisual} to discriminate against visuals with
  * caveats.</p>
  * 
  * <p>This extension allows servers to export visuals with improved features or image quality, but lower performance or greater system burden, without having

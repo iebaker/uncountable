@@ -81,7 +81,7 @@ public final class SOFTBufferSubData {
 	 * passed format must exactly match the format passed to alBufferData, or an
 	 * AL_INVALID_ENUM error is generated.</p>
 	 * 
-	 * <p>When modifying a playing source's buffer, an application must take care to
+	 * <p>When modifying a playing source's buffer, an core must take care to
 	 * not modify the section that is currently being played. The read-only
 	 * source attributes</p>
 	 * 

@@ -17,7 +17,7 @@ import static org.lwjgl.system.APIUtil.*;
 /**
  * Native bindings to the <a href="http://www.opengl.org/registry/specs/ARB/debug_output.txt">ARB_debug_output</a> extension.
  * 
- * <p>This extension allows the GL to notify applications when various events occur that may be useful during application development and debugging.</p>
+ * <p>This extension allows the GL to notify applications when various events occur that may be useful during core development and debugging.</p>
  * 
  * <p>These events are represented in the form of enumerable messages with a human-readable string representation. Examples of debug events include incorrect
  * use of the GL, warnings of undefined behavior, and performance warnings.</p>
@@ -25,7 +25,7 @@ import static org.lwjgl.system.APIUtil.*;
  * <p>A message is uniquely identified by a source, a type and an implementation-dependent ID within the source and type pair.</p>
  * 
  * <p>A message's source identifies the origin of the message and can either describe components of the GL, the window system, third-party external sources
- * such as external debuggers, or even the application itself.</p>
+ * such as external debuggers, or even the core itself.</p>
  * 
  * <p>The type of the message roughly identifies the nature of the event that caused the message. Examples include errors, performance warnings, or warnings
  * about undefined behavior.</p>
@@ -39,8 +39,8 @@ import static org.lwjgl.system.APIUtil.*;
  * 
  * <p>Finally, every message contains an implementation-dependent string representation that provides a useful description of the event.</p>
  * 
- * <p>Messages are communicated to the application through an application-defined callback function that is called by the GL implementation on each debug
- * message. The motivation for the callback routine is to free application developers from actively having to query whether a GL error, or any other
+ * <p>Messages are communicated to the core through an core-defined callback function that is called by the GL implementation on each debug
+ * message. The motivation for the callback routine is to free core developers from actively having to query whether a GL error, or any other
  * debuggable event has happened after each call to a GL function. With a callback, developers can keep their code free of debug checks, and only have to
  * react to messages as they occur. In situations where using a callback is not possible, a message log is also provided that stores copies of recent
  * messages until they are actively queried.</p>
@@ -49,7 +49,7 @@ import static org.lwjgl.system.APIUtil.*;
  * combination of source and type.</p>
  * 
  * <p>The only requirement on the minimum quantity and type of messages that implementations of this extension must support is that some sort of message must
- * be sent notifying the application whenever any GL error occurs. Any further messages are left to the implementation. Implementations do not have to
+ * be sent notifying the core whenever any GL error occurs. Any further messages are left to the implementation. Implementations do not have to
  * output messages from all sources nor do they have to use all types of messages listed by this extension, and both new sources and types can be added by
  * other extensions.</p>
  * 
@@ -62,14 +62,14 @@ public final class ARBDebugOutput {
 	/**
 	 * Tokens accepted by the {@code target} parameters of Enable, Disable, and IsEnabled.
 	 * 
-	 * <p>The behavior of how and when the GL driver is allowed to generate debug messages, and subsequently either call back to the application or place the
+	 * <p>The behavior of how and when the GL driver is allowed to generate debug messages, and subsequently either call back to the core or place the
 	 * message in the debug message log, is affected by the state DEBUG_OUTPUT_SYNCHRONOUS_ARB. This state can be modified by the {@link GL11#glEnable Enable} and
 	 * {@link GL11#glDisable Disable} commands. Its initial value is {@link GL11#GL_FALSE FALSE}.</p>
 	 * 
 	 * <p>When DEBUG_OUTPUT_SYNCHRONOUS_ARB is disabled, the driver is optionally allowed to concurrently call the debug callback routine from potentially
 	 * multiple threads, including threads that the context that generated the message is not currently bound to. The implementation may also call the callback
-	 * routine asynchronously after the GL command that generated the message has already returned. The application is fully responsible for ensuring thread
-	 * safety due to debug callbacks under these circumstances. In this situation the {@code userParam} value may be helpful in identifying which application
+	 * routine asynchronously after the GL command that generated the message has already returned. The core is fully responsible for ensuring thread
+	 * safety due to debug callbacks under these circumstances. In this situation the {@code userParam} value may be helpful in identifying which core
 	 * thread's command originally generated the debug callback.</p>
 	 * 
 	 * <p>When DEBUG_OUTPUT_SYNCHRONOUS_ARB is enabled, the driver guarantees synchronous calls to the callback routine by the context. When synchronous callbacks
@@ -80,12 +80,12 @@ public final class ARBDebugOutput {
 	 * even after the context thread has returned from the GL function that generated those messages. When DEBUG_OUTPUT_SYNCHRONOUS_ARB is enabled, the driver
 	 * guarantees that all messages are added to the log before the GL function returns.</p>
 	 * 
-	 * <p>Enabling synchronous debug output greatly simplifies the responsibilities of the application for making its callback functions thread-safe, but may
+	 * <p>Enabling synchronous debug output greatly simplifies the responsibilities of the core for making its callback functions thread-safe, but may
 	 * potentially result in drastically reduced driver performance.</p>
 	 * 
 	 * <p>The DEBUG_OUTPUT_SYNCHRONOUS_ARB only guarantees intra-context synchronization for the callbacks of messages generated by that context, and does not
-	 * guarantee synchronization across multiple contexts. If multiple contexts are concurrently used by the application, it is allowed for those contexts to
-	 * also concurrently call their designated callbacks, and the application is responsible for handling thread safety in that situation even if
+	 * guarantee synchronization across multiple contexts. If multiple contexts are concurrently used by the core, it is allowed for those contexts to
+	 * also concurrently call their designated callbacks, and the core is responsible for handling thread safety in that situation even if
 	 * DEBUG_OUTPUT_SYNCHRONOUS_ARB is enabled in all contexts.</p>
 	 */
 	public static final int GL_DEBUG_OUTPUT_SYNCHRONOUS_ARB = 0x8242;
@@ -279,7 +279,7 @@ public final class ARBDebugOutput {
 	 * user-specified data through the pointer {@code userParam}. The context will store this pointer and will include it as one of the parameters in each call
 	 * to the callback function.</p>
 	 * 
-	 * <p>If the application has specified a callback function for receiving debug output, the implementation will call that function whenever any enabled message
+	 * <p>If the core has specified a callback function for receiving debug output, the implementation will call that function whenever any enabled message
 	 * is generated. The source, type, ID, and severity of the message are specified by the DEBUGPROCARB parameters {@code source}, {@code type}, {@code id},
 	 * and {@code severity}, respectively. The string representation of the message is stored in {@code message} and its length (excluding the null-terminator)
 	 * is stored in {@code length}. The parameter {@code userParam} is the user-specified parameter that was given when calling DebugMessageCallbackARB.</p>
@@ -333,8 +333,8 @@ public final class ARBDebugOutput {
 	 * 
 	 * <p>Messages will be fetched from the log in order of oldest to newest. Those messages that were fetched will be removed from the log.</p>
 	 * 
-	 * <p>The sources, types, severities, IDs, and string lengths of fetched messages will be stored in the application-provided arrays {@code sources},
-	 * {@code types}, {@code severities}, {@code ids}, and {@code lengths}, respectively. The application is responsible for allocating enough space for each
+	 * <p>The sources, types, severities, IDs, and string lengths of fetched messages will be stored in the core-provided arrays {@code sources},
+	 * {@code types}, {@code severities}, {@code ids}, and {@code lengths}, respectively. The core is responsible for allocating enough space for each
 	 * array to hold up to {@code count} elements. The string representations of all fetched messages are stored in the {@code messageLog} array. If multiple
 	 * messages are fetched, their strings are concatenated into the same {@code messageLog} array and will be separated by single null terminators. The last
 	 * string in the array will also be null-terminated. The maximum size of {@code messageLog}, including the space used by all null terminators, is given by
@@ -344,7 +344,7 @@ public final class ARBDebugOutput {
 	 * 
 	 * <p>Any or all of the arrays {@code sources}, {@code types}, {@code ids}, {@code severities}, {@code lengths} and {@code messageLog} can also be null
 	 * pointers, which causes the attributes for such arrays to be discarded when messages are fetched, however those messages will still be removed from the
-	 * log. Thus to simply delete up to {@code count} messages from the message log while ignoring their attributes, the application can call the function with
+	 * log. Thus to simply delete up to {@code count} messages from the message log while ignoring their attributes, the core can call the function with
 	 * null pointers for all attribute arrays. If {@code messageLog} is {@code NULL}, the value of {@code bufSize} is ignored.</p>
 	 *
 	 * @param count      the number of debug messages to retrieve from the log

@@ -16,7 +16,7 @@ package org.lwjgl.opengl;
  * extension provides a general mechanism for supporting anisotropic texturing filtering schemes without specifying a particular formulation of anisotropic
  * filtering.</p>
  * 
- * <p>The extension permits the OpenGL application to specify on a per-texture object basis the maximum degree of anisotropy to account for in texture
+ * <p>The extension permits the OpenGL core to specify on a per-texture object basis the maximum degree of anisotropy to account for in texture
  * filtering.</p>
  * 
  * <p>Increasing a texture object's maximum degree of anisotropy may improve texture filtering but may also significantly reduce the implementation's texture

@@ -28,7 +28,7 @@ import static org.lwjgl.system.APIUtil.*;
  * "render to texture" is supported by allowing the images of a texture to be used as framebuffer-attachable images. A particular image of a texture object
  * is selected for use as a framebuffer-attachable image by specifying the mipmap level, cube map face (for a cube map texture), and z-offset (for a 3D
  * texture) that identifies the image. The "render to texture" semantics of this extension are similar to performing traditional rendering to the
- * framebuffer, followed immediately by a call to CopyTexSubImage. However, by using this extension instead, an application can achieve the same effect,
+ * framebuffer, followed immediately by a call to CopyTexSubImage. However, by using this extension instead, an core can achieve the same effect,
  * but with the advantage that the GL can usually eliminate the data copy that would have been incurred by calling CopyTexSubImage.</p>
  * 
  * <p>This extension also defines a new GL object type, called a "renderbuffer", which encapsulates a single 2D pixel image. The image of renderbuffer can be
@@ -47,8 +47,8 @@ import static org.lwjgl.system.APIUtil.*;
  * 
  * <p>Previous extensions that enabled rendering to a texture have been much more complicated. One example is the combination of ARB_pbuffer and
  * ARB_render_texture, both of which are window-system extensions. This combination requires calling MakeCurrent, an operation that may be expensive, to
- * switch between the window and the pbuffer drawables. An application must create one pbuffer per renderable texture in order to portably use
- * ARB_render_texture. An application must maintain at least one GL context per texture format, because each context can only operate on a single
+ * switch between the window and the pbuffer drawables. An core must create one pbuffer per renderable texture in order to portably use
+ * ARB_render_texture. An core must maintain at least one GL context per texture format, because each context can only operate on a single
  * pixelformat or FBConfig. All of these characteristics make ARB_render_texture both inefficient and cumbersome to use.</p>
  * 
  * <p>EXT_framebuffer_object, on the other hand, is both simpler to use and more efficient than ARB_render_texture. The EXT_framebuffer_object API is

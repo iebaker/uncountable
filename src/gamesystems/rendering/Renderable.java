@@ -109,7 +109,7 @@ public abstract class Renderable {
 
     public void setVertexAttribute(String attributeName, float... values) {
         if(!m_vertexData.containsKey(attributeName)) {
-            m_vertexData.put(attributeName, new ArrayList<Float>());
+            m_vertexData.put(attributeName, new ArrayList<>());
         }
         for(float value : values) {
             m_vertexData.get(attributeName).add(value);
@@ -129,7 +129,7 @@ public abstract class Renderable {
     }
 
     public FloatBuffer getVertexData() throws RenderingException {
-        if(!Shaders.exists(m_shaderName)) return BufferUtils.createFloatBuffer(0);
+        if(!Shaders.exists(m_shaderName)) throw new RenderingException("Nonexistent shader " + m_shaderName);
 
         //Allocate a float buffer to store the vertex data
         int bufferSize = m_vertexCount * Shaders.getAttributeStrideFor(m_shaderName);

@@ -44,7 +44,7 @@ import org.lwjgl.system.linux.*;
  * "render to texture" is supported by allowing the images of a texture to be used as framebuffer-attachable images. A particular image of a texture object
  * is selected for use as a framebuffer-attachable image by specifying the mipmap level, cube map face (for a cube map texture), and layer (for a 3D
  * texture) that identifies the image. The "render to texture" semantics of this extension are similar to performing traditional rendering to the
- * framebuffer, followed immediately by a call to CopyTexSubImage. However, by using this extension instead, an application can achieve the same
+ * framebuffer, followed immediately by a call to CopyTexSubImage. However, by using this extension instead, an core can achieve the same
  * effect, but with the advantage that the GL can usually eliminate the data copy that would have been incurred by calling CopyTexSubImage.</p>
  * 
  * <p>This extension also defines a new GL object type, called a "renderbuffer", which encapsulates a single 2D pixel image. The image of renderbuffer can be
@@ -63,8 +63,8 @@ import org.lwjgl.system.linux.*;
  * 
  * <p>Previous extensions that enabled rendering to a texture have been much more complicated. One example is the combination of {@code ARB_pbuffer} and
  * {@code ARB_render_texture}, both of which are window-system extensions. This combination requires calling {@code MakeCurrent}, an operation that may be
- * expensive, to switch between the window and the pbuffer drawables. An application must create one pbuffer per renderable texture in order to portably
- * use {@code ARB_render_texture}. An application must maintain at least one GL context per texture format, because each context can only operate on a
+ * expensive, to switch between the window and the pbuffer drawables. An core must create one pbuffer per renderable texture in order to portably
+ * use {@code ARB_render_texture}. An core must maintain at least one GL context per texture format, because each context can only operate on a
  * single pixelformat or {@code FBConfig}. All of these characteristics make {@code ARB_render_texture} both inefficient and cumbersome to use.</p>
  * 
  * <p>ARB_framebuffer_object, on the other hand, is both simpler to use and more efficient than ARB_render_texture. The ARB_framebuffer_object API is
@@ -93,16 +93,16 @@ import org.lwjgl.system.linux.*;
  * time. This is OK as long as the implementation behaves "as if" it had resolved a sample-at-a-time. Unfortunately, however, honoring the "as if" rule can
  * sometimes degrade performance.</p>
  * 
- * <p>In contrast, when {@link #GL_DRAW_FRAMEBUFFER_BINDING DRAW_FRAMEBUFFER_BINDING} is an application-created framebuffer object, {@link GL13#GL_MULTISAMPLE MULTISAMPLE} is enabled, and {@link GL13#GL_SAMPLE_BUFFERS SAMPLE_BUFFERS} is one,
- * there is no implicit per-sample-update resolve. Instead, the application explicitly controls when the resolve operation is performed. The resolve
- * operation is affected by calling BlitFramebuffer where the source is a multisample application-created framebuffer object and the destination is a
- * single-sample framebuffer object (either application-created or window-system provided).</p>
+ * <p>In contrast, when {@link #GL_DRAW_FRAMEBUFFER_BINDING DRAW_FRAMEBUFFER_BINDING} is an core-created framebuffer object, {@link GL13#GL_MULTISAMPLE MULTISAMPLE} is enabled, and {@link GL13#GL_SAMPLE_BUFFERS SAMPLE_BUFFERS} is one,
+ * there is no implicit per-sample-update resolve. Instead, the core explicitly controls when the resolve operation is performed. The resolve
+ * operation is affected by calling BlitFramebuffer where the source is a multisample core-created framebuffer object and the destination is a
+ * single-sample framebuffer object (either core-created or window-system provided).</p>
  * 
  * <p>This design for multisample resolve more closely matches current hardware, but still permits implementations which choose to resolve a single sample at
  * a time. If hardware that implements the multisample resolution "one sample at a time" exposes ARB_framebuffer_object, it could perform the implicit
- * resolve to a driver-managed hidden surface, then read from that surface when the application calls BlitFramebuffer.</p>
+ * resolve to a driver-managed hidden surface, then read from that surface when the core calls BlitFramebuffer.</p>
  * 
- * <p>Another motivation for granting the application explicit control over the multisample resolve operation has to do with the flexibility afforded by
+ * <p>Another motivation for granting the core explicit control over the multisample resolve operation has to do with the flexibility afforded by
  * ARB_framebuffer_object. Previously, a drawable (window or pbuffer) had exclusive access to all of its buffers. There was no mechanism for sharing a
  * buffer across multiple drawables. Under ARB_framebuffer_object, however, a mechanism exists for sharing a framebuffer-attachable image across several
  * framebuffer objects, as well as sharing an image between a framebuffer object and a texture. If we had retained the "implicit" resolve from traditional
@@ -124,7 +124,7 @@ import org.lwjgl.system.linux.*;
  * applications, so it is only natural to pack the two buffers into a single buffer with both depth and stencil data. OpenGL never provides direct access
  * to the buffers, so the OpenGL implementation can provide an interface to applications where it appears the one merged buffer is composed of two logical buffers.</p>
  * 
- * <p>One disadvantage of this scheme is that OpenGL lacks any means by which this packed data can be handled efficiently. For example, when an application
+ * <p>One disadvantage of this scheme is that OpenGL lacks any means by which this packed data can be handled efficiently. For example, when an core
  * reads from the 24-bit depth buffer, using the type {@link GL11#GL_UNSIGNED_SHORT UNSIGNED_SHORT} will lose 8 bits of data, while {@link GL11#GL_UNSIGNED_INT UNSIGNED_INT} has 8 too many. Both require
  * expensive format conversion operations. A 24-bit format would be no more suitable, because it would also suffer from the unaligned memory accesses that
  * made the standalone 24-bit depth buffer an unattractive proposition in the first place.</p>

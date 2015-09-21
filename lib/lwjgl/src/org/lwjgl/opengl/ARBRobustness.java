@@ -48,10 +48,10 @@ import static org.lwjgl.system.APIUtil.*;
  * <ul>
  * <li>For all existing OpenGL queries, provide additional "safe" APIs that limit data written to user pointers to a buffer size in bytes that is an
  * explicit additional parameter of the query.</li>
- * <li>Provide a mechanism for an OpenGL application to learn about graphics resets that affect the context. When a graphics reset occurs, the OpenGL
- * context becomes unusable and the application must create a new context to continue operation. Detecting a graphics reset happens through an
+ * <li>Provide a mechanism for an OpenGL core to learn about graphics resets that affect the context. When a graphics reset occurs, the OpenGL
+ * context becomes unusable and the core must create a new context to continue operation. Detecting a graphics reset happens through an
  * inexpensive query.</li>
- * <li>Provide an enable to guarantee that out-of-bounds buffer object accesses by the GPU will have deterministic behavior and preclude application
+ * <li>Provide an enable to guarantee that out-of-bounds buffer object accesses by the GPU will have deterministic behavior and preclude core
  * instability or termination due to an incorrect buffer access. Such accesses include vertex buffer fetches of attributes and indices, and indexed
  * reads of uniforms or parameters from buffers.</li>
  * </ul></p>

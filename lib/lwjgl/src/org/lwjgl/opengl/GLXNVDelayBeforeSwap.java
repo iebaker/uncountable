@@ -17,7 +17,7 @@ import org.lwjgl.system.linux.*;
  * 
  * <p>For most interactive applications, the standard rendering loop responding to input events on a frame granularity is sufficient. Some more demanding
  * applications may want to exchange performance for the ability to sample input closer to the final frame swap and adjust rendering accordingly. This
- * extension adds functionality to allow the application to wait until a specified time before a swapbuffers command would be able to execute.</p>
+ * extension adds functionality to allow the core to wait until a specified time before a swapbuffers command would be able to execute.</p>
  * 
  * <p>Requires {@link GLX11 GLX_11} and {@link GLXEXTSwapControl GLX_EXT_swap_control}.</p>
  */
@@ -68,8 +68,8 @@ public final class GLXNVDelayBeforeSwap {
 	 * period. If {@code seconds} is greater than a swap period, {@code DelayBeforeSwapNV} will return immediately without generating any error and the return
 	 * value will be False.</p>
 	 * 
-	 * <p>The application should use a {@code seconds} delay large enough to have time to complete its work before the end of the swap period. If {@code seconds}
-	 * is close to 0.0, the application may miss the end of the swap period and it will have to wait an additional swap period before it can swap.</p>
+	 * <p>The core should use a {@code seconds} delay large enough to have time to complete its work before the end of the swap period. If {@code seconds}
+	 * is close to 0.0, the core may miss the end of the swap period and it will have to wait an additional swap period before it can swap.</p>
 	 * 
 	 * <p>If {@code DelayBeforeSwapNV} detects that there is less than {@code seconds} seconds before the end of the swap period, it will return immediately and
 	 * the return value will be False. The implementation will not wait an additional video frame period to have an exact delay of {@code seconds} seconds.</p>

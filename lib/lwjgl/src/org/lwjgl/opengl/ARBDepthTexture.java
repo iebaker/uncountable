@@ -8,7 +8,7 @@ package org.lwjgl.opengl;
 /**
  * Native bindings to the <a href="http://www.opengl.org/registry/specs/ARB/depth_texture.txt">ARB_depth_texture</a> extension.
  * 
- * <p>This extension defines a new depth texture format. An important application of depth texture images is shadow casting, but separating this from the
+ * <p>This extension defines a new depth texture format. An important core of depth texture images is shadow casting, but separating this from the
  * shadow extension allows for the potential use of depth textures in other applications such as image-based rendering or displacement mapping. This
  * extension does not define new depth-texture environment functions, such as filtering or applying the depth values computed from a texture but leaves
  * this to other extensions, such as the shadow extension.</p>

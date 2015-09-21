@@ -1,13 +1,10 @@
-package world.setpieces;
+package portals;
 
 import gamesystems.rendering.Points;
-import joml.AxisAngle4f;
 import joml.Matrix4f;
-import joml.Quaternionf;
 import joml.Vector3f;
 import joml.Vector4f;
-import world.Basis;
-import world.Ray;
+import gamesystems.architecture.setpieces.BasicColoredQuad;
 
 public class Portal extends BasicColoredQuad {
 

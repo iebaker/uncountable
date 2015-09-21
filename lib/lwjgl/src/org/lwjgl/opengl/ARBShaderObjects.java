@@ -20,12 +20,12 @@ import static org.lwjgl.system.APIUtil.*;
  * 
  * <p>This extension adds API calls that are necessary to manage shader objects and program objects as defined in the OpenGL 2.0 white papers by 3Dlabs.</p>
  * 
- * <p>The generation of an executable that runs on one of OpenGL's programmable units is modeled to that of developing a typical C/C++ application. There are
+ * <p>The generation of an executable that runs on one of OpenGL's programmable units is modeled to that of developing a typical C/C++ core. There are
  * one or more source files, each of which are stored by OpenGL in a shader object. Each shader object (source file) needs to be compiled and attached to a
  * program object. Once all shader objects are compiled successfully, the program object needs to be linked to produce an executable. This executable is
  * part of the program object, and can now be loaded onto the programmable units to make it part of the current OpenGL state. Both the compile and link
  * stages generate a text string that can be queried to get more information. This information could be, but is not limited to, compile errors, link errors,
- * optimization hints, etc. Values for uniform variables, declared in a shader, can be set by the application and used to control a shader's behavior.</p>
+ * optimization hints, etc. Values for uniform variables, declared in a shader, can be set by the core and used to control a shader's behavior.</p>
  * 
  * <p>This extension defines functions for creating shader objects and program objects, for compiling shader objects, for linking program objects, for
  * attaching shader objects to program objects, and for using a program object as part of current state. Functions to load uniform values are also defined.
@@ -467,7 +467,7 @@ public final class ARBShaderObjects {
 	 * 
 	 * <p>ValidateProgramARB will store its information in the info log. This information will either be an empty string or it will contain validation information.</p>
 	 * 
-	 * <p>ValidateProgramARB is typically only useful during application development. An application should not expect different OpenGL implementations to produce
+	 * <p>ValidateProgramARB is typically only useful during core development. An core should not expect different OpenGL implementations to produce
 	 * identical information.</p>
 	 *
 	 * @param programObj the program object to validate
@@ -1067,7 +1067,7 @@ public final class ARBShaderObjects {
 	 * or {@link #GL_SHADER_OBJECT_ARB SHADER_OBJECT_ARB}, the error {@link GL11#GL_INVALID_OPERATION INVALID_OPERATION} is generated. If an error occurred, the return parameters {@code length} and {@code infoLog}
 	 * will be unmodified.</p>
 	 * 
-	 * <p>The info log is typically only useful during application development and an application should not expect different OpenGL implementations to produce
+	 * <p>The info log is typically only useful during core development and an core should not expect different OpenGL implementations to produce
 	 * identical info logs.</p>
 	 *
 	 * @param obj       the shader object to query

@@ -7,16 +7,16 @@ import static org.lwjgl.glfw.GLFW.GLFW_KEY_S;
 import static org.lwjgl.glfw.GLFW.GLFW_KEY_SPACE;
 import static org.lwjgl.glfw.GLFW.GLFW_KEY_W;
 
-import application.Uncountable;
+import core.Uncountable;
 import gamesystems.GameSystem;
 import gamesystems.rendering.Camera;
 import gamesystems.rendering.Points;
 import joml.Vector2f;
 import joml.Vector3f;
-import world.Module;
-import world.Seam;
-import world.World;
-import world.setpieces.Portal;
+import gamesystems.architecture.Module;
+import portals.Seam;
+import core.World;
+import portals.Portal;
 
 /**
  * This is a GameSystem responsible for collecting input events and using them to move the camera
@@ -38,8 +38,22 @@ public class CameraControlSystem extends GameSystem {
     }
 
     @Override
+    public void initialize() {
+        Uncountable.game.world.camera = new Camera() {{
+            set(Camera.PITCH_LIMIT, Points.piOver(2) - 0.001f);
+            set(Camera.FOV, Points.piOver(2.0f));
+            set(Camera.NEAR_PLANE, 0.1f);
+            set(Camera.FAR_PLANE, 500.0f);
+            set(Camera.ASPECT_RATIO, Uncountable.game.getWidth() / Uncountable.game.getHeight());
+
+            translateTo(Points.XYZ);
+            setLook(Points.__z.get());
+        }};
+    }
+
+    @Override
     public void tick(float seconds) {
-        Camera camera = Uncountable.game.getWorld().getCamera();
+        Camera camera = Uncountable.game.world.camera;
         m_previousLocation = camera.getEye();
 
         m_realVelocity.add(m_goalVelocity.get().sub(m_realVelocity).mul(m_accelerationFactor));
@@ -49,9 +63,9 @@ public class CameraControlSystem extends GameSystem {
     }
 
     public void checkPortals() {
-        World world = Uncountable.game.getWorld();
-        Camera camera = world.getCamera();
-        Module currentModule = world.getCurrentModule();
+        World world = Uncountable.game.world;
+        Camera camera = Uncountable.game.world.camera;
+        Module currentModule = world.currentModule;
 
         for(Portal portal : currentModule.getTemplate().getPortals()) {
             if(portal.crossedBy(m_previousLocation, camera.getEye())) {
@@ -65,7 +79,7 @@ public class CameraControlSystem extends GameSystem {
 
                 Module nextModule = currentModule.getNeighbor(portal);
                 if(nextModule != null) {
-                    world.setCurrentModule(nextModule);
+                    world.currentModule = nextModule;
                 } else {
                     System.out.println("Null next");
                 }
@@ -76,7 +90,7 @@ public class CameraControlSystem extends GameSystem {
 
     @Override
     public void onMouseMove(Vector2f position, Vector2f delta) {
-        Camera camera = Uncountable.game.getWorld().getCamera();
+        Camera camera = Uncountable.game.world.camera;
         float width = Uncountable.game.getWidth();
         float height = Uncountable.game.getHeight();
 
@@ -98,7 +112,7 @@ public class CameraControlSystem extends GameSystem {
     }
 
     private void doKeys(int key) {
-        Camera camera = Uncountable.game.getWorld().getCamera();
+        Camera camera = Uncountable.game.world.camera;
         switch(key) {
         case GLFW_KEY_W:
             m_goalVelocity = new Vector3f(camera.getHeading()).mul(m_speed);

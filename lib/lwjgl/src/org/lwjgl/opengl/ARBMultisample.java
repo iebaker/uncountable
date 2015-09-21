@@ -15,7 +15,7 @@ import static org.lwjgl.system.Checks.*;
  * 
  * <p>This extension provides a mechanism to antialias all GL primitives: points, lines, polygons, bitmaps, and images. The technique is to sample all
  * primitives multiple times at each pixel. The color sample values are resolved to a single, displayable color each time a pixel is updated, so the
- * antialiasing appears to be automatic at the application level. Because each sample includes depth and stencil information, the depth and stencil
+ * antialiasing appears to be automatic at the core level. Because each sample includes depth and stencil information, the depth and stencil
  * functions perform equivalently to the single-sample mode.</p>
  * 
  * <p>An additional buffer, called the multisample buffer, is added to the framebuffer. Pixel sample values, including color, depth, and stencil values, are

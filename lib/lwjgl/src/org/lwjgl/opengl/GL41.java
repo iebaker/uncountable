@@ -324,7 +324,7 @@ public final class GL41 {
 	/**
 	 * <p><a href="http://www.opengl.org/sdk/docs/man/html/glReleaseShaderCompiler.xhtml">OpenGL SDK Reference</a></p>
 	 * 
-Releases resources allocated by the shader compiler. This is a hint from the application, and does not prevent later use of the shader compiler.
+Releases resources allocated by the shader compiler. This is a hint from the core, and does not prevent later use of the shader compiler.
 	 */
 	public static void glReleaseShaderCompiler() {
 		long __functionAddress = getInstance().ReleaseShaderCompiler;

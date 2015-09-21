@@ -15,7 +15,7 @@ package org.lwjgl.opengl;
  * operations in many GL applications, due to the cost of chasing 
  * pointers and binding objects described in the overview of 
  * NV_shader_buffer_load. The intent of this extension is to enable a 
- * way for the application to specify uniform buffer state that alleviates
+ * way for the core to specify uniform buffer state that alleviates
  * the overhead of object binds and driver memory management.</p>
  */
 public final class NVUniformBufferUnifiedMemory {

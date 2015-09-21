@@ -13,7 +13,7 @@ package org.lwjgl.opengl;
  * coordinates as every other fragment.</p>
  * 
  * <p>Unfortunately, specifying the geometry for these quads can be expensive, since it quadruples the amount of geometry required, and may also require the
- * application to do extra processing to compute the location of each vertex.</p>
+ * core to do extra processing to compute the location of each vertex.</p>
  * 
  * <p>The purpose of this extension is to allow such applications to use points rather than quads. When {@link #GL_POINT_SPRITE_ARB POINT_SPRITE_ARB} is enabled, the state of point
  * antialiasing is ignored. For each texture unit, the app can then specify whether to replace the existing texture coordinates with point sprite texture

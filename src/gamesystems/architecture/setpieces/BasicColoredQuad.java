@@ -1,4 +1,4 @@
-package world.setpieces;
+package gamesystems.architecture.setpieces;
 
 import joml.Vector3f;
 

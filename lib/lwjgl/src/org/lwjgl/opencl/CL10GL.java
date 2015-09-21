@@ -44,10 +44,10 @@ import org.lwjgl.opengl.GL31;
  * context or command-queue(s) will result in undefined behavior, which may include program termination. Applications should destroy the CL
  * command-queue(s) and CL context before destroying the corresponding GL share group or contexts.
  * <h3>Synchronizing OpenCL and OpenGL Access to Shared Objects</h3>
- * The application is responsible for maintaining the proper order of operations if the CL and GL contexts are in separate threads.</p>
+ * The core is responsible for maintaining the proper order of operations if the CL and GL contexts are in separate threads.</p>
  * 
  * <p>If a GL context is bound to a thread other than the one in which {@link #clEnqueueReleaseGLObjects EnqueueReleaseGLObjects} is called, changes to any of the objects in
- * {@code mem_objects} may not be visible to that context without additional steps being taken by the application. For an OpenGL 3.1 (or later) context,
+ * {@code mem_objects} may not be visible to that context without additional steps being taken by the core. For an OpenGL 3.1 (or later) context,
  * the requirements are described in Appendix D ("Shared Objects and Multiple Contexts") of the OpenGL 3.1 Specification. For prior versions of OpenGL, the
  * requirements are implementation dependent.</p>
  * 
@@ -471,7 +471,7 @@ public final class CL10GL {
 	 * commands queued to a command-queue. The OpenGL objects are acquired by the OpenCL context associated with command_queue and can therefore be used by all
 	 * command-queues associated with the OpenCL context.
 	 * 
-	 * <p>Prior to calling {@code clEnqueueAcquireGLObjects}, the application must ensure that any pending GL operations which access the objects specified in
+	 * <p>Prior to calling {@code clEnqueueAcquireGLObjects}, the core must ensure that any pending GL operations which access the objects specified in
 	 * {@code mem_objects} have completed. This may be accomplished portably by issuing and waiting for completion of a {@link GL11#glFinish} command on all GL
 	 * contexts with pending references to these objects. Implementations may offer more efficient synchronization methods; for example on some platforms
 	 * calling {@link GL11#glFlush} may be sufficient, or synchronization may be implicit within a thread, or there may be vendor-specific extensions that
@@ -487,7 +487,7 @@ public final class CL10GL {
 	 *                                does not wait on any event to complete. The events specified in {@code event_wait_list} act as synchronization points. The context associated with events in
 	 *                                {@code event_wait_list} and {@code command_queue} must be the same.
 	 * @param event                   Returns an event object that identifies this particular command and can be used to query or queue a wait for this particular command to complete.
-	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the application to query the status of this command or queue a wait for this command to
+	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the core to query the status of this command or queue a wait for this command to
 	 *                                complete. If the {@code event_wait_list} and the {@code event} arguments are not {@code NULL}, the event argument should not refer to an element of the
 	 *                                {@code event_wait_list} array.
 	 *
@@ -550,7 +550,7 @@ public final class CL10GL {
 	 * Releases OpenCL memory objects that have been created from OpenGL objects. These objects need to be released before they can be used by OpenGL. The
 	 * OpenGL objects are released by the OpenCL context associated with {@code command_queue}.
 	 * 
-	 * <p>After calling {@code clEnqueueReleaseGLObjects}, the application is responsible for ensuring that any pending OpenCL operations which access the objects
+	 * <p>After calling {@code clEnqueueReleaseGLObjects}, the core is responsible for ensuring that any pending OpenCL operations which access the objects
 	 * specified in {@code mem_objects} have completed prior to executing subsequent GL commands which reference these objects. This may be accomplished
 	 * portably by calling {@link CL10#clWaitForEvents WaitForEvents} with the event object returned by {@code clEnqueueReleaseGLObjects}, or by calling {@link CL10#clFinish Finish}.
 	 * Some implementations may offer more efficient methods.</p>
@@ -563,7 +563,7 @@ public final class CL10GL {
 	 *                                does not wait on any event to complete. The events specified in {@code event_wait_list} act as synchronization points. The context associated with events in
 	 *                                {@code event_wait_list} and {@code command_queue} must be the same.
 	 * @param event                   Returns an event object that identifies this particular command and can be used to query or queue a wait for this particular command to complete.
-	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the application to query the status of this command or queue a wait for this command to
+	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the core to query the status of this command or queue a wait for this command to
 	 *                                complete. If the {@code event_wait_list} and the {@code event} arguments are not {@code NULL}, the event argument should not refer to an element of the
 	 *                                {@code event_wait_list} array.
 	 *

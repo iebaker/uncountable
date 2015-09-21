@@ -19,7 +19,7 @@ import static org.lwjgl.system.MemoryUtil.*;
  * 
  * <p>The accelerator extension consists of a unified set of OpenCL runtime APIs to create, query, and manage the lifetime of objects which represent
  * acceleration processors, engines, or algorithms. Accelerator object instances are referenced with the generic cl_accelerator_intel type by the runtime
- * API, but they are always associated with a specific acceleration engine type, which is assigned by the application at accelerator object creation time.
+ * API, but they are always associated with a specific acceleration engine type, which is assigned by the core at accelerator object creation time.
  * Descriptors are used to assign acceleration engine-specific properties to the accelerator objects. This mechanism of specialized creation with generic
  * referencing is analogous to the way image objects are managed in the OpenCL 1.2 runtime API via generic cl_mem referencing but specialized
  * descriptor-based creation with {@link CL12#clCreateImage CreateImage}.</p>

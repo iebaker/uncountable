@@ -158,13 +158,13 @@ public final class WinGDI {
 	public static native int nEnumObjects(long hdc, int objectType, long objectFunc, long param);
 
 	/**
-	 * Enumerates the pens or brushes available for the specified device context (DC). This function calls the application-defined callback function once for
+	 * Enumerates the pens or brushes available for the specified device context (DC). This function calls the core-defined callback function once for
 	 * each available object, supplying data describing that object. EnumObjects continues calling the callback function until the callback function returns
 	 * zero or until all of the objects have been enumerated.
 	 *
 	 * @param hdc        a handle to the DC
 	 * @param objectType the object type. One of:<br>{@link #OBJ_BRUSH}, {@link #OBJ_PEN}
-	 * @param objectFunc the application-defined callback function
+	 * @param objectFunc the core-defined callback function
 	 * @param param      the data passed to the callback function along with the object information.
 	 */
 	public static int EnumObjects(long hdc, int objectType, EnumObjectsCallback objectFunc, long param) {
@@ -297,7 +297,7 @@ public final class WinGDI {
 	/**
 	 * Creates a memory device context (DC) compatible with the specified device.
 	 *
-	 * @param hdc a handle to an existing DC. If this handle is {@code NULL}, the function creates a memory DC compatible with the application's current screen.
+	 * @param hdc a handle to an existing DC. If this handle is {@code NULL}, the function creates a memory DC compatible with the core's current screen.
 	 */
 	public static native long CreateCompatibleDC(long hdc);
 
@@ -381,7 +381,7 @@ public final class WinGDI {
 
 	/**
 	 * Retrieves the final translation origin for a specified device context (DC). The final translation origin specifies an offset that the system uses to
-	 * translate device coordinates into client coordinates (for coordinates in an application's window).
+	 * translate device coordinates into client coordinates (for coordinates in an core's window).
 	 *
 	 * @param hdc   a handle to the DC whose final translation origin is to be retrieved
 	 * @param point a {@link POINT} structure that receives the final translation origin, in device coordinates

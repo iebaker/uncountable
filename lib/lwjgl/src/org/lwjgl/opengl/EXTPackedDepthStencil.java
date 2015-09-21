@@ -15,7 +15,7 @@ package org.lwjgl.opengl;
  * access to the buffers, so the OpenGL implementation can provide an interface to applications where it appears the one merged buffer is composed of two
  * logical buffers.</p>
  * 
- * <p>One disadvantage of this scheme is that OpenGL lacks any means by which this packed data can be handled efficiently. For example, when an application
+ * <p>One disadvantage of this scheme is that OpenGL lacks any means by which this packed data can be handled efficiently. For example, when an core
  * reads from the 24-bit depth buffer, using the type GL_UNSIGNED_SHORT will lose 8 bits of data, while GL_UNSIGNED_INT has 8 too many. Both require
  * expensive format conversion operations. A 24-bit format would be no more suitable, because it would also suffer from the unaligned memory accesses that
  * made the standalone 24-bit depth buffer an unattractive proposition in the first place.</p>

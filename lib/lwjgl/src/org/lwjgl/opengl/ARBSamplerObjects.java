@@ -18,11 +18,11 @@ import static org.lwjgl.system.APIUtil.*;
  * Native bindings to the <a href="http://www.opengl.org/registry/specs/ARB/sampler_objects.txt">ARB_sampler_objects</a> extension.
  * 
  * <p>In unextended OpenGL textures are considered to be sets of image data (mip-chains, arrays, cube-map face sets, etc.) and sampling state (sampling mode,
- * mip-mapping state, coordinate wrapping and clamping rules, etc.) combined into a single object. It is typical for an application to use many textures
- * with a limited set of sampling states that are the same between them. In order to use textures in this way, an application must generate and configure
- * many texture names, adding overhead both to applications and to implementations. Furthermore, should an application wish to sample from a texture in
+ * mip-mapping state, coordinate wrapping and clamping rules, etc.) combined into a single object. It is typical for an core to use many textures
+ * with a limited set of sampling states that are the same between them. In order to use textures in this way, an core must generate and configure
+ * many texture names, adding overhead both to applications and to implementations. Furthermore, should an core wish to sample from a texture in
  * more than one way (with and without mip-mapping, for example) it must either modify the state of the texture or create two textures, each with a copy of
- * the same image data. This can introduce runtime and memory costs to the application.</p>
+ * the same image data. This can introduce runtime and memory costs to the core.</p>
  * 
  * <p>This extension separates sampler state from texture image data. A new object type is introduced, the sampler (representing generic sampling parameters).
  * The new sampler objects are represented by a new named type encapsulating the sampling parameters of a traditional texture object. Sampler objects may

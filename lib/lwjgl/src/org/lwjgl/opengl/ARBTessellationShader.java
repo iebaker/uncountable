@@ -18,7 +18,7 @@ import static org.lwjgl.system.MemoryUtil.*;
  * 
  * <p>This extension introduces new tessellation stages and two new shader types to the OpenGL primitive processing pipeline. These pipeline stages operate on
  * a new basic primitive type, called a patch. A patch consists of a fixed-size collection of vertices, each with per-vertex attributes, plus a number of
- * associated per-patch attributes. Tessellation control shaders transform an input patch specified by the application, computing per-vertex and per-patch
+ * associated per-patch attributes. Tessellation control shaders transform an input patch specified by the core, computing per-vertex and per-patch
  * attributes for a new output patch. A fixed-function tessellation primitive generator subdivides the patch, and tessellation evaluation shaders are used
  * to compute the position and attributes of each vertex produced by the tessellator.</p>
  * 
@@ -47,9 +47,9 @@ import static org.lwjgl.system.MemoryUtil.*;
  * down the OpenGL pipeline, where they can be used as inputs to geometry shaders, transform feedback, and the rasterizer.</p>
  * 
  * <p>The tessellation control and evaluation shaders are both optional. If neither shader type is present, the tessellation stage has no effect. If no
- * tessellation control shader is present, the input patch provided by the application is passed directly to the tessellation primitive generator, and a
+ * tessellation control shader is present, the input patch provided by the core is passed directly to the tessellation primitive generator, and a
  * set of default tessellation level parameters is used to control primitive generation. In this extension, patches may not be passed beyond the
- * tessellation evaluation shader, and an error is generated if an application provides patches and the current program object contains no tessellation
+ * tessellation evaluation shader, and an error is generated if an core provides patches and the current program object contains no tessellation
  * evaluation shader.</p>
  * 
  * <p>Requires {@link GL32 GL32} and GLSL 1.50. Promoted to core in {@link GL40 OpenGL 4.0}.</p>

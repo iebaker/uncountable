@@ -29,16 +29,16 @@ import static org.lwjgl.system.Checks.*;
  * time. This is OK as long as the implementation behaves "as if" it had resolved a sample-at-a-time. Unfortunately, however, honoring the "as if" rule can
  * sometimes degrade performance.</p>
  * 
- * <p>In contrast, when DRAW_FRAMEBUFFER_BINDING_EXT is an application-created framebuffer object, MULTISAMPLE is enabled, and SAMPLE_BUFFERS is one, there is
- * no implicit per-sample-update resolve. Instead, the application explicitly controls when the resolve operation is performed. The resolve operation is
- * affected by calling BlitFramebufferEXT (provided by the EXT_framebuffer_blit extension) where the source is a multisample application-created
- * framebuffer object and the destination is a single-sample framebuffer object (either application-created or window-system provided).</p>
+ * <p>In contrast, when DRAW_FRAMEBUFFER_BINDING_EXT is an core-created framebuffer object, MULTISAMPLE is enabled, and SAMPLE_BUFFERS is one, there is
+ * no implicit per-sample-update resolve. Instead, the core explicitly controls when the resolve operation is performed. The resolve operation is
+ * affected by calling BlitFramebufferEXT (provided by the EXT_framebuffer_blit extension) where the source is a multisample core-created
+ * framebuffer object and the destination is a single-sample framebuffer object (either core-created or window-system provided).</p>
  * 
  * <p>This design for multisample resolve more closely matches current hardware, but still permits implementations which choose to resolve a single sample at
  * a time. If hardware that implementes the multisample resolution "one sample at a time" exposes EXT_framebuffer_multisample, it could perform the
- * implicit resolve to a driver-managed hidden surface, then read from that surface when the application calls BlitFramebufferEXT.</p>
+ * implicit resolve to a driver-managed hidden surface, then read from that surface when the core calls BlitFramebufferEXT.</p>
  * 
- * <p>Another motivation for granting the application explicit control over the multisample resolve operation has to do with the flexibility afforded by
+ * <p>Another motivation for granting the core explicit control over the multisample resolve operation has to do with the flexibility afforded by
  * EXT_framebuffer_object. Previously, a drawable (window or pbuffer) had exclusive access to all of its buffers. There was no mechanism for sharing a
  * buffer across multiple drawables. Under EXT_framebuffer_object, however, a mechanism exists for sharing a framebuffer-attachable image across several
  * framebuffer objects, as well as sharing an image between a framebuffer object and a texture. If we had retained the "implicit"

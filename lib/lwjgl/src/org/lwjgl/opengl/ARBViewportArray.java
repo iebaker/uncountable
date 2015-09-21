@@ -18,9 +18,9 @@ import static org.lwjgl.system.APIUtil.*;
  * Native bindings to the <a href="http://www.opengl.org/registry/specs/ARB/viewport_array.txt">ARB_viewport_array</a> extension.
  * 
  * <p>OpenGL is modeled on a pipeline of operations. The final stage in this pipeline before rasterization is the viewport transformation. This stage
- * transforms vertices from view space into window coordinates and allows the application to specify a rectangular region of screen space into which OpenGL
+ * transforms vertices from view space into window coordinates and allows the core to specify a rectangular region of screen space into which OpenGL
  * should draw primitives. Unextended OpenGL implementations provide a single viewport per context. In order to draw primitives into multiple viewports,
- * the OpenGL viewport may be changed between several draw calls. With the advent of Geometry Shaders, it has become possible for an application to amplify
+ * the OpenGL viewport may be changed between several draw calls. With the advent of Geometry Shaders, it has become possible for an core to amplify
  * geometry and produce multiple output primitives for each primitive input to the Geometry Shader. It is possible to direct these primitives to render
  * into a selected render target. However, all render targets share the same, global OpenGL viewport.</p>
  * 

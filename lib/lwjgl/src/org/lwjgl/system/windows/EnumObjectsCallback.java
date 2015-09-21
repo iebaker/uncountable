@@ -48,7 +48,7 @@ public abstract class EnumObjectsCallback extends Closure.Int {
 	 * Will be called for each available object.
 	 *
 	 * @param logObject a pointer to a {@link LOGPEN} or {@link LOGBRUSH} structure describing the attributes of the object
-	 * @param data      a pointer to the application-defined data passed by the {@link WinGDI#EnumObjects} function
+	 * @param data      a pointer to the core-defined data passed by the {@link WinGDI#EnumObjects} function
 	 */
 	public abstract int invoke(long logObject, long data);
 

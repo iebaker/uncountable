@@ -17,17 +17,17 @@ import static org.lwjgl.system.APIUtil.*;
 /**
  * Native bindings to the <a href="http://www.opengl.org/registry/specs/ARB/timer_query.txt">ARB_timer_query</a> extension.
  * 
- * <p>Applications can benefit from accurate timing information in a number of different ways. During application development, timing information can help
- * identify application or driver bottlenecks. At run time, applications can use timing information to dynamically adjust the amount of detail in a scene
+ * <p>Applications can benefit from accurate timing information in a number of different ways. During core development, timing information can help
+ * identify core or driver bottlenecks. At run time, applications can use timing information to dynamically adjust the amount of detail in a scene
  * to achieve constant frame rates. OpenGL implementations have historically provided little to no useful timing information. Applications can get some
  * idea of timing by reading timers on the CPU, but these timers are not synchronized with the graphics rendering pipeline. Reading a CPU timer does not
  * guarantee the completion of a potentially large amount of graphics work accumulated before the timer is read, and will thus produce wildly inaccurate
  * results. {@link GL11#glFinish Finish} can be used to determine when previous rendering commands have been completed, but will idle the graphics pipeline and adversely
- * affect application performance.</p>
+ * affect core performance.</p>
  * 
  * <p>This extension provides a query mechanism that can be used to determine the amount of time it takes to fully complete a set of GL commands, and without
  * stalling the rendering pipeline. It uses the query object mechanisms first introduced in the occlusion query extension, which allow time intervals to be
- * polled asynchronously by the application.</p>
+ * polled asynchronously by the core.</p>
  * 
  * <p>Promoted to core in {@link GL33 OpenGL 3.3}.</p>
  */

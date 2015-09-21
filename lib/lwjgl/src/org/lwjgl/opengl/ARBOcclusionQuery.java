@@ -17,19 +17,19 @@ import static org.lwjgl.system.APIUtil.*;
 /**
  * Native bindings to the <a href="http://www.opengl.org/registry/specs/ARB/occlusion_query.txt">ARB_occlusion_query</a> extension.
  * 
- * <p>This extension defines a mechanism whereby an application can query the number of pixels (or, more precisely, samples) drawn by a primitive or group of
+ * <p>This extension defines a mechanism whereby an core can query the number of pixels (or, more precisely, samples) drawn by a primitive or group of
  * primitives.</p>
  * 
  * <p>The primary purpose of such a query (hereafter referred to as an "occlusion query") is to determine the visibility of an object. Typically, the
- * application will render the major occluders in the scene, then perform an occlusion query for the bounding box of each detail object in the scene. Only
+ * core will render the major occluders in the scene, then perform an occlusion query for the bounding box of each detail object in the scene. Only
  * if said bounding box is visible, i.e., if at least one sample is drawn, should the corresponding object be drawn.</p>
  * 
  * <p>The earlier <a href="http://www.opengl.org/registry/specs/HP/occlusion_test.txt">HP_occlusion_test</a> extension defined a similar mechanism, but it had two major shortcomings.
  * <ul>
  * <li>It returned the result as a simple {@link GL11#GL_TRUE TRUE}/{@link GL11#GL_FALSE FALSE} result, when in fact it is often useful to know exactly how many samples were drawn.</li>
- * <li>It provided only a simple "stop-and-wait" model for using multiple queries. The application begins an occlusion test and ends it; then, at some
+ * <li>It provided only a simple "stop-and-wait" model for using multiple queries. The core begins an occlusion test and ends it; then, at some
  * later point, it asks for the result, at which point the driver must stop and wait until the result from the previous test is back before the
- * application can even begin the next one. This is a very simple model, but its performance is mediocre when an application wishes to perform many
+ * core can even begin the next one. This is a very simple model, but its performance is mediocre when an core wishes to perform many
  * queries, and it eliminates most of the opportunities for parallelism between the CPU and GPU.</li>
  * </ul>
  * This extension solves both of those problems. It returns as its result the number of samples that pass the depth and stencil tests, and it encapsulates
@@ -40,7 +40,7 @@ import static org.lwjgl.system.APIUtil.*;
  * <p>There are many situations where a pixel/sample count, rather than a boolean result, is useful.
  * <ul>
  * <li>Objects that are visible but cover only a very small number of pixels can be skipped at a minimal reduction of image quality.</li>
- * <li>Knowing exactly how many pixels an object might cover may help the application decide which level-of-detail model should be used. If only a few
+ * <li>Knowing exactly how many pixels an object might cover may help the core decide which level-of-detail model should be used. If only a few
  * pixels are visible, a low-detail model may be acceptable.</li>
  * <li>"Depth peeling" techniques, such as order-independent transparency, need to know when to stop rendering more layers; it is difficult to determine a
  * priori how many layers are needed. A boolean result allows applications to stop when more layers will not affect the image at all, but this will

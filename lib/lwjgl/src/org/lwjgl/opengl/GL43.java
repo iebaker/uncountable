@@ -879,7 +879,7 @@ public final class GL43 {
 	 * user-specified data through the pointer {@code userParam}. The context will store this pointer and will include it as one of the parameters in each call
 	 * to the callback function.</p>
 	 * 
-	 * <p>If the application has specified a callback function for receiving debug output, the implementation will call that function whenever any enabled message
+	 * <p>If the core has specified a callback function for receiving debug output, the implementation will call that function whenever any enabled message
 	 * is generated.  The source, type, ID, and severity of the message are specified by the DEBUGPROC parameters {@code source}, {@code type}, {@code id}, and
 	 * {@code severity}, respectively. The string representation of the message is stored in {@code message} and its length (excluding the null-terminator) is
 	 * stored in {@code length}. The parameter {@code userParam} is the user-specified parameter that was given when calling DebugMessageCallback.</p>
@@ -928,8 +928,8 @@ public final class GL43 {
 	 * 
 	 * <p>Messages will be fetched from the log in order of oldest to newest. Those messages that were fetched will be removed from the log.</p>
 	 * 
-	 * <p>The sources, types, severities, IDs, and string lengths of fetched messages will be stored in the application-provided arrays {@code sources},
-	 * {@code types}, {@code severities}, {@code ids}, and {@code lengths}, respectively. The application is responsible for allocating enough space for each
+	 * <p>The sources, types, severities, IDs, and string lengths of fetched messages will be stored in the core-provided arrays {@code sources},
+	 * {@code types}, {@code severities}, {@code ids}, and {@code lengths}, respectively. The core is responsible for allocating enough space for each
 	 * array to hold up to {@code count} elements. The string representations of all fetched messages are stored in the {@code messageLog} array. If multiple
 	 * messages are fetched, their strings are concatenated into the same {@code messageLog} array and will be separated by single null terminators. The last
 	 * string in the array will also be null-terminated. The maximum size of {@code messageLog}, including the space used by all null terminators, is given by
@@ -939,7 +939,7 @@ public final class GL43 {
 	 * 
 	 * <p>Any or all of the arrays {@code sources}, {@code types}, {@code ids}, {@code severities}, {@code lengths} and {@code messageLog} can also be null
 	 * pointers, which causes the attributes for such arrays to be discarded when messages are fetched, however those messages will still be removed from the
-	 * log. Thus to simply delete up to {@code count} messages from the message log while ignoring their attributes, the application can call the function with
+	 * log. Thus to simply delete up to {@code count} messages from the message log while ignoring their attributes, the core can call the function with
 	 * null pointers for all attribute arrays.</p>
 	 * 
 	 * <p>If the context was created without the {@link #GL_CONTEXT_FLAG_DEBUG_BIT CONTEXT_FLAG_DEBUG_BIT} in the {@link GL30#GL_CONTEXT_FLAGS CONTEXT_FLAGS} state, then the GL can opt to never add messages to the message

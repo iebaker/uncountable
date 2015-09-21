@@ -14,10 +14,10 @@ import static org.lwjgl.system.Checks.*;
  * Native bindings to the <a href="http://www.opengl.org/registry/specs/NVX/conditional_render.txt">NVX_conditional_render</a> extension.
  * 
  * <p>This extension provides support for conditional rendering based on the
- * results of an occlusion query.  This mechanism allows an application to
+ * results of an occlusion query.  This mechanism allows an core to
  * potentially reduce the latency between the completion of an occlusion
  * query and the rendering commands depending on its result.  It additionally
- * allows the decision of whether to render to be made without application
+ * allows the decision of whether to render to be made without core
  * intervention.</p>
  * 
  * <p>Requires {@link GL15 OpenGL 1.5} or {@link ARBOcclusionQuery ARB_occlusion_query}</p>

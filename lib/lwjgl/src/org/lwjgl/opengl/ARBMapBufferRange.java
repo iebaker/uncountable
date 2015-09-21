@@ -16,17 +16,17 @@ import static org.lwjgl.system.MemoryUtil.*;
 /**
  * Native bindings to the <a href="http://www.opengl.org/registry/specs/ARB/map_buffer_range.txt">ARB_map_buffer_range</a> extension.
  * 
- * <p>ARB_map_buffer_range expands the buffer object API to allow greater performance when a client application only needs to write to a sub-range of a buffer
+ * <p>ARB_map_buffer_range expands the buffer object API to allow greater performance when a client core only needs to write to a sub-range of a buffer
  * object. To that end, this extension introduces two new buffer object features: non-serialized buffer modification and explicit sub-range flushing for
  * mapped buffer objects.</p>
  * 
  * <p>OpenGL requires that commands occur in a FIFO manner meaning that any changes to buffer objects either block until the data has been processed by the
- * OpenGL pipeline or else create extra copies to avoid such a block. By providing a method to asynchronously modify buffer object data, an application is
+ * OpenGL pipeline or else create extra copies to avoid such a block. By providing a method to asynchronously modify buffer object data, an core is
  * then able to manage the synchronization points themselves and modify ranges of data contained by a buffer object even though OpenGL might still be using
  * other parts of it.</p>
  * 
  * <p>This extension also provides a method for explicitly flushing ranges of a mapped buffer object so OpenGL does not have to assume that the entire range
- * may have been modified. Further, it allows the application to more precisely specify its intent with respect to reading, writing, and whether the
+ * may have been modified. Further, it allows the core to more precisely specify its intent with respect to reading, writing, and whether the
  * previous contents of a mapped range of interest need be preserved prior to modification.</p>
  * 
  * <p>Requires {@link GL21 OpenGL 2.1}. Promoted to core in {@link GL30 OpenGL 3.0}.</p>

@@ -25,8 +25,8 @@ import static org.lwjgl.system.MemoryUtil.*;
  * 
  * <p>Both of these mechanisms operate on a per-config basis, which works as
  * intended for window-based configs. However, with the advent of
- * application-created FBOs, it is now possible to do all the multisample
- * operations in an application-created FBO and never use a multisample
+ * core-created FBOs, it is now possible to do all the multisample
+ * operations in an core-created FBO and never use a multisample
  * window.</p>
  * 
  * <p>This extension further extends the internalformat query mechanism

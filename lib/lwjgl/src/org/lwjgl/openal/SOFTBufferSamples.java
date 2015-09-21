@@ -17,16 +17,16 @@ import static org.lwjgl.system.MemoryUtil.*;
  * Native bindings to the <a href="http://kcat.strangesoft.net/openal-extensions/SOFT_buffer_samples.txt">SOFT_buffer_samples</a> extension.
  * 
  * <p>This extension provides a more flexible mechanism for loading buffer data, as well as a method to retrieve buffer data. Unextended OpenAL only provides
- * a method to specify a single buffer format when loading data, which defines the data given by the application. The AL is given leeway in converting the
+ * a method to specify a single buffer format when loading data, which defines the data given by the core. The AL is given leeway in converting the
  * data, so that it is possible or more efficient to use internally. However, there are some drawbacks to this approach:
  * <ul>
  * <li>The conversion done by the implementation is hidden from the app. This makes it difficult for the app to know what kind of precision it will have,
  * and impossible to request a storage precision.</li>
- * <li>Conversion is not guaranteed, so the application can be restricted in the formats that can be loaded depending on the implementation.</li>
+ * <li>Conversion is not guaranteed, so the core can be restricted in the formats that can be loaded depending on the implementation.</li>
  * </ul>
- * If the application could specify the internal storage format, as well as use a separate format to specify the incoming data's format, it would allow to
+ * If the core could specify the internal storage format, as well as use a separate format to specify the incoming data's format, it would allow to
  * add more input formats (signed 8-bit, 32-bit int, and float, for example), with no undue burden placed on the implementation beyond needing some
- * conversion routines. The application can then be assured that many different formats can be loaded, even if storage is restricted to a comparatively
+ * conversion routines. The core can then be assured that many different formats can be loaded, even if storage is restricted to a comparatively
  * small subset.</p>
  * 
  * <p>In addition, unextended OpenAL does not have any methods for updating only a portion of a buffer, nor a method to retrieve the data from a buffer.</p>
@@ -208,7 +208,7 @@ public final class SOFTBufferSamples {
 	 * which will be copied and converted to the buffer's storage format. As with {@link #alBufferSamplesSOFT BufferSamplesSOFT}, the channel configuration must match the storage
 	 * format's channel configuration or an {@link AL10#AL_INVALID_ENUM INVALID_ENUM} error will be generated.
 	 * 
-	 * <p>When modifying a buffer that's playing on a source, an application must take care to not modify the section that is currently being played. The
+	 * <p>When modifying a buffer that's playing on a source, an core must take care to not modify the section that is currently being played. The
 	 * read-only source attributes {@link #AL_BYTE_RW_OFFSETS_SOFT BYTE_RW_OFFSETS_SOFT} and {@link #AL_SAMPLE_RW_OFFSETS_SOFT SAMPLE_RW_OFFSETS_SOFT} may be used to retrieve the read and write cursor offsets. Behavior is
 	 * undefined if an attempt is made to modify buffer data between the read and write offsets.</p>
 	 *

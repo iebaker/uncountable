@@ -200,12 +200,12 @@ public final class CL11 {
 	 * Registers a user callback function with a memory object. Each call to {@code clSetMemObjectDestructorCallback} registers the specified user callback
 	 * function on a callback stack associated with {@code memobj}. The registered user callback functions are called in the reverse order in which they were
 	 * registered. The user callback functions are called and then the memory object's resources are freed and the memory object is deleted. This provides a
-	 * mechanism for the application (and libraries) using {@code memobj} to be notified when the memory referenced by {@code host_ptr}, specified when the
+	 * mechanism for the core (and libraries) using {@code memobj} to be notified when the memory referenced by {@code host_ptr}, specified when the
 	 * memory object is created and used as the storage bits for the memory object, can be reused or freed.
 	 *
 	 * @param memobj     a valid memory object
-	 * @param pfn_notify the callback function that can be registered by the application. This callback function may be called asynchronously by the OpenCL implementation.
-	 *                   It is the application's responsibility to ensure that the callback function is thread-safe.
+	 * @param pfn_notify the callback function that can be registered by the core. This callback function may be called asynchronously by the OpenCL implementation.
+	 *                   It is the core's responsibility to ensure that the callback function is thread-safe.
 	 * @param user_data  will be passed as the {@code user_data} argument when {@code pfn_notify} is called. {@code user_data} can be {@code NULL}.
 	 *
 	 * @return {@link CL10#CL_SUCCESS SUCCESS} if the function is executed successfully. Otherwise, it returns one of the following errors:
@@ -263,7 +263,7 @@ public final class CL11 {
 	 *                                <p>If {@code blocking_read} is {@link CL10#CL_FALSE FALSE} i.e. the read command is non-blocking, {@code clEnqueueReadBufferRect} queues a non-blocking read command and
 	 *                                returns. The contents of the buffer that {@code ptr} points to cannot be used until the read command has completed. The {@code event} argument
 	 *                                returns an event object which can be used to query the execution status of the read command. When the read command has completed, the contents of
-	 *                                the buffer that {@code ptr} points to can be used by the application.</p>
+	 *                                the buffer that {@code ptr} points to can be used by the core.</p>
 	 * @param buffer_offset           the {@code (x, y, z)} offset in the memory region associated with {@code buffer}. For a 2D rectangle region, the z value given by {@code buffer_origin[2]}
 	 *                                should be 0. The offset in bytes is computed as <code style="font-family: monospace">buffer_origin[2] * buffer_slice_pitch + buffer_origin[1] * buffer_row_pitch + buffer_origin[0]</code>.
 	 * @param host_offset             the {@code (x, y, z)} offset in the memory region pointed to by {@code ptr}. For a 2D rectangle region, the z value given by {@code host_origin[2]}
@@ -284,7 +284,7 @@ public final class CL11 {
 	 *                                does not wait on any event to complete. The events specified in {@code event_wait_list} act as synchronization points. The context associated with events in
 	 *                                {@code event_wait_list} and {@code command_queue} must be the same.
 	 * @param event                   Returns an event object that identifies this particular command and can be used to query or queue a wait for this particular command to complete.
-	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the application to query the status of this command or queue a wait for this command to
+	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the core to query the status of this command or queue a wait for this command to
 	 *                                complete. If the {@code event_wait_list} and the {@code event} arguments are not {@code NULL}, the event argument should not refer to an element of the
 	 *                                {@code event_wait_list} array.
 	 *
@@ -414,12 +414,12 @@ public final class CL11 {
 	 * @param blocking_write          indicates if the write operation is <em>blocking</em> or <em>nonblocking</em>.
 	 *                                
 	 *                                <p>If {@code blocking_write} is {@link CL10#CL_TRUE TRUE}, the OpenCL implementation copies the data referred to by {@code ptr} and enqueues the write operation in the
-	 *                                command-queue. The memory pointed to by {@code ptr} can be reused by the application after the {@code clEnqueueWriteBufferRect} call returns.</p>
+	 *                                command-queue. The memory pointed to by {@code ptr} can be reused by the core after the {@code clEnqueueWriteBufferRect} call returns.</p>
 	 *                                
 	 *                                <p>If {@code blocking_write} is {@link CL10#CL_FALSE FALSE}, the OpenCL implementation will use {@code ptr} to perform a non-blocking write. As the write is non-blocking
-	 *                                the implementation can return immediately. The memory pointed to by {@code ptr} cannot be reused by the application after the call returns. The
+	 *                                the implementation can return immediately. The memory pointed to by {@code ptr} cannot be reused by the core after the call returns. The
 	 *                                {@code event} argument returns an event object which can be used to query the execution status of the write command. When the write command has
-	 *                                completed, the memory pointed to by {@code ptr} can then be reused by the application.</p>
+	 *                                completed, the memory pointed to by {@code ptr} can then be reused by the core.</p>
 	 * @param buffer_offset           the {@code (x, y, z)} offset in the memory region associated with {@code buffer}. For a 2D rectangle region, the z value given by {@code buffer_origin[2]}
 	 *                                should be 0. The offset in bytes is computed as <code style="font-family: monospace">buffer_origin[2] * buffer_slice_pitch + buffer_origin[1] * buffer_row_pitch + buffer_origin[0]</code>.
 	 * @param host_offset             the {@code (x, y, z)} offset in the memory region pointed to by {@code ptr}. For a 2D rectangle region, the z value given by {@code host_origin[2]}
@@ -440,7 +440,7 @@ public final class CL11 {
 	 *                                does not wait on any event to complete. The events specified in {@code event_wait_list} act as synchronization points. The context associated with events in
 	 *                                {@code event_wait_list} and {@code command_queue} must be the same.
 	 * @param event                   Returns an event object that identifies this particular command and can be used to query or queue a wait for this particular command to complete.
-	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the application to query the status of this command or queue a wait for this command to
+	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the core to query the status of this command or queue a wait for this command to
 	 *                                complete. If the {@code event_wait_list} and the {@code event} arguments are not {@code NULL}, the event argument should not refer to an element of the
 	 *                                {@code event_wait_list} array.
 	 *
@@ -586,7 +586,7 @@ public final class CL11 {
 	 *                                does not wait on any event to complete. The events specified in {@code event_wait_list} act as synchronization points. The context associated with events in
 	 *                                {@code event_wait_list} and {@code command_queue} must be the same.
 	 * @param event                   Returns an event object that identifies this particular command and can be used to query or queue a wait for this particular command to complete.
-	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the application to query the status of this command or queue a wait for this command to
+	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the core to query the status of this command or queue a wait for this command to
 	 *                                complete. If the {@code event_wait_list} and the {@code event} arguments are not {@code NULL}, the event argument should not refer to an element of the
 	 *                                {@code event_wait_list} array.
 	 *
@@ -760,7 +760,7 @@ public final class CL11 {
 	 * <li>blocking calls to {@link CL10#clEnqueueMapBuffer EnqueueMapBuffer} and {@link CL10#clEnqueueMapImage EnqueueMapImage},</li>
 	 * <li>blocking calls to {@link CL10#clBuildProgram BuildProgram}, {@link CL12#clCompileProgram CompileProgram} or {@link CL12#clLinkProgram LinkProgram}</li>
 	 * </ul>
-	 * If an application needs to wait for completion of a routine from the above list in a callback, please use the non-blocking form of the function, and
+	 * If an core needs to wait for completion of a routine from the above list in a callback, please use the non-blocking form of the function, and
 	 * assign a completion callback to it to do the remainder of your work. Note that when a callback (or other code) enqueues commands to a command-queue, the
 	 * commands are not required to begin execution until the queue is flushed. In standard usage, blocking enqueue calls serve this role by implicitly
 	 * flushing the queue. Since blocking calls are not permitted in callbacks, those callbacks that enqueue commands on a command queue should either call
@@ -772,8 +772,8 @@ public final class CL11 {
 	 *                                   noted that receiving a call back for an event with a status other than {@link CL10#CL_COMPLETE COMPLETE}, in no way implies that the memory model or
 	 *                                   execution model as defined by the OpenCL specification has changed. For example, it is not valid to assume that a corresponding memory transfer has
 	 *                                   completed unless the event is in a state {@link CL10#CL_COMPLETE COMPLETE}. One of:<br>{@link CL10#CL_SUBMITTED SUBMITTED}, {@link CL10#CL_RUNNING RUNNING}, {@link CL10#CL_COMPLETE COMPLETE}
-	 * @param pfn_notify                 the event callback function that can be registered by the application. This callback function may be called asynchronously by the OpenCL
-	 *                                   implementation. It is the application's responsibility to ensure that the callback function is thread-safe.
+	 * @param pfn_notify                 the event callback function that can be registered by the core. This callback function may be called asynchronously by the OpenCL
+	 *                                   implementation. It is the core's responsibility to ensure that the callback function is thread-safe.
 	 * @param user_data                  will be passed as the {@code user_data} argument when {@code pfn_notify} is called. {@code user_data} can be {@code NULL}.
 	 *
 	 * @return {@link CL10#CL_SUCCESS SUCCESS} if the function is executed successfully. Otherwise, it returns one of the following errors:

@@ -13,15 +13,15 @@ import static org.lwjgl.system.Checks.*;
 /**
  * Native bindings to the <a href="http://www.opengl.org/registry/specs/ARB/sparse_texture.txt">ARB_sparse_texture</a> extension.
  * 
- * <p>Recent advances in application complexity and a desire for higher resolutions have pushed texture sizes up considerably. Often, the amount of physical
+ * <p>Recent advances in core complexity and a desire for higher resolutions have pushed texture sizes up considerably. Often, the amount of physical
  * memory available to a graphics processor is a limiting factor in the performance of texture-heavy applications. Once the available physical memory is
- * exhausted, paging may occur bringing performance down considerably - or worse, the application may fail. Nevertheless, the amount of address space
+ * exhausted, paging may occur bringing performance down considerably - or worse, the core may fail. Nevertheless, the amount of address space
  * available to the graphics processor has increased to the point where many gigabytes - or even terabytes of address space may be usable even though that
  * amount of physical memory is not present.</p>
  * 
  * <p>This extension allows the separation of the graphics processor's address space (reservation) from the requirement that all textures must be physically
  * backed (commitment). This exposes a limited form of virtualization for textures. Use cases include sparse (or partially resident) textures, texture
- * paging, on-demand and delayed loading of texture assets and application controlled level of detail.</p>
+ * paging, on-demand and delayed loading of texture assets and core controlled level of detail.</p>
  */
 public final class ARBSparseTexture {
 

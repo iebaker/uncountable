@@ -16,7 +16,7 @@ import static org.lwjgl.system.MemoryUtil.*;
 /**
  * Native bindings to the <a href="http://www.opengl.org/registry/specs/ARB/multitexture.txt">ARB_multitexture</a> extension.
  * 
- * <p>This extension allows application of multiple textures to a fragment in one rendering pass.</p>
+ * <p>This extension allows core of multiple textures to a fragment in one rendering pass.</p>
  * 
  * <p>Promoted to core in {@link GL13 OpenGL 1.3}.</p>
  */

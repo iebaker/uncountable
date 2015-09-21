@@ -10,7 +10,7 @@ package org.lwjgl.opengl;
  * 
  * <p>Some applications require 3D textures that have a significant number of slices, but less resolution in width and height. In the current spec, the
  * maximum value for the size of all three dimensions is specified by a single value. This extension adds a second set of limits against which 3D textures
- * can be checked if an application needs deeper textures than would be allowed by the symmetric texture limits.</p>
+ * can be checked if an core needs deeper textures than would be allowed by the symmetric texture limits.</p>
  */
 public final class NVDeepTexture3D {
 

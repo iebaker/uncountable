@@ -1,4 +1,4 @@
-package application;
+package core;
 import static org.lwjgl.glfw.Callbacks.errorCallbackPrint;
 import static org.lwjgl.glfw.GLFW.GLFW_CONTEXT_VERSION_MAJOR;
 import static org.lwjgl.glfw.GLFW.GLFW_CONTEXT_VERSION_MINOR;
@@ -29,7 +29,6 @@ import static org.lwjgl.glfw.GLFW.glfwSwapInterval;
 import static org.lwjgl.glfw.GLFW.glfwWindowHint;
 import static org.lwjgl.glfw.GLFW.glfwWindowShouldClose;
 
-import java.awt.Color;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
@@ -37,6 +36,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import gamesystems.architecture.ArchitectureSystem;
 import org.lwjgl.glfw.GLFWCursorPosCallback;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWKeyCallback;
@@ -54,7 +54,6 @@ import gamesystems.rendering.Graphics;
 import gamesystems.rendering.Points;
 import gamesystems.rendering.RenderingSystem;
 import joml.Vector2f;
-import world.World;
 
 /**
  * This is the main class that kicks everything off, gets a window set up, creates an OpenGL context,
@@ -69,6 +68,7 @@ public class Uncountable {
     // A public variable representing the running Uncountable instance, so that game systems
     // have access to and can modify game state.
     public static Uncountable game;
+    public World world;
 
     // A window ID, this is something GLFW uses to identify the window
     private long m_window;
@@ -88,7 +88,6 @@ public class Uncountable {
 
     // All the processes which run the game, and the world representation
     private List<GameSystem> m_gameSystems;
-    private World m_world;
 
     /**
      * The Constructor, sets everything in motion, adds the proper game systems in the order they should
@@ -96,6 +95,8 @@ public class Uncountable {
      * initiates the game loop.
      */
     public Uncountable() {
+        world = new World();
+
         initGLFW();
         createWindow();
         setCallbacks();
@@ -104,6 +105,7 @@ public class Uncountable {
         m_gameSystems = new ArrayList<>();
 
         addGameSystem(new QuitSystem());
+        addGameSystem(new ArchitectureSystem());
         addGameSystem(new CameraControlSystem());
         addGameSystem(new RenderingSystem());
 
@@ -173,24 +175,24 @@ public class Uncountable {
         glfwSetKeyCallback(m_window, m_keyCallback = new GLFWKeyCallback() {
             @Override
             public void invoke(long window, int key, int scancode, int action, int mods) {
-                switch(action) {
-                case GLFW_PRESS:
-                   for(GameSystem system : m_gameSystems) {
-                       system.onKeyDown(key);
-                       system.onKeyHeld(key);
-                   }
-                   break;
-                case GLFW_REPEAT:
-                    for(GameSystem system : m_gameSystems) {
-                        system.onKeyRepeat(key);
-                        system.onKeyHeld(key);
-                    }
-                    break;
-                case GLFW_RELEASE:
-                    for(GameSystem system : m_gameSystems) {
-                        system.onKeyUp(key);
-                    }
-                    break;
+                switch (action) {
+                    case GLFW_PRESS:
+                        for (GameSystem system : m_gameSystems) {
+                            system.onKeyDown(key);
+                            system.onKeyHeld(key);
+                        }
+                        break;
+                    case GLFW_REPEAT:
+                        for (GameSystem system : m_gameSystems) {
+                            system.onKeyRepeat(key);
+                            system.onKeyHeld(key);
+                        }
+                        break;
+                    case GLFW_RELEASE:
+                        for (GameSystem system : m_gameSystems) {
+                            system.onKeyUp(key);
+                        }
+                        break;
                 }
             }
         });
@@ -198,29 +200,29 @@ public class Uncountable {
         glfwSetCursorPosCallback(m_window, m_cursorPosCallback = new GLFWCursorPosCallback() {
             @Override
             public void invoke(long window, double xpos, double ypos) {
-                Vector2f delta = new Vector2f((float)xpos, (float)ypos).sub(m_prevMousePos);
-                m_prevMousePos = new Vector2f((float)xpos, (float)ypos);
-                for(GameSystem system : m_gameSystems) {
+                Vector2f delta = new Vector2f((float) xpos, (float) ypos).sub(m_prevMousePos);
+                m_prevMousePos = new Vector2f((float) xpos, (float) ypos);
+                for (GameSystem system : m_gameSystems) {
                     system.onMouseMove(m_prevMousePos, delta);
                 }
             }
         });
 
         glfwSetMouseButtonCallback(m_window, m_mouseButtonCallback = new GLFWMouseButtonCallback() {
-           @Override
-           public void invoke(long window, int button, int action, int mods) {
-               switch(action) {
-               case GLFW_PRESS:
-                   for(GameSystem system : m_gameSystems) {
-                       system.onMouseDown(m_prevMousePos, button);
-                   }
-                   break;
-               case GLFW_RELEASE:
-                   for(GameSystem system : m_gameSystems) {
-                       system.onMouseUp(m_prevMousePos, button);
-                   }
-               }
-           }
+            @Override
+            public void invoke(long window, int button, int action, int mods) {
+                switch (action) {
+                    case GLFW_PRESS:
+                        for (GameSystem system : m_gameSystems) {
+                            system.onMouseDown(m_prevMousePos, button);
+                        }
+                        break;
+                    case GLFW_RELEASE:
+                        for (GameSystem system : m_gameSystems) {
+                            system.onMouseUp(m_prevMousePos, button);
+                        }
+                }
+            }
         });
     }
 
@@ -236,7 +238,12 @@ public class Uncountable {
             e.printStackTrace();
         }
 
-        GL11.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+        GL11.glClearColor(
+                world.fogData.fogColor.x,
+                world.fogData.fogColor.y,
+                world.fogData.fogColor.z,
+                1.0f
+        );
         GL11.glClearStencil(1);
         GL11.glEnable(GL11.GL_DEPTH_TEST);
         GL11.glEnable(GL11.GL_CULL_FACE);
@@ -249,7 +256,7 @@ public class Uncountable {
      * method is where every call is ultimately dispatched from.
      */
     private void gameLoop() {
-        m_world = new World();
+        m_gameSystems.forEach(GameSystem::initialize);
 
         while(glfwWindowShouldClose(m_window) == GL11.GL_FALSE) {
 
@@ -271,14 +278,6 @@ public class Uncountable {
         m_keyCallback.release();
         m_cursorPosCallback.release();
         m_mouseButtonCallback.release();
-    }
-
-
-    /**
-     * @return the game's world representation
-     */
-    public World getWorld() {
-        return m_world;
     }
 
     /**

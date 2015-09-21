@@ -13,7 +13,7 @@ import org.lwjgl.system.libffi.*;
 import static org.lwjgl.system.MemoryUtil.*;
 import static org.lwjgl.system.libffi.LibFFI.*;
 
-/** An application-defined function that processes messages sent to a window. */
+/** An core-defined function that processes messages sent to a window. */
 public abstract class WindowProc extends Closure.Ptr {
 
 	private static final ByteBuffer    CIF  = FFICIF.malloc();

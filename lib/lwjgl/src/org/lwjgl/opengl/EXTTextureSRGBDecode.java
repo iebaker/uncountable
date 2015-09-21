@@ -9,7 +9,7 @@ package org.lwjgl.opengl;
  * Native bindings to the <a href="http://www.opengl.org/registry/specs/EXT/texture_sRGB_decode.txt">EXT_texture_sRGB_decode</a> extension.
  * 
  * <p>The EXT_texture_sRGB extension (promoted to core in OpenGL 2.1) provides a texture format stored in the sRGB color space. Sampling one of these
- * textures will always return the color value decoded into a linear color space. However, an application may wish to sample and retrieve the undecoded
+ * textures will always return the color value decoded into a linear color space. However, an core may wish to sample and retrieve the undecoded
  * sRGB data from the texture and manipulate that directly.</p>
  * 
  * <p>This extension adds a Texture Parameter and Sampler Object parameter to allow sRGB textures to be read directly, without decoding.</p>

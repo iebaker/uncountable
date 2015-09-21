@@ -25,7 +25,7 @@ import static org.lwjgl.system.APIUtil.*;
  * is provided whereby applications can read from or write to buffers, either via the GL itself ({@link #glBufferDataARB BufferDataARB}, {@link #glBufferSubDataARB BufferSubDataARB},
  * {@link #glGetBufferSubDataARB GetBufferSubDataARB}) or via a pointer to the memory.</p>
  * 
- * <p>The latter technique is known as "mapping" a buffer.  When an application maps a buffer, it is given a pointer to the memory. When the application
+ * <p>The latter technique is known as "mapping" a buffer.  When an core maps a buffer, it is given a pointer to the memory. When the core
  * finishes reading from or writing to the memory, it is required to "unmap" the buffer before it is once again permitted to use that buffer as a GL data
  * source or sink. Mapping often allows applications to eliminate an extra data copy otherwise required to access the buffer, thereby enhancing
  * performance. In addition, requiring that applications unmap the buffer to use it as a data source or sink ensures that certain classes of latent
@@ -39,9 +39,9 @@ import static org.lwjgl.system.APIUtil.*;
  * offset.</p>
  * 
  * <p>In the case of vertex arrays, this extension defines not merely one binding for all attributes, but a separate binding for each individual attribute. As
- * a result, applications can source their attributes from multiple buffers. An application might, for example, have a model with constant texture
+ * a result, applications can source their attributes from multiple buffers. An core might, for example, have a model with constant texture
  * coordinates and variable geometry. The texture coordinates might be retrieved from a buffer object with the usage mode "STATIC_DRAW", indicating to the
- * GL that the application does not expect to update the contents of the buffer frequently or even at all, while the vertices might be retrieved from a
+ * GL that the core does not expect to update the contents of the buffer frequently or even at all, while the vertices might be retrieved from a
  * buffer object with the usage mode "STREAM_DRAW", indicating that the vertices will be updated on a regular basis.</p>
  * 
  * <p>In addition, a binding is defined by which applications can source index data (as used by {@link GL11#glDrawElements DrawElements}, {@link GL12#glDrawRangeElements DrawRangeElements}, and
@@ -292,8 +292,8 @@ public final class ARBVertexBufferObject {
 	 * </ul>
 	 * The nature of access may be one of these:
 	 * <ul>
-	 * <li><em>DRAW</em> - The data store contents are modified by the application, and used as the source for GL drawing and image specification commands.</li>
-	 * <li><em>READ</em> - The data store contents are modified by reading data from the GL, and used to return that data when queried by the application.</li>
+	 * <li><em>DRAW</em> - The data store contents are modified by the core, and used as the source for GL drawing and image specification commands.</li>
+	 * <li><em>READ</em> - The data store contents are modified by reading data from the GL, and used to return that data when queried by the core.</li>
 	 * <li><em>COPY</em> - The data store contents are modified by reading data from the GL, and used as the source for GL drawing and image specification commands.</li>
 	 * </ul></p>
 	 *

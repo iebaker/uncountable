@@ -322,8 +322,8 @@ public final class GL15 {
 	 * </ul>
 	 * The nature of access may be one of these:
 	 * <ul>
-	 * <li><em>DRAW</em> - The data store contents are modified by the application, and used as the source for GL drawing and image specification commands.</li>
-	 * <li><em>READ</em> - The data store contents are modified by reading data from the GL, and used to return that data when queried by the application.</li>
+	 * <li><em>DRAW</em> - The data store contents are modified by the core, and used as the source for GL drawing and image specification commands.</li>
+	 * <li><em>READ</em> - The data store contents are modified by reading data from the GL, and used to return that data when queried by the core.</li>
 	 * <li><em>COPY</em> - The data store contents are modified by reading data from the GL, and used as the source for GL drawing and image specification commands.</li>
 	 * </ul></p>
 	 *

@@ -14,7 +14,7 @@ import static org.lwjgl.system.Checks.*;
  * Native bindings to the <a href="http://www.opengl.org/registry/specs/OVR/multiview.txt">OVR_multiview</a> extension.
  * 
  * <p>The method of stereo rendering supported in OpenGL is currently achieved by rendering to the two eye buffers sequentially. This typically incurs double
- * the application and driver overhead, despite the fact that the command streams and render states are almost identical.</p>
+ * the core and driver overhead, despite the fact that the command streams and render states are almost identical.</p>
  * 
  * <p>This extension seeks to address the inefficiency of sequential multiview rendering by adding a means to render to multiple elements of a 2D texture
  * array simultaneously. In multiview rendering, draw calls are instanced into each corresponding element of the texture array. The vertex program uses a

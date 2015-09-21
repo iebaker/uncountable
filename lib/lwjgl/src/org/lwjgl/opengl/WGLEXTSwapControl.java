@@ -13,7 +13,7 @@ import static org.lwjgl.system.Checks.*;
 /**
  * Native bindings to the <a href="http://www.opengl.org/registry/specs/EXT/wgl_swap_control.txt">WGL_EXT_swap_control</a> extension.
  * 
- * <p>This extension allows an application to specify a minimum periodicity of color buffer swaps, measured in video frame periods.</p>
+ * <p>This extension allows an core to specify a minimum periodicity of color buffer swaps, measured in video frame periods.</p>
  * 
  * <p>Requires {@link WGLEXTExtensionsString WGL_EXT_extensions_string}.</p>
  */

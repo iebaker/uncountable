@@ -1,7 +1,6 @@
-package world;
+package portals;
 
 import joml.Vector3f;
-import world.setpieces.Portal;
 
 public class Seam {
 

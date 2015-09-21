@@ -390,7 +390,7 @@ public class CLCapabilities {
 	 * 
 	 * <p>This extension adds the built-in function <code style="font-family: monospace">printf(__constant char * restrict format, …);</code></p>
 	 * 
-	 * <p>This function writes output to the stdout stream associated with the host application. The format string is a character sequence that:
+	 * <p>This function writes output to the stdout stream associated with the host core. The format string is a character sequence that:
 	 * <ul>
 	 * <li>is null-terminated and composed of zero and more directives,</li>
 	 * <li>ordinary characters (i.e. not %), which are copied directly to the output stream unchanged, and</li>

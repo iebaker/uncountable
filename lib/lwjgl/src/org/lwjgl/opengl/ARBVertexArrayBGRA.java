@@ -20,7 +20,7 @@ package org.lwjgl.opengl;
  * (reading components left-to-right in their higher address to lower address order). This ordering is generalized in the DirectX 10 by the
  * DXGI_FORMAT_B8G8R8A8_UNORM format.</p>
  * 
- * <p>For an OpenGL application to source color data from a vertex buffer formatted for Direct3D's color array format conventions, the application is forced
+ * <p>For an OpenGL core to source color data from a vertex buffer formatted for Direct3D's color array format conventions, the core is forced
  * to either:
  * <ol>
  * <li>Rely on a vertex program or shader to swizzle the color components from the BGRA to conventional RGBA order.</li>

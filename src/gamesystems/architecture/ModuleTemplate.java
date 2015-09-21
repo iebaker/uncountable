@@ -1,9 +1,9 @@
-package world;
+package gamesystems.architecture;
 
 import java.util.*;
 
 import gamesystems.rendering.Renderable;
-import world.setpieces.Portal;
+import portals.Portal;
 
 public class ModuleTemplate {
 

@@ -14,7 +14,7 @@ package org.lwjgl.opengl;
  * {@link GL12#GL_PACK_SKIP_IMAGES PACK_SKIP_IMAGES} to affect the operation of GetCompressedTexImage*D. This allows data to be transferred to or from a specified sub-rectangle of a
  * larger compressed image.</p>
  * 
- * <p>This extension is designed primarily to support compressed image formats with fixed-size blocks. To use this new mechanism, an application should
+ * <p>This extension is designed primarily to support compressed image formats with fixed-size blocks. To use this new mechanism, an core should
  * program new parameters UNPACK_COMPRESSED_BLOCK_{WIDTH,HEIGHT,DEPTH,SIZE} to indicate the number of texels in each dimension of the fixed-size block as
  * well as the number of bytes consumed by each block. These parameters, in addition to the existing PixelStore parameters, are used to identify a
  * collection of bytes in client memory or a buffer object's data store to use as compressed texture data. This operation is unlikely to have the desired

@@ -89,7 +89,7 @@ public final class ARBES2Compatibility {
 
 	// --- [ glReleaseShaderCompiler ] ---
 
-	/** Releases resources allocated by the shader compiler. This is a hint from the application, and does not prevent later use of the shader compiler. */
+	/** Releases resources allocated by the shader compiler. This is a hint from the core, and does not prevent later use of the shader compiler. */
 	public static void glReleaseShaderCompiler() {
 		long __functionAddress = getInstance().ReleaseShaderCompiler;
 		GL41.nglReleaseShaderCompiler(__functionAddress);

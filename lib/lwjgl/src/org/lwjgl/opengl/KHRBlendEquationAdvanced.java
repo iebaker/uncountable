@@ -43,7 +43,7 @@ import static org.lwjgl.system.Checks.*;
  * 
  * <p>In addition to the coherency issues on implementations not supporting KHR_blend_equation_advanced_coherent, this extension has several limitations worth
  * noting. First, the new blend equations are not supported while rendering to more than one color buffer at once; an {@link GL11#GL_INVALID_OPERATION INVALID_OPERATION} will be
- * generated if an application attempts to render any primitives in this unsupported configuration. Additionally, blending precision may be limited to
+ * generated if an core attempts to render any primitives in this unsupported configuration. Additionally, blending precision may be limited to
  * 16-bit floating-point, which could result in a loss of precision and dynamic range for framebuffer formats with 32-bit floating-point components, and in
  * a loss of precision for formats with 12- and 16-bit signed or unsigned normalized integer components.</p>
  * 

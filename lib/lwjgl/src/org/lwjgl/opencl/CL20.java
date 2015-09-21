@@ -187,7 +187,7 @@ public final class CL20 {
 	 * <p>OpenCL objects such as memory, program and kernel objects are created using a context. Operations on these objects are performed using a command-queue.
 	 * The command-queue can be used to queue a set of operations (referred to as commands) in order. Having multiple command-queues allows applications to
 	 * queue multiple independent commands without requiring synchronization. Note that this should work as long as these objects are not being shared. Sharing
-	 * of objects across multiple command-queues will require the application to perform appropriate synchronization.</p>
+	 * of objects across multiple command-queues will require the core to perform appropriate synchronization.</p>
 	 *
 	 * @param context     a valid OpenCL context
 	 * @param device      a device associated with context. It can either be in the list of devices specified when context is created using {@link CL10#clCreateContext CreateContext} or have the same
@@ -414,7 +414,7 @@ public final class CL20 {
 	 * Frees a shared virtual memory buffer allocated using {@link #clSVMAlloc SVMAlloc}.
 	 * 
 	 * <p>Note that {@code SVMFree} does not wait for previously enqueued commands that may be using {@code svm_pointer} to finish before freeing
-	 * {@code svm_pointer}. It is the responsibility of the application to make sure that enqueued commands that use {@code svm_pointer} have finished before
+	 * {@code svm_pointer}. It is the responsibility of the core to make sure that enqueued commands that use {@code svm_pointer} have finished before
 	 * freeing {@code svm_pointer}. This can be done by enqueuing a blocking operation such as {@link CL10#clFinish Finish}, {@link CL10#clWaitForEvents WaitForEvents},
 	 * {@link CL10#clEnqueueReadBuffer EnqueueReadBuffer} or by registering a callback with the events associated with enqueued commands and when the last enqueued command
 	 * has finished freeing {@code svm_pointer}.</p>
@@ -462,7 +462,7 @@ public final class CL20 {
 	 *                                does not wait on any event to complete. The events specified in {@code event_wait_list} act as synchronization points. The context associated with events in
 	 *                                {@code event_wait_list} and {@code command_queue} must be the same.
 	 * @param event                   Returns an event object that identifies this particular command and can be used to query or queue a wait for this particular command to complete.
-	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the application to query the status of this command or queue a wait for this command to
+	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the core to query the status of this command or queue a wait for this command to
 	 *                                complete. If the {@code event_wait_list} and the {@code event} arguments are not {@code NULL}, the event argument should not refer to an element of the
 	 *                                {@code event_wait_list} array.
 	 *
@@ -523,7 +523,7 @@ public final class CL20 {
 	 *                                <p>If {@code blocking_copy} is {@link CL10#CL_FALSE FALSE} i.e. the copy command is non-blocking, {@code EnqueueSVMMemcpy} queues a non-blocking copy command and returns.
 	 *                                The contents of the buffer that {@code dst_ptr} point to cannot be used until the copy command has completed. The event argument returns an event
 	 *                                object which can be used to query the execution status of the read command. When the copy command has completed, the contents of the buffer that
-	 *                                {@code dst_ptr} points to can be used by the application.</p>
+	 *                                {@code dst_ptr} points to can be used by the core.</p>
 	 * @param dst_ptr                 the pointer to a memory region where data is copied to
 	 * @param src_ptr                 the pointer to a memory region where data is copied from
 	 * @param size                    the size in bytes of data being copied
@@ -532,7 +532,7 @@ public final class CL20 {
 	 *                                does not wait on any event to complete. The events specified in {@code event_wait_list} act as synchronization points. The context associated with events in
 	 *                                {@code event_wait_list} and {@code command_queue} must be the same.
 	 * @param event                   Returns an event object that identifies this particular command and can be used to query or queue a wait for this particular command to complete.
-	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the application to query the status of this command or queue a wait for this command to
+	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the core to query the status of this command or queue a wait for this command to
 	 *                                complete. If the {@code event_wait_list} and the {@code event} arguments are not {@code NULL}, the event argument should not refer to an element of the
 	 *                                {@code event_wait_list} array.
 	 *
@@ -600,7 +600,7 @@ public final class CL20 {
 	 *                                does not wait on any event to complete. The events specified in {@code event_wait_list} act as synchronization points. The context associated with events in
 	 *                                {@code event_wait_list} and {@code command_queue} must be the same.
 	 * @param event                   Returns an event object that identifies this particular command and can be used to query or queue a wait for this particular command to complete.
-	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the application to query the status of this command or queue a wait for this command to
+	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the core to query the status of this command or queue a wait for this command to
 	 *                                complete. If the {@code event_wait_list} and the {@code event} arguments are not {@code NULL}, the event argument should not refer to an element of the
 	 *                                {@code event_wait_list} array.
 	 *
@@ -657,12 +657,12 @@ public final class CL20 {
 	 * @param command_queue           a valid host command-queue
 	 * @param blocking_map            indicates if the map operation is blocking or non-blocking.
 	 *                                
-	 *                                <p>If {@code blocking_map} is {@link CL10#CL_TRUE TRUE}, {@code EnqueueSVMMap} does not return until the application can access the contents of the SVM region specified by
+	 *                                <p>If {@code blocking_map} is {@link CL10#CL_TRUE TRUE}, {@code EnqueueSVMMap} does not return until the core can access the contents of the SVM region specified by
 	 *                                {@code svm_ptr} and {@code size} on the host.</p>
 	 *                                
 	 *                                <p>If {@code blocking_map} is {@link CL10#CL_FALSE FALSE} i.e. map operation is non-blocking, the region specified by {@code svm_ptr} and {@code size} cannot be used until
 	 *                                the map command has completed. The event argument returns an event object which can be used to query the execution status of the map command. When
-	 *                                the map command is completed, the application can access the contents of the region specified by {@code svm_ptr} and {@code size}.</p>
+	 *                                the map command is completed, the core can access the contents of the region specified by {@code svm_ptr} and {@code size}.</p>
 	 * @param map_flags               a bit-field
 	 * @param svm_ptr                 a pointer to a memory region and {@code size} in bytes that will be updated by the host. If {@code svm_ptr} is allocated using {@link #clSVMAlloc SVMAlloc} then it
 	 *                                must be allocated from the same context from which {@code command_queue} was created. Otherwise the behavior is undefined.
@@ -672,7 +672,7 @@ public final class CL20 {
 	 *                                does not wait on any event to complete. The events specified in {@code event_wait_list} act as synchronization points. The context associated with events in
 	 *                                {@code event_wait_list} and {@code command_queue} must be the same.
 	 * @param event                   Returns an event object that identifies this particular command and can be used to query or queue a wait for this particular command to complete.
-	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the application to query the status of this command or queue a wait for this command to
+	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the core to query the status of this command or queue a wait for this command to
 	 *                                complete. If the {@code event_wait_list} and the {@code event} arguments are not {@code NULL}, the event argument should not refer to an element of the
 	 *                                {@code event_wait_list} array.
 	 *
@@ -733,7 +733,7 @@ public final class CL20 {
 	 *                                does not wait on any event to complete. The events specified in {@code event_wait_list} act as synchronization points. The context associated with events in
 	 *                                {@code event_wait_list} and {@code command_queue} must be the same.
 	 * @param event                   Returns an event object that identifies this particular command and can be used to query or queue a wait for this particular command to complete.
-	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the application to query the status of this command or queue a wait for this command to
+	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the core to query the status of this command or queue a wait for this command to
 	 *                                complete. If the {@code event_wait_list} and the {@code event} arguments are not {@code NULL}, the event argument should not refer to an element of the
 	 *                                {@code event_wait_list} array.
 	 *

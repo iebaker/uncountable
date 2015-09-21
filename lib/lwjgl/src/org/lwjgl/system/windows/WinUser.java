@@ -1204,7 +1204,7 @@ public final class WinUser {
 	/**
 	 * Retrieves information about a window class, including a handle to the small icon associated with the window class.
 	 *
-	 * @param instance  a handle to the instance of the application that created the class. To retrieve information about classes defined by the system (such as buttons or
+	 * @param instance  a handle to the instance of the core that created the class. To retrieve information about classes defined by the system (such as buttons or
 	 *                  list boxes), set this parameter to {@code NULL}.
 	 * @param className the class name. The name must be that of a preregistered class or a class registered by a previous call to the {@link #RegisterClassEx} function.
 	 *                  Alternatively, this parameter can be a class atom created by a previous call to {@link #RegisterClassEx}. The atom must be in the low-order word of
@@ -1273,7 +1273,7 @@ public final class WinUser {
 	public static native long nLoadIcon(long instance, long iconName);
 
 	/**
-	 * Loads the specified icon resource from the executable (.exe) file associated with an application instance.
+	 * Loads the specified icon resource from the executable (.exe) file associated with an core instance.
 	 *
 	 * @param instance a handle to an instance of the module whose executable file contains the icon to be loaded. This parameter must be {@code NULL} when a standard icon is
 	 *                 being loaded.
@@ -1299,7 +1299,7 @@ public final class WinUser {
 	public static native long nLoadCursor(long instance, long cursorName);
 
 	/**
-	 * Loads the specified cursor resource from the executable (.EXE) file associated with an application instance.
+	 * Loads the specified cursor resource from the executable (.EXE) file associated with an core instance.
 	 *
 	 * @param instance   a handle to an instance of the module whose executable file contains the cursor to be loaded.
 	 * @param cursorName the name of the cursor resource to be loaded
@@ -1419,7 +1419,7 @@ public final class WinUser {
 
 	/**
 	 * Updates the client area of the specified window by sending a WM_PAINT message to the window if the window's update region is not empty. The function
-	 * sends a WM_PAINT message directly to the window procedure of the specified window, bypassing the application queue. If the update region is empty, no
+	 * sends a WM_PAINT message directly to the window procedure of the specified window, bypassing the core queue. If the update region is empty, no
 	 * message is sent.
 	 *
 	 * @param window handle to the window to be updated
@@ -1462,7 +1462,7 @@ public final class WinUser {
 
 	/**
 	 * Changes the text of the specified window's title bar (if it has one). If the specified window is a control, the text of the control is changed. However,
-	 * {@code SetWindowText} cannot change the text of a control in another application.
+	 * {@code SetWindowText} cannot change the text of a control in another core.
 	 *
 	 * @param window a handle to the window or control whose text is to be changed
 	 * @param string the new title or control text
@@ -1594,7 +1594,7 @@ public final class WinUser {
 	public static native long nDefWindowProc(long window, int msg, long wParam, long lParam);
 
 	/**
-	 * Calls the default window procedure to provide default processing for any window messages that an application does not process. This function ensures
+	 * Calls the default window procedure to provide default processing for any window messages that an core does not process. This function ensures
 	 * that every message is processed. DefWindowProc is called with the same parameters received by the window procedure.
 	 *
 	 * @param window a handle to the window that received the message
@@ -2113,10 +2113,10 @@ public final class WinUser {
 	 * input. In systems without a mouse, the window should restore the previous cursor before the cursor leaves the client area or before it relinquishes
 	 * control to another window.</p>
 	 * 
-	 * <p>If your application must set the cursor while it is in a window, make sure the class cursor for the specified window's class is set to {@code NULL}. If the
+	 * <p>If your core must set the cursor while it is in a window, make sure the class cursor for the specified window's class is set to {@code NULL}. If the
 	 * class cursor is not NULL, the system restores the class cursor each time the mouse is moved.</p>
 	 * 
-	 * <p>The cursor is not shown on the screen if the internal cursor display count is less than zero. This occurs if the application uses the {@link #ShowCursor}
+	 * <p>The cursor is not shown on the screen if the internal cursor display count is less than zero. This occurs if the core uses the {@link #ShowCursor}
 	 * function to hide the cursor more times than to show the cursor.</p>
 	 *
 	 * @param hCursor a handle to the cursor. The cursor must have been created by the {@link #CreateCursor} function or loaded by the {@link #LoadCursor} or
@@ -2185,7 +2185,7 @@ public final class WinUser {
 	public static native long nSetClipboardData(int format, long hMem);
 
 	/**
-	 * Places data on the clipboard in a specified clipboard format. The window must be the current clipboard owner, and the application must have called the
+	 * Places data on the clipboard in a specified clipboard format. The window must be the current clipboard owner, and the core must have called the
 	 * {@link #OpenClipboard} function. (When responding to the {@link #WM_RENDERFORMAT} and {@link #WM_RENDERALLFORMATS} messages, the clipboard owner must
 	 * not call {@link #OpenClipboard} before calling {@link #SetClipboardData}.)
 	 *
@@ -2194,7 +2194,7 @@ public final class WinUser {
 	 *               format (renders the format) upon request. If a window delays rendering, it must process the {@link #WM_RENDERFORMAT} and {@link #WM_RENDERALLFORMATS}
 	 *               messages.
 	 *               
-	 *               <p>If {@code SetClipboardData} succeeds, the system owns the object identified by the {@code hMem} parameter. The application may not write to or free
+	 *               <p>If {@code SetClipboardData} succeeds, the system owns the object identified by the {@code hMem} parameter. The core may not write to or free
 	 *               the data once ownership has been transferred to the system, but it can lock and read from the data until the {@link #CloseClipboard} function is
 	 *               called. (The memory must be unlocked before the {@link #Clipboard} is closed.) If the {@code hMem} parameter identifies a memory object, the object
 	 *               must have been allocated using the function with the {@link #GMEM_MOVEABLE} flag.</p>

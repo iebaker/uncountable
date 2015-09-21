@@ -2,14 +2,154 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0470d535-0c20-4035-9793-613a519fbd72" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gamesystems/rendering/DebugArtist.java" afterPath="$PROJECT_DIR$/src/gamesystems/rendering/DebugArtist.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gamesystems/architecture/ArchitectureSystem.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/core/World.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gamesystems/rendering/DebugArtist.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/world/Architect.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/world/Ray.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/world/World.java" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/application/Uncountable.java" afterPath="$PROJECT_DIR$/src/core/Uncountable.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/world/Basis.java" afterPath="$PROJECT_DIR$/src/portals/Basis.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/world/Module.java" afterPath="$PROJECT_DIR$/src/gamesystems/architecture/Module.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/world/ModuleTemplate.java" afterPath="$PROJECT_DIR$/src/gamesystems/architecture/ModuleTemplate.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/world/Seam.java" afterPath="$PROJECT_DIR$/src/portals/Seam.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/world/parsing/ModuleTemplateDirectoryParser.java" afterPath="$PROJECT_DIR$/src/gamesystems/architecture/ModuleTemplateDirectoryParser.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/world/setpieces/AbstractQuad.java" afterPath="$PROJECT_DIR$/src/gamesystems/architecture/setpieces/AbstractQuad.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/world/setpieces/BasicColoredQuad.java" afterPath="$PROJECT_DIR$/src/gamesystems/architecture/setpieces/BasicColoredQuad.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/world/setpieces/Portal.java" afterPath="$PROJECT_DIR$/src/portals/Portal.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/openal/AL10.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/openal/AL10.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/openal/ALC10.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/openal/ALC10.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/openal/ALC11.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/openal/ALC11.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opencl/AMDBusAddressableMemory.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opencl/AMDBusAddressableMemory.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/AMDDebugOutput.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/AMDDebugOutput.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBBindlessTexture.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBBindlessTexture.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBBufferStorage.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBBufferStorage.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBClearTexture.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBClearTexture.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBCompressedTexturePixelStorage.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBCompressedTexturePixelStorage.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBComputeVariableGroupSize.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBComputeVariableGroupSize.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBDebugOutput.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBDebugOutput.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBDepthTexture.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBDepthTexture.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBDirectStateAccess.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBDirectStateAccess.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBDrawElementsBaseVertex.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBDrawElementsBaseVertex.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBES2Compatibility.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBES2Compatibility.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBExplicitUniformLocation.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBExplicitUniformLocation.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBFragmentProgram.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBFragmentProgram.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBFramebufferNoAttachments.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBFramebufferNoAttachments.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBFramebufferObject.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBFramebufferObject.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBGeometryShader4.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBGeometryShader4.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBGetProgramBinary.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBGetProgramBinary.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBInternalformatQuery2.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBInternalformatQuery2.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBInvalidateSubdata.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBInvalidateSubdata.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBMapBufferRange.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBMapBufferRange.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBMultisample.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBMultisample.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBMultitexture.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBMultitexture.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBOcclusionQuery.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBOcclusionQuery.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBPixelBufferObject.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBPixelBufferObject.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBPointSprite.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBPointSprite.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBProgramInterfaceQuery.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBProgramInterfaceQuery.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBQueryBufferObject.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBQueryBufferObject.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBRobustness.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBRobustness.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBSamplerObjects.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBSamplerObjects.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBSeamlessCubemapPerTexture.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBSeamlessCubemapPerTexture.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBShaderObjects.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBShaderObjects.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBSparseBuffer.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBSparseBuffer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBSparseTexture.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBSparseTexture.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBTessellationShader.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBTessellationShader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBTextureCompression.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBTextureCompression.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBTextureCubeMap.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBTextureCubeMap.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBTimerQuery.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBTimerQuery.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBTransformFeedback2.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBTransformFeedback2.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBTransposeMatrix.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBTransposeMatrix.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBUniformBufferObject.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBUniformBufferObject.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBVertexArrayBGRA.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBVertexArrayBGRA.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBVertexAttribBinding.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBVertexAttribBinding.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBVertexBufferObject.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBVertexBufferObject.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBVertexProgram.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBVertexProgram.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBVertexShader.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBVertexShader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBViewportArray.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ARBViewportArray.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opencl/ARMPrintf.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opencl/ARMPrintf.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ATIMeminfo.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ATIMeminfo.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/CGL.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/CGL.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opencl/CL10.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opencl/CL10.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opencl/CL10GL.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opencl/CL10GL.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opencl/CL11.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opencl/CL11.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opencl/CL12.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opencl/CL12.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opencl/CL20.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opencl/CL20.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opencl/CLCapabilities.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opencl/CLCapabilities.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gamesystems/rendering/Camera.java" afterPath="$PROJECT_DIR$/src/gamesystems/rendering/Camera.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gamesystems/cameracontrol/CameraControlSystem.java" afterPath="$PROJECT_DIR$/src/gamesystems/cameracontrol/CameraControlSystem.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ContextCapabilities.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/ContextCapabilities.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/EXTBindableUniform.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/EXTBindableUniform.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/EXTDebugLabel.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/EXTDebugLabel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/EXTDebugMarker.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/EXTDebugMarker.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/EXTDirectStateAccess.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/EXTDirectStateAccess.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/EXTFramebufferMultisample.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/EXTFramebufferMultisample.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/EXTFramebufferObject.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/EXTFramebufferObject.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opencl/EXTMigrateMemobject.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opencl/EXTMigrateMemobject.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/EXTPackedDepthStencil.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/EXTPackedDepthStencil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/EXTTextureFilterAnisotropic.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/EXTTextureFilterAnisotropic.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/EXTTextureSRGBDecode.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/EXTTextureSRGBDecode.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/system/windows/EnumObjectsCallback.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/system/windows/EnumObjectsCallback.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/GL15.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/GL15.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/GL41.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/GL41.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/GL43.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/GL43.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/GL44.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/GL44.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/GL45.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/GL45.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/glfw/GLFW.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/glfw/GLFW.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/GLXAMDGPUAssociation.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/GLXAMDGPUAssociation.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/GLXARBContextFlushControl.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/GLXARBContextFlushControl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/GLXEXTSwapControl.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/GLXEXTSwapControl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/GLXEXTVisualRating.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/GLXEXTVisualRating.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/GLXNVDelayBeforeSwap.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/GLXNVDelayBeforeSwap.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/GLXSGISwapControl.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/GLXSGISwapControl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gamesystems/GameSystem.java" afterPath="$PROJECT_DIR$/src/gamesystems/GameSystem.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/world/Module.java" afterPath="$PROJECT_DIR$/src/world/Module.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/world/ModuleTemplate.java" afterPath="$PROJECT_DIR$/src/world/ModuleTemplate.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opencl/INTELAccelerator.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opencl/INTELAccelerator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opencl/INTELThreadLocalExec.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opencl/INTELThreadLocalExec.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/KHRBlendEquationAdvanced.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/KHRBlendEquationAdvanced.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/KHRContextFlushControl.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/KHRContextFlushControl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/KHRDebug.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/KHRDebug.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/KHRNoError.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/KHRNoError.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/KHRRobustness.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/KHRRobustness.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opencl/KHRTerminateContext.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opencl/KHRTerminateContext.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/NVBindlessTexture.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/NVBindlessTexture.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/NVConditionalRender.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/NVConditionalRender.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/NVDeepTexture3D.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/NVDeepTexture3D.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/NVInternalformatSampleQuery.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/NVInternalformatSampleQuery.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/NVPointSprite.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/NVPointSprite.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/NVSampleLocations.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/NVSampleLocations.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/NVShaderBufferStore.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/NVShaderBufferStore.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/NVUniformBufferUnifiedMemory.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/NVUniformBufferUnifiedMemory.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/NVVertexBufferUnifiedMemory.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/NVVertexBufferUnifiedMemory.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/NVXConditionalRender.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/NVXConditionalRender.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/NVXGpuMemoryInfo.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/NVXGpuMemoryInfo.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/OVRMultiview.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/OVRMultiview.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gamesystems/rendering/Points.java" afterPath="$PROJECT_DIR$/src/gamesystems/rendering/Points.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gamesystems/rendering/Renderable.java" afterPath="$PROJECT_DIR$/src/gamesystems/rendering/Renderable.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gamesystems/rendering/RenderingSystem.java" afterPath="$PROJECT_DIR$/src/gamesystems/rendering/RenderingSystem.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/openal/SOFTBufferSamples.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/openal/SOFTBufferSamples.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/openal/SOFTBufferSubData.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/openal/SOFTBufferSubData.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/openal/SOFTDeferredUpdates.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/openal/SOFTDeferredUpdates.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/openal/SOFTLoopPoints.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/openal/SOFTLoopPoints.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/openal/SOFTLoopback.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/openal/SOFTLoopback.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/openal/SOFTSourceLatency.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/openal/SOFTSourceLatency.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/openal/SOFTSourceLength.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/openal/SOFTSourceLength.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gamesystems/rendering/Shaders.java" afterPath="$PROJECT_DIR$/src/gamesystems/rendering/Shaders.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gamesystems/rendering/UniformSettings.java" afterPath="$PROJECT_DIR$/src/gamesystems/rendering/UniformSettings.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/WGLAMDGPUAssociation.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/WGLAMDGPUAssociation.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/WGLARBContextFlushControl.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/WGLARBContextFlushControl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/WGLARBRenderTexture.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/WGLARBRenderTexture.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/WGLEXTSwapControl.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/WGLEXTSwapControl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/WGLNVDelayBeforeSwap.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/opengl/WGLNVDelayBeforeSwap.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/system/windows/WinGDI.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/system/windows/WinGDI.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/system/windows/WinUser.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/system/windows/WinUser.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/system/windows/WindowProc.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/system/windows/WindowProc.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/system/linux/Xlib.java" afterPath="$PROJECT_DIR$/lib/lwjgl/src/org/lwjgl/system/linux/Xlib.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/resources/shaders/basic.frag" afterPath="$PROJECT_DIR$/src/resources/shaders/basic.frag" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/resources/shaders/basic.vert" afterPath="$PROJECT_DIR$/src/resources/shaders/basic.vert" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lwjgl/doc/3rdparty/oculus_license.txt" afterPath="$PROJECT_DIR$/lib/lwjgl/doc/3rdparty/oculus_license.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/resources/shaders/stenciler.frag" afterPath="$PROJECT_DIR$/src/resources/shaders/stenciler.frag" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/resources/shaders/stenciler.vert" afterPath="$PROJECT_DIR$/src/resources/shaders/stenciler.vert" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Uncountable.iws" />
@@ -31,166 +171,184 @@
     <favorites_list name="Uncountable" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="Uncountable.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/application/Uncountable.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="316" column="57" selection-start-line="316" selection-start-column="57" selection-end-line="316" selection-end-column="57" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#5243#5244#0" expanded="true" />
-                <element signature="e#5284#5285#0" expanded="true" />
-                <element signature="e#11146#11147#0" expanded="true" />
-                <element signature="e#11176#11177#0" expanded="true" />
-                <element signature="e#11265#11266#0" expanded="true" />
-                <element signature="e#11295#11296#0" expanded="true" />
-                <element signature="e#11386#11387#0" expanded="true" />
-                <element signature="e#11417#11418#0" expanded="true" />
-                <element signature="e#12312#12313#0" expanded="true" />
-                <element signature="e#12377#12378#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Graphics.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/gamesystems/rendering/Graphics.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ModuleTemplate.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/world/ModuleTemplate.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="39" column="45" selection-start-line="39" selection-start-column="45" selection-end-line="39" selection-end-column="45" />
-              <folding>
-                <element signature="e#1031#1032#0" expanded="true" />
-                <element signature="e#1079#1080#0" expanded="true" />
-                <element signature="e#1128#1129#0" expanded="true" />
-                <element signature="e#1180#1181#0" expanded="true" />
-                <element signature="e#1222#1223#0" expanded="true" />
-                <element signature="e#1252#1253#0" expanded="true" />
-                <element signature="e#2190#2191#0" expanded="true" />
-                <element signature="e#2265#2266#0" expanded="true" />
-                <element signature="e#2304#2305#0" expanded="true" />
-                <element signature="e#2343#2344#0" expanded="true" />
-                <element signature="e#2374#2375#0" expanded="true" />
-                <element signature="e#2403#2404#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Seam.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/world/Seam.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="World.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/world/World.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="36" column="47" selection-start-line="36" selection-start-column="47" selection-end-line="36" selection-end-column="47" />
-              <folding>
-                <element signature="e#784#785#0" expanded="true" />
-                <element signature="e#815#816#0" expanded="true" />
-                <element signature="e#855#856#0" expanded="true" />
-                <element signature="e#893#894#0" expanded="true" />
-                <element signature="e#944#945#0" expanded="true" />
-                <element signature="e#984#985#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AbstractQuad.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/world/setpieces/AbstractQuad.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#219#220#0" expanded="false" />
-                <element signature="e#262#263#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BasicColoredQuad.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/world/setpieces/BasicColoredQuad.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Portal.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/world/setpieces/Portal.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="64" column="34" selection-start-line="64" selection-start-column="34" selection-end-line="64" selection-end-column="34" />
-              <folding>
-                <element signature="e#797#798#0" expanded="true" />
-                <element signature="e#826#827#0" expanded="true" />
-                <element signature="e#867#868#0" expanded="true" />
-                <element signature="e#910#911#0" expanded="true" />
-                <element signature="e#945#946#0" expanded="true" />
-                <element signature="e#982#983#0" expanded="true" />
-                <element signature="e#1013#1014#0" expanded="true" />
-                <element signature="e#1046#1047#0" expanded="true" />
-                <element signature="e#1079#1080#0" expanded="true" />
-                <element signature="e#1128#1129#0" expanded="true" />
-                <element signature="e#1164#1165#0" expanded="true" />
-                <element signature="e#1212#1213#0" expanded="true" />
-                <element signature="e#1247#1248#0" expanded="true" />
-                <element signature="e#1310#1311#0" expanded="true" />
-                <element signature="e#1489#1490#0" expanded="true" />
-                <element signature="e#1526#1527#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Points.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/gamesystems/rendering/Points.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="110" column="5" selection-start-line="110" selection-start-column="5" selection-end-line="110" selection-end-column="5" />
-              <folding>
-                <element signature="e#4719#4720#0" expanded="true" />
-                <element signature="e#4767#4768#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Renderable.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/gamesystems/rendering/Renderable.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.23884514">
-              <caret line="118" column="46" selection-start-line="118" selection-start-column="46" selection-end-line="118" selection-end-column="46" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.6046099">
+      <split-first>
+        <leaf>
+          <file leaf-file-name="RenderingSystem.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/gamesystems/rendering/RenderingSystem.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="72" column="36" selection-start-line="72" selection-start-column="36" selection-end-line="72" selection-end-column="36" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Module.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/gamesystems/architecture/Module.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="48" column="48" selection-start-line="48" selection-start-column="48" selection-end-line="48" selection-end-column="48" />
+                  <folding>
+                    <element signature="e#2195#2196#0" expanded="true" />
+                    <element signature="e#2239#2240#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="basic.frag" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/resources/shaders/basic.frag">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="35" column="5" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="World.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/core/World.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="14" column="43" selection-start-line="14" selection-start-column="43" selection-end-line="14" selection-end-column="43" />
+                  <folding>
+                    <element signature="e#547#548#0" expanded="true" />
+                    <element signature="e#577#578#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="ArchitectureSystem.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/gamesystems/architecture/ArchitectureSystem.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.48364887">
+                  <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Points.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/gamesystems/rendering/Points.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="81" column="18" selection-start-line="81" selection-start-column="18" selection-end-line="81" selection-end-column="18" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Uncountable.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/core/Uncountable.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="238" column="9" selection-start-line="238" selection-start-column="9" selection-end-line="238" selection-end-column="9" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                    <element signature="e#5074#5075#0" expanded="true" />
+                    <element signature="e#5107#5108#0" expanded="true" />
+                    <element signature="e#5321#5322#0" expanded="true" />
+                    <element signature="e#5362#5363#0" expanded="true" />
+                    <element signature="e#12558#12559#0" expanded="true" />
+                    <element signature="e#12623#12624#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Portal.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/portals/Portal.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Basis.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/portals/Basis.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="AbstractQuad.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/gamesystems/architecture/setpieces/AbstractQuad.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="Camera.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/gamesystems/rendering/Camera.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="152" column="0" selection-start-line="152" selection-start-column="0" selection-end-line="152" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="ModuleTemplate.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/gamesystems/architecture/ModuleTemplate.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="CameraControlSystem.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/gamesystems/cameracontrol/CameraControlSystem.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.6454389">
+                  <caret line="50" column="11" selection-start-line="50" selection-start-column="11" selection-end-line="50" selection-end-column="11" />
+                  <folding>
+                    <element signature="e#1359#1360#0" expanded="true" />
+                    <element signature="e#1382#1383#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="ModuleTemplateDirectoryParser.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/gamesystems/architecture/ModuleTemplateDirectoryParser.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -204,18 +362,36 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/world/setpieces/Portal.java" />
-        <option value="$PROJECT_DIR$/src/gamesystems/rendering/Camera.java" />
-        <option value="$PROJECT_DIR$/src/world/Architect.java" />
-        <option value="$PROJECT_DIR$/src/gamesystems/rendering/RenderingSystem.java" />
         <option value="$PROJECT_DIR$/src/gamesystems/rendering/UniformSettings.java" />
-        <option value="$PROJECT_DIR$/src/gamesystems/GameSystem.java" />
         <option value="$PROJECT_DIR$/src/gamesystems/rendering/Shaders.java" />
-        <option value="$PROJECT_DIR$/src/gamesystems/rendering/Points.java" />
-        <option value="$PROJECT_DIR$/src/gamesystems/rendering/DebugArtist.java" />
-        <option value="$PROJECT_DIR$/src/world/Module.java" />
         <option value="$PROJECT_DIR$/src/world/ModuleTemplate.java" />
-        <option value="$PROJECT_DIR$/src/application/Uncountable.java" />
         <option value="$PROJECT_DIR$/src/gamesystems/rendering/Renderable.java" />
+        <option value="$PROJECT_DIR$/src/gamesystems/rendering/DebugArtist.java" />
+        <option value="$PROJECT_DIR$/src/world/parsing/ModuleTemplateDirectoryParser.java" />
+        <option value="$PROJECT_DIR$/src/gamesystems/rendering/Graphics.java" />
+        <option value="$PROJECT_DIR$/src/resources/shaders/stenciler.frag" />
+        <option value="$PROJECT_DIR$/src/world/Module.java" />
+        <option value="$PROJECT_DIR$/src/resources/shaders/stenciler.vert" />
+        <option value="$PROJECT_DIR$/src/resources/shaders/basic.vert" />
+        <option value="$PROJECT_DIR$/src/gamesystems/rendering/Camera.java" />
+        <option value="$PROJECT_DIR$/src/resources/shaders/basic.frag" />
+        <option value="$PROJECT_DIR$/src/gamesystems/GameSystem.java" />
+        <option value="$PROJECT_DIR$/src/world/Architect.java" />
+        <option value="$PROJECT_DIR$/src/world/World.java" />
+        <option value="$PROJECT_DIR$/src/application/Uncountable.java" />
+        <option value="$PROJECT_DIR$/src/gamesystems/rendering/RenderingSystem.java" />
+        <option value="$PROJECT_DIR$/src/gamesystems/architecture/ArchitectureSystem.java" />
+        <option value="$PROJECT_DIR$/src/gamesystems/architecture/ModuleTemplate.java" />
+        <option value="$PROJECT_DIR$/src/gamesystems/architecture/Module.java" />
+        <option value="$PROJECT_DIR$/src/gamesystems/architecture/ModuleTemplateDirectoryParser.java" />
+        <option value="$PROJECT_DIR$/src/portals/Portal.java" />
+        <option value="$PROJECT_DIR$/src/portals/Basis.java" />
+        <option value="$PROJECT_DIR$/src/gamesystems/architecture/setpieces/AbstractQuad.java" />
+        <option value="$PROJECT_DIR$/src/application/World.java" />
+        <option value="$PROJECT_DIR$/src/gamesystems/cameracontrol/CameraControlSystem.java" />
+        <option value="$PROJECT_DIR$/src/core/Uncountable.java" />
+        <option value="$PROJECT_DIR$/src/core/World.java" />
+        <option value="$PROJECT_DIR$/src/gamesystems/rendering/Points.java" />
       </list>
     </option>
   </component>
@@ -223,10 +399,31 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1440" />
-    <option name="y" value="-867" />
-    <option name="width" value="2560" />
-    <option name="height" value="1440" />
+    <option name="y" value="23" />
+    <option name="width" value="1440" />
+    <option name="height" value="803" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>Spelling</id>
+          </State>
+          <State>
+            <id>TestNG</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>SpellCheckingInspection</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -251,6 +448,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -271,86 +469,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Uncountable" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Uncountable" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Uncountable" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="world" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Uncountable" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Uncountable" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="world" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="setpieces" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Uncountable" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Uncountable" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Uncountable" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Uncountable" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="shaders" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -466,7 +584,55 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="application" />
+              <option name="myItemId" value="gamesystems" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="architecture" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Uncountable" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Uncountable" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gamesystems" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="architecture" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="setpieces" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Uncountable" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Uncountable" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -486,29 +652,38 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="FullScreen" value="true" />
+    <property name="FullScreen" value="false" />
     <property name="recentsLimit" value="5" />
     <property name="dynamic.classpath" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="true" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="application" />
+      <recent name="gamesystems.architecture.setpieces" />
+      <recent name="portals" />
+      <recent name="gamesystems.architecture" />
+    </key>
   </component>
   <component name="RunManager" selected="Application.Uncountable">
     <configuration default="false" name="Uncountable" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
-          <option name="PATTERN" value="application.*" />
+          <option name="PATTERN" value="core.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="MAIN_CLASS_NAME" value="application.Uncountable" />
+      <option name="MAIN_CLASS_NAME" value="core.Uncountable" />
       <option name="VM_PARAMETERS" value="-XstartOnFirstThread &quot;-Djava.library.path=lib/lwjgl/native&quot;" />
       <option name="PROGRAM_PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
@@ -679,6 +854,9 @@
     </recent_temporary>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="0470d535-0c20-4035-9793-613a519fbd72" name="Default" comment="" />
@@ -689,22 +867,24 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1440" y="-867" width="2560" height="1440" extended-state="0" />
+    <frame x="0" y="23" width="1440" height="803" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32867134" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32777777" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329927" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14525548" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14345992" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.10524225" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24980143" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19313304" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24964234" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32819074" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24964234" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -713,9 +893,15 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -731,31 +917,10 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/application/Uncountable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#5243#5244#0" expanded="true" />
-            <element signature="e#5284#5285#0" expanded="true" />
-            <element signature="e#11146#11147#0" expanded="true" />
-            <element signature="e#11176#11177#0" expanded="true" />
-            <element signature="e#11265#11266#0" expanded="true" />
-            <element signature="e#11295#11296#0" expanded="true" />
-            <element signature="e#11386#11387#0" expanded="true" />
-            <element signature="e#11417#11418#0" expanded="true" />
-            <element signature="e#12312#12313#0" expanded="true" />
-            <element signature="e#12377#12378#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/lwjgl/build.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -763,7 +928,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding />
+          <folding>
+            <element signature="e#1020#1021#0" expanded="true" />
+            <element signature="e#1067#1068#0" expanded="true" />
+            <element signature="e#1479#1480#0" expanded="true" />
+            <element signature="e#1513#1514#0" expanded="true" />
+            <element signature="e#2974#2975#0" expanded="true" />
+            <element signature="e#3010#3011#0" expanded="true" />
+            <element signature="e#3358#3359#0" expanded="true" />
+            <element signature="e#3408#3409#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -771,17 +945,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="19" column="14" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gamesystems/rendering/DebugArtist.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -799,7 +962,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -807,7 +969,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="3" column="17" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -816,8 +977,13 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
           <folding>
-            <element signature="e#4719#4720#0" expanded="true" />
-            <element signature="e#4767#4768#0" expanded="true" />
+            <element signature="e#148#175#0" expanded="false" />
+            <element signature="e#4487#4488#0" expanded="false" />
+            <element signature="e#4538#4539#0" expanded="false" />
+            <element signature="e#5006#5007#0" expanded="false" />
+            <element signature="e#5093#5094#0" expanded="false" />
+            <element signature="e#5143#5144#0" expanded="false" />
+            <element signature="e#5191#5192#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -826,7 +992,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="19" column="14" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -834,39 +999,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/resources/shaders/stenciler.vert">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/resources/shaders/stenciler.frag">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/resources/shaders/flat.frag">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/resources/shaders/flat.vert">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -899,22 +1031,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/world/Architect.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="61" column="45" selection-start-line="61" selection-start-column="45" selection-end-line="61" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/lib/lwjgl/jar/lwjgl.jar!/org/lwjgl/glfw/GLFWKeyCallback.class">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.5925925">
           <caret line="19" column="14" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
-          <folding>
-            <element signature="e#608#609#0" expanded="true" />
-            <element signature="e#634#635#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -922,24 +1042,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="22" column="26" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
-          <folding>
-            <element signature="e#340#341#0" expanded="true" />
-            <element signature="e#369#370#0" expanded="true" />
-            <element signature="e#399#400#0" expanded="true" />
-            <element signature="e#430#431#0" expanded="true" />
-            <element signature="e#460#461#0" expanded="true" />
-            <element signature="e#491#492#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gamesystems/GameSystem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="2" column="21" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
-          <folding>
-            <element signature="e#442#469#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -947,15 +1049,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gamesystems/cameracontrol/CameraControlSystem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="44" column="55" selection-start-line="44" selection-start-column="55" selection-end-line="44" selection-end-column="55" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -963,9 +1056,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#992#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -973,9 +1063,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#7663#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -983,18 +1070,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="4" column="4" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gamesystems/rendering/Camera.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="40" column="40" selection-start-line="40" selection-start-column="40" selection-end-line="40" selection-end-column="40" />
-          <folding>
-            <element signature="e#1020#1021#0" expanded="true" />
-            <element signature="e#1067#1068#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1003,23 +1078,13 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="188" column="51" selection-start-line="188" selection-start-column="51" selection-end-line="188" selection-end-column="51" />
           <folding>
-            <element signature="e#1673#1700#0" expanded="true" />
-            <element signature="e#5604#5605#0" expanded="true" />
-            <element signature="e#5653#5654#0" expanded="true" />
-            <element signature="e#5710#5711#0" expanded="true" />
-            <element signature="e#5787#5788#0" expanded="true" />
-            <element signature="e#7564#7565#0" expanded="true" />
-            <element signature="e#7627#7628#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gamesystems/rendering/RenderingSystem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="174" column="30" selection-start-line="174" selection-start-column="30" selection-end-line="174" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#1666#1693#0" expanded="false" />
+            <element signature="e#5597#5598#0" expanded="false" />
+            <element signature="e#5646#5647#0" expanded="false" />
+            <element signature="e#5703#5704#0" expanded="false" />
+            <element signature="e#5780#5781#0" expanded="false" />
+            <element signature="e#7557#7558#0" expanded="false" />
+            <element signature="e#7620#7621#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1028,88 +1093,29 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="3" column="45" selection-start-line="3" selection-start-column="45" selection-end-line="3" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gamesystems/rendering/Renderable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="105" column="36" selection-start-line="105" selection-start-column="36" selection-end-line="105" selection-end-column="36" />
           <folding>
-            <element signature="e#130#131#0" expanded="true" />
-            <element signature="e#160#161#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#2973#2974#0" expanded="false" />
+            <element signature="e#3009#3010#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gamesystems/rendering/DebugArtist.java">
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home/src.zip!/java/util/function/Predicate.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="28" column="58" selection-start-line="28" selection-start-column="58" selection-end-line="28" selection-end-column="58" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <caret line="48" column="12" selection-start-line="48" selection-start-column="12" selection-end-line="48" selection-end-column="12" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/world/Module.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="18" column="65" selection-start-line="18" selection-start-column="65" selection-end-line="18" selection-end-column="65" />
-          <folding>
-            <element signature="e#764#765#0" expanded="true" />
-            <element signature="e#793#794#0" expanded="true" />
-            <element signature="e#836#837#0" expanded="true" />
-            <element signature="e#869#870#0" expanded="true" />
-            <element signature="e#917#918#0" expanded="true" />
-            <element signature="e#963#964#0" expanded="true" />
-            <element signature="e#1015#1016#0" expanded="true" />
-            <element signature="e#1057#1058#0" expanded="true" />
-            <element signature="e#1489#1490#0" expanded="true" />
-            <element signature="e#1529#1530#0" expanded="true" />
-            <element signature="e#1578#1579#0" expanded="true" />
-            <element signature="e#1632#1633#0" expanded="true" />
-            <element signature="e#1954#1955#0" expanded="true" />
-            <element signature="e#1994#1995#0" expanded="true" />
-            <element signature="e#2033#2034#0" expanded="true" />
-            <element signature="e#2069#2070#0" expanded="true" />
-            <element signature="e#2305#2306#0" expanded="true" />
-            <element signature="e#2349#2350#0" expanded="true" />
-            <element signature="e#2403#2404#0" expanded="true" />
-            <element signature="e#2445#2446#0" expanded="true" />
-            <element signature="e#2477#2478#0" expanded="true" />
-            <element signature="e#2520#2521#0" expanded="true" />
-            <element signature="e#2573#2574#0" expanded="true" />
-            <element signature="e#2643#2644#0" expanded="true" />
-            <element signature="e#2699#2700#0" expanded="true" />
-            <element signature="e#2754#2755#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/world/Basis.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/world/ModuleTemplate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="39" column="45" selection-start-line="39" selection-start-column="45" selection-end-line="39" selection-end-column="45" />
-          <folding>
-            <element signature="e#1031#1032#0" expanded="true" />
-            <element signature="e#1079#1080#0" expanded="true" />
-            <element signature="e#1128#1129#0" expanded="true" />
-            <element signature="e#1180#1181#0" expanded="true" />
-            <element signature="e#1222#1223#0" expanded="true" />
-            <element signature="e#1252#1253#0" expanded="true" />
-            <element signature="e#2190#2191#0" expanded="true" />
-            <element signature="e#2265#2266#0" expanded="true" />
-            <element signature="e#2304#2305#0" expanded="true" />
-            <element signature="e#2343#2344#0" expanded="true" />
-            <element signature="e#2374#2375#0" expanded="true" />
-            <element signature="e#2403#2404#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/world/Seam.java">
+    <entry file="file://$PROJECT_DIR$/src/portals/Seam.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
@@ -1117,32 +1123,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/world/setpieces/Portal.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="64" column="34" selection-start-line="64" selection-start-column="34" selection-end-line="64" selection-end-column="34" />
-          <folding>
-            <element signature="e#797#798#0" expanded="true" />
-            <element signature="e#826#827#0" expanded="true" />
-            <element signature="e#867#868#0" expanded="true" />
-            <element signature="e#910#911#0" expanded="true" />
-            <element signature="e#945#946#0" expanded="true" />
-            <element signature="e#982#983#0" expanded="true" />
-            <element signature="e#1013#1014#0" expanded="true" />
-            <element signature="e#1046#1047#0" expanded="true" />
-            <element signature="e#1079#1080#0" expanded="true" />
-            <element signature="e#1128#1129#0" expanded="true" />
-            <element signature="e#1164#1165#0" expanded="true" />
-            <element signature="e#1212#1213#0" expanded="true" />
-            <element signature="e#1247#1248#0" expanded="true" />
-            <element signature="e#1310#1311#0" expanded="true" />
-            <element signature="e#1489#1490#0" expanded="true" />
-            <element signature="e#1526#1527#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/world/setpieces/BasicColoredQuad.java">
+    <entry file="file://$PROJECT_DIR$/src/gamesystems/architecture/setpieces/BasicColoredQuad.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
@@ -1150,76 +1131,211 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/world/setpieces/AbstractQuad.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#219#220#0" expanded="false" />
-            <element signature="e#262#263#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/world/World.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="36" column="47" selection-start-line="36" selection-start-column="47" selection-end-line="36" selection-end-column="47" />
-          <folding>
-            <element signature="e#784#785#0" expanded="true" />
-            <element signature="e#815#816#0" expanded="true" />
-            <element signature="e#855#856#0" expanded="true" />
-            <element signature="e#893#894#0" expanded="true" />
-            <element signature="e#944#945#0" expanded="true" />
-            <element signature="e#984#985#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/Uncountable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="316" column="57" selection-start-line="316" selection-start-column="57" selection-end-line="316" selection-end-column="57" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#5243#5244#0" expanded="true" />
-            <element signature="e#5284#5285#0" expanded="true" />
-            <element signature="e#11146#11147#0" expanded="true" />
-            <element signature="e#11176#11177#0" expanded="true" />
-            <element signature="e#11265#11266#0" expanded="true" />
-            <element signature="e#11295#11296#0" expanded="true" />
-            <element signature="e#11386#11387#0" expanded="true" />
-            <element signature="e#11417#11418#0" expanded="true" />
-            <element signature="e#12312#12313#0" expanded="true" />
-            <element signature="e#12377#12378#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/gamesystems/rendering/Graphics.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+          <caret line="28" column="18" selection-start-line="28" selection-start-column="18" selection-end-line="28" selection-end-column="18" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resources/architecture.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resources/shaders/flat.vert">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resources/shaders/stenciler.frag">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="17" column="1" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resources/modules/cuberoom/module.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resources/modules/cuberoom/module.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resources/shaders/stenciler.vert">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resources/shaders/flat.frag">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resources/shaders/basic.vert">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="15" selection-start-line="9" selection-start-column="15" selection-end-line="9" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gamesystems/GameSystem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="16" column="82" selection-start-line="16" selection-start-column="82" selection-end-line="16" selection-end-column="82" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gamesystems/rendering/Camera.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="152" column="0" selection-start-line="152" selection-start-column="0" selection-end-line="152" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gamesystems/architecture/ModuleTemplate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gamesystems/architecture/Module.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="48" column="48" selection-start-line="48" selection-start-column="48" selection-end-line="48" selection-end-column="48" />
+          <folding>
+            <element signature="e#2195#2196#0" expanded="true" />
+            <element signature="e#2239#2240#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/portals/Portal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/portals/Basis.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gamesystems/architecture/setpieces/AbstractQuad.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resources/shaders/basic.frag">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="35" column="5" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gamesystems/rendering/RenderingSystem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="72" column="36" selection-start-line="72" selection-start-column="36" selection-end-line="72" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gamesystems/architecture/ModuleTemplateDirectoryParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gamesystems/cameracontrol/CameraControlSystem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6454389">
+          <caret line="50" column="11" selection-start-line="50" selection-start-column="11" selection-end-line="50" selection-end-column="11" />
+          <folding>
+            <element signature="e#1359#1360#0" expanded="true" />
+            <element signature="e#1382#1383#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/core/Uncountable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="238" column="9" selection-start-line="238" selection-start-column="9" selection-end-line="238" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#5074#5075#0" expanded="true" />
+            <element signature="e#5107#5108#0" expanded="true" />
+            <element signature="e#5321#5322#0" expanded="true" />
+            <element signature="e#5362#5363#0" expanded="true" />
+            <element signature="e#12558#12559#0" expanded="true" />
+            <element signature="e#12623#12624#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/core/World.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="14" column="43" selection-start-line="14" selection-start-column="43" selection-end-line="14" selection-end-column="43" />
+          <folding>
+            <element signature="e#547#548#0" expanded="true" />
+            <element signature="e#577#578#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gamesystems/rendering/Points.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="110" column="5" selection-start-line="110" selection-start-column="5" selection-end-line="110" selection-end-column="5" />
-          <folding>
-            <element signature="e#4719#4720#0" expanded="true" />
-            <element signature="e#4767#4768#0" expanded="true" />
-          </folding>
+          <caret line="81" column="18" selection-start-line="81" selection-start-column="18" selection-end-line="81" selection-end-column="18" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gamesystems/rendering/Renderable.java">
+    <entry file="file://$PROJECT_DIR$/src/gamesystems/architecture/ArchitectureSystem.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.23884514">
-          <caret line="118" column="46" selection-start-line="118" selection-start-column="46" selection-end-line="118" selection-end-column="46" />
+        <state vertical-scroll-proportion="0.48364887">
+          <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

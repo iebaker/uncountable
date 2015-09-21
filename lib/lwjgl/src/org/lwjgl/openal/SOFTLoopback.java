@@ -17,8 +17,8 @@ import static org.lwjgl.system.APIUtil.*;
 /**
  * Native bindings to the <a href="http://kcat.strangesoft.net/openal-extensions/SOFT_loopback.txt">SOFT_loopback</a> extension.
  * 
- * <p>This extension allows an application to read back OpenAL's rendered audio instead of having it output to an audio device on the system. Unextended
- * OpenAL will output audio to an audio device, with no mechanism to allow an application to divert the audio somewhere else.</p>
+ * <p>This extension allows an core to read back OpenAL's rendered audio instead of having it output to an audio device on the system. Unextended
+ * OpenAL will output audio to an audio device, with no mechanism to allow an core to divert the audio somewhere else.</p>
  */
 public final class SOFTLoopback {
 

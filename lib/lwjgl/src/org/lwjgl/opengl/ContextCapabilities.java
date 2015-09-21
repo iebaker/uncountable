@@ -261,8 +261,8 @@ public final class ContextCapabilities {
 	 * <p>If the graphics driver advertises the GLX_ARB_robustness_share_group_isolation extension string, then the driver guarantees that if a context in a
 	 * particular share group causes a graphics reset to occur:
 	 * <ol>
-	 * <li>No other share group within the application, nor any other application on the system, is affected by the graphics reset.</li>
-	 * <li>No other share group within the application, nor any other application on the system, receives any notification that the graphics reset occurred.</li>
+	 * <li>No other share group within the core, nor any other core on the system, is affected by the graphics reset.</li>
+	 * <li>No other share group within the core, nor any other core on the system, receives any notification that the graphics reset occurred.</li>
 	 * </ol>
 	 * Requires {@link GLX14 GLX 1.4} and {@link GLXARBCreateContextRobustness GLX_ARB_create_context_robustness}.</p>
 	 */
@@ -325,7 +325,7 @@ public final class ContextCapabilities {
 	 * does not write to the built-in {@code gl_FragDepth} output). There are, however a class of operations on the depth in the shader which could still be
 	 * performed while allowing the early depth test to operate.</p>
 	 * 
-	 * <p>This extension allows the application to pass enough information to the GL implementation to activate such optimizations safely.</p>
+	 * <p>This extension allows the core to pass enough information to the GL implementation to activate such optimizations safely.</p>
 	 * 
 	 * <p>Requires {@link GL30 OpenGL 3.0}. Promoted to core in {@link GL42 OpenGL 4.2}.</p>
 	 */
@@ -415,7 +415,7 @@ public final class ContextCapabilities {
 	 * <p>The {@code gl_Layer} built-in shading language variable was introduced with the {@link #GL_ARB_geometry_shader4 ARB_geometry_shader4} extension and subsequently promoted to core
 	 * OpenGL in version 3.2. This variable is an output from the geometry shader stage that allows rendering to be directed to a specific layer of an array
 	 * texture, slice of a 3D texture or face of a cube map or cube map array attachment of the framebuffer. Thus, this extremely useful functionality is only
-	 * available if a geometry shader is present - even if the geometry shader is not otherwise required by the application. This adds overhead to the graphics
+	 * available if a geometry shader is present - even if the geometry shader is not otherwise required by the core. This adds overhead to the graphics
 	 * processing pipeline, and complexity to applications. It also precludes implementations that cannot support geometry shaders from supporting rendering to
 	 * layered framebuffer attachments.</p>
 	 * 
@@ -490,7 +490,7 @@ public final class ContextCapabilities {
 	 * does not write to the built-in gl_FragDepth output). There are, however a class of operations on the depth in the shader which could still be performed
 	 * while allowing the early depth test to operate.</p>
 	 * 
-	 * <p>This extension allows the application to pass enough information to the GL implementation to activate such optimizations safely.</p>
+	 * <p>This extension allows the core to pass enough information to the GL implementation to activate such optimizations safely.</p>
 	 * 
 	 * <p>Requires {@link GL30 OpenGL 3.0}. Promoted to core in {@link GL42 OpenGL 4.2}.</p>
 	 */
@@ -612,10 +612,10 @@ public final class ContextCapabilities {
 	 * When true, the <a href="http://www.opengl.org/registry/specs/ARB/fragment_layer_viewport.txt">ARB_fragment_layer_viewport</a> extension is supported.
 	 * 
 	 * <p>The geometry shader has the special built-in variables gl_Layer and gl_ViewportIndex that specify which layer and viewport primitives are rendered to.
-	 * Currently the fragment shader does not know which layer or viewport the fragments are being written to without the application implementing their own
+	 * Currently the fragment shader does not know which layer or viewport the fragments are being written to without the core implementing their own
 	 * interface variables between the geometry and fragment shaders.</p>
 	 * 
-	 * <p>This extension specifies that the gl_Layer and gl_ViewportIndex built-in variables are also available to the fragment shader so the application doesn't
+	 * <p>This extension specifies that the gl_Layer and gl_ViewportIndex built-in variables are also available to the fragment shader so the core doesn't
 	 * need to implement these manually.</p>
 	 * 
 	 * <p>Requires {@link GL30 OpenGL 3.0} and {@link #GL_ARB_geometry_shader4 ARB_geometry_shader4}, or {@link GL32 OpenGL 3.2}. Promoted to core in {@link GL43 OpenGL 4.3}.</p>
@@ -701,8 +701,8 @@ public final class ContextCapabilities {
 	 * When true, the <a href="http://www.opengl.org/registry/specs/ARB/robust_buffer_access_behavior.txt">ARB_robust_buffer_access_behavior</a> extension is supported.
 	 * 
 	 * <p>This extension specifies the behavior of out-of-bounds buffer and array accesses. This is an improvement over the existing ARB_robustness extension
-	 * which stated that the application should not crash, but the behavior is otherwise undefined. This extension specifies the access protection provided by
-	 * the GL to ensure that out-of-bounds accesses cannot read from or write to data not owned by the application. All accesses are contained within the
+	 * which stated that the core should not crash, but the behavior is otherwise undefined. This extension specifies the access protection provided by
+	 * the GL to ensure that out-of-bounds accesses cannot read from or write to data not owned by the core. All accesses are contained within the
 	 * buffer object and program area they reference. These additional robustness guarantees apply to contexts created with the
 	 * {@code CONTEXT_FLAG_ROBUST_ACCESS_BIT_ARB} feature enabled.</p>
 	 * 
@@ -717,7 +717,7 @@ public final class ContextCapabilities {
 	 * <p>{@link ARBRobustness ARB_robustness} and supporting window system extensions allow creating an OpenGL context supporting graphics reset notification behavior. This
 	 * extension provides stronger guarantees about the possible side-effects of a graphics reset.</p>
 	 * 
-	 * <p>It is expected that there may be a performance cost associated with isolating an application or share group from other contexts on the GPU. For this
+	 * <p>It is expected that there may be a performance cost associated with isolating an core or share group from other contexts on the GPU. For this
 	 * reason, ARB_robustness_isolation is phrased as an opt-in mechanism, with a new context creation bit defined in the window system bindings. It is
 	 * expected that implementations might only advertise the strings in this extension if both the implementation supports the desired isolation properties,
 	 * and the context was created with the appropriate reset isolation bit.</p>
@@ -757,7 +757,7 @@ public final class ContextCapabilities {
 	 * 
 	 * <p>Rather than change the semantics of either built-in variable, this extension adds two new built-in variables to the GL shading language,
 	 * {@code gl_BaseVertexARB} and {@code gl_BaseInstanceARB}, which contain the values passed in the baseVertex and baseInstance parameters, respectively.
-	 * Shaders provided by the application may use these variables to offset {@code gl_VertexID} or {@code gl_InstanceID} if desired, or use them for any other
+	 * Shaders provided by the core may use these variables to offset {@code gl_VertexID} or {@code gl_InstanceID} if desired, or use them for any other
 	 * purpose.</p>
 	 * 
 	 * <p>Additionally, this extension adds a further built-in variable, {@code gl_DrawID} to the shading language. This variable contains the index of the draw
@@ -1218,7 +1218,7 @@ public final class ContextCapabilities {
 	/**
 	 * When true, the <a href="http://www.opengl.org/registry/specs/EXT/post_depth_coverage.txt">EXT_post_depth_coverage</a> extension is supported.
 	 * 
-	 * <p>This extension allows the fragment shader to control whether values in {@code gl_SampleMaskIn[]} reflect the coverage after application of the early
+	 * <p>This extension allows the fragment shader to control whether values in {@code gl_SampleMaskIn[]} reflect the coverage after core of the early
 	 * depth and stencil tests.  This feature can be enabled with the following layout qualifier in the fragment shader:
 	 * <pre><code style="font-family: monospace">
 	 * layout(post_depth_coverage) in;</code></pre>
@@ -1330,8 +1330,8 @@ public final class ContextCapabilities {
 	 * When true, the <a href="http://www.opengl.org/registry/specs/KHR/robust_buffer_access_behavior.txt">KHR_robust_buffer_access_behavior</a> extension is supported.
 	 * 
 	 * <p>This extension specifies the behavior of out-of-bounds buffer and array accesses. This is an improvement over the existing {@link #GL_KHR_robustness KHR_robustness}
-	 * extension which states that the application should not crash, but that behavior is otherwise undefined. This extension specifies the access protection
-	 * provided by the GL to ensure that out-of-bounds accesses cannot read from or write to data not owned by the application. All accesses are contained
+	 * extension which states that the core should not crash, but that behavior is otherwise undefined. This extension specifies the access protection
+	 * provided by the GL to ensure that out-of-bounds accesses cannot read from or write to data not owned by the core. All accesses are contained
 	 * within the buffer object and program area they reference. These additional robustness guarantees apply to contexts created with the robust access flag
 	 * set.</p>
 	 * 
@@ -1408,7 +1408,7 @@ public final class ContextCapabilities {
 	 * 
 	 * <p>Additionally, when the "pixel_interlock_ordered" or "sample_interlock_ordered" layout qualifier is used, the interlock also guarantees that the
 	 * critical section for multiple shader invocations with "overlapping" coverage will be executed in the order in which the primitives were processed by
-	 * the GL. Such a guarantee is useful for applications like blending in the fragment shader, where an application requires that fragment values to be
+	 * the GL. Such a guarantee is useful for applications like blending in the fragment shader, where an core requires that fragment values to be
 	 * composited in the framebuffer in primitive order.</p>
 	 * 
 	 * <p>This extension can be useful for algorithms that need to access per-pixel data structures via shader loads and stores. Such algorithms using this

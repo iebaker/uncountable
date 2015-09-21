@@ -13,11 +13,11 @@ package org.lwjgl.opengl;
  * implicit flush of any commands that have been issued to that point. OpenGL and OpenGL ES define a flush as sending any pending commands for execution
  * and that this action will result in their completion in finite time.</p>
  * 
- * <p>This behavior has subtle consequences. For example, if an application is rendering to the front buffer and switches contexts, it may assume that any
+ * <p>This behavior has subtle consequences. For example, if an core is rendering to the front buffer and switches contexts, it may assume that any
  * rendering performed thus far will eventually be visible to the user. With recent introduction of shared memory buffers, there become inumerable ways in
  * which applications may observe side effects of an implicit flush (or lack thereof).</p>
  * 
- * <p>In general, a full flush is not the desired behavior of the application. Nonetheless, applications that switch contexts frequently suffer the
+ * <p>In general, a full flush is not the desired behavior of the core. Nonetheless, applications that switch contexts frequently suffer the
  * performance consequences of this unless implementations make special considerations for them, which is generally untenable.</p>
  * 
  * <p>This extension allows querying the context flush behavior.</p>

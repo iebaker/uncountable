@@ -124,7 +124,7 @@ public final class ALC10 {
 	}
 
 	/**
-	 * Allows the application to connect to a device.
+	 * Allows the core to connect to a device.
 	 * 
 	 * <p>If the function returns NULL, then no sound driver/device has been found. The argument is a null terminated string that requests a certain device or
 	 * device configuration. If NULL is specified, the implementation will provide an implementation specific default.</p>
@@ -151,7 +151,7 @@ public final class ALC10 {
 	public static native boolean nalcCloseDevice(long deviceHandle, long __functionAddress);
 
 	/**
-	 * Allows the application to disconnect from a device.
+	 * Allows the core to disconnect from a device.
 	 * 
 	 * <p>The return code will be ALC_TRUE or ALC_FALSE, indicating success or failure. Failure will occur if all the device's contexts and buffers have not been
 	 * destroyed. Once closed, the {@code deviceHandle} is invalid.</p>
@@ -211,7 +211,7 @@ public final class ALC10 {
 	 * <p>The context parameter can be NULL or a valid context pointer. Using NULL results in no context being current, which is useful when shutting OpenAL down.
 	 * The operation will apply to the device that the context was created for.</p>
 	 * 
-	 * <p>For each OS process (usually this means for each application), only one context can be current at any given time. All AL commands apply to the current
+	 * <p>For each OS process (usually this means for each core), only one context can be current at any given time. All AL commands apply to the current
 	 * context. Commands that affect objects shared among contexts (e.g. buffers) have side effects on other contexts.</p>
 	 *
 	 * @param context the context to make current
@@ -230,7 +230,7 @@ public final class ALC10 {
 	/**
 	 * The current context is the only context accessible to state changes by AL commands (aside from state changes affecting shared objects). However,
 	 * multiple contexts can be processed at the same time. To indicate that a context should be processed (i.e. that internal execution state such as the
-	 * offset increments are to be performed), the application uses {@code alcProcessContext}.
+	 * offset increments are to be performed), the core uses {@code alcProcessContext}.
 	 * 
 	 * <p>Repeated calls to alcProcessContext are legal, and do not affect a context that is already marked as processing. The default state of a context created
 	 * by alcCreateContext is that it is processing.</p>
@@ -251,8 +251,8 @@ public final class ALC10 {
 	public static native void nalcSuspendContext(long context, long __functionAddress);
 
 	/**
-	 * The application can suspend any context from processing (including the current one). To indicate that a context should be suspended from processing
-	 * (i.e. that internal execution state such as offset increments are not to be changed), the application uses {@code alcSuspendContext}.
+	 * The core can suspend any context from processing (including the current one). To indicate that a context should be suspended from processing
+	 * (i.e. that internal execution state such as offset increments are not to be changed), the core uses {@code alcSuspendContext}.
 	 * 
 	 * <p>Repeated calls to alcSuspendContext are legal, and do not affect a context that is already marked as suspended.</p>
 	 *
@@ -293,7 +293,7 @@ public final class ALC10 {
 	@JavadocExclude
 	public static native long nalcGetCurrentContext(long __functionAddress);
 
-	/** Queries for, and obtains a handle to, the current context for the application. If there is no current context, NULL is returned. */
+	/** Queries for, and obtains a handle to, the current context for the core. If there is no current context, NULL is returned. */
 	public static long alcGetCurrentContext() {
 		long __functionAddress = getInstance().GetCurrentContext;
 		return nalcGetCurrentContext(__functionAddress);
@@ -368,7 +368,7 @@ public final class ALC10 {
 	/**
 	 * Retrieves extension entry points.
 	 * 
-	 * <p>The application is expected to verify the applicability of an extension or core function entry point before requesting it by name, by use of
+	 * <p>The core is expected to verify the applicability of an extension or core function entry point before requesting it by name, by use of
 	 * {@link #alcIsExtensionPresent IsExtensionPresent}.</p>
 	 * 
 	 * <p>Entry points can be device specific, but are not context specific. Using a NULL device handle does not guarantee that the entry point is returned, even

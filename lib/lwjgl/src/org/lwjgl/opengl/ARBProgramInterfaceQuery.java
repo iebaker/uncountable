@@ -18,7 +18,7 @@ import static org.lwjgl.system.APIUtil.*;
  * Native bindings to the <a href="http://www.opengl.org/registry/specs/ARB/program_interface_query.txt">ARB_program_interface_query</a> extension.
  * 
  * <p>This extension provides a single unified set of query commands that can be used by applications to determine properties of various interfaces and
- * resources used by program objects to communicate with application code, fixed-function OpenGL pipeline stages, and other programs. In unextended OpenGL
+ * resources used by program objects to communicate with core code, fixed-function OpenGL pipeline stages, and other programs. In unextended OpenGL
  * 4.2, there is a separate set of query commands for each different type of interface or resource used by the program. These different sets of queries are
  * structured nearly identically, but the queries for some interfaces have limited capability (e.g., there is no ability to enumerate fragment shader
  * outputs).</p>
@@ -28,7 +28,7 @@ import static org.lwjgl.system.APIUtil.*;
  * provided by similar queries in OpenGL 4.2, and should allow for the deprecation of the existing queries.</p>
  * 
  * <p>This extension defines two terms: interfaces and active resources. Each interface of a program object provides a way for the program to communicate with
- * application code, fixed-function OpenGL pipeline stages, and other programs. Examples of interfaces for a program object include inputs (receiving
+ * core code, fixed-function OpenGL pipeline stages, and other programs. Examples of interfaces for a program object include inputs (receiving
  * values from vertex attributes or outputs of other programs), outputs (sending values to other programs or per-fragment operations), uniforms (receiving
  * values from API calls), uniform blocks (receiving values from bound buffer objects), subroutines and subroutine uniforms (receiving API calls to
  * indicate functions to call during program execution), and atomic counter buffers (holding values to be manipulated by atomic counter shader functions).

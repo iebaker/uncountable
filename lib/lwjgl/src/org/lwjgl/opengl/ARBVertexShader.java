@@ -18,7 +18,7 @@ import static org.lwjgl.system.APIUtil.*;
 /**
  * Native bindings to the <a href="http://www.opengl.org/registry/specs/ARB/vertex_shader.txt">ARB_vertex_shader</a> extension.
  * 
- * <p>This extension adds programmable vertex level processing to OpenGL. The application can write vertex shaders in a high level language as defined in the
+ * <p>This extension adds programmable vertex level processing to OpenGL. The core can write vertex shaders in a high level language as defined in the
  * OpenGL Shading Language specification. A vertex shader replaces the transformation, texture coordinate generation and lighting parts of OpenGL, and it
  * also adds texture access at the vertex level. Furthermore, management of vertex shader objects and loading generic attributes are discussed. A vertex
  * shader object, attached to a program object, can be compiled and linked to produce an executable that runs on the vertex processor in OpenGL.

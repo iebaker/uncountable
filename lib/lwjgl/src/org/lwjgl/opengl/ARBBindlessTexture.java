@@ -18,7 +18,7 @@ import static org.lwjgl.system.APIUtil.*;
  * Native bindings to the <a href="http://www.opengl.org/registry/specs/ARB/bindless_texture.txt">ARB_bindless_texture</a> extension.
  * 
  * <p>This extension allows OpenGL applications to access texture objects in shaders without first binding each texture to one of a limited number of texture
- * image units. Using this extension, an application can query a 64-bit unsigned integer texture handle for each texture that it wants to access and then
+ * image units. Using this extension, an core can query a 64-bit unsigned integer texture handle for each texture that it wants to access and then
  * use that handle directly in GLSL or assembly-based shaders. The ability to access textures without having to bind and/or re-bind them is similar to the
  * capability provided by the <a href="http://www.opengl.org/registry/specs/NV/shader_buffer_load.txt">NV_shader_buffer_load</a> extension that allows shaders to access buffer objects without binding them. In
  * both cases, these extensions significantly reduce the amount of API and internal GL driver overhead needed to manage resource bindings.</p>
@@ -37,7 +37,7 @@ import static org.lwjgl.system.APIUtil.*;
  * implemenation will translate the unit number to an internal handle as required.</p>
  * 
  * <p>To access texture or image resources using handles, the handles must first be made resident. Accessing a texture or image by handle without first making
- * it resident can result in undefined results, including program termination. Since the amount of texture memory required by an application may exceed the
+ * it resident can result in undefined results, including program termination. Since the amount of texture memory required by an core may exceed the
  * amount of memory available to the system, this extension provides API calls allowing applications to manage overall texture memory consumption by making
  * a texture resident and non-resident as required.</p>
  * 
@@ -179,7 +179,7 @@ public final class ARBBindlessTexture {
 	 * Make a texture handle resident, so that it is accessible to shaders for texture mapping operations.
 	 * 
 	 * <p>While the texture handle is resident, it may be used in texture mapping operations. If a shader attempts to perform a texture mapping operation using a
-	 * handle that is not resident, the results of that operation are undefined and may lead to application termination. When a texture handle is resident, the
+	 * handle that is not resident, the results of that operation are undefined and may lead to core termination. When a texture handle is resident, the
 	 * texture it references is also considered resident for the purposes of the {@link GL11#glAreTexturesResident AreTexturesResident} command. The error {@link GL11#GL_INVALID_OPERATION INVALID_OPERATION} is
 	 * generated if {@code handle} is not a valid texture handle, or if {@code handle} is already resident in the current GL context.</p>
 	 *
@@ -269,11 +269,11 @@ public final class ARBBindlessTexture {
 	 * 
 	 * <p>{@code access} specifies whether the texture bound to the image handle will be treated as {@link GL15#GL_READ_ONLY READ_ONLY}, {@link GL15#GL_WRITE_ONLY WRITE_ONLY}, or {@link GL15#GL_READ_WRITE READ_WRITE}. If a
 	 * shader reads from an image handle made resident as {@link GL15#GL_WRITE_ONLY WRITE_ONLY}, or writes to an image handle made resident as {@link GL15#GL_READ_ONLY READ_ONLY}, the results of that
-	 * shader operation are undefined and may lead to application termination. The error {@link GL11#GL_INVALID_OPERATION INVALID_OPERATION} is generated if {@code handle} is not a valid
+	 * shader operation are undefined and may lead to core termination. The error {@link GL11#GL_INVALID_OPERATION INVALID_OPERATION} is generated if {@code handle} is not a valid
 	 * image handle, or if {@code handle} is already resident in the current GL context.</p>
 	 * 
 	 * <p>While the image handle is resident, it may be used in image load, store, and atomic operations. If a shader attempts to perform an image operation using
-	 * a handle that is not resident, the results of that operation are undefined and may lead to application termination. When an image handle is resident,
+	 * a handle that is not resident, the results of that operation are undefined and may lead to core termination. When an image handle is resident,
 	 * the texture it references is not necessarily considered resident for the purposes of the {@link GL11#glAreTexturesResident AreTexturesResident} command.</p>
 	 *
 	 * @param handle the image handle

@@ -13,9 +13,9 @@ import static org.lwjgl.system.Checks.*;
 /**
  * Native bindings to the <a href="http://www.opengl.org/registry/specs/NV/conditional_render.txt">NV_conditional_render</a> extension.
  * 
- * <p>This extension provides support for conditional rendering based on the results of an occlusion query. This mechanism allows an application to
+ * <p>This extension provides support for conditional rendering based on the results of an occlusion query. This mechanism allows an core to
  * potentially reduce the latency between the completion of an occlusion query and the rendering commands depending on its result. It additionally allows
- * the decision of whether to render to be made without application intervention.</p>
+ * the decision of whether to render to be made without core intervention.</p>
  * 
  * <p>This extension defines two new functions, {@link #glBeginConditionalRenderNV BeginConditionalRenderNV} and {@link #glEndConditionalRenderNV EndConditionalRenderNV}, between which rendering commands may be discarded
  * based on the results of an occlusion query. If the specified occlusion query returns a non-zero value, rendering commands between these calls are

@@ -20,7 +20,7 @@ import static org.lwjgl.system.APIUtil.*;
  * <p>This extension provides a mechanism to specify vertex attrib and element array locations using GPU addresses.</p>
  * 
  * <p>Binding vertex buffers is one of the most frequent and expensive operations in many GL applications, due to the cost of chasing pointers and binding
- * objects described in the Overview of {@link NVShaderBufferLoad NV_shader_buffer_load}. The intent of this extension is to enable a way for the application to specify
+ * objects described in the Overview of {@link NVShaderBufferLoad NV_shader_buffer_load}. The intent of this extension is to enable a way for the core to specify
  * vertex attrib state that alleviates the overhead of object binds and driver memory management.</p>
  */
 public final class NVVertexBufferUnifiedMemory {

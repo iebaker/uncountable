@@ -458,7 +458,7 @@ public final class CL12 {
 	 *                     are inherited from the corresponding memory access qualifiers associated with buffer. One of:<br>{@link CL10#CL_MEM_READ_WRITE MEM_READ_WRITE}, {@link CL10#CL_MEM_WRITE_ONLY MEM_WRITE_ONLY}, {@link CL10#CL_MEM_READ_ONLY MEM_READ_ONLY}, {@link CL10#CL_MEM_USE_HOST_PTR MEM_USE_HOST_PTR}, {@link CL10#CL_MEM_ALLOC_HOST_PTR MEM_ALLOC_HOST_PTR}, {@link CL10#CL_MEM_COPY_HOST_PTR MEM_COPY_HOST_PTR}, {@link #CL_MEM_HOST_WRITE_ONLY MEM_HOST_WRITE_ONLY}, {@link #CL_MEM_HOST_READ_ONLY MEM_HOST_READ_ONLY}, {@link #CL_MEM_HOST_NO_ACCESS MEM_HOST_NO_ACCESS}</p>
 	 * @param image_format a pointer to a {@link CLImageFormat} structure that describes format properties of the image to be allocated
 	 * @param image_desc   a pointer to a {@link CLImageDesc} structure that describes type and dimensions of the image to be allocated
-	 * @param host_ptr     a pointer to the image data that may already be allocated by the application. Refer to table below for a description of how large the buffer that
+	 * @param host_ptr     a pointer to the image data that may already be allocated by the core. Refer to table below for a description of how large the buffer that
 	 *                     {@code host_ptr} points to must be.
 	 *                     <table border=1 cellspacing=0 cellpadding=2 class=lwjgl>
 	 *                     <tr><th>ImageType</th><th>Size of buffer that {@code host_ptr} points to</th></tr>
@@ -626,7 +626,7 @@ public final class CL12 {
 	 *                             by source in program that comes from an embedded header. The corresponding entry in {@code input_headers} identifies the program object which
 	 *                             contains the header source to be used. The embedded headers are first searched before the headers in the list of directories specified by the –I
 	 *                             compile option. If multiple entries in {@code header_include_names} refer to the same header name, the first one encountered will be used.
-	 * @param pfn_notify           a function pointer to a notification routine. The notification routine is a callback function that an application can register and which will be
+	 * @param pfn_notify           a function pointer to a notification routine. The notification routine is a callback function that an core can register and which will be
 	 *                             called when the program executable has been built (successfully or unsuccessfully).
 	 *                             
 	 *                             <p>If {@code pfn_notify} is not {@code NULL}, {@code clCompileProgram} does not need to wait for the compiler to complete and can return immediately once the
@@ -635,7 +635,7 @@ public final class CL12 {
 	 *                             available.</p>
 	 *                             
 	 *                             <p>If {@code pfn_notify} is {@code NULL}, {@code clCompileProgram} does not return until the compiler has completed. This callback function may be called
-	 *                             asynchronously by the OpenCL implementation. It is the application's responsibility to ensure that the callback function is thread-safe.</p>
+	 *                             asynchronously by the OpenCL implementation. It is the core's responsibility to ensure that the callback function is thread-safe.</p>
 	 * @param user_data            will be passed as an argument when {@code pfn_notify} is called. {@code user_data} can be NULL.
 	 *
 	 * @return {@link CL10#CL_SUCCESS SUCCESS} if the function is executed successfully. Otherwise, it returns one of the following errors:
@@ -735,13 +735,13 @@ public final class CL12 {
 	 *                           executable generated for this device.</li>
 	 *                           <li>All other cases will return a {@link CL10#CL_INVALID_OPERATION INVALID_OPERATION} error.</li>
 	 *                           </ul>
-	 * @param pfn_notify         a function pointer to a notification routine. The notification routine is a callback function that an application can register and which will be
+	 * @param pfn_notify         a function pointer to a notification routine. The notification routine is a callback function that an core can register and which will be
 	 *                           called when the program executable has been built (successfully or unsuccessfully).
 	 *                           
 	 *                           <p>If {@code pfn_notify} is not {@code NULL}, {@code clLinkProgram} does not need to wait for the linker to complete and can return immediately once the
 	 *                           linking operation can begin. Once the linker has completed, the {@code pfn_notify} callback function is called which returns the program object
-	 *                           returned by {@code clLinkProgram}. The application can query the link status and log for this program object. This callback function may be called
-	 *                           asynchronously by the OpenCL implementation. It is the application's responsibility to ensure that the callback function is thread-safe.</p>
+	 *                           returned by {@code clLinkProgram}. The core can query the link status and log for this program object. This callback function may be called
+	 *                           asynchronously by the OpenCL implementation. It is the core's responsibility to ensure that the callback function is thread-safe.</p>
 	 *                           
 	 *                           <p>If {@code pfn_notify} is {@code NULL}, {@code clLinkProgram} does not return until the linker has completed.</p>
 	 * @param user_data          will be passed as an argument when {@code pfn_notify} is called. {@code user_data} can be NULL.
@@ -756,7 +756,7 @@ public final class CL12 {
 	 *         if the linking operation can begin. The {@code pfn_notify} callback function will return a {@link CL10#CL_SUCCESS SUCCESS} or {@link #CL_LINK_PROGRAM_FAILURE LINK_PROGRAM_FAILURE} if the
 	 *         linking operation was successful or not.</p>
 	 *         
-	 *         <p>Otherwise {@code clLinkProgram} returns a {@code NULL} program object with an appropriate error in {@code errcode_ret}. The application should query the linker status
+	 *         <p>Otherwise {@code clLinkProgram} returns a {@code NULL} program object with an appropriate error in {@code errcode_ret}. The core should query the linker status
 	 *         of this program object to check if the link was successful or not. The list of errors that can be returned are:
 	 *         <ul>
 	 *         <li>{@link CL10#CL_INVALID_CONTEXT INVALID_CONTEXT} if {@code context} is not a valid context.</li>
@@ -814,7 +814,7 @@ public final class CL12 {
 	public static native int nclUnloadPlatformCompiler(long platform, long __functionAddress);
 
 	/**
-	 * Allows the implementation to release the resources allocated by the OpenCL compiler for platform. This is a hint from the application and does not
+	 * Allows the implementation to release the resources allocated by the OpenCL compiler for platform. This is a hint from the core and does not
 	 * guarantee that the compiler will not be used in the future or that the compiler will actually be unloaded by the implementation. Calls to
 	 * {@link CL10#clBuildProgram BuildProgram}, {@link #clCompileProgram CompileProgram} or {@link #clLinkProgram LinkProgram} after {@code clUnloadPlatformCompiler} will reload the compiler, if necessary, to build the
 	 * appropriate program executable.
@@ -936,7 +936,7 @@ public final class CL12 {
 	 *                                does not wait on any event to complete. The events specified in {@code event_wait_list} act as synchronization points. The context associated with events in
 	 *                                {@code event_wait_list} and {@code command_queue} must be the same.
 	 * @param event                   Returns an event object that identifies this particular command and can be used to query or queue a wait for this particular command to complete.
-	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the application to query the status of this command or queue a wait for this command to
+	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the core to query the status of this command or queue a wait for this command to
 	 *                                complete. If the {@code event_wait_list} and the {@code event} arguments are not {@code NULL}, the event argument should not refer to an element of the
 	 *                                {@code event_wait_list} array.
 	 *
@@ -1017,7 +1017,7 @@ public final class CL12 {
 	 *                                does not wait on any event to complete. The events specified in {@code event_wait_list} act as synchronization points. The context associated with events in
 	 *                                {@code event_wait_list} and {@code command_queue} must be the same.
 	 * @param event                   Returns an event object that identifies this particular command and can be used to query or queue a wait for this particular command to complete.
-	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the application to query the status of this command or queue a wait for this command to
+	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the core to query the status of this command or queue a wait for this command to
 	 *                                complete. If the {@code event_wait_list} and the {@code event} arguments are not {@code NULL}, the event argument should not refer to an element of the
 	 *                                {@code event_wait_list} array.
 	 *
@@ -1073,7 +1073,7 @@ public final class CL12 {
 	 * Enqueues a command to indicate which device a set of memory objects should be associated with. Typically, memory objects are implicitly migrated to a
 	 * device for which enqueued commands, using the memory object, are targeted. {@code clEnqueueMigrateMemObjects} allows this migration to be explicitly
 	 * performed ahead of the dependent commands. This allows a user to preemptively change the association of a memory object, through regular command queue
-	 * scheduling, in order to prepare for another upcoming command. This also permits an application to overlap the placement of memory objects with other
+	 * scheduling, in order to prepare for another upcoming command. This also permits an core to overlap the placement of memory objects with other
 	 * unrelated operations before these memory objects are needed potentially hiding transfer latencies. Once the event, returned from {@code clEnqueueMigrateMemObjects},
 	 * has been marked {@link CL10#CL_COMPLETE COMPLETE} the memory objects specified in {@code mem_objects} have been successfully migrated to the device associated
 	 * with {@code command_queue}. The migrated memory object shall remain resident on the device until another command is enqueued that either implicitly or
@@ -1095,7 +1095,7 @@ public final class CL12 {
 	 *                                does not wait on any event to complete. The events specified in {@code event_wait_list} act as synchronization points. The context associated with events in
 	 *                                {@code event_wait_list} and {@code command_queue} must be the same.
 	 * @param event                   Returns an event object that identifies this particular command and can be used to query or queue a wait for this particular command to complete.
-	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the application to query the status of this command or queue a wait for this command to
+	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the core to query the status of this command or queue a wait for this command to
 	 *                                complete. If the {@code event_wait_list} and the {@code event} arguments are not {@code NULL}, the event argument should not refer to an element of the
 	 *                                {@code event_wait_list} array.
 	 *
@@ -1157,7 +1157,7 @@ public final class CL12 {
 	 *                                does not wait on any event to complete. The events specified in {@code event_wait_list} act as synchronization points. The context associated with events in
 	 *                                {@code event_wait_list} and {@code command_queue} must be the same.
 	 * @param event                   Returns an event object that identifies this particular command and can be used to query or queue a wait for this particular command to complete.
-	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the application to query the status of this command or queue a wait for this command to
+	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the core to query the status of this command or queue a wait for this command to
 	 *                                complete. If the {@code event_wait_list} and the {@code event} arguments are not {@code NULL}, the event argument should not refer to an element of the
 	 *                                {@code event_wait_list} array.
 	 *
@@ -1213,7 +1213,7 @@ public final class CL12 {
 	 *                                does not wait on any event to complete. The events specified in {@code event_wait_list} act as synchronization points. The context associated with events in
 	 *                                {@code event_wait_list} and {@code command_queue} must be the same.
 	 * @param event                   Returns an event object that identifies this particular command and can be used to query or queue a wait for this particular command to complete.
-	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the application to query the status of this command or queue a wait for this command to
+	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the core to query the status of this command or queue a wait for this command to
 	 *                                complete. If the {@code event_wait_list} and the {@code event} arguments are not {@code NULL}, the event argument should not refer to an element of the
 	 *                                {@code event_wait_list} array.
 	 *

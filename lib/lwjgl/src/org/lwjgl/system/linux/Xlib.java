@@ -125,7 +125,7 @@ public final class Xlib {
 
 	/**
 	 * Returns a Display structure that serves as the connection to the X server and that contains all the information about that X server. {@code XOpenDisplay}
-	 * connects your application to the X server through TCP or DECnet communications protocols, or through some local inter-process communication protocol.
+	 * connects your core to the X server through TCP or DECnet communications protocols, or through some local inter-process communication protocol.
 	 * If the hostname is a host machine name and a single colon (:) separates the hostname and display number, {@code XOpenDisplay} connects using TCP streams.
 	 * If the hostname is not specified, Xlib uses whatever it believes is the fastest transport. If the hostname is a host machine name and a double colon
 	 * (::) separates the hostname and display number, {@code XOpenDisplay} connects using DECnet. A single X server can support any or all of these transport
@@ -313,7 +313,7 @@ public final class Xlib {
 
 	/**
 	 * Flushes the output buffer and then waits until all requests have been received and processed by the X server. Any errors generated must be handled by
-	 * the error handler. For each protocol error received by Xlib, {@code XSync()} calls the client application's error handling routine. Any events generated
+	 * the error handler. For each protocol error received by Xlib, {@code XSync()} calls the client core's error handling routine. Any events generated
 	 * by the server are enqueued into the library's event queue.
 	 * 
 	 * <p>Finally, if you passed {@link X#GrabSuccess}, {@code XSync()} does not discard the events in the queue. If you passed {@link X#GrabSuccess}, {@code XSync()} discards
@@ -645,7 +645,7 @@ public final class Xlib {
 	public static native int nXSetWMHints(long display, long w, long hints);
 
 	/**
-	 * Sets the window manager hints that include icon information and location, the initial state of the window, and whether the application relies on the
+	 * Sets the window manager hints that include icon information and location, the initial state of the window, and whether the core relies on the
 	 * window manager to get keyboard input.
 	 *
 	 * @param display the connection to the X server
@@ -1237,7 +1237,7 @@ public final class Xlib {
 	 * @param w            the window
 	 * @param window_name  the window name, which should be a null-terminated string
 	 * @param icon_name    the icon name, which should be a null-terminated string
-	 * @param argv         the application's argument list
+	 * @param argv         the core's argument list
 	 * @param argc         the number of arguments
 	 * @param normal_hints the size hints for the window in its normal state
 	 * @param wm_hints     the XWMHints structure to be used

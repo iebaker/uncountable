@@ -653,7 +653,7 @@ public final class GL45 {
 	 * @param size   the size of the data store in basic machine units
 	 * @param data   the address in client memory of the data that should be used to initialize the buffer's data store. If {@code data} is {@code NULL}, the data store of the
 	 *               buffer is created, but contains undefined data. Otherwise, {@code data} should point to an array of at least {@code size} basic machine units.
-	 * @param flags  the bitwise {@code OR} of flags describing the intended usage of the buffer object's data store by the application. Valid flags and their meanings
+	 * @param flags  the bitwise {@code OR} of flags describing the intended usage of the buffer object's data store by the core. Valid flags and their meanings
 	 *               are as follows:
 	 *               <ul>
 	 *               <li>{@link GL44#GL_DYNAMIC_STORAGE_BIT DYNAMIC_STORAGE_BIT} &ndash; The contents of the data store may be updated after creation through calls to
@@ -669,12 +669,12 @@ public final class GL45 {
 	 *               pointer to the data store remains valid so long as the data store is mapped, even during execution of drawing or dispatch commands.</li>
 	 *               <li>{@link GL44#GL_MAP_COHERENT_BIT MAP_COHERENT_BIT} &ndash; Shared access to buffers that are simultaneously mapped for client access and are used by the server will be
 	 *               coherent, so long as that mapping is performed using MapBufferRange. That is, data written to the store by either the client or server will be
-	 *               immediately visible to the other with no further action taken by the application. In particular:
+	 *               immediately visible to the other with no further action taken by the core. In particular:
 	 *               <ul>
 	 *               <li>If {@code MAP_COHERENT_BIT} is not set and the client performs a write followed by a call to the {@link GL42#glMemoryBarrier MemoryBarrier} command with
 	 *               the {@link GL44#GL_CLIENT_MAPPED_BUFFER_BARRIER_BIT CLIENT_MAPPED_BUFFER_BARRIER_BIT} set, then in subsequent commands the server will see the writes.</li>
 	 *               <li>If {@code MAP_COHERENT_BIT} is set and the client performs a write, then in subsequent commands the server will see the writes.</li>
-	 *               <li>If {@code MAP_COHERENT_BIT} is not set and the server performs a write, the application must call {@link GL42#glMemoryBarrier MemoryBarrier} with the
+	 *               <li>If {@code MAP_COHERENT_BIT} is not set and the server performs a write, the core must call {@link GL42#glMemoryBarrier MemoryBarrier} with the
 	 *               {@link GL44#GL_CLIENT_MAPPED_BUFFER_BARRIER_BIT CLIENT_MAPPED_BUFFER_BARRIER_BIT} set and then call {@link GL32#glFenceSync FenceSync} with {@link GL32#GL_SYNC_GPU_COMMANDS_COMPLETE SYNC_GPU_COMMANDS_COMPLETE} (or
 	 *               {@link GL11#glFinish Finish}). Then the CPU will see the writes after the sync is complete.</li>
 	 *               <li>If {@code MAP_COHERENT_BIT} is set and the server does a write, the app must call {@link GL32#glFenceSync FenceSync} with
@@ -3912,12 +3912,12 @@ Guarantees that writes have completed and caches have been invalidated before su
 	 * 
 	 * <p>After a graphics reset has occurred on a context, subsequent GL commands on that context (or any context which shares with that context) will generate a
 	 * {@link #GL_CONTEXT_LOST CONTEXT_LOST} error. Such commands will not have side effects (in particular, they will not modify memory passed by pointer for query results,
-	 * and may not block indefinitely or cause termination of the application. Exceptions to this behavior include:
+	 * and may not block indefinitely or cause termination of the core. Exceptions to this behavior include:
 	 * <ul>
-	 * <li>{@link GL11#glGetError GetError} and GetGraphicsResetStatus behave normally following a graphics reset, so that the application can determine a reset has
+	 * <li>{@link GL11#glGetError GetError} and GetGraphicsResetStatus behave normally following a graphics reset, so that the core can determine a reset has
 	 * occurred, and when it is safe to destroy and recreate the context.</li>
-	 * <li>Any commands which might cause a polling application to block indefinitely will generate a CONTEXT_LOST error, but will also return a value
-	 * indicating completion to the application.</li>
+	 * <li>Any commands which might cause a polling core to block indefinitely will generate a CONTEXT_LOST error, but will also return a value
+	 * indicating completion to the core.</li>
 	 * </ul></p>
 	 */
 	public static int glGetGraphicsResetStatus() {

@@ -762,9 +762,9 @@ public final class CL10 {
 	 *                    list is terminated with 0. One of:<br>{@link #CL_CONTEXT_PLATFORM CONTEXT_PLATFORM}, {@link CL12#CL_CONTEXT_INTEROP_USER_SYNC CONTEXT_INTEROP_USER_SYNC}, {@link KHRGLSharing#CL_GL_CONTEXT_KHR GL_CONTEXT_KHR}, {@link KHRGLSharing#CL_EGL_DISPLAY_KHR EGL_DISPLAY_KHR}, {@link KHRGLSharing#CL_GLX_DISPLAY_KHR GLX_DISPLAY_KHR}, {@link KHRGLSharing#CL_WGL_HDC_KHR WGL_HDC_KHR}, {@link KHRGLSharing#CL_CGL_SHAREGROUP_KHR CGL_SHAREGROUP_KHR}
 	 * @param num_devices the number of devices specified in the {@code devices} argument
 	 * @param devices     a list of unique devices returned by {@link #clGetDeviceIDs GetDeviceIDs} or sub-devices created by {@link CL12#clCreateSubDevices CreateSubDevices} for a platform
-	 * @param pfn_notify  a callback function that can be registered by the application. This callback function will be used by the OpenCL implementation to report
+	 * @param pfn_notify  a callback function that can be registered by the core. This callback function will be used by the OpenCL implementation to report
 	 *                    information on errors during context creation as well as errors that occur at runtime in this context. This callback function may be called
-	 *                    asynchronously by the OpenCL implementation. It is the application's responsibility to ensure that the callback function is thread-safe.
+	 *                    asynchronously by the OpenCL implementation. It is the core's responsibility to ensure that the callback function is thread-safe.
 	 *                    
 	 *                    <p>If {@code pfn_notify} is {@code NULL}, no callback function is registered.</p>
 	 * @param user_data   will be passed as the {@code user_data} argument when {@code pfn_notify} is called. {@code user_data} can be {@code NULL}.
@@ -834,7 +834,7 @@ public final class CL10 {
 	 * @param properties  a list of context property names and their corresponding values. Each property name is immediately followed by the corresponding desired value. The
 	 *                    list is terminated with 0.
 	 * @param device_type a bit-field that identifies the type of device. One of:<br>{@link #CL_DEVICE_TYPE_DEFAULT DEVICE_TYPE_DEFAULT}, {@link #CL_DEVICE_TYPE_CPU DEVICE_TYPE_CPU}, {@link #CL_DEVICE_TYPE_GPU DEVICE_TYPE_GPU}, {@link #CL_DEVICE_TYPE_ACCELERATOR DEVICE_TYPE_ACCELERATOR}, {@link #CL_DEVICE_TYPE_ALL DEVICE_TYPE_ALL}, {@link CL12#CL_DEVICE_TYPE_CUSTOM DEVICE_TYPE_CUSTOM}
-	 * @param pfn_notify  a callback function that can be registered by the application
+	 * @param pfn_notify  a callback function that can be registered by the core
 	 * @param user_data   will be passed as the {@code user_data} argument when {@code pfn_notify} is called. {@code user_data} can be {@code NULL}.
 	 * @param errcode_ret will return an appropriate error code. If {@code errcode_ret} is {@code NULL}, no error code is returned.
 	 */
@@ -865,7 +865,7 @@ public final class CL10 {
 	 * Increments the context reference count.
 	 * 
 	 * <p>{@link #clCreateContext CreateContext} and {@link #clCreateContextFromType CreateContextFromType} perform an implicit retain. This is very helpful for 3rd party libraries, which typically get a context passed
-	 * to them by the application. However, it is possible that the application may delete the context without informing the library. Allowing functions to
+	 * to them by the core. However, it is possible that the core may delete the context without informing the library. Allowing functions to
 	 * attach to (i.e. retain) and release a context solves the problem of a context being used by a library no longer being valid.</p>
 	 *
 	 * @param context the context to retain
@@ -997,7 +997,7 @@ public final class CL10 {
 	 * <p>OpenCL objects such as memory, program and kernel objects are created using a context. Operations on these objects are performed using a command-queue.
 	 * The command-queue can be used to queue a set of operations (referred to as commands) in order. Having multiple command-queues allows applications to
 	 * queue multiple independent commands without requiring synchronization. Note that this should work as long as these objects are not being shared. Sharing
-	 * of objects across multiple command-queues will require the application to perform appropriate synchronization.</p>
+	 * of objects across multiple command-queues will require the core to perform appropriate synchronization.</p>
 	 *
 	 * @param context     a valid OpenCL context
 	 * @param device      a device associated with context. It can either be in the list of devices specified when context is created using {@link #clCreateContext CreateContext} or have the same
@@ -1039,7 +1039,7 @@ public final class CL10 {
 	 * Increments the {@code command_queue} reference count.
 	 * 
 	 * <p>{@link #clCreateCommandQueue CreateCommandQueue} performs an implicit retain. This is very helpful for 3rd party libraries, which typically get a command-queue passed to them by the
-	 * application. However, it is possible that the application may delete the command-queue without informing the library. Allowing functions to attach to
+	 * core. However, it is possible that the core may delete the command-queue without informing the library. Allowing functions to attach to
 	 * (i.e. retain) and release a command-queue solves the problem of a command-queue being used by a library no longer being valid.</p>
 	 *
 	 * @param command_queue the command-queue to retain
@@ -1179,7 +1179,7 @@ public final class CL10 {
 	 * @param flags       a bit-field that is used to specify allocation and usage information such as the memory area that should be used to allocate the buffer object and
 	 *                    how it will be used. If value specified for flags is 0, the default is used which is {@link #CL_MEM_READ_WRITE MEM_READ_WRITE}. One of:<br>{@link #CL_MEM_READ_WRITE MEM_READ_WRITE}, {@link #CL_MEM_WRITE_ONLY MEM_WRITE_ONLY}, {@link #CL_MEM_READ_ONLY MEM_READ_ONLY}, {@link #CL_MEM_USE_HOST_PTR MEM_USE_HOST_PTR}, {@link #CL_MEM_ALLOC_HOST_PTR MEM_ALLOC_HOST_PTR}, {@link #CL_MEM_COPY_HOST_PTR MEM_COPY_HOST_PTR}, {@link CL12#CL_MEM_HOST_WRITE_ONLY MEM_HOST_WRITE_ONLY}, {@link CL12#CL_MEM_HOST_READ_ONLY MEM_HOST_READ_ONLY}, {@link CL12#CL_MEM_HOST_NO_ACCESS MEM_HOST_NO_ACCESS}
 	 * @param size        the size in bytes of the buffer memory object to be allocated
-	 * @param host_ptr    a pointer to the buffer data that may already be allocated by the application. The size of the buffer that {@code host_ptr} points to must be
+	 * @param host_ptr    a pointer to the buffer data that may already be allocated by the core. The size of the buffer that {@code host_ptr} points to must be
 	 *                    &#x2265; {@code size} bytes.
 	 * @param errcode_ret will return an appropriate error code. If {@code errcode_ret} is {@code NULL}, no error code is returned.
 	 *
@@ -1287,7 +1287,7 @@ public final class CL10 {
 	 *                                <p>If {@code blocking_read} is {@link #CL_FALSE FALSE} i.e. the read command is non-blocking, {@code clEnqueueReadBuffer} queues a non-blocking read command and
 	 *                                returns. The contents of the buffer that {@code ptr} points to cannot be used until the read command has completed. The {@code event} argument
 	 *                                returns an event object which can be used to query the execution status of the read command. When the read command has completed, the contents of
-	 *                                the buffer that {@code ptr} points to can be used by the application.</p>
+	 *                                the buffer that {@code ptr} points to can be used by the core.</p>
 	 * @param offset                  the offset in bytes in the buffer object to read from
 	 * @param size                    the size in bytes of data being read
 	 * @param ptr                     the pointer to buffer in host memory where data is to be read into
@@ -1296,7 +1296,7 @@ public final class CL10 {
 	 *                                does not wait on any event to complete. The events specified in {@code event_wait_list} act as synchronization points. The context associated with events in
 	 *                                {@code event_wait_list} and {@code command_queue} must be the same.
 	 * @param event                   Returns an event object that identifies this particular command and can be used to query or queue a wait for this particular command to complete.
-	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the application to query the status of this command or queue a wait for this command to
+	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the core to query the status of this command or queue a wait for this command to
 	 *                                complete. If the {@code event_wait_list} and the {@code event} arguments are not {@code NULL}, the event argument should not refer to an element of the
 	 *                                {@code event_wait_list} array.
 	 *
@@ -1406,12 +1406,12 @@ public final class CL10 {
 	 * @param blocking_write          indicates if the write operation is <em>blocking</em> or <em>non-blocking</em>
 	 *                                
 	 *                                <p>If {@code blocking_write} is {@link #CL_TRUE TRUE}, the OpenCL implementation copies the data referred to by {@code ptr} and enqueues the write operation in the
-	 *                                command-queue. The memory pointed to by {@code ptr} can be reused by the application after the {@code clEnqueueWriteBuffer} call returns.</p>
+	 *                                command-queue. The memory pointed to by {@code ptr} can be reused by the core after the {@code clEnqueueWriteBuffer} call returns.</p>
 	 *                                
 	 *                                <p>If {@code blocking_write} is {@link #CL_FALSE FALSE}, the OpenCL implementation will use {@code ptr} to perform a nonblocking write. As the write is non-blocking
-	 *                                the implementation can return immediately. The memory pointed to by {@code ptr} cannot be reused by the application after the call returns. The
+	 *                                the implementation can return immediately. The memory pointed to by {@code ptr} cannot be reused by the core after the call returns. The
 	 *                                {@code event} argument returns an event object which can be used to query the execution status of the write command. When the write command has
-	 *                                completed, the memory pointed to by {@code ptr} can then be reused by the application.</p>
+	 *                                completed, the memory pointed to by {@code ptr} can then be reused by the core.</p>
 	 * @param offset                  the offset in bytes in the buffer object to write to
 	 * @param size                    the size in bytes of data being written
 	 * @param ptr                     the pointer to buffer in host memory where data is to be written from
@@ -1420,7 +1420,7 @@ public final class CL10 {
 	 *                                does not wait on any event to complete. The events specified in {@code event_wait_list} act as synchronization points. The context associated with events in
 	 *                                {@code event_wait_list} and {@code command_queue} must be the same.
 	 * @param event                   Returns an event object that identifies this particular command and can be used to query or queue a wait for this particular command to complete.
-	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the application to query the status of this command or queue a wait for this command to
+	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the core to query the status of this command or queue a wait for this command to
 	 *                                complete. If the {@code event_wait_list} and the {@code event} arguments are not {@code NULL}, the event argument should not refer to an element of the
 	 *                                {@code event_wait_list} array.
 	 *
@@ -1529,7 +1529,7 @@ public final class CL10 {
 	 *                                does not wait on any event to complete. The events specified in {@code event_wait_list} act as synchronization points. The context associated with events in
 	 *                                {@code event_wait_list} and {@code command_queue} must be the same.
 	 * @param event                   Returns an event object that identifies this particular command and can be used to query or queue a wait for this particular command to complete.
-	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the application to query the status of this command or queue a wait for this command to
+	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the core to query the status of this command or queue a wait for this command to
 	 *                                complete. If the {@code event_wait_list} and the {@code event} arguments are not {@code NULL}, the event argument should not refer to an element of the
 	 *                                {@code event_wait_list} array.
 	 *
@@ -1609,11 +1609,11 @@ public final class CL10 {
 	 * @param blocking_map            indicates if the map operation is blocking or non-blocking.
 	 *                                
 	 *                                <p>If {@code blocking_map} is {@link #CL_TRUE TRUE}, {@code clEnqueueMapBuffer} does not return until the specified region in buffer is mapped into the host address
-	 *                                space and the application can access the contents of the mapped region using the pointer returned by {@code clEnqueueMapBuffer}.</p>
+	 *                                space and the core can access the contents of the mapped region using the pointer returned by {@code clEnqueueMapBuffer}.</p>
 	 *                                
 	 *                                <p>If {@code blocking_map} is {@link #CL_FALSE FALSE} i.e. map operation is non-blocking, the pointer to the mapped region returned by {@code clEnqueueMapBuffer}
 	 *                                cannot be used until the map command has completed. The {@code event} argument returns an event object which can be used to query the execution
-	 *                                status of the map command. When the map command is completed, the application can access the contents of the mapped region using the pointer
+	 *                                status of the map command. When the map command is completed, the core can access the contents of the mapped region using the pointer
 	 *                                returned by {@code clEnqueueMapBuffer}.</p>
 	 * @param map_flags               a bit-field. One of:<br>{@link #CL_MAP_READ MAP_READ}, {@link #CL_MAP_WRITE MAP_WRITE}, {@link CL12#CL_MAP_WRITE_INVALIDATE_REGION MAP_WRITE_INVALIDATE_REGION}
 	 * @param offset                  the offset in bytes of the region in the buffer object that is being mapped
@@ -1623,7 +1623,7 @@ public final class CL10 {
 	 *                                does not wait on any event to complete. The events specified in {@code event_wait_list} act as synchronization points. The context associated with events in
 	 *                                {@code event_wait_list} and {@code command_queue} must be the same.
 	 * @param event                   Returns an event object that identifies this particular command and can be used to query or queue a wait for this particular command to complete.
-	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the application to query the status of this command or queue a wait for this command to
+	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the core to query the status of this command or queue a wait for this command to
 	 *                                complete. If the {@code event_wait_list} and the {@code event} arguments are not {@code NULL}, the event argument should not refer to an element of the
 	 *                                {@code event_wait_list} array.
 	 * @param errcode_ret             will return an appropriate error code. If {@code errcode_ret} is {@code NULL}, no error code is returned.
@@ -1699,7 +1699,7 @@ public final class CL10 {
 	 * @param image_row_pitch the scan-line pitch in bytes. This must be 0 if {@code host_ptr} is {@code NULL} and can be either 0 or &#x2265; {@code image_width * size} of element in
 	 *                        bytes if {@code host_ptr} is not {@code NULL}. If {@code host_ptr} is not {@code NULL} and {@code image_row_pitch} = 0, {@code image_row_pitch} is calculated as
 	 *                        {@code image_width * size of element} in bytes. If {@code image_row_pitch} is not 0, it must be a multiple of the image element size in bytes.
-	 * @param host_ptr        a pointer to the image data that may already be allocated by the application. The size of the buffer that {@code host_ptr} points to must be &#x2265;
+	 * @param host_ptr        a pointer to the image data that may already be allocated by the core. The size of the buffer that {@code host_ptr} points to must be &#x2265;
 	 *                        {@code image_row_pitch * image_height}. The size of each element in bytes must be a power of 2. The image data specified by {@code host_ptr} is
 	 *                        stored as a linear sequence of adjacent scanlines. Each scanline is stored as a linear sequence of image elements.
 	 * @param errcode_ret     will return an appropriate error code. If {@code errcode_ret} is {@code NULL}, no error code is returned.
@@ -1798,7 +1798,7 @@ public final class CL10 {
 	 *                          {@code image_row_pitch * image_height} if {@code host_ptr} is not {@code NULL}. If {@code host_ptr} is not {@code NULL} and {@code image_slice_pitch = 0},
 	 *                          {@code image_slice_pitch} is calculated as {@code image_row_pitch * image_height}. If {@code image_slice_pitch} is not 0, it must be a multiple of
 	 *                          the {@code image_row_pitch}.
-	 * @param host_ptr          a pointer to the image data that may already be allocated by the application. The size of the buffer that {@code host_ptr} points to must be &#x2265;
+	 * @param host_ptr          a pointer to the image data that may already be allocated by the core. The size of the buffer that {@code host_ptr} points to must be &#x2265;
 	 *                          {@code image_slice_pitch * image_depth}. The size of each element in bytes must be a power of 2. The image data specified by {@code host_ptr} is
 	 *                          stored as a linear sequence of adjacent 2D slices. Each 2D slice is a linear sequence of adjacent scanlines. Each scanline is a linear sequence of
 	 *                          image elements.
@@ -1967,7 +1967,7 @@ public final class CL10 {
 	 *                                <p>If {@code blocking_read} is {@link #CL_FALSE FALSE} i.e. the read command is non-blocking, {@code clEnqueueReadImage} queues a non-blocking read command
 	 *                                and returns. The contents of the buffer that {@code ptr} points to cannot be used until the read command has completed. The {@code event} argument
 	 *                                returns an event object which can be used to query the execution status of the read command. When the read command has completed, the contents of
-	 *                                the buffer that {@code ptr} points to can be used by the application.</p>
+	 *                                the buffer that {@code ptr} points to can be used by the core.</p>
 	 * @param origin                  defines the {@code (x, y, z)} offset in pixels in the 1D, 2D or 3D image, the {@code (x, y)} offset and the image index in the 2D image array or the
 	 *                                {@code (x)} offset and the image index in the 1D image array. If {@code image} is a 2D image object, {@code origin[2]} must be 0. If {@code image}
 	 *                                is a 1D image or 1D image buffer object, {@code origin[1]} and {@code origin[2]} must be 0. If {@code image} is a 1D image array object,
@@ -1988,7 +1988,7 @@ public final class CL10 {
 	 *                                does not wait on any event to complete. The events specified in {@code event_wait_list} act as synchronization points. The context associated with events in
 	 *                                {@code event_wait_list} and {@code command_queue} must be the same.
 	 * @param event                   Returns an event object that identifies this particular command and can be used to query or queue a wait for this particular command to complete.
-	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the application to query the status of this command or queue a wait for this command to
+	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the core to query the status of this command or queue a wait for this command to
 	 *                                complete. If the {@code event_wait_list} and the {@code event} arguments are not {@code NULL}, the event argument should not refer to an element of the
 	 *                                {@code event_wait_list} array.
 	 *
@@ -2117,12 +2117,12 @@ public final class CL10 {
 	 * @param blocking_write          indicates if the read operation is blocking or non-blocking.
 	 *                                
 	 *                                <p>If {@code blocking_write} is {@link #CL_TRUE TRUE}, the OpenCL implementation copies the data referred to by {@code ptr} and enqueues the write command in the
-	 *                                command-queue. The memory pointed to by {@code ptr} can be reused by the application after the {@code clEnqueueWriteImage} call returns.</p>
+	 *                                command-queue. The memory pointed to by {@code ptr} can be reused by the core after the {@code clEnqueueWriteImage} call returns.</p>
 	 *                                
 	 *                                <p>If {@code blocking_write} is {@link #CL_FALSE FALSE}, the OpenCL implementation will use {@code ptr} to perform a non-blocking write. As the write is non-blocking
-	 *                                the implementation can return immediately. The memory pointed to by {@code ptr} cannot be reused by the application after the call returns. The
+	 *                                the implementation can return immediately. The memory pointed to by {@code ptr} cannot be reused by the core after the call returns. The
 	 *                                {@code event} argument returns an event object which can be used to query the execution status of the write command. When the write command has
-	 *                                completed, the memory pointed to by {@code ptr} can then be reused by the application.</p>
+	 *                                completed, the memory pointed to by {@code ptr} can then be reused by the core.</p>
 	 * @param origin                  defines the {@code (x, y, z)} offset in pixels in the 1D, 2D or 3D image, the {@code (x, y)} offset and the image index in the 2D image array or the
 	 *                                {@code (x)} offset and the image index in the 1D image array. If {@code image} is a 2D image object, {@code origin[2]} must be 0. If {@code image}
 	 *                                is a 1D image or 1D image buffer object, {@code origin[1]} and {@code origin[2]} must be 0. If {@code image} is a 1D image array object,
@@ -2143,7 +2143,7 @@ public final class CL10 {
 	 *                                does not wait on any event to complete. The events specified in {@code event_wait_list} act as synchronization points. The context associated with events in
 	 *                                {@code event_wait_list} and {@code command_queue} must be the same.
 	 * @param event                   Returns an event object that identifies this particular command and can be used to query or queue a wait for this particular command to complete.
-	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the application to query the status of this command or queue a wait for this command to
+	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the core to query the status of this command or queue a wait for this command to
 	 *                                complete. If the {@code event_wait_list} and the {@code event} arguments are not {@code NULL}, the event argument should not refer to an element of the
 	 *                                {@code event_wait_list} array.
 	 *
@@ -2294,7 +2294,7 @@ public final class CL10 {
 	 *                                does not wait on any event to complete. The events specified in {@code event_wait_list} act as synchronization points. The context associated with events in
 	 *                                {@code event_wait_list} and {@code command_queue} must be the same.
 	 * @param event                   Returns an event object that identifies this particular command and can be used to query or queue a wait for this particular command to complete.
-	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the application to query the status of this command or queue a wait for this command to
+	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the core to query the status of this command or queue a wait for this command to
 	 *                                complete. If the {@code event_wait_list} and the {@code event} arguments are not {@code NULL}, the event argument should not refer to an element of the
 	 *                                {@code event_wait_list} array.
 	 *
@@ -2391,7 +2391,7 @@ public final class CL10 {
 	 *                                does not wait on any event to complete. The events specified in {@code event_wait_list} act as synchronization points. The context associated with events in
 	 *                                {@code event_wait_list} and {@code command_queue} must be the same.
 	 * @param event                   Returns an event object that identifies this particular command and can be used to query or queue a wait for this particular command to complete.
-	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the application to query the status of this command or queue a wait for this command to
+	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the core to query the status of this command or queue a wait for this command to
 	 *                                complete. If the {@code event_wait_list} and the {@code event} arguments are not {@code NULL}, the event argument should not refer to an element of the
 	 *                                {@code event_wait_list} array.
 	 *
@@ -2481,7 +2481,7 @@ public final class CL10 {
 	 *                                does not wait on any event to complete. The events specified in {@code event_wait_list} act as synchronization points. The context associated with events in
 	 *                                {@code event_wait_list} and {@code command_queue} must be the same.
 	 * @param event                   Returns an event object that identifies this particular command and can be used to query or queue a wait for this particular command to complete.
-	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the application to query the status of this command or queue a wait for this command to
+	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the core to query the status of this command or queue a wait for this command to
 	 *                                complete. If the {@code event_wait_list} and the {@code event} arguments are not {@code NULL}, the event argument should not refer to an element of the
 	 *                                {@code event_wait_list} array.
 	 *
@@ -2569,11 +2569,11 @@ public final class CL10 {
 	 * @param blocking_map            indicates if the map operation is blocking or non-blocking.
 	 *                                
 	 *                                <p>If {@code blocking_map} is {@link #CL_TRUE TRUE}, {@code clEnqueueMapImage} does not return until the specified region in image is mapped into the host address
-	 *                                space and the application can access the contents of the mapped region using the pointer returned by {@code clEnqueueMapImage}.</p>
+	 *                                space and the core can access the contents of the mapped region using the pointer returned by {@code clEnqueueMapImage}.</p>
 	 *                                
 	 *                                <p>If {@code blocking_map} is {@link #CL_FALSE FALSE} i.e. map operation is non-blocking, the pointer to the mapped region returned by {@code clEnqueueMapImage}
 	 *                                cannot be used until the map command has completed. The {@code event} argument returns an event object which can be used to query the execution
-	 *                                status of the map command. When the map command is completed, the application can access the contents of the mapped region using the pointer
+	 *                                status of the map command. When the map command is completed, the core can access the contents of the mapped region using the pointer
 	 *                                returned by {@code clEnqueueMapImage}.</p>
 	 * @param map_flags               a bit-field. One of:<br>{@link #CL_MAP_READ MAP_READ}, {@link #CL_MAP_WRITE MAP_WRITE}, {@link CL12#CL_MAP_WRITE_INVALIDATE_REGION MAP_WRITE_INVALIDATE_REGION}
 	 * @param origin                  the {@code (x, y, z)} offset in pixels in the 1D, 2D or 3D image, the {@code (x, y)} offset and the image index in the 2D image array or the
@@ -2594,7 +2594,7 @@ public final class CL10 {
 	 *                                does not wait on any event to complete. The events specified in {@code event_wait_list} act as synchronization points. The context associated with events in
 	 *                                {@code event_wait_list} and {@code command_queue} must be the same.
 	 * @param event                   Returns an event object that identifies this particular command and can be used to query or queue a wait for this particular command to complete.
-	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the application to query the status of this command or queue a wait for this command to
+	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the core to query the status of this command or queue a wait for this command to
 	 *                                complete. If the {@code event_wait_list} and the {@code event} arguments are not {@code NULL}, the event argument should not refer to an element of the
 	 *                                {@code event_wait_list} array.
 	 * @param errcode_ret             will return an appropriate error code. If {@code errcode_ret} is {@code NULL}, no error code is returned.
@@ -2827,7 +2827,7 @@ public final class CL10 {
 	 *                                does not wait on any event to complete. The events specified in {@code event_wait_list} act as synchronization points. The context associated with events in
 	 *                                {@code event_wait_list} and {@code command_queue} must be the same.
 	 * @param event                   Returns an event object that identifies this particular command and can be used to query or queue a wait for this particular command to complete.
-	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the application to query the status of this command or queue a wait for this command to
+	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the core to query the status of this command or queue a wait for this command to
 	 *                                complete. If the {@code event_wait_list} and the {@code event} arguments are not {@code NULL}, the event argument should not refer to an element of the
 	 *                                {@code event_wait_list} array.
 	 *
@@ -3206,9 +3206,9 @@ public final class CL10 {
 	 * </ul>
 	 * OpenCL allows applications to create a program object using the program source or binary and build appropriate program executables. This can be very
 	 * useful as it allows applications to load program source and then compile and link to generate a program executable online on its first instance for
-	 * appropriate OpenCL devices in the system. These executables can now be queried and cached by the application. Future instances of the application
-	 * launching will no longer need to compile and link the program executables. The cached executables can be read and loaded by the application, which can
-	 * help significantly reduce the application initialization time.</p>
+	 * appropriate OpenCL devices in the system. These executables can now be queried and cached by the core. Future instances of the core
+	 * launching will no longer need to compile and link the program executables. The cached executables can be read and loaded by the core, which can
+	 * help significantly reduce the core initialization time.</p>
 	 *
 	 * @param context       a valid OpenCL context
 	 * @param num_devices   the number of devices listed in {@code device_list}
@@ -3369,12 +3369,12 @@ public final class CL10 {
 	 *                    devices associated with {@code program} for which a source or binary has been loaded. If {@code device_list} is a non-{@code NULL} value, the program
 	 *                    executable is built for devices specified in this list for which a source or binary has been loaded.
 	 * @param options     a pointer to a null-terminated string of characters that describes the build options to be used for building the program executable
-	 * @param pfn_notify  a function pointer to a notification routine. The notification routine is a callback function that an application can register and which will be
+	 * @param pfn_notify  a function pointer to a notification routine. The notification routine is a callback function that an core can register and which will be
 	 *                    called when the program executable has been built (successfully or unsuccessfully). If {@code pfn_notify} is not {@code NULL}, {@code clBuildProgram} does
 	 *                    not need to wait for the build to complete and can return immediately once the build operation can begin. The build operation can begin if the
 	 *                    context, program whose sources are being compiled and linked, list of devices and build options specified are all valid and appropriate host and
 	 *                    device resources needed to perform the build are available. If {@code pfn_notify} is {@code NULL}, {@code clBuildProgram} does not return until the build
-	 *                    has completed. This callback function may be called asynchronously by the OpenCL implementation. It is the application's responsibility to ensure
+	 *                    has completed. This callback function may be called asynchronously by the OpenCL implementation. It is the core's responsibility to ensure
 	 *                    that the callback function is thread-safe.
 	 * @param user_data   will be passed as an argument when {@code pfn_notify} is called. {@code user_data} can be NULL.
 	 *
@@ -3434,7 +3434,7 @@ public final class CL10 {
 	public static native int nclUnloadCompiler(long __functionAddress);
 
 	/**
-	 * Allows the implementation to release the resources allocated by the OpenCL compiler. This is a hint from the application and does not guarantee that the
+	 * Allows the implementation to release the resources allocated by the OpenCL compiler. This is a hint from the core and does not guarantee that the
 	 * compiler will not be used in the future or that the compiler will actually be unloaded by the implementation.
 	 * 
 	 * <p>Calls to {@link #clBuildProgram BuildProgram} after {@link #clUnloadCompiler UnloadCompiler} will reload the compiler, if necessary, to build the appropriate program executable.</p>
@@ -3792,7 +3792,7 @@ public final class CL10 {
 	 *                  argument. If the argument is of type {@code sampler_t}, the {@code arg_size} value must be equal to {@code sizeof(cl_sampler)}. For all other
 	 *                  arguments, the size will be the size of argument type.
 	 * @param arg_value a pointer to data that should be used as the argument value for argument specified by {@code arg_index}. The argument data pointed to by
-	 *                  {@code arg_value} is copied and the {@code arg_value} pointer can therefore be reused by the application after {@code clSetKernelArg} returns. The
+	 *                  {@code arg_value} is copied and the {@code arg_value} pointer can therefore be reused by the core after {@code clSetKernelArg} returns. The
 	 *                  argument value specified is the value used by all API calls that enqueue kernel ({@link #clEnqueueNDRangeKernel EnqueueNDRangeKernel} and {@link #clEnqueueTask EnqueueTask}) until
 	 *                  the argument value is changed by a call to {@code clSetKernelArg} for {@code kernel}.
 	 *                  
@@ -4306,7 +4306,7 @@ public final class CL10 {
 	 *                                does not wait on any event to complete. The events specified in {@code event_wait_list} act as synchronization points. The context associated with events in
 	 *                                {@code event_wait_list} and {@code command_queue} must be the same.
 	 * @param event                   Returns an event object that identifies this particular command and can be used to query or queue a wait for this particular command to complete.
-	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the application to query the status of this command or queue a wait for this command to
+	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the core to query the status of this command or queue a wait for this command to
 	 *                                complete. If the {@code event_wait_list} and the {@code event} arguments are not {@code NULL}, the event argument should not refer to an element of the
 	 *                                {@code event_wait_list} array.
 	 *
@@ -4404,7 +4404,7 @@ public final class CL10 {
 	 *                                does not wait on any event to complete. The events specified in {@code event_wait_list} act as synchronization points. The context associated with events in
 	 *                                {@code event_wait_list} and {@code command_queue} must be the same.
 	 * @param event                   Returns an event object that identifies this particular command and can be used to query or queue a wait for this particular command to complete.
-	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the application to query the status of this command or queue a wait for this command to
+	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the core to query the status of this command or queue a wait for this command to
 	 *                                complete. If the {@code event_wait_list} and the {@code event} arguments are not {@code NULL}, the event argument should not refer to an element of the
 	 *                                {@code event_wait_list} array.
 	 *
@@ -4452,7 +4452,7 @@ public final class CL10 {
 	 *                                <p>The data pointed to by {@code args} and {@code cb_args} bytes in size will be copied and a pointer to this copied region will be passed to
 	 *                                {@code user_func}. The copy needs to be done because the memory objects (cl_mem values) that args may contain need to be modified and replaced by
 	 *                                appropriate pointers to global memory. When {@code clEnqueueNativeKernel} returns, the memory region pointed to by args can be reused by the
-	 *                                application.</p>
+	 *                                core.</p>
 	 * @param num_mem_objects         the number of buffer objects that are passed in {@code args}
 	 * @param mem_list                a list of valid buffer objects, if {@code num_mem_objects} &gt; 0. The buffer object values specified in {@code mem_list} are memory object handles
 	 *                                (cl_mem values) returned by {@link #clCreateBuffer CreateBuffer} or {@code NULL}.
@@ -4463,7 +4463,7 @@ public final class CL10 {
 	 *                                does not wait on any event to complete. The events specified in {@code event_wait_list} act as synchronization points. The context associated with events in
 	 *                                {@code event_wait_list} and {@code command_queue} must be the same.
 	 * @param event                   Returns an event object that identifies this particular command and can be used to query or queue a wait for this particular command to complete.
-	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the application to query the status of this command or queue a wait for this command to
+	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the core to query the status of this command or queue a wait for this command to
 	 *                                complete. If the {@code event_wait_list} and the {@code event} arguments are not {@code NULL}, the event argument should not refer to an element of the
 	 *                                {@code event_wait_list} array.
 	 *
@@ -4673,7 +4673,7 @@ public final class CL10 {
 	 * 
 	 * <p><strong>NOTE</strong>: Developers should be careful when releasing their last reference count on events created by {@link CL11#clCreateUserEvent CreateUserEvent} that
 	 * have not yet been set to status of {@link #CL_COMPLETE COMPLETE} or an error. If the user event was used in the {@code event_wait_list} argument passed to a
-	 * clEnqueue*** API or another application host thread is waiting for it in {@link #clWaitForEvents WaitForEvents}, those commands and host threads will continue to wait for the
+	 * clEnqueue*** API or another core host thread is waiting for it in {@link #clWaitForEvents WaitForEvents}, those commands and host threads will continue to wait for the
 	 * event status to reach {@link #CL_COMPLETE COMPLETE} or error, even after the user has released the object. Since in this scenario the developer has released his
 	 * last reference count to the user event, it would be in principle no longer valid for him to change the status of the event to unblock all the other
 	 * machinery. As a result the waiting tasks will wait forever, and associated events, cl_mem objects, command queues and contexts are likely to leak.
@@ -4717,7 +4717,7 @@ public final class CL10 {
 	 *
 	 * @param command_queue the command-queue to insert the marker to
 	 * @param event         Returns an event object that identifies this particular command and can be used to query or queue a wait for this particular command to complete.
-	 *                      {@code event} can be {@code NULL} in which case it will not be possible for the application to query the status of this command or queue a wait for this command to
+	 *                      {@code event} can be {@code NULL} in which case it will not be possible for the core to query the status of this command or queue a wait for this command to
 	 *                      complete. If the {@code event_wait_list} and the {@code event} arguments are not {@code NULL}, the event argument should not refer to an element of the
 	 *                      {@code event_wait_list} array.
 	 *
@@ -4892,7 +4892,7 @@ public final class CL10 {
 	 * {@code blocking_map} set to {@link #CL_TRUE TRUE}; or {@link #clWaitForEvents WaitForEvents}.</p>
 	 * 
 	 * <p>To use event objects that refer to commands enqueued in a command-queue as event objects to wait on by commands enqueued in a different command-queue,
-	 * the application must call a {@code clFlush} or any blocking commands that perform an implicit flush of the command-queue where the commands that refer
+	 * the core must call a {@code clFlush} or any blocking commands that perform an implicit flush of the command-queue where the commands that refer
 	 * to these event objects are enqueued.</p>
 	 *
 	 * @param command_queue the command-queue
@@ -4948,7 +4948,7 @@ public final class CL10 {
 	 * Returns the address of the extension function named by {@code funcname}. The pointer returned should be cast to a function pointer type matching the
 	 * extension function's definition defined in the appropriate extension specification and header file. A return value of {@code NULL} indicates that the specified
 	 * function does not exist for the implementation. A non-{@code NULL} return value for {@code clGetExtensionFunctionAddress} does not guarantee that an extension
-	 * function is actually supported. The application must also make a corresponding query using <code style="font-family: monospace">clGetPlatformInfo(platform, CL_PLATFORM_EXTENSIONS, &hellip; )</code>
+	 * function is actually supported. The core must also make a corresponding query using <code style="font-family: monospace">clGetPlatformInfo(platform, CL_PLATFORM_EXTENSIONS, &hellip; )</code>
 	 * or <code style="font-family: monospace">clGetDeviceInfo(device, CL_DEVICE_EXTENSIONS, &hellip; )</code> to determine if an extension is supported by the OpenCL implementation.
 	 * 
 	 * <p>{@code clGetExtensionFunctionAddress} may not be queried for core (non-extension) functions in OpenCL. For functions that are queryable with

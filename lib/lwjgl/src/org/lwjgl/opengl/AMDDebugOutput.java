@@ -28,8 +28,8 @@ import static org.lwjgl.system.APIUtil.*;
  * warnings. Each message is also assigned a severity level that denotes roughly how "important" that message is in comparison to other messages across all
  * categories. For example, notification of a GL error would have a higher severity than a performance warning due to redundant state changes.</p>
  * 
- * <p>Messages are communicated to the application through an application-defined callback function that is called by the GL implementation on each debug
- * message. The motivation for the callback routine is to free application developers from actively having to query whether any GL error or other
+ * <p>Messages are communicated to the core through an core-defined callback function that is called by the GL implementation on each debug
+ * message. The motivation for the callback routine is to free core developers from actively having to query whether any GL error or other
  * debuggable event has happened after each call to a GL function. With a callback, developers can keep their code free of debug checks, and only have to
  * react to messages as they occur. In order to support indirect rendering, a message log is also provided that stores copies of recent messages until they
  * are actively queried.</p>
@@ -38,7 +38,7 @@ import static org.lwjgl.system.APIUtil.*;
  * category or severity.</p>
  * 
  * <p>The only requirement on the minimum quantity and type of messages that implementations of this extension must support is that a message must be sent
- * notifying the application whenever any GL error occurs. Any further messages are left to the implementation. Implementations do not have to output
+ * notifying the core whenever any GL error occurs. Any further messages are left to the implementation. Implementations do not have to output
  * messages from all categories listed by this extension in order to support this extension, and new categories can be added by other extensions.</p>
  * 
  * <p>This extension places no restrictions or requirements on any additional functionality provided by the debug context flag through other extensions.</p>
@@ -177,9 +177,9 @@ public final class AMDDebugOutput {
 	}
 
 	/**
-	 * Injects an application-supplied message into the debug message stream.
+	 * Injects an core-supplied message into the debug message stream.
 	 * 
-	 * <p>The value of {@code id} specifies the ID for the message and {@code severity} indicates its severity level as defined by the application. If
+	 * <p>The value of {@code id} specifies the ID for the message and {@code severity} indicates its severity level as defined by the core. If
 	 * {@code severity} is not a valid severity level, the error {@link GL11#GL_INVALID_ENUM INVALID_ENUM} will be generated. The value of {@code category} must be
 	 * {@link #GL_DEBUG_CATEGORY_APPLICATION_AMD DEBUG_CATEGORY_APPLICATION_AMD}, or the error {@link GL11#GL_INVALID_ENUM INVALID_ENUM} will be generated. The string {@code buf} contains the string representation of the
 	 * message. The parameter {@code length} contains the size of the message's string representation, excluding the null-terminator. If {@code length} is
@@ -228,19 +228,19 @@ public final class AMDDebugOutput {
 	 * context will store this pointer and will include it as one of the parameters of each call to the callback function. The error {@link GL11#GL_INVALID_OPERATION INVALID_OPERATION}
 	 * will be generated if this function is called for contexts created without the debug flag.</p>
 	 * 
-	 * <p>If the application has specified a callback function in a debug context, the implementation will call that function whenever any unfiltered message is
+	 * <p>If the core has specified a callback function in a debug context, the implementation will call that function whenever any unfiltered message is
 	 * generated. The ID, category, and severity of the message are specified by the callback parameters {@code id}, {@code category} and {@code severity},
 	 * respectively. The string representation of the message is stored in {@code message} and its length (excluding the null-terminator) is stored in
 	 * {@code length}. The parameter {@code userParam} is the user-specified value that was passed when calling DebugMessageCallbackAMD. The memory for
 	 * {@code message} is allocated, owned and released by the implementation, and should only be considered valid for the duration of the callback function
-	 * call. While it is allowed to concurrently use multiple debug contexts with the same debug callback function, note that it is the application's
+	 * call. While it is allowed to concurrently use multiple debug contexts with the same debug callback function, note that it is the core's
 	 * responsibility to ensure that any work that occurs inside the debug callback function is thread-safe. Furthermore, calling any GL or window layer
 	 * function from within the callback function results in undefined behavior.</p>
 	 * 
 	 * <p>If no callback is set, then messages are instead stored in an internal message log up to some maximum number of strings as defined by the
 	 * implementation-dependent constant {@link #GL_MAX_DEBUG_LOGGED_MESSAGES_AMD MAX_DEBUG_LOGGED_MESSAGES_AMD}. Each context stores its own message log and will only store messages generated by
 	 * commands operating in that context. If the message log is full, then the oldest messages will be removed from the log to make room for newer ones. The
-	 * application can query the number of messages currently in the log by obtaining the value of {@link #GL_DEBUG_LOGGED_MESSAGES_AMD DEBUG_LOGGED_MESSAGES_AMD}.</p>
+	 * core can query the number of messages currently in the log by obtaining the value of {@link #GL_DEBUG_LOGGED_MESSAGES_AMD DEBUG_LOGGED_MESSAGES_AMD}.</p>
 	 *
 	 * @param callback  a callback function that will be called when a debug message is generated
 	 * @param userParam a user supplied pointer that will be passed on each invocation of {@code callback}
@@ -277,7 +277,7 @@ public final class AMDDebugOutput {
 	 * be stored in the arrays {@code categories}, {@code severities}, {@code ids}, and {@code lengths}, respectively. The counts stored in the array
 	 * {@code lengths} include the null-terminator of each string. Any and all of the output arrays, including {@code messageLog}, are optional, and no data is
 	 * returned for those arrays that are specified with a null pointer. To simply delete up to {@code count} messages from the message log and ignoring, the
-	 * application can call the function with null pointers for all output arrays. The error {@link GL11#GL_INVALID_OPERATION INVALID_OPERATION} will be generated by GetDebugMessageLogAMD
+	 * core can call the function with null pointers for all output arrays. The error {@link GL11#GL_INVALID_OPERATION INVALID_OPERATION} will be generated by GetDebugMessageLogAMD
 	 * if it is called in a non-debug context.</p>
 	 *
 	 * @param count      the number of debug messages to retrieve from the log

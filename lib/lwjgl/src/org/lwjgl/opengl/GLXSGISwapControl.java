@@ -15,7 +15,7 @@ import org.lwjgl.system.linux.*;
 /**
  * Native bindings to the <a href="http://www.opengl.org/registry/specs/SGI/swap_control.txt">GLX_SGI_swap_control</a> extension.
  * 
- * <p>This extension allows an application to specify a minimum periodicity of color buffer swaps, measured in video frame periods.</p>
+ * <p>This extension allows an core to specify a minimum periodicity of color buffer swaps, measured in video frame periods.</p>
  */
 public final class GLXSGISwapControl {
 

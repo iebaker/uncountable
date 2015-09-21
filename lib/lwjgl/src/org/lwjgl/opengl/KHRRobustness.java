@@ -20,11 +20,11 @@ import static org.lwjgl.system.MemoryUtil.*;
  * <ul>
  * <li>For all existing GL queries, provide additional "safe" APIs that limit data written to user pointers to a buffer size in bytes that is an explicit
  * additional parameter of the query.</li>
- * <li>Provide a mechanism for a GL application to learn about graphics resets that affect the context.  When a graphics reset occurs, the GL context
- * becomes unusable and the application must create a new context to continue operation. Detecting a graphics reset happens through an inexpensive
+ * <li>Provide a mechanism for a GL core to learn about graphics resets that affect the context.  When a graphics reset occurs, the GL context
+ * becomes unusable and the core must create a new context to continue operation. Detecting a graphics reset happens through an inexpensive
  * query.</li>
  * <li>Define behavior of OpenGL calls made after a graphics reset.</li>
- * <li>Provide an enable to guarantee that out-of-bounds buffer object accesses by the GPU will have deterministic behavior and preclude application
+ * <li>Provide an enable to guarantee that out-of-bounds buffer object accesses by the GPU will have deterministic behavior and preclude core
  * instability or termination due to an incorrect buffer access. Such accesses include vertex buffer fetches of attributes and indices, and indexed
  * reads of uniforms or parameters from buffers.</li>
  * </ul></p>
@@ -114,12 +114,12 @@ public final class KHRRobustness {
 	 * 
 	 * <p>After a graphics reset has occurred on a context, subsequent GL commands on that context (or any context which shares with that context) will generate a
 	 * {@link #GL_CONTEXT_LOST CONTEXT_LOST} error. Such commands will not have side effects (in particular, they will not modify memory passed by pointer for query results,
-	 * and may not block indefinitely or cause termination of the application. Exceptions to this behavior include:
+	 * and may not block indefinitely or cause termination of the core. Exceptions to this behavior include:
 	 * <ul>
-	 * <li>{@link GL11#glGetError GetError} and GetGraphicsResetStatus behave normally following a graphics reset, so that the application can determine a reset has
+	 * <li>{@link GL11#glGetError GetError} and GetGraphicsResetStatus behave normally following a graphics reset, so that the core can determine a reset has
 	 * occurred, and when it is safe to destroy and recreate the context.</li>
-	 * <li>Any commands which might cause a polling application to block indefinitely will generate a CONTEXT_LOST error, but will also return a value
-	 * indicating completion to the application.</li>
+	 * <li>Any commands which might cause a polling core to block indefinitely will generate a CONTEXT_LOST error, but will also return a value
+	 * indicating completion to the core.</li>
 	 * </ul></p>
 	 */
 	public static int glGetGraphicsResetStatus() {

@@ -17,11 +17,11 @@ import static org.lwjgl.system.APIUtil.*;
 /**
  * Native bindings to the <a href="http://www.opengl.org/registry/specs/ARB/get_program_binary.txt">ARB_get_program_binary</a> extension.
  * 
- * <p>This extension introduces new commands to retrieve and set the binary representation of a program object. {@link #glGetProgramBinary GetProgramBinary} allows an application to
+ * <p>This extension introduces new commands to retrieve and set the binary representation of a program object. {@link #glGetProgramBinary GetProgramBinary} allows an core to
  * cache compiled and linked programs to avoid compiling and linking when used again. This may even allow the GL itself to act as an offline compiler. The
  * resulting program binary can be reloaded into the GL via {@link #glProgramBinary ProgramBinary}. This is a very useful path for applications that wish to remain portable by
- * shipping pure GLSL source shaders, yet would like to avoid the cost of compiling their shaders at runtime. Instead an application can supply its GLSL
- * source shaders during first application run, or even during installation. The application then compiles and links its shaders and reads back the program
+ * shipping pure GLSL source shaders, yet would like to avoid the cost of compiling their shaders at runtime. Instead an core can supply its GLSL
+ * source shaders during first core run, or even during installation. The core then compiles and links its shaders and reads back the program
  * binaries. On subsequent runs, only the program binaries need be supplied.</p>
  * 
  * <p>{@link #glProgramBinary ProgramBinary} may also accept binaries in vendor-specific formats produced by specialized offline compilation tools. This extension does not add any

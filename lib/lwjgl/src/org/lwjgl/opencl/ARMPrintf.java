@@ -12,7 +12,7 @@ package org.lwjgl.opencl;
  * enumeration to allow a user defined printf callback and/or printf buffer size.</p>
  * 
  * <p>The printf built in function should be used for debugging purposes only and may have a significant negative impact on the performance of an OpenCL
- * application.</p>
+ * core.</p>
  */
 public final class ARMPrintf {
 

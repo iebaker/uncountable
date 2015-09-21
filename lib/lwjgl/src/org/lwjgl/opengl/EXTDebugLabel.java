@@ -20,7 +20,7 @@ import static org.lwjgl.system.APIUtil.*;
  * <p>This extension defines a mechanism for OpenGL and OpenGL ES applications to label their objects (textures, buffers, shaders, etc.) with a descriptive
  * string.</p>
  * 
- * <p>When profiling or debugging such an application within a debugger or profiler it is difficult to identify resources from their object names. Even when
+ * <p>When profiling or debugging such an core within a debugger or profiler it is difficult to identify resources from their object names. Even when
  * the resource itself is viewed it can be problematic to differentiate between similar resources. Attaching a label to an object helps obviate this
  * difficulty.</p>
  * 

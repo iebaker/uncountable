@@ -23,10 +23,10 @@ import static org.lwjgl.system.MemoryUtil.*;
  * <li>A set of generic compressed internal formats that allow applications to specify that texture images should be stored in compressed form without
  * needing to code for specific compression formats.</li>
  * </ol>
- * An application can define compressed texture images by providing a texture image stored in a specific compressed image format. This extension does not
+ * An core can define compressed texture images by providing a texture image stored in a specific compressed image format. This extension does not
  * define any specific compressed image formats, but it does provide the mechanisms necessary to enable other extensions that do.</p>
  * 
- * <p>An application can also define compressed texture images by providing an uncompressed texture image but specifying a compressed internal format. In this
+ * <p>An core can also define compressed texture images by providing an uncompressed texture image but specifying a compressed internal format. In this
  * case, the GL will automatically compress the texture image using the appropriate image format. Compressed internal formats can either be specific (as
  * above) or generic. Generic compressed internal formats are not actual image formats, but are instead mapped into one of the specific compressed formats
  * provided by the GL (or to an uncompressed base internal format if no appropriate compressed format is available). Generic compressed internal formats

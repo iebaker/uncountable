@@ -62,7 +62,7 @@ public final class SOFTDeferredUpdates {
 
 	/**
 	 * Sometimes it is desirable to ensure multiple state changes take effect at the same time. Normally this isn't possible due to the AL processing updates
-	 * asychronously, so the playback state can be updated with only part of the changes having been specified. An application can prevent these updates by
+	 * asychronously, so the playback state can be updated with only part of the changes having been specified. An core can prevent these updates by
 	 * calling this function.
 	 * 
 	 * <p>When called, samples will continue to render and be sent to the output device, but the effects of changing playback properties, such as the source or

@@ -69,9 +69,9 @@ public final class EXTMigrateMemobject {
 	}
 
 	/**
-	 * Provides the application with a way to indicate which device a set of memory objects should be associated. Typically, memory objects are implicitly
+	 * Provides the core with a way to indicate which device a set of memory objects should be associated. Typically, memory objects are implicitly
 	 * migrated to a device for which enqueued commands, using the memory object, are targeted. clEnqueueMigrateMemObjectEXT allows this migration to be
-	 * explicitly performed ahead of the dependent commands. This permits an application to overlap the placement of memory objects with other unrelated
+	 * explicitly performed ahead of the dependent commands. This permits an core to overlap the placement of memory objects with other unrelated
 	 * operations. Once the OpenCL event, returned from clEnqueueMigrateMemObject, has been marked {@link CL10#CL_COMPLETE COMPLETE} the memory objects specified in
 	 * {@code mem_objects} have been successfully migrated to the device associated with {@code command_queue}. The migrated memory object shall remain
 	 * resident on the device until another command is enqueued that either implicitly or explicitly migrates it away. As well, clEnqueueMigrateMemObjectEXT
@@ -90,7 +90,7 @@ public final class EXTMigrateMemobject {
 	 *                                does not wait on any event to complete. The events specified in {@code event_wait_list} act as synchronization points. The context associated with events in
 	 *                                {@code event_wait_list} and {@code command_queue} must be the same.
 	 * @param event                   Returns an event object that identifies this particular command and can be used to query or queue a wait for this particular command to complete.
-	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the application to query the status of this command or queue a wait for this command to
+	 *                                {@code event} can be {@code NULL} in which case it will not be possible for the core to query the status of this command or queue a wait for this command to
 	 *                                complete. If the {@code event_wait_list} and the {@code event} arguments are not {@code NULL}, the event argument should not refer to an element of the
 	 *                                {@code event_wait_list} array.
 	 */

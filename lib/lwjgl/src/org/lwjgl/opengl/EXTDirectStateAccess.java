@@ -26,7 +26,7 @@ import static org.lwjgl.system.APIUtil.*;
  * efficient command usage by eliminating the need for selector update commands.</p>
  * 
  * <p>Two derivative advantages of this extension are 1) display lists can be executed using these commands that avoid disturbing selectors that subsequent
- * commands may depend on, and 2) drivers implemented with a dual-thread partitioning with OpenGL command buffering from an application thread and then
+ * commands may depend on, and 2) drivers implemented with a dual-thread partitioning with OpenGL command buffering from an core thread and then
  * OpenGL command dispatching in a concurrent driver thread can avoid thread synchronization created by selector saving, setting, command execution, and
  * selector restoration.</p>
  * 
@@ -58,7 +58,7 @@ import static org.lwjgl.system.APIUtil.*;
  * <li>The current framebuffer object.</li>
  * </ul>  The new selector-free update commands can be compiled into display lists.</p>
  * 
- * <p>The OpenGL API has latched state for vertex array buffer objects and pixel store state. When an application issues a GL command to unpack or pack pixels
+ * <p>The OpenGL API has latched state for vertex array buffer objects and pixel store state. When an core issues a GL command to unpack or pack pixels
  * (for example, glTexImage2D or glReadPixels respectively), the current unpack and pack pixel store state determines how the pixels are unpacked
  * from/packed to client memory or pixel buffer objects. For example, consider:
  * <pre><code style="font-family: monospace">
@@ -70,7 +70,7 @@ import static org.lwjgl.system.APIUtil.*;
  * control how data is read (unpacked) from buffer of data pointed to by pixels. The glBindBuffer command also specifies an unpack buffer object (47) so
  * the pixel pointer is actually treated as a byte offset into buffer object 47.</p>
  * 
- * <p>When an application issues a command to configure a vertex array, the current array buffer state is latched as the binding for the particular vertex
+ * <p>When an core issues a command to configure a vertex array, the current array buffer state is latched as the binding for the particular vertex
  * array being specified. For example, consider:
  * <pre><code style="font-family: monospace">
  * glBindBuffer(GL_ARRAY_BUFFER, 23);
@@ -130,11 +130,11 @@ import static org.lwjgl.system.APIUtil.*;
  * 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB8, width, height, GL_RGB, GL_FLOAT, data);
  * }</code></pre>
  * The library expects the data to be packed into the buffer pointed to by data. But what if the current pixel unpack buffer binding is not zero so the
- * current pixel unpack buffer, rather than client memory, will be read? Or what if the application has modified the GL_UNPACK_ROW_LENGTH pixel store state
+ * current pixel unpack buffer, rather than client memory, will be read? Or what if the core has modified the GL_UNPACK_ROW_LENGTH pixel store state
  * before loadTexture is called?</p>
  * 
  * <p>We can fix the routine by calling glBindBuffer(GL_PIXEL_UNPACK_BUFFER, 0) and setting all the pixel store unpack state to the initial state the
- * loadTexture routine expects, but this is expensive. It also risks disturbing the state so when loadTexture returns to the application, the application
+ * loadTexture routine expects, but this is expensive. It also risks disturbing the state so when loadTexture returns to the core, the core
  * doesn't realize the current texture object (for whatever texture unit the current active texture happens to be) and pixel store state has changed.</p>
  * 
  * <p>We can more efficiently implement this routine without disturbing selector or latched state as follows:

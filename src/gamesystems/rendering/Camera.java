@@ -1,14 +1,14 @@
 package gamesystems.rendering;
 
 import java.util.Arrays;
-import java.util.List;
+import java.util.Collection;
 import java.util.Optional;
 
 import joml.Matrix4f;
 import joml.Vector3f;
 import joml.Vector4f;
-import world.Seam;
-import world.setpieces.Portal;
+import portals.Seam;
+import portals.Portal;
 
 public class Camera {
 
@@ -142,12 +142,14 @@ public class Camera {
         capture(() -> {}, Arrays.asList(renderables));
     }
 
-    public void capture(List<Renderable> renderables) throws RenderingException {
+    public <R extends Renderable> void capture(Collection<R> renderables) throws RenderingException {
         capture(() -> {}, renderables);
     }
 
-    private void capture(UniformSettings uniforms, List<Renderable> renderables) throws RenderingException {
-        for(Renderable renderable : renderables) {
+    public <R extends Renderable> void capture(UniformSettings uniforms, Collection<R> renderables)
+            throws RenderingException {
+
+        for(R renderable : renderables) {
 
             if(renderable.needsToBeBuffered()) {
                 Graphics.buffer(renderable);

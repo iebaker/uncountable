@@ -14,6 +14,7 @@ public class GameSystem {
 
     protected GameSystem() {}
 
+    public void initialize() {}             // Called at the beginning of the game
     public void tick(float seconds) {}      // Called every frame
 
     public void onKeyDown(int key) {}       // Called when a key is first pushed down

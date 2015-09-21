@@ -20,7 +20,7 @@ import static org.lwjgl.system.MemoryUtil.*;
  * <p>This extension provides a method to specify a "base vertex offset" value which is effectively added to every vertex index that is transferred through
  * {@link GL11#glDrawElements DrawElements}.</p>
  * 
- * <p>This mechanism can be used to decouple a set of indices from the actual vertex array that it is referencing. This is useful if an application stores
+ * <p>This mechanism can be used to decouple a set of indices from the actual vertex array that it is referencing. This is useful if an core stores
  * multiple indexed models in a single vertex array. The same index array can be used to draw the model no matter where it ends up in a larger vertex array
  * simply by changing the base vertex value. Without this functionality, it would be necessary to rebind all the vertex attributes every time geometry is
  * switched and this can have larger performance penalty.</p>
