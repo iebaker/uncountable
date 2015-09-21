@@ -1,5 +1,6 @@
 package gamesystems.architecture;
 
+import com.sun.corba.se.impl.encoding.OSFCodeSetRegistry;
 import core.Uncountable;
 import gamesystems.GameSystem;
 import gamesystems.architecture.setpieces.BasicColoredQuad;
@@ -9,23 +10,30 @@ import joml.Quaternionf;
 import joml.Vector3f;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.lwjgl.opengl.GL11;
 import portals.Portal;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Set;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.HashMap;
+import java.util.Random;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class ArchitectureSystem extends GameSystem {
 
-    private String m_modulesDirectoryName = "resources/modules";
+    private static String m_modulesDirectoryName = "resources/modules";
+    private static String m_rulesDirectoryName = "resources/rules";
+
     private Set<ModuleTemplate> m_moduleTemplates = new HashSet<>();
     private Map<String, ModuleTemplate> m_moduleTemplatesByName = new HashMap<>();
+    private Map<String, Map<String, Integer>> m_rulesByName = new HashMap<>();
+
+    private final int m_depth = 4;
 
     public ArchitectureSystem() {
         super();
@@ -33,22 +41,37 @@ public class ArchitectureSystem extends GameSystem {
 
     @Override
     public void initialize() {
+        importRules();
         importModuleTemplates();
+        Uncountable.game.world.currentModule = getTemplate("leafroom").getInstance();
+    }
 
-        Module flatRoom = getTemplate("flatroom").getInstance();
-        Module leafRoom = getTemplate("leafroom").getInstance();
-        Module cubeRoom = getTemplate("cuberoom").getInstance();
-        Module hallway1 = getTemplate("hallway").getInstance();
-        Module hallway2 = getTemplate("hallway").getInstance();
+    @Override
+    public void tick(float seconds) {
+        buildAround(Uncountable.game.world.currentModule);
+    }
 
-        link(flatRoom, "2", "0", hallway1);
-        link(hallway1, "1", "0", flatRoom);
-        link(flatRoom, "1", "0", cubeRoom);
-        link(cubeRoom, "1", "0", hallway2);
-        link(hallway2, "1", "3", cubeRoom);
-        link(cubeRoom, "2", "0", leafRoom);
+    private void buildAround(Module currentModule) {
+        buildAround(currentModule, 0);
+    }
 
-        Uncountable.game.world.currentModule = flatRoom;
+    private void buildAround(Module currentModule, int depth) {
+        if(depth > m_depth) return;
+        currentModule.getTemplate().getPortals().forEach(
+                (portal) -> {
+                    if (!currentModule.hasNeighbor(portal)) {
+                        ModuleTemplate nextTemplate = chooseRandomTemplate();
+                        Module nextModule = nextTemplate.getInstance();
+                        Portal remote = nextModule.selectOpenPortal();
+                        link(currentModule, portal, remote, nextModule);
+                    }
+                    buildAround(currentModule.getNeighbor(portal), depth + 1);
+                }
+        );
+    }
+
+    private ModuleTemplate chooseRandomTemplate() {
+        return (ModuleTemplate)m_moduleTemplates.toArray()[new Random().nextInt(m_moduleTemplates.size())];
     }
 
     private ModuleTemplate getTemplate(String name) {
@@ -68,15 +91,33 @@ public class ArchitectureSystem extends GameSystem {
         module2.linkPortals(portal2, portal1);
     }
 
+    private void importRules() {
+        try {
+            File rulesDirectory = new File(Uncountable.class.getClassLoader().getResource(m_rulesDirectoryName).toURI());
+            for(File ruleSpecification : rulesDirectory.listFiles()) {
+                if(ruleSpecification.isDirectory()) continue;
+                JSONObject ruleJson = new JSONObject(Uncountable.stringFromFile(ruleSpecification));
+                Map<String, Integer> rule = new HashMap<>();
+                JSONArray definitionJson = ruleJson.getJSONArray("definition");
+                buildRuleDefinition(rule, definitionJson);
+                m_rulesByName.put(ruleJson.getString("name"), rule);
+                System.out.println(rule);
+            }
+        } catch (URISyntaxException|FileNotFoundException e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
+    }
+
     private void importModuleTemplates() {
         try {
             File modulesDirectory = new File(Uncountable.class.getClassLoader().getResource(m_modulesDirectoryName).toURI());
             for(File moduleSpecification : modulesDirectory.listFiles()) {
                 if(moduleSpecification.isDirectory()) continue;
-                JSONObject json = new JSONObject(Uncountable.stringFromFile(moduleSpecification));
-                ModuleTemplate template = new ModuleTemplate(json.getString("name"));
-                buildTemplateWalls(template, json.getJSONArray("dimensions"), json.getJSONArray("color"));
-                buildTemplatePortals(template, json.getJSONArray("portals"));
+                JSONObject moduleJson = new JSONObject(Uncountable.stringFromFile(moduleSpecification));
+                ModuleTemplate template = new ModuleTemplate(moduleJson.getString("name"));
+                buildTemplateWalls(template, moduleJson.getJSONArray("dimensions"), moduleJson.getJSONArray("color"));
+                buildTemplatePortals(template, moduleJson.getJSONArray("portals"));
                 m_moduleTemplates.add(template);
             }
         } catch (URISyntaxException|FileNotFoundException e) {
@@ -87,12 +128,19 @@ public class ArchitectureSystem extends GameSystem {
                 .collect(Collectors.toMap(ModuleTemplate::getName, Function.identity()));
     }
 
+    private void buildRuleDefinition(Map<String, Integer> rule, JSONArray definition) {
+        for(int i = 0; i < definition.length(); ++i) {
+            JSONObject transition = definition.getJSONObject(i);
+            rule.put(transition.getString("module"), transition.getInt("weight"));
+        }
+    }
+
     private void buildTemplateWalls(ModuleTemplate template, JSONArray d, JSONArray c) {
         Vector3f dimensions = Points.from3f(d);
         Vector3f color = Points.from3f(c);
 
         BasicColoredQuad floor = new BasicColoredQuad(Points.WHITE.get().mul(0.5f));
-        BasicColoredQuad ceiling = new BasicColoredQuad(Points.WHITE);
+        BasicColoredQuad ceiling = new BasicColoredQuad(color.get().mul(0.1f));
         BasicColoredQuad rightWall = new BasicColoredQuad(color.get().mul(0.4f));
         BasicColoredQuad leftWall = new BasicColoredQuad(color.get().mul(0.2f));
         BasicColoredQuad farWall = new BasicColoredQuad(color.get().mul(0.8f));
@@ -138,7 +186,13 @@ public class ArchitectureSystem extends GameSystem {
             portal.rotate(angle, Points._Y_);
             portal.translate(position);
 
-            template.addPortal(portal, new HashMap<>());
+            Map<String, Integer> rule = m_rulesByName.get(portalJson.getString("rule"));
+            Map<ModuleTemplate, Integer> resolvedRule = new HashMap<>();
+            for(String key : rule.keySet()) {
+                resolvedRule.put(m_moduleTemplatesByName.get(key), rule.get(key));
+            }
+
+            template.addPortal(portal, resolvedRule);
         }
     }
 }

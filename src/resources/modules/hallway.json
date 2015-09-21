@@ -6,12 +6,14 @@
     {
       "name": "0",
       "position": [6, 0, 0.5],
-      "angle": 270
+      "angle": 270,
+      "rule": "cubeFlatOrLeaf"
     },
     {
       "name": "1",
       "position": [0, 0, 0.5],
-      "angle": 90
+      "angle": 90,
+      "rule": "cubeFlatOrLeaf"
     }
   ]
 }

@@ -1,12 +1,13 @@
 package portals;
 
+import gamesystems.architecture.setpieces.AbstractQuad;
 import gamesystems.rendering.Points;
 import joml.Matrix4f;
 import joml.Vector3f;
 import joml.Vector4f;
 import gamesystems.architecture.setpieces.BasicColoredQuad;
 
-public class Portal extends BasicColoredQuad {
+public class Portal extends AbstractQuad {
 
     private String m_name;
     private Vector3f m_basePosition;
@@ -14,7 +15,7 @@ public class Portal extends BasicColoredQuad {
     private Vector3f m_up;
 
     public Portal(String name, Vector3f basePosition, Vector3f normal, Vector3f up) {
-        super(new Vector3f(0.7f, 0.5f, 0.2f));
+        super();
         setShader("stenciler");
 
         m_name = name;
@@ -87,7 +88,11 @@ public class Portal extends BasicColoredQuad {
                 return true;
             }
         }
-
         return false;
+    }
+
+    @Override
+    public String toString() {
+        return m_name;
     }
 }

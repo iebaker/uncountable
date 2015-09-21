@@ -1,0 +1,9 @@
+{
+  "name": "onlyHallway",
+  "definition": [
+    {
+      "module": "hallway",
+      "weight": 1
+    }
+  ]
+}

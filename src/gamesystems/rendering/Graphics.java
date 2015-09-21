@@ -72,6 +72,7 @@ public class Graphics {
         }
 
         GL11.glDrawArrays(renderable.getDrawingMode(), 0, renderable.getVertexCount());
+        GL11.glPolygonMode(GL11.GL_FRONT_AND_BACK, renderable.getPolygonMode());
         GL30.glBindVertexArray(0);
     }
 

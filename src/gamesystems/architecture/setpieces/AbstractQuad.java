@@ -8,7 +8,11 @@ import gamesystems.rendering.Renderable;
 public abstract class AbstractQuad extends Renderable {
 
     public AbstractQuad() {
-        super(6, GL11.GL_TRIANGLES);
+        this(GL11.GL_FILL);
+    }
+
+    public AbstractQuad(int polgyonMode) {
+        super(6, GL11.GL_TRIANGLES, polgyonMode);
     }
 
     @Override

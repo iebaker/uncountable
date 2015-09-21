@@ -30,6 +30,7 @@ public class ModuleTemplate {
         m_ruleSums.put(portal, 0);
         m_portalsByName.put(portal.getName(), portal);
         computeRuleSums();
+        System.out.println(m_ruleSums);
     }
 
     public Portal getPortal(String name) {
@@ -50,8 +51,8 @@ public class ModuleTemplate {
             int sum = 0;
 
             Map<ModuleTemplate, Integer> rule = m_rules.get(portal);
-            for (ModuleTemplate type : rule.keySet()) {
-                sum += rule.get(type);
+            for (ModuleTemplate template : rule.keySet()) {
+                sum += rule.get(template);
             }
 
             m_ruleSums.put(portal, sum);

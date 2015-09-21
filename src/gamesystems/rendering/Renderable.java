@@ -15,6 +15,7 @@ import joml.Matrix4f;
 import joml.Vector2f;
 import joml.Vector3f;
 import joml.Vector4f;
+import org.lwjgl.opengl.GL11;
 
 public abstract class Renderable {
 
@@ -25,12 +26,18 @@ public abstract class Renderable {
     private Matrix4f m_modelMatrix;
     private int m_drawingMode;
     private int m_vertexCount;
+    private int m_polygonMode;
 
     public Renderable(int count, int drawingMode) {
+        this(count, drawingMode, GL11.GL_FILL);
+    }
+
+    public Renderable(int count, int drawingMode, int polygonMode) {
         m_vertexCount = count;
         m_drawingMode = drawingMode;
         m_modelMatrix = new Matrix4f();
         m_vertexArrayId = glGenVertexArrays();
+        m_polygonMode = polygonMode;
     }
 
     public abstract void build();
@@ -93,6 +100,10 @@ public abstract class Renderable {
 
     public int getVertexCount() {
         return m_vertexCount;
+    }
+
+    public int getPolygonMode() {
+        return m_polygonMode;
     }
 
     public void onBuffer() {
