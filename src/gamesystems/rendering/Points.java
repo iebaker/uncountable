@@ -6,6 +6,7 @@ import java.util.Random;
 import joml.Vector2f;
 import joml.Vector3f;
 import joml.Vector4f;
+import org.json.JSONArray;
 
 @SuppressWarnings("unused")
 public class Points {
@@ -170,4 +171,11 @@ public class Points {
     public static Vector3f rgbToHsb(float red, float green, float blue) {
         return new Vector3f();
     }
- }
+
+    public static Vector3f from3f(JSONArray array) {
+        float x = (float)array.getDouble(0);
+        float y = (float)array.getDouble(1);
+        float z = (float)array.getDouble(2);
+        return new Vector3f(x, y, z);
+    }
+}

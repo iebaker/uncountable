@@ -17,14 +17,11 @@ uniform int useDistanceFog;
 
 out vec4 fragColor;
 
-float fogFactor(float depth)
-{
+float fogFactor(float depth) {
     float result = 0.0;
-    switch(fogFunction) {
-        case 0: result = ( fogEnd - depth ) / ( fogEnd - fogBegin ); break;
-        case 1: result = exp( -fogDensity * depth ); break;
-        case 2: result = exp( -pow( fogDensity * depth, 2.0 ) );
-    }
+    if(fogFunction == 0) result = (fogEnd - depth) / (fogEnd - fogBegin);
+    if(fogFunction == 1) result = exp(-fogDensity * depth);
+    if(fogFunction == 2) result = exp(-pow(fogDensity * depth, 2.0));
     return 1.0 - clamp(result, 0.0, 1.0);
 }
 
@@ -34,6 +31,5 @@ void main() {
 		bool posFront = dot(discardPlane, vec4(worldPosition, 1.0)) > 0;
 		if(camFront != posFront) discard;
 	}
-
-	fragColor = vec4(mix(color, fogColor, useDistanceFog * fogFactor( length( cameraEye - worldPosition ))), 1);
+	fragColor = vec4(mix(color, fogColor, useDistanceFog * fogFactor(length(cameraEye - worldPosition))), 1);
 }

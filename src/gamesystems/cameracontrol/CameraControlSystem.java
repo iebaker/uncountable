@@ -45,7 +45,6 @@ public class CameraControlSystem extends GameSystem {
             set(Camera.NEAR_PLANE, 0.1f);
             set(Camera.FAR_PLANE, 500.0f);
             set(Camera.ASPECT_RATIO, Uncountable.game.getWidth() / Uncountable.game.getHeight());
-
             translateTo(Points.XYZ);
             setLook(Points.__z.get());
         }};

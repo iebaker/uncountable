@@ -29,6 +29,8 @@ import static org.lwjgl.glfw.GLFW.glfwSwapInterval;
 import static org.lwjgl.glfw.GLFW.glfwWindowHint;
 import static org.lwjgl.glfw.GLFW.glfwWindowShouldClose;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
@@ -305,6 +307,14 @@ public class Uncountable {
      */
     public static String stringFromFile(String filepath) {
         Scanner scanner = Uncountable.scannerForFile(filepath, "\\A");
+        String result = scanner.hasNext() ? scanner.next() : "";
+        scanner.close();
+        return result;
+    }
+
+    public static String stringFromFile(File file) throws FileNotFoundException {
+        Scanner scanner = new Scanner(file);
+        scanner.useDelimiter("\\A");
         String result = scanner.hasNext() ? scanner.next() : "";
         scanner.close();
         return result;
