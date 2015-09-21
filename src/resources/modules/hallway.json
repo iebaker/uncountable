@@ -1,0 +1,17 @@
+{
+  "name": "hallway",
+  "dimensions": [6, 2, 2],
+  "color": [0, 1, 0],
+  "portals": [
+    {
+      "name": "0",
+      "position": [6, 0, 1],
+      "angle": 270
+    },
+    {
+      "name": "1",
+      "position": [0, 0, 1],
+      "angle": 90
+    }
+  ]
+}

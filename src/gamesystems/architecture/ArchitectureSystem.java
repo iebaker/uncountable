@@ -35,20 +35,20 @@ public class ArchitectureSystem extends GameSystem {
     public void initialize() {
         importModuleTemplates();
 
-//        Module flatRoom = getTemplate("flatroom").getInstance();
-//        Module leafRoom = getTemplate("leafroom").getInstance();
-//        Module cubeRoom = getTemplate("cuberoom").getInstance();
-//        Module hallway1 = getTemplate("hallway").getInstance();
-//        Module hallway2 = getTemplate("hallway").getInstance();
-//
-//        link(flatRoom, "2", "0", hallway1);
-//        link(hallway1, "1", "0", flatRoom);
-//        link(flatRoom, "1", "0", cubeRoom);
-//        link(cubeRoom, "1", "0", hallway2);
-//        link(hallway2, "1", "3", cubeRoom);
-//        link(cubeRoom, "2", "0", leafRoom);
+        Module flatRoom = getTemplate("flatroom").getInstance();
+        Module leafRoom = getTemplate("leafroom").getInstance();
+        Module cubeRoom = getTemplate("cuberoom").getInstance();
+        Module hallway1 = getTemplate("hallway").getInstance();
+        Module hallway2 = getTemplate("hallway").getInstance();
 
-        Uncountable.game.world.currentModule = getTemplate("cuberoom").getInstance();
+        link(flatRoom, "2", "0", hallway1);
+        link(hallway1, "1", "0", flatRoom);
+        link(flatRoom, "1", "0", cubeRoom);
+        link(cubeRoom, "1", "0", hallway2);
+        link(hallway2, "1", "3", cubeRoom);
+        link(cubeRoom, "2", "0", leafRoom);
+
+        Uncountable.game.world.currentModule = hallway1;
     }
 
     private ModuleTemplate getTemplate(String name) {
