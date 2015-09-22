@@ -60,13 +60,12 @@ public class Module {
     }
 
     public Portal selectOpenPortal() {
-        for (Portal portal : m_template.getPortals()) {
-            if (!hasNeighbor(portal)) {
-                return portal;
-            }
-        }
-        System.out.println("No more open portals in " + m_name);
-        return null;
+        Set<Portal> portals = m_template.getPortals();
+        Portal result;
+        do {
+            result = (Portal)portals.toArray()[new Random().nextInt(portals.size())];
+        } while(hasNeighbor(result));
+        return result;
     }
 
     public boolean hasOpenPortals() {

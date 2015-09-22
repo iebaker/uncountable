@@ -1,6 +1,7 @@
 package gamesystems.architecture;
 
 import com.sun.corba.se.impl.encoding.OSFCodeSetRegistry;
+import com.sun.istack.internal.Nullable;
 import core.Uncountable;
 import gamesystems.GameSystem;
 import gamesystems.architecture.setpieces.BasicColoredQuad;
@@ -32,6 +33,7 @@ public class ArchitectureSystem extends GameSystem {
     private Set<ModuleTemplate> m_moduleTemplates = new HashSet<>();
     private Map<String, ModuleTemplate> m_moduleTemplatesByName = new HashMap<>();
     private Map<String, Map<String, Integer>> m_rulesByName = new HashMap<>();
+    private Map<Portal, Map<String, Integer>> m_unresolvedRules = new HashMap<>();
 
     private final int m_depth = 4;
 
@@ -60,7 +62,8 @@ public class ArchitectureSystem extends GameSystem {
         currentModule.getTemplate().getPortals().forEach(
                 (portal) -> {
                     if (!currentModule.hasNeighbor(portal)) {
-                        ModuleTemplate nextTemplate = chooseRandomTemplate();
+                        String nextTemplateName = currentModule.getTemplate().chooseNeighborTemplateName(portal);
+                        ModuleTemplate nextTemplate = m_moduleTemplatesByName.get(nextTemplateName);
                         Module nextModule = nextTemplate.getInstance();
                         Portal remote = nextModule.selectOpenPortal();
                         link(currentModule, portal, remote, nextModule);
@@ -70,6 +73,7 @@ public class ArchitectureSystem extends GameSystem {
         );
     }
 
+    @SuppressWarnings("unused")
     private ModuleTemplate chooseRandomTemplate() {
         return (ModuleTemplate)m_moduleTemplates.toArray()[new Random().nextInt(m_moduleTemplates.size())];
     }
@@ -146,26 +150,31 @@ public class ArchitectureSystem extends GameSystem {
         BasicColoredQuad farWall = new BasicColoredQuad(color.get().mul(0.8f));
         BasicColoredQuad nearWall = new BasicColoredQuad(color.get().mul(0.6f));
 
-        floor.scale(1.01f);
+        floor.scale(1.001f);
         floor.rotate(3 * Points.piOver(2), Points.X__);
         floor.translate(0.5f, 0.0f, 0.5f);
         floor.scale(dimensions.x, 1.0f, dimensions.z);
 
+        ceiling.scale(1.001f);
         ceiling.rotate(Points.piOver(2), Points.X__);
         ceiling.translate(0.5f, dimensions.y, 0.5f);
         ceiling.scale(dimensions.x, 1.0f, dimensions.z);
 
+        leftWall.scale(1.001f);
         leftWall.rotate(Points.piOver(2), Points._Y_);
         leftWall.translate(0.0f, 0.5f, 0.5f);
         leftWall.scale(1.0f, dimensions.y, dimensions.z);
 
+        rightWall.scale(1.001f);
         rightWall.rotate(3 * Points.piOver(2), Points._Y_);
         rightWall.translate(dimensions.x, 0.5f, 0.5f);
         rightWall.scale(1.0f, dimensions.y, dimensions.z);
 
+        farWall.scale(1.001f);
         farWall.translate(0.5f, 0.5f, 0.0f);
         farWall.scale(dimensions.x, dimensions.y, 1.0f);
 
+        nearWall.scale(1.001f);
         nearWall.rotate(Points.piOver(1), Points._Y_);
         nearWall.translate(0.5f, 0.5f, dimensions.z);
         nearWall.scale(dimensions.x, dimensions.y, 1.0f);
@@ -185,14 +194,7 @@ public class ArchitectureSystem extends GameSystem {
             portal.translate(0.0f, 0.0f, 0.001f);
             portal.rotate(angle, Points._Y_);
             portal.translate(position);
-
-            Map<String, Integer> rule = m_rulesByName.get(portalJson.getString("rule"));
-            Map<ModuleTemplate, Integer> resolvedRule = new HashMap<>();
-            for(String key : rule.keySet()) {
-                resolvedRule.put(m_moduleTemplatesByName.get(key), rule.get(key));
-            }
-
-            template.addPortal(portal, resolvedRule);
+            template.addPortal(portal, m_rulesByName.get(portalJson.getString("rule")));
         }
     }
 }

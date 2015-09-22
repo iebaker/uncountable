@@ -1,11 +1,11 @@
 {
   "name": "hallway",
-  "dimensions": [6, 1.5, 1],
-  "color": [0, 1, 0],
+  "dimensions": [3, 1.5, 1],
+  "color": [0.2, 0.2, 0.2],
   "portals": [
     {
       "name": "0",
-      "position": [6, 0, 0.5],
+      "position": [3, 0, 0.5],
       "angle": 270,
       "rule": "cubeFlatOrLeaf"
     },
