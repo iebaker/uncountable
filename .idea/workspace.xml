@@ -3,7 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="0470d535-0c20-4035-9793-613a519fbd72" name="Default" comment="">
       <change type="NEW" beforePath="" afterPath="$USER_HOME$/Documents/no_scan/workspaces/eclipsews/Uncountable/src/resources/modules/hallway.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/modules/longhallway.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/modules/shorthallway.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/modules/tallroom.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/rules/cubeFlatOrLeaf.json" afterPath="$PROJECT_DIR$/src/resources/rules/rooms.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/rules/onlyHallway.json" afterPath="$PROJECT_DIR$/src/resources/rules/hallways.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gamesystems/architecture/ArchitectureSystem.java" afterPath="$PROJECT_DIR$/src/gamesystems/architecture/ArchitectureSystem.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gamesystems/cameracontrol/CameraControlSystem.java" afterPath="$PROJECT_DIR$/src/gamesystems/cameracontrol/CameraControlSystem.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gamesystems/architecture/Module.java" afterPath="$PROJECT_DIR$/src/gamesystems/architecture/Module.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gamesystems/architecture/ModuleTemplate.java" afterPath="$PROJECT_DIR$/src/gamesystems/architecture/ModuleTemplate.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/resources/modules/cuberoom.json" afterPath="$PROJECT_DIR$/src/resources/modules/cuberoom.json" />
@@ -31,32 +37,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ArchitectureSystem.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/gamesystems/architecture/ArchitectureSystem.java">
+      <file leaf-file-name="tallroom.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/resources/modules/tallroom.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="176" column="26" selection-start-line="176" selection-start-column="26" selection-end-line="176" selection-end-column="26" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1335#1336#0" expanded="true" />
-                <element signature="e#1358#1359#0" expanded="true" />
-                <element signature="e#1605#1606#0" expanded="true" />
-                <element signature="e#1670#1671#0" expanded="true" />
-                <element signature="e#1724#1725#0" expanded="true" />
-                <element signature="e#1769#1770#0" expanded="true" />
-                <element signature="e#2594#2621#0" expanded="true" />
-                <element signature="e#2841#2842#0" expanded="true" />
-                <element signature="e#2897#2898#0" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="-18.75">
+              <caret line="30" column="1" selection-start-line="30" selection-start-column="1" selection-end-line="30" selection-end-column="1" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HashMap.java" pinned="false" current-in-tab="false">
-        <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home/src.zip!/java/util/HashMap.java">
+      <file leaf-file-name="shorthallway.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/resources/modules/shorthallway.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="927" column="0" selection-start-line="927" selection-start-column="0" selection-end-line="927" selection-end-column="0" />
+            <state vertical-scroll-proportion="-4.375">
+              <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -65,8 +60,8 @@
       <file leaf-file-name="flatroom.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/resources/modules/flatroom.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.875">
-              <caret line="3" column="25" selection-start-line="3" selection-start-column="25" selection-end-line="3" selection-end-column="25" />
+            <state vertical-scroll-proportion="-13.125">
+              <caret line="21" column="23" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -75,8 +70,8 @@
       <file leaf-file-name="cuberoom.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/resources/modules/cuberoom.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.625">
-              <caret line="9" column="20" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
+            <state vertical-scroll-proportion="-16.875">
+              <caret line="27" column="23" selection-start-line="27" selection-start-column="23" selection-end-line="27" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -85,8 +80,8 @@
       <file leaf-file-name="hallway.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/resources/modules/hallway.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.875">
-              <caret line="3" column="25" selection-start-line="3" selection-start-column="25" selection-end-line="3" selection-end-column="25" />
+            <state vertical-scroll-proportion="-11.25">
+              <caret line="18" column="1" selection-start-line="0" selection-start-column="0" selection-end-line="18" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -95,60 +90,50 @@
       <file leaf-file-name="leafroom.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/resources/modules/leafroom.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.875">
-              <caret line="3" column="25" selection-start-line="3" selection-start-column="25" selection-end-line="3" selection-end-column="25" />
+            <state vertical-scroll-proportion="-5.625">
+              <caret line="9" column="23" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Module.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/gamesystems/architecture/Module.java">
+      <file leaf-file-name="hallways.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/resources/rules/hallways.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="67" column="22" selection-start-line="67" selection-start-column="22" selection-end-line="67" selection-end-column="22" />
-              <folding>
-                <element signature="e#850#851#0" expanded="true" />
-                <element signature="e#896#897#0" expanded="true" />
-                <element signature="e#948#949#0" expanded="true" />
-                <element signature="e#990#991#0" expanded="true" />
-                <element signature="e#1422#1423#0" expanded="true" />
-                <element signature="e#1462#1463#0" expanded="true" />
-                <element signature="e#1511#1512#0" expanded="true" />
-                <element signature="e#1565#1566#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ModuleTemplate.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/gamesystems/architecture/ModuleTemplate.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="75" column="51" selection-start-line="75" selection-start-column="51" selection-end-line="75" selection-end-column="51" />
-              <folding>
-                <element signature="e#1129#1130#0" expanded="true" />
-                <element signature="e#1159#1160#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="onlyHallway.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/resources/rules/onlyHallway.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.125">
-              <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
+            <state vertical-scroll-proportion="-5.625">
+              <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="cubeFlatOrLeaf.json" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/resources/rules/cubeFlatOrLeaf.json">
+      <file leaf-file-name="ArchitectureSystem.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/gamesystems/architecture/ArchitectureSystem.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3767661">
-              <caret line="16" column="1" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
+            <state vertical-scroll-proportion="-0.29500756">
+              <caret line="34" column="78" selection-start-line="34" selection-start-column="78" selection-end-line="34" selection-end-column="78" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="longhallway.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/resources/modules/longhallway.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.625">
+              <caret line="1" column="22" selection-start-line="1" selection-start-column="22" selection-end-line="1" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="rooms.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/resources/rules/rooms.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.625">
+              <caret line="1" column="16" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -194,7 +179,6 @@
         <option value="$PROJECT_DIR$/src/portals/Basis.java" />
         <option value="$PROJECT_DIR$/src/application/World.java" />
         <option value="$PROJECT_DIR$/src/core/World.java" />
-        <option value="$PROJECT_DIR$/src/gamesystems/cameracontrol/CameraControlSystem.java" />
         <option value="$PROJECT_DIR$/src/resources/shaders/basic.frag" />
         <option value="$PROJECT_DIR$/src/resources/modules/cuberoom/module.json" />
         <option value="$PROJECT_DIR$/src/core/Uncountable.java" />
@@ -206,14 +190,20 @@
         <option value="$PROJECT_DIR$/src/gamesystems/architecture/setpieces/BasicColoredQuad.java" />
         <option value="$PROJECT_DIR$/src/resources/rules/onlyHallway.json" />
         <option value="$PROJECT_DIR$/src/resources/rules/cubeOrFlat.json" />
-        <option value="$PROJECT_DIR$/src/resources/rules/cubeFlatOrLeaf.json" />
         <option value="$PROJECT_DIR$/src/portals/Portal.java" />
         <option value="$PROJECT_DIR$/src/gamesystems/architecture/ModuleTemplate.java" />
+        <option value="$PROJECT_DIR$/src/gamesystems/architecture/Module.java" />
+        <option value="$PROJECT_DIR$/src/gamesystems/cameracontrol/CameraControlSystem.java" />
+        <option value="$PROJECT_DIR$/src/resources/rules/cubeFlatOrLeaf.json" />
         <option value="$PROJECT_DIR$/src/resources/modules/hallway.json" />
+        <option value="$PROJECT_DIR$/src/resources/rules/rooms.json" />
+        <option value="$PROJECT_DIR$/src/resources/modules/cuberoom.json" />
         <option value="$PROJECT_DIR$/src/resources/modules/flatroom.json" />
         <option value="$PROJECT_DIR$/src/resources/modules/leafroom.json" />
-        <option value="$PROJECT_DIR$/src/resources/modules/cuberoom.json" />
-        <option value="$PROJECT_DIR$/src/gamesystems/architecture/Module.java" />
+        <option value="$PROJECT_DIR$/src/resources/modules/tallroom.json" />
+        <option value="$PROJECT_DIR$/src/resources/modules/shorthallway.json" />
+        <option value="$PROJECT_DIR$/src/resources/modules/longhallway.json" />
+        <option value="$PROJECT_DIR$/src/resources/rules/hallways.json" />
         <option value="$PROJECT_DIR$/src/gamesystems/architecture/ArchitectureSystem.java" />
       </list>
     </option>
@@ -783,7 +773,7 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329927" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16987951" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16987951" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19313304" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1029,17 +1019,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gamesystems/cameracontrol/CameraControlSystem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="46" column="97" selection-start-line="46" selection-start-column="97" selection-end-line="46" selection-end-column="97" />
-          <folding>
-            <element signature="e#1359#1360#0" expanded="false" />
-            <element signature="e#1382#1383#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/gamesystems/rendering/Camera.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1223,70 +1202,93 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gamesystems/architecture/ArchitectureSystem.java">
+    <entry file="file://$PROJECT_DIR$/src/gamesystems/cameracontrol/CameraControlSystem.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="176" column="26" selection-start-line="176" selection-start-column="26" selection-end-line="176" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1335#1336#0" expanded="true" />
-            <element signature="e#1358#1359#0" expanded="true" />
-            <element signature="e#1605#1606#0" expanded="true" />
-            <element signature="e#1670#1671#0" expanded="true" />
-            <element signature="e#1724#1725#0" expanded="true" />
-            <element signature="e#1769#1770#0" expanded="true" />
-            <element signature="e#2594#2621#0" expanded="true" />
-            <element signature="e#2841#2842#0" expanded="true" />
-            <element signature="e#2897#2898#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/resources/rules/onlyHallway.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.125">
-          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/resources/modules/leafroom.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.875">
-          <caret line="3" column="25" selection-start-line="3" selection-start-column="25" selection-end-line="3" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/resources/modules/flatroom.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.875">
-          <caret line="3" column="25" selection-start-line="3" selection-start-column="25" selection-end-line="3" selection-end-column="25" />
+          <caret line="125" column="23" selection-start-line="125" selection-start-column="23" selection-end-line="125" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/resources/modules/cuberoom.json">
       <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-16.875">
+          <caret line="27" column="23" selection-start-line="27" selection-start-column="23" selection-end-line="27" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resources/modules/flatroom.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.125">
+          <caret line="21" column="23" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resources/modules/leafroom.json">
+      <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.625">
-          <caret line="9" column="20" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
+          <caret line="9" column="23" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resources/modules/tallroom.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-18.75">
+          <caret line="30" column="1" selection-start-line="30" selection-start-column="1" selection-end-line="30" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/resources/modules/hallway.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.875">
-          <caret line="3" column="25" selection-start-line="3" selection-start-column="25" selection-end-line="3" selection-end-column="25" />
+        <state vertical-scroll-proportion="-11.25">
+          <caret line="18" column="1" selection-start-line="0" selection-start-column="0" selection-end-line="18" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/resources/rules/cubeFlatOrLeaf.json">
+    <entry file="file://$PROJECT_DIR$/src/resources/modules/shorthallway.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3767661">
-          <caret line="16" column="1" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
+        <state vertical-scroll-proportion="-4.375">
+          <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resources/rules/rooms.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.625">
+          <caret line="1" column="16" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resources/modules/longhallway.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.625">
+          <caret line="1" column="22" selection-start-line="1" selection-start-column="22" selection-end-line="1" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resources/rules/hallways.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.625">
+          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gamesystems/architecture/ArchitectureSystem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.29500756">
+          <caret line="34" column="78" selection-start-line="34" selection-start-column="78" selection-end-line="34" selection-end-column="78" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

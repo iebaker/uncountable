@@ -1,29 +1,29 @@
 {
-  "name": "cuberoom",
-  "dimensions": [2, 2, 2],
-  "color": [0.5, 0.5, 0.5],
+  "name": "tallroom",
+  "dimensions": [3, 5, 3],
+  "color": [0.8, 0.8, 0.8],
   "portals": [
     {
       "name": "0",
-      "position": [1, 0, 0],
+      "position": [1.5, 0, 0],
       "angle": 0,
       "rule": "hallways"
     },
     {
       "name": "1",
-      "position": [0, 0, 1],
-      "angle": 90,
-      "rule": "hallways"
-    },
-    {
-      "name": "2",
-      "position": [1, 0, 2],
+      "position": [1.5, 0, 3],
       "angle": 180,
       "rule": "hallways"
     },
     {
+      "name": "2",
+      "position": [0, 2.5, 1.5],
+      "angle": 90,
+      "rule": "hallways"
+    },
+    {
       "name": "3",
-      "position": [2, 0, 1],
+      "position": [3, 2.5, 1.5],
       "angle": 270,
       "rule": "hallways"
     }

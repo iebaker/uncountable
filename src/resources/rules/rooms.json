@@ -1,17 +1,21 @@
 {
-  "name": "cubeFlatOrLeaf",
+  "name": "rooms",
   "definition": [
     {
       "module": "cuberoom",
-      "weight": 2
+      "weight": 3
     },
     {
       "module": "flatroom",
-      "weight": 2
+      "weight": 3
     },
     {
       "module": "leafroom",
       "weight": 1
+    },
+    {
+      "module": "tallroom",
+      "weight": 4
     }
   ]
 }

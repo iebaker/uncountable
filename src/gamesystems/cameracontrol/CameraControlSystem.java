@@ -1,12 +1,5 @@
 package gamesystems.cameracontrol;
 
-import static org.lwjgl.glfw.GLFW.GLFW_KEY_A;
-import static org.lwjgl.glfw.GLFW.GLFW_KEY_D;
-import static org.lwjgl.glfw.GLFW.GLFW_KEY_LEFT_SHIFT;
-import static org.lwjgl.glfw.GLFW.GLFW_KEY_S;
-import static org.lwjgl.glfw.GLFW.GLFW_KEY_SPACE;
-import static org.lwjgl.glfw.GLFW.GLFW_KEY_W;
-
 import core.Uncountable;
 import gamesystems.GameSystem;
 import gamesystems.rendering.Camera;
@@ -17,6 +10,8 @@ import gamesystems.architecture.Module;
 import portals.Seam;
 import core.World;
 import portals.Portal;
+
+import static org.lwjgl.glfw.GLFW.*;
 
 /**
  * This is a GameSystem responsible for collecting input events and using them to move the camera
@@ -128,7 +123,7 @@ public class CameraControlSystem extends GameSystem {
         case GLFW_KEY_SPACE:
             m_goalVelocity = new Vector3f(Points._Y_).mul(m_speed);
             break;
-        case GLFW_KEY_LEFT_SHIFT:
+        case GLFW_KEY_Q:
             m_goalVelocity = new Vector3f(Points._y_).mul(m_speed);
             break;
         }

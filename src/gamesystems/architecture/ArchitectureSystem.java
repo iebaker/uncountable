@@ -33,9 +33,8 @@ public class ArchitectureSystem extends GameSystem {
     private Set<ModuleTemplate> m_moduleTemplates = new HashSet<>();
     private Map<String, ModuleTemplate> m_moduleTemplatesByName = new HashMap<>();
     private Map<String, Map<String, Integer>> m_rulesByName = new HashMap<>();
-    private Map<Portal, Map<String, Integer>> m_unresolvedRules = new HashMap<>();
 
-    private final int m_depth = 4;
+    private final int m_depth = 6;
 
     public ArchitectureSystem() {
         super();

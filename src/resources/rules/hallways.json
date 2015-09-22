@@ -1,0 +1,17 @@
+{
+  "name": "hallways",
+  "definition": [
+    {
+      "module": "hallway",
+      "weight": 2
+    },
+    {
+      "module": "shorthallway",
+      "weight": 3
+    },
+    {
+      "module": "longhallway",
+      "weight": 1
+    }
+  ]
+}
