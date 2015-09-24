@@ -29,7 +29,7 @@ public class ArchitectureSystem extends GameSystem {
     private Map<String, ModuleTemplate> m_moduleTemplatesByName = new HashMap<>();
     private Map<String, Map<String, Integer>> m_rulesByName = new HashMap<>();
 
-    private final int m_depth = 6;
+    private final int m_depth = 10;
 
     public ArchitectureSystem() {
         super();
@@ -138,41 +138,41 @@ public class ArchitectureSystem extends GameSystem {
         Vector3f color = Points.from3f(c);
 
         Quad floor = new Quad();
-        floor.all("vertexColor", Points.WHITE.get().mul(0.5f));
+        floor.next(6, "vertexColor", Points.WHITE.get().mul(0.5f));
         floor.scale(1.001f);
         floor.rotate(3 * Points.piOver(2), Points.X__);
         floor.translate(0.5f, 0.0f, 0.5f);
         floor.scale(dimensions.x, 1.0f, dimensions.z);
 
         Quad ceiling = new Quad();
-        ceiling.all("vertexColor", color.get().mul(0.1f));
+        ceiling.next(6, "vertexColor", color.get().mul(0.1f));
         ceiling.scale(1.001f);
         ceiling.rotate(Points.piOver(2), Points.X__);
         ceiling.translate(0.5f, dimensions.y, 0.5f);
         ceiling.scale(dimensions.x, 1.0f, dimensions.z);
 
         Quad rightWall = new Quad();
-        rightWall.all("vertexColor", color.get().mul(0.4f));
+        rightWall.next(6, "vertexColor", color.get().mul(0.4f));
         rightWall.scale(1.001f);
         rightWall.rotate(3 * Points.piOver(2), Points._Y_);
         rightWall.translate(dimensions.x, 0.5f, 0.5f);
         rightWall.scale(1.0f, dimensions.y, dimensions.z);
 
         Quad leftWall = new Quad();
-        leftWall.all("vertexColor", color.get().mul(0.2f));
+        leftWall.next(6, "vertexColor", color.get().mul(0.2f));
         leftWall.scale(1.001f);
         leftWall.rotate(Points.piOver(2), Points._Y_);
         leftWall.translate(0.0f, 0.5f, 0.5f);
         leftWall.scale(1.0f, dimensions.y, dimensions.z);
 
         Quad farWall = new Quad();
-        farWall.all("vertexColor", color.get().mul(0.8f));
+        farWall.next(6, "vertexColor", color.get().mul(0.8f));
         farWall.scale(1.001f);
         farWall.translate(0.5f, 0.5f, 0.0f);
         farWall.scale(dimensions.x, dimensions.y, 1.0f);
 
         Quad nearWall = new Quad();
-        nearWall.all("vertexColor", color.get().mul(0.6f));
+        nearWall.next(6, "vertexColor", color.get().mul(0.6f));
         nearWall.scale(1.001f);
         nearWall.rotate(Points.piOver(1), Points._Y_);
         nearWall.translate(0.5f, 0.5f, dimensions.z);

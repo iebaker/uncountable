@@ -1,45 +1,20 @@
 package core;
 import static org.lwjgl.glfw.Callbacks.errorCallbackPrint;
-import static org.lwjgl.glfw.GLFW.GLFW_CONTEXT_VERSION_MAJOR;
-import static org.lwjgl.glfw.GLFW.GLFW_CONTEXT_VERSION_MINOR;
-import static org.lwjgl.glfw.GLFW.GLFW_OPENGL_CORE_PROFILE;
-import static org.lwjgl.glfw.GLFW.GLFW_OPENGL_FORWARD_COMPAT;
-import static org.lwjgl.glfw.GLFW.GLFW_OPENGL_PROFILE;
-import static org.lwjgl.glfw.GLFW.GLFW_PRESS;
-import static org.lwjgl.glfw.GLFW.GLFW_RELEASE;
-import static org.lwjgl.glfw.GLFW.GLFW_REPEAT;
-import static org.lwjgl.glfw.GLFW.GLFW_RESIZABLE;
-import static org.lwjgl.glfw.GLFW.GLFW_VISIBLE;
-import static org.lwjgl.glfw.GLFW.glfwCreateWindow;
-import static org.lwjgl.glfw.GLFW.glfwDefaultWindowHints;
-import static org.lwjgl.glfw.GLFW.glfwGetPrimaryMonitor;
-import static org.lwjgl.glfw.GLFW.glfwGetTime;
-import static org.lwjgl.glfw.GLFW.glfwGetVideoMode;
-import static org.lwjgl.glfw.GLFW.glfwInit;
-import static org.lwjgl.glfw.GLFW.glfwMakeContextCurrent;
-import static org.lwjgl.glfw.GLFW.glfwPollEvents;
-import static org.lwjgl.glfw.GLFW.glfwSetCursorPosCallback;
-import static org.lwjgl.glfw.GLFW.glfwSetErrorCallback;
-import static org.lwjgl.glfw.GLFW.glfwSetKeyCallback;
-import static org.lwjgl.glfw.GLFW.glfwSetMouseButtonCallback;
-import static org.lwjgl.glfw.GLFW.glfwSetWindowPos;
-import static org.lwjgl.glfw.GLFW.glfwShowWindow;
-import static org.lwjgl.glfw.GLFW.glfwSwapBuffers;
-import static org.lwjgl.glfw.GLFW.glfwSwapInterval;
-import static org.lwjgl.glfw.GLFW.glfwWindowHint;
-import static org.lwjgl.glfw.GLFW.glfwWindowShouldClose;
+import static org.lwjgl.glfw.GLFW.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
+import java.nio.DoubleBuffer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 import gamesystems.architecture.ArchitectureSystem;
 import gamesystems.rendering.Shaders;
+import org.lwjgl.BufferUtils;
 import org.lwjgl.glfw.GLFWCursorPosCallback;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWKeyCallback;
@@ -89,7 +64,7 @@ public class Uncountable {
     private GLFWMouseButtonCallback m_mouseButtonCallback;
 
     // All the processes which run the game, and the world representation
-    private List<GameSystem> m_gameSystems;
+    private List<GameSystem> m_gameSystems = new ArrayList<>();
 
     /**
      * The Constructor, sets everything in motion, adds the proper game systems in the order they should
@@ -103,8 +78,6 @@ public class Uncountable {
         createWindow();
         setCallbacks();
         initGraphics();
-
-        m_gameSystems = new ArrayList<>();
 
         addGameSystem(new QuitSystem());
         addGameSystem(new ArchitectureSystem());
@@ -174,6 +147,8 @@ public class Uncountable {
     private void setCallbacks() {
         glfwSetErrorCallback(m_errorCallback = errorCallbackPrint(System.err));
 
+        glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+
         glfwSetKeyCallback(m_window, m_keyCallback = new GLFWKeyCallback() {
             @Override
             public void invoke(long window, int key, int scancode, int action, int mods) {
@@ -205,7 +180,7 @@ public class Uncountable {
                 Vector2f delta = new Vector2f((float) xpos, (float) ypos).sub(m_prevMousePos);
                 m_prevMousePos = new Vector2f((float) xpos, (float) ypos);
                 for (GameSystem system : m_gameSystems) {
-                    system.onMouseMove(m_prevMousePos, delta);
+                    system.onMouseMove(delta);
                 }
             }
         });
@@ -263,7 +238,6 @@ public class Uncountable {
         m_gameSystems.forEach(GameSystem::initialize);
 
         while(glfwWindowShouldClose(m_window) == GL11.GL_FALSE) {
-
             float rightNow = (float)glfwGetTime();
             float elapsedTime = rightNow - m_prevTime;
             m_prevTime = rightNow;

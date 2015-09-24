@@ -22,7 +22,7 @@ public class GameSystem {
     public void onKeyRepeat(int key) {}     // Called when a key is held, producing repeat events
     public void onKeyUp(int key) {}         // Called when a key is released
 
-    public void onMouseMove(Vector2f position, Vector2f delta) {}   // Called when the mouse moves
+    public void onMouseMove(Vector2f delta) {}   // Called when the mouse moves
     public void onMouseDown(Vector2f position, int button) {}       // Called when a mouse button is pressed
     public void onMouseUp(Vector2f position, int button) {}         // Called when a mouse button is released
 

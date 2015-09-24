@@ -16,6 +16,10 @@
     {
       "module": "tallroom",
       "weight": 4
+    },
+    {
+      "module": "turn",
+      "weight": 20
     }
   ]
 }

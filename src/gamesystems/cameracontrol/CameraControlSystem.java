@@ -83,7 +83,7 @@ public class CameraControlSystem extends GameSystem {
     }
 
     @Override
-    public void onMouseMove(Vector2f position, Vector2f delta) {
+    public void onMouseMove(Vector2f delta) {
         Camera camera = Uncountable.game.world.camera;
         float width = Uncountable.game.getWidth();
         float height = Uncountable.game.getHeight();

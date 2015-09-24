@@ -49,15 +49,27 @@ public abstract class Renderable {
     public abstract void build();
 
     public void next(String attributeName, Vector2f value) {
-        next(attributeName, value.x, value.y);
+        next(1, attributeName, value.x, value.y);
     }
 
     public void next(String attributeName, Vector3f value) {
-        next(attributeName, value.x, value.y, value.z);
+        next(1, attributeName, value.x, value.y, value.z);
     }
 
     public void next(String attributeName, Vector4f value) {
-        next(attributeName, value.x, value.y, value.z, value.w);
+        next(1, attributeName, value.x, value.y, value.z, value.w);
+    }
+
+    public void next(int count, String attributeName, Vector2f value) {
+        next(count, attributeName, value.x, value.y);
+    }
+
+    public void next(int count, String attributeName, Vector3f value) {
+        next(count, attributeName, value.x, value.y, value.z);
+    }
+
+    public void next(int count, String attributeName, Vector4f value) {
+        next(count, attributeName, value.x, value.y, value.z, value.w);
     }
 
     public void all(String attributeName, Vector2f value) {
@@ -125,9 +137,15 @@ public abstract class Renderable {
     }
 
     public void next(String attributeName, float... values) {
+        next(1, attributeName, values);
+    }
+
+    public void next(int count, String attributeName, float... values) {
         m_vertexData.putIfAbsent(attributeName, new ArrayList<>());
-        for(float value : values) {
-            m_vertexData.get(attributeName).add(value);
+        for(int i = 0; i < count; ++i) {
+            for (float value : values) {
+                m_vertexData.get(attributeName).add(value);
+            }
         }
     }
 
