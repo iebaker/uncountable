@@ -2,24 +2,28 @@
   "name": "rooms",
   "definition": [
     {
-      "module": "cuberoom",
-      "weight": 3
-    },
-    {
       "module": "flatroom",
-      "weight": 3
-    },
-    {
-      "module": "leafroom",
-      "weight": 1
+      "weight": 5
     },
     {
       "module": "tallroom",
-      "weight": 4
+      "weight": 5
     },
     {
-      "module": "turn",
-      "weight": 20
+      "module": "cuberoom",
+      "weight": 5
+    },
+    {
+      "module": "ljoint",
+      "weight": 10
+    },
+    {
+      "module": "tjoint",
+      "weight": 10
+    },
+    {
+      "module": "xjoint",
+      "weight": 10
     }
   ]
 }
