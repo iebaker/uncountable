@@ -39,6 +39,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import gamesystems.architecture.ArchitectureSystem;
+import gamesystems.rendering.Shaders;
 import org.lwjgl.glfw.GLFWCursorPosCallback;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWKeyCallback;
@@ -52,7 +53,6 @@ import org.lwjgl.system.MemoryUtil;
 import gamesystems.GameSystem;
 import gamesystems.cameracontrol.CameraControlSystem;
 import gamesystems.quit.QuitSystem;
-import gamesystems.rendering.Graphics;
 import gamesystems.rendering.Points;
 import gamesystems.rendering.RenderingSystem;
 import joml.Vector2f;
@@ -229,13 +229,15 @@ public class Uncountable {
     }
 
     /**
-     * Initializes the Graphics engine, which at the moment just compiles and links a shader program,
+     * Initializes the engine, which at the moment just compiles and links a shader program,
      * but in the future might do more than that. Also sets the background color, and makes sure the
      * depth test is turned on.
      */
     private void initGraphics() {
         try {
-            Graphics.initialize();
+            Shaders.createShader("basic", "resources/shaders/basic.vert", "resources/shaders/basic.frag");
+            Shaders.createShader("stenciler", "resources/shaders/stenciler.vert", "resources/shaders/stenciler.frag");
+            Shaders.createShader("solid", "resources/shaders/solid.vert", "resources/shaders/solid.frag");
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -18,17 +18,15 @@ import static org.lwjgl.opengl.GL11.glEnable;
 import static org.lwjgl.opengl.GL11.glStencilFunc;
 import static org.lwjgl.opengl.GL11.glStencilOp;
 
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.List;
 
+import core.Settings;
 import core.Uncountable;
 import gamesystems.GameSystem;
-import joml.Vector3f;
 import gamesystems.architecture.Module;
-import gamesystems.architecture.setpieces.BasicColoredQuad;
-import portals.Portal;
+import gamesystems.architecture.Portal;
 
 public class RenderingSystem extends GameSystem {
 
@@ -36,19 +34,13 @@ public class RenderingSystem extends GameSystem {
     private boolean m_useNewRenderer = true;
     private Set<Module> m_visitedModules = new HashSet<>();
 
-    private BasicColoredQuad m_quad = new BasicColoredQuad(Points.WHITE);
-    private List<Vector3f> m_randomColors = new ArrayList<>();
-
-    private int m_colorIndex = 0;
-
     public RenderingSystem() {
         super();
-        m_quad.setShader("flat");
-        m_quad.scale(2.0f);
+    }
 
-        for(int i = 0; i < 100; ++i) {
-            m_randomColors.add(Points.randomUnit3f());
-        }
+    @Override
+    public void initialize() {
+
     }
 
     @Override
@@ -91,7 +83,6 @@ public class RenderingSystem extends GameSystem {
     public void reset() {
         m_visitedModules.stream().forEach(Module::clearScene);
         m_visitedModules.clear();
-        m_colorIndex = 0;
     }
 
     public void render(Module initialModule) throws RenderingException {
@@ -99,17 +90,13 @@ public class RenderingSystem extends GameSystem {
         initialModule.stageScene();
 
         Camera camera = Uncountable.game.world.camera;
-        UniformSettings settings = Uncountable.game.world.uniforms;
+        Settings settings = Uncountable.game.world.uniforms;
 
         render(camera, settings, 1, initialModule, null);
     }
 
-    private Vector3f getNextColor() {
-        return m_randomColors.get(m_colorIndex++);
-    }
-
     private void render(Camera camera,
-                        UniformSettings settings,
+                        Settings settings,
                         int depth,
                         Module currentModule,
                         Portal previousRemotePortal)

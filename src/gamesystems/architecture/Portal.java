@@ -1,13 +1,13 @@
-package portals;
+package gamesystems.architecture;
 
-import gamesystems.architecture.setpieces.AbstractQuad;
+import gamesystems.architecture.Basis;
+import gamesystems.architecture.Quad;
 import gamesystems.rendering.Points;
 import joml.Matrix4f;
 import joml.Vector3f;
 import joml.Vector4f;
-import gamesystems.architecture.setpieces.BasicColoredQuad;
 
-public class Portal extends AbstractQuad {
+public class Portal extends Quad {
 
     private String m_name;
     private Vector3f m_basePosition;

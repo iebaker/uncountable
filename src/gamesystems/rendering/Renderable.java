@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import core.Settings;
 import org.lwjgl.BufferUtils;
 
 import joml.AxisAngle4f;
@@ -15,43 +16,60 @@ import joml.Matrix4f;
 import joml.Vector2f;
 import joml.Vector3f;
 import joml.Vector4f;
-import org.lwjgl.opengl.GL11;
 
 public abstract class Renderable {
 
-    private boolean m_bufferStatus = false;
-    private int m_vertexArrayId;
-    private Map<String, List<Float>> m_vertexData = new HashMap<String, List<Float>>();
-    private String m_shaderName;
-    private Matrix4f m_modelMatrix;
-    private int m_drawingMode;
-    private int m_vertexCount;
-    private int m_polygonMode;
-
-    public Renderable(int count, int drawingMode) {
-        this(count, drawingMode, GL11.GL_FILL);
+    public class Interval {
+        public Interval(int m, int f, int c) {
+            mode = m;
+            first = f;
+            count = c;
+        }
+        public int mode;
+        public int first;
+        public int count;
     }
 
-    public Renderable(int count, int drawingMode, int polygonMode) {
-        m_vertexCount = count;
-        m_drawingMode = drawingMode;
-        m_modelMatrix = new Matrix4f();
-        m_vertexArrayId = glGenVertexArrays();
-        m_polygonMode = polygonMode;
+    private boolean m_bufferStatus = false;
+    private int m_vertexArrayId = glGenVertexArrays();
+    private Map<String, List<Float>> m_vertexData = new HashMap<>();
+    private Map<String, List<Float>> m_defaultVertexData = new HashMap<>();
+    private List<Interval> m_intervals = new ArrayList<>();
+    private String m_shaderName;
+    private Matrix4f m_modelMatrix = new Matrix4f();
+    private int m_vertexCount = 0;
+    private Settings m_uniforms;
+    private Settings m_renderSettings;
+
+    public Renderable() {
+        m_uniforms = () -> Shaders.setShaderUniform("model", getModelMatrix());
+        m_renderSettings = () -> {};
     }
 
     public abstract void build();
 
-    public void setVertexAttribute(String attributeName, Vector2f value) {
-        setVertexAttribute(attributeName, value.x, value.y);
+    public void next(String attributeName, Vector2f value) {
+        next(attributeName, value.x, value.y);
     }
 
-    public void setVertexAttribute(String attributeName, Vector3f value) {
-        setVertexAttribute(attributeName, value.x, value.y, value.z);
+    public void next(String attributeName, Vector3f value) {
+        next(attributeName, value.x, value.y, value.z);
     }
 
-    public void setVertexAttribute(String attributeName, Vector4f value) {
-        setVertexAttribute(attributeName, value.x, value.y, value.z, value.w);
+    public void next(String attributeName, Vector4f value) {
+        next(attributeName, value.x, value.y, value.z, value.w);
+    }
+
+    public void all(String attributeName, Vector2f value) {
+        all(attributeName, value.x, value.y);
+    }
+
+    public void all(String attributeName, Vector3f value) {
+        all(attributeName, value.x, value.y, value.z);
+    }
+
+    public void all(String attributeName, Vector4f value) {
+        all(attributeName, value.x, value.y, value.z, value.w);
     }
 
     public void scale(float factor) {
@@ -94,18 +112,6 @@ public abstract class Renderable {
         return m_vertexArrayId;
     }
 
-    public int getDrawingMode() {
-        return m_drawingMode;
-    }
-
-    public int getVertexCount() {
-        return m_vertexCount;
-    }
-
-    public int getPolygonMode() {
-        return m_polygonMode;
-    }
-
     public void onBuffer() {
         m_bufferStatus = true;
     }
@@ -118,12 +124,18 @@ public abstract class Renderable {
         return m_modelMatrix;
     }
 
-    public void setVertexAttribute(String attributeName, float... values) {
-        if(!m_vertexData.containsKey(attributeName)) {
-            m_vertexData.put(attributeName, new ArrayList<>());
-        }
+    public void next(String attributeName, float... values) {
+        m_vertexData.putIfAbsent(attributeName, new ArrayList<>());
         for(float value : values) {
             m_vertexData.get(attributeName).add(value);
+        }
+    }
+
+    public void all(String attributeName, float... values) {
+        m_defaultVertexData.putIfAbsent(attributeName, new ArrayList<>());
+        m_defaultVertexData.get(attributeName).clear();
+        for(float value : values) {
+            m_defaultVertexData.get(attributeName).add(value);
         }
     }
 
@@ -135,18 +147,33 @@ public abstract class Renderable {
         }
     }
 
-    public void setShaderUniforms() {
-        Shaders.setShaderUniform("model", getModelMatrix());
+    public Settings getUniforms() {
+        return m_uniforms;
+    }
+
+    public void setRenderSettings(Settings settings) {
+        m_renderSettings = settings;
+    }
+
+    public Settings getRenderSettings() {
+        return m_renderSettings;
+    }
+
+    protected void addInterval(int mode, int count) {
+        m_intervals.add(new Interval(mode, m_vertexCount, count));
+        m_vertexCount += count;
+    }
+
+    public List<Interval> getIntervals() {
+        return m_intervals;
     }
 
     public FloatBuffer getVertexData() throws RenderingException {
         if(!Shaders.exists(m_shaderName)) throw new RenderingException("Nonexistent shader " + m_shaderName);
 
-        //Allocate a float buffer to store the vertex data
         int bufferSize = m_vertexCount * Shaders.getAttributeStrideFor(m_shaderName);
         float data[] = new float[bufferSize];
 
-        // Grab the attributes for this shader, and sort them in increasing order by offset
         List<VertexAttribute> attributes = Shaders.getVertexAttributesFor(m_shaderName);
         attributes.sort((va1, va2) -> {
             Integer offset1 = va1.getOffset();
@@ -154,23 +181,33 @@ public abstract class Renderable {
             return offset1.compareTo(offset2);
         });
 
-        // Fill in vertex data for each vertex
         int index = 0;
         for(int i = 0; i < m_vertexCount; ++i) {
             for(VertexAttribute attribute : attributes) {
                 String attributeName = attribute.getName();
                 int attributeLength = attribute.getLength();
 
-                if(!m_vertexData.containsKey(attributeName)) {
+                List<Float> values;
+                if(m_defaultVertexData.containsKey(attributeName)) {
+                    values = m_defaultVertexData.get(attributeName);
+                } else if(m_vertexData.containsKey(attributeName)) {
+                    values = m_vertexData.get(attributeName);
+                } else {
                     String message = String.format("%s does not have data for attribute '%s' required by shader '%s'",
                             getClass().getName(), attributeName, m_shaderName);
                     throw new RenderingException(message);
                 }
 
+                if(values.size() < attributeLength) {
+                    String message = String.format("%s does not have enough data for attribute '%s' required by shader '%s'",
+                            getClass().getName(), attributeName, m_shaderName);
+                    throw new RenderingException(message);
+                }
+
                 for(int j = 0; j < attributeLength; ++j) {
-                    float datum = m_vertexData.get(attributeName).remove(0);
+                    float datum = values.remove(0);
                     data[index++] = datum;
-                    m_vertexData.get(attributeName).add(datum);
+                    values.add(datum);
                 }
             }
         }

@@ -4,14 +4,13 @@ import gamesystems.architecture.Module;
 import gamesystems.rendering.Camera;
 import gamesystems.rendering.Points;
 import gamesystems.rendering.Shaders;
-import gamesystems.rendering.UniformSettings;
 import joml.Vector3f;
 
 public class World {
 
     public Module currentModule;
     public Camera camera;
-    public UniformSettings uniforms;
+    public Settings uniforms;
     public FogData fogData = new FogData();
 
     public enum FogFunction {

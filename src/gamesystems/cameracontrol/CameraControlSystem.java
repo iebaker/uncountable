@@ -7,9 +7,9 @@ import gamesystems.rendering.Points;
 import joml.Vector2f;
 import joml.Vector3f;
 import gamesystems.architecture.Module;
-import portals.Seam;
+import gamesystems.architecture.Seam;
 import core.World;
-import portals.Portal;
+import gamesystems.architecture.Portal;
 
 import static org.lwjgl.glfw.GLFW.*;
 

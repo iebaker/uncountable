@@ -1,18 +1,13 @@
 package gamesystems.architecture;
 
-import com.sun.corba.se.impl.encoding.OSFCodeSetRegistry;
-import com.sun.istack.internal.Nullable;
 import core.Uncountable;
 import gamesystems.GameSystem;
-import gamesystems.architecture.setpieces.BasicColoredQuad;
 import gamesystems.rendering.Points;
 import joml.AxisAngle4f;
 import joml.Quaternionf;
 import joml.Vector3f;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.lwjgl.opengl.GL11;
-import portals.Portal;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -142,37 +137,42 @@ public class ArchitectureSystem extends GameSystem {
         Vector3f dimensions = Points.from3f(d);
         Vector3f color = Points.from3f(c);
 
-        BasicColoredQuad floor = new BasicColoredQuad(Points.WHITE.get().mul(0.5f));
-        BasicColoredQuad ceiling = new BasicColoredQuad(color.get().mul(0.1f));
-        BasicColoredQuad rightWall = new BasicColoredQuad(color.get().mul(0.4f));
-        BasicColoredQuad leftWall = new BasicColoredQuad(color.get().mul(0.2f));
-        BasicColoredQuad farWall = new BasicColoredQuad(color.get().mul(0.8f));
-        BasicColoredQuad nearWall = new BasicColoredQuad(color.get().mul(0.6f));
-
+        Quad floor = new Quad();
+        floor.all("vertexColor", Points.WHITE.get().mul(0.5f));
         floor.scale(1.001f);
         floor.rotate(3 * Points.piOver(2), Points.X__);
         floor.translate(0.5f, 0.0f, 0.5f);
         floor.scale(dimensions.x, 1.0f, dimensions.z);
 
+        Quad ceiling = new Quad();
+        ceiling.all("vertexColor", color.get().mul(0.1f));
         ceiling.scale(1.001f);
         ceiling.rotate(Points.piOver(2), Points.X__);
         ceiling.translate(0.5f, dimensions.y, 0.5f);
         ceiling.scale(dimensions.x, 1.0f, dimensions.z);
 
-        leftWall.scale(1.001f);
-        leftWall.rotate(Points.piOver(2), Points._Y_);
-        leftWall.translate(0.0f, 0.5f, 0.5f);
-        leftWall.scale(1.0f, dimensions.y, dimensions.z);
-
+        Quad rightWall = new Quad();
+        rightWall.all("vertexColor", color.get().mul(0.4f));
         rightWall.scale(1.001f);
         rightWall.rotate(3 * Points.piOver(2), Points._Y_);
         rightWall.translate(dimensions.x, 0.5f, 0.5f);
         rightWall.scale(1.0f, dimensions.y, dimensions.z);
 
+        Quad leftWall = new Quad();
+        leftWall.all("vertexColor", color.get().mul(0.2f));
+        leftWall.scale(1.001f);
+        leftWall.rotate(Points.piOver(2), Points._Y_);
+        leftWall.translate(0.0f, 0.5f, 0.5f);
+        leftWall.scale(1.0f, dimensions.y, dimensions.z);
+
+        Quad farWall = new Quad();
+        farWall.all("vertexColor", color.get().mul(0.8f));
         farWall.scale(1.001f);
         farWall.translate(0.5f, 0.5f, 0.0f);
         farWall.scale(dimensions.x, dimensions.y, 1.0f);
 
+        Quad nearWall = new Quad();
+        nearWall.all("vertexColor", color.get().mul(0.6f));
         nearWall.scale(1.001f);
         nearWall.rotate(Points.piOver(1), Points._Y_);
         nearWall.translate(0.5f, 0.5f, dimensions.z);

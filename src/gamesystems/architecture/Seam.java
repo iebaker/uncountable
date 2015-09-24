@@ -1,4 +1,4 @@
-package portals;
+package gamesystems.architecture;
 
 import joml.Vector3f;
 

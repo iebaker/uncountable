@@ -1,14 +1,23 @@
 package gamesystems.rendering;
 
+import static org.lwjgl.opengl.GL30.*;
+import static org.lwjgl.opengl.GL20.*;
+import static org.lwjgl.opengl.GL15.*;
+import static org.lwjgl.opengl.GL11.*;
+
+import java.nio.FloatBuffer;
+import java.nio.IntBuffer;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Optional;
 
+import core.Settings;
 import joml.Matrix4f;
 import joml.Vector3f;
 import joml.Vector4f;
-import portals.Seam;
-import portals.Portal;
+import gamesystems.architecture.Seam;
+import gamesystems.architecture.Portal;
+import org.lwjgl.BufferUtils;
 
 public class Camera {
 
@@ -115,7 +124,7 @@ public class Camera {
     public void setLook(Vector3f vector) {
         vector.normalize();
         set(Camera.PITCH, (float)Math.asin(vector.y));
-        set(Camera.YAW, (float)Math.atan2(vector.z, vector.x));
+        set(Camera.YAW, (float) Math.atan2(vector.z, vector.x));
     }
 
     public void setDiscardPlane(Vector4f plane) {
@@ -134,8 +143,8 @@ public class Camera {
         return new Matrix4f().setPerspective(m_params[FOV], m_params[ASPECT_RATIO], m_params[NEAR_PLANE], m_params[FAR_PLANE]);
     }
 
-    public void capture(UniformSettings uniforms, Renderable... renderables) throws RenderingException {
-        capture(uniforms, Arrays.asList(renderables));
+    public void capture(Settings settings, Renderable... renderables) throws RenderingException {
+        capture(settings, Arrays.asList(renderables));
     }
 
     public void capture(Renderable... renderables) throws RenderingException {
@@ -146,31 +155,89 @@ public class Camera {
         capture(() -> {}, renderables);
     }
 
-    public <R extends Renderable> void capture(UniformSettings uniforms, Collection<R> renderables)
+    public <R extends Renderable> void capture(Settings settings, Collection<R> renderables)
             throws RenderingException {
 
         for(R renderable : renderables) {
 
             if(renderable.needsToBeBuffered()) {
-                Graphics.buffer(renderable);
+                buffer(renderable);
             }
 
+            glBindVertexArray(renderable.getVertexArrayId());
+
             Shaders.useShader(renderable.getActiveShaderName());
-            renderable.setShaderUniforms();
-            uniforms.set();
+            renderable.getUniforms().set();
+            renderable.getRenderSettings().set();
+            settings.set();
 
             Shaders.setShaderUniform("view", getViewMatrix());
             Shaders.setShaderUniform("projection", getProjectionMatrix());
             Shaders.setShaderUniform("cameraEye", getEye());
-            if(m_discardPlane.isPresent()) {
+            if (m_discardPlane.isPresent()) {
                 Shaders.setShaderUniform("discardPlane", m_discardPlane.get());
                 Shaders.setShaderUniform("useDiscardPlane", true);
             } else {
                 Shaders.setShaderUniform("useDiscardPlane", false);
             }
 
-            Graphics.draw(renderable);
+            renderable.getIntervals().forEach(interval -> captureInterval(interval));
+            glBindVertexArray(0);
         }
+    }
+
+    private void captureInterval(Renderable.Interval interval) {
+        glDrawArrays(interval.mode, interval.first, interval.count);
+    }
+
+    @SuppressWarnings("unused")
+    private void validateShaderProgram() {
+        IntBuffer buffer = BufferUtils.createIntBuffer(1);
+        glGetIntegerv(GL_CURRENT_PROGRAM, buffer);
+        buffer.rewind();
+        int shader = buffer.get();
+
+        glValidateProgram(shader);
+        int status = glGetProgrami(shader, GL_VALIDATE_STATUS);
+        if(status != GL_TRUE) {
+            throw new RuntimeException(glGetProgramInfoLog(shader));
+        }
+    }
+
+    private void buffer(Renderable renderable) throws RenderingException {
+
+        glBindVertexArray(renderable.getVertexArrayId());
+
+        renderable.build();
+        FloatBuffer vertexData = renderable.getVertexData();
+
+        int vertexBufferId = glGenBuffers();
+        glBindBuffer(GL_ARRAY_BUFFER, vertexBufferId);
+        glBufferData(GL_ARRAY_BUFFER, vertexData, GL_STATIC_DRAW);
+
+        String shaderName = renderable.getActiveShaderName();
+        int floatSize = 4;
+
+        for(VertexAttribute attribute : Shaders.getVertexAttributesFor(shaderName)) {
+
+            int attributeLocation = glGetAttribLocation(
+                    Shaders.getProgram(shaderName),
+                    attribute.getName());
+
+            glEnableVertexAttribArray(attributeLocation);
+
+            glVertexAttribPointer(
+                    attributeLocation,
+                    attribute.getLength(),
+                    GL_FLOAT,
+                    false,
+                    floatSize * Shaders.getAttributeStrideFor(shaderName),
+                    floatSize * attribute.getOffset());
+        }
+
+        glBindVertexArray(0);
+        glBindBuffer(GL_ARRAY_BUFFER, 0);
+        renderable.onBuffer();
     }
 
     public Camera proxy(Portal local, Portal remote) {
