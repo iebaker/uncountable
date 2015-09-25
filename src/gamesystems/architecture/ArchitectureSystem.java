@@ -137,48 +137,50 @@ public class ArchitectureSystem extends GameSystem {
         Vector3f dimensions = Points.from3f(d);
         Vector3f color = Points.from3f(c);
 
+        float wallFactor = 0.1f;
+
         Quad floor = new Quad();
-        floor.setFillColor(Points.WHITE.get().mul(0.5f));
-        floor.setStrokeColor(Points.BLACK.get());
-        //floor.scale(1.005f);
+        floor.setFillColor(Points.GRAY.get());
+        floor.setStrokeColor(Points.GRAY.get());
+        floor.scale(1.005f);
         floor.rotate(3 * Points.piOver(2), Points.X__);
         floor.translate(0.5f, 0.0f, 0.5f);
         floor.scale(dimensions.x, 1.0f, dimensions.z);
 
         Quad ceiling = new Quad();
-        ceiling.setFillColor(Points.WHITE.get().mul(0.5f));
-        ceiling.setStrokeColor(Points.BLACK.get());
-        //ceiling.scale(1.005f);
+        ceiling.setFillColor(Points.GRAY.get());
+        ceiling.setStrokeColor(Points.GRAY.get());
+        ceiling.scale(1.005f);
         ceiling.rotate(Points.piOver(2), Points.X__);
         ceiling.translate(0.5f, dimensions.y, 0.5f);
         ceiling.scale(dimensions.x, 1.0f, dimensions.z);
 
         Quad rightWall = new Quad();
-        rightWall.setFillColor(color.get());
-        rightWall.setStrokeColor(Points.BLACK.get());
+        rightWall.setFillColor(Points.GRAY.get().mul(wallFactor));
+        rightWall.setStrokeColor(Points.WHITE.get());
         //rightWall.scale(1.005f);
         rightWall.rotate(3 * Points.piOver(2), Points._Y_);
         rightWall.translate(dimensions.x, 0.5f, 0.5f);
         rightWall.scale(1.0f, dimensions.y, dimensions.z);
 
         Quad leftWall = new Quad();
-        leftWall.setFillColor(color.get());
-        leftWall.setStrokeColor(Points.BLACK.get());
+        leftWall.setFillColor(Points.GRAY.get().mul(wallFactor));
+        leftWall.setStrokeColor(Points.WHITE.get());
         //leftWall.scale(1.005f);
         leftWall.rotate(Points.piOver(2), Points._Y_);
         leftWall.translate(0.0f, 0.5f, 0.5f);
         leftWall.scale(1.0f, dimensions.y, dimensions.z);
 
         Quad farWall = new Quad();
-        farWall.setFillColor(color.get());
-        farWall.setStrokeColor(Points.BLACK.get());
+        farWall.setFillColor(Points.GRAY.get().mul(wallFactor));
+        farWall.setStrokeColor(Points.WHITE.get());
         //farWall.scale(1.005f);
         farWall.translate(0.5f, 0.5f, 0.0f);
         farWall.scale(dimensions.x, dimensions.y, 1.0f);
 
         Quad nearWall = new Quad();
-        nearWall.setFillColor(color.get());
-        nearWall.setStrokeColor(Points.BLACK.get());
+        nearWall.setFillColor(Points.GRAY.get().mul(wallFactor));
+        nearWall.setStrokeColor(Points.WHITE.get());
         //nearWall.scale(1.005f);
         nearWall.rotate(Points.piOver(1), Points._Y_);
         nearWall.translate(0.5f, 0.5f, dimensions.z);

@@ -30,7 +30,7 @@ import gamesystems.architecture.Portal;
 
 public class RenderingSystem extends GameSystem {
 
-    private int m_maxDepth = 5;
+    private int m_maxDepth = 8;
     private boolean m_useNewRenderer = true;
     private Set<Module> m_visitedModules = new HashSet<>();
 
