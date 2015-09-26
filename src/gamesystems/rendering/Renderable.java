@@ -72,6 +72,18 @@ public abstract class Renderable {
         next(count, attributeName, value.x, value.y, value.z, value.w);
     }
 
+    public void range(int start, int count, String attributeName, Vector2f value) {
+        range(start, count, attributeName, value.x, value.y);
+    }
+
+    public void range(int start, int count, String attributeName, Vector3f value) {
+        range(start, count, attributeName, value.x, value.y, value.z);
+    }
+
+    public void range(int start, int count, String attributeName, Vector4f value) {
+        range(start, count, attributeName, value.x, value.y, value.z, value.w);
+    }
+
     public void all(String attributeName, Vector2f value) {
         all(attributeName, value.x, value.y);
     }
@@ -82,6 +94,48 @@ public abstract class Renderable {
 
     public void all(String attributeName, Vector4f value) {
         all(attributeName, value.x, value.y, value.z, value.w);
+    }
+
+    public void next(String attributeName, float... values) {
+        next(1, attributeName, values);
+    }
+
+    public void next(int count, String attributeName, float... values) {
+        m_vertexData.putIfAbsent(attributeName, new ArrayList<>());
+        for(int i = 0; i < count; ++i) {
+            for (float value : values) {
+                m_vertexData.get(attributeName).add(value);
+            }
+        }
+    }
+
+    public void range(int start, int count, String attributeName, float... values) {
+        m_vertexData.putIfAbsent(attributeName, new ArrayList<>());
+        List<Float> existingData = m_vertexData.get(attributeName);
+        int arity = values.length;
+
+        if(existingData.size() % arity != 0) {
+            System.err.println("Vertex attribute range arity failure");
+            return;
+        }
+
+        if(start <= existingData.size() / arity) {
+            for(int i = 0; i < count; ++i) {
+                for(int j = 0; j < values.length; ++j) {
+                    existingData.add(((start + i) * arity) + j, values[j]);
+                }
+            }
+        } else {
+            System.err.println("Vertex attribute range start failure");
+        }
+    }
+
+    public void all(String attributeName, float... values) {
+        m_defaultVertexData.putIfAbsent(attributeName, new ArrayList<>());
+        m_defaultVertexData.get(attributeName).clear();
+        for(float value : values) {
+            m_defaultVertexData.get(attributeName).add(value);
+        }
     }
 
     public void scale(float factor) {
@@ -134,27 +188,6 @@ public abstract class Renderable {
 
     public Matrix4f getModelMatrix() {
         return m_modelMatrix;
-    }
-
-    public void next(String attributeName, float... values) {
-        next(1, attributeName, values);
-    }
-
-    public void next(int count, String attributeName, float... values) {
-        m_vertexData.putIfAbsent(attributeName, new ArrayList<>());
-        for(int i = 0; i < count; ++i) {
-            for (float value : values) {
-                m_vertexData.get(attributeName).add(value);
-            }
-        }
-    }
-
-    public void all(String attributeName, float... values) {
-        m_defaultVertexData.putIfAbsent(attributeName, new ArrayList<>());
-        m_defaultVertexData.get(attributeName).clear();
-        for(float value : values) {
-            m_defaultVertexData.get(attributeName).add(value);
-        }
     }
 
     public void setShader(String shaderName) {

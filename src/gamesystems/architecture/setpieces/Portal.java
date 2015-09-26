@@ -1,7 +1,6 @@
-package gamesystems.architecture;
+package gamesystems.architecture.setpieces;
 
 import gamesystems.architecture.Basis;
-import gamesystems.architecture.Quad;
 import gamesystems.rendering.Points;
 import joml.Matrix4f;
 import joml.Vector3f;

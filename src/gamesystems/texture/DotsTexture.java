@@ -29,10 +29,12 @@ public class DotsTexture extends ProceduralTexture {
         public Set<Dot> dots = new HashSet<>();
     }
 
+    @Override
     public ProceduralTexture.Seed issueSeed() {
         return new DotsTexture.Seed(5);
     }
 
+    @Override
     public void update(ProceduralTexture.Seed seed, float seconds) {
         DotsTexture.Seed dts = (DotsTexture.Seed)seed;
         dts.dots.forEach(dot -> {
@@ -44,6 +46,7 @@ public class DotsTexture extends ProceduralTexture {
         });
     }
 
+    @Override
     public void render(ProceduralTexture.Seed seed) {
         DotsTexture.Seed dts = (DotsTexture.Seed)seed;
         dts.dots.forEach(dot -> {

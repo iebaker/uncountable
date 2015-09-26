@@ -9,7 +9,7 @@ import joml.Vector3f;
 import gamesystems.architecture.Module;
 import gamesystems.architecture.Seam;
 import core.World;
-import gamesystems.architecture.Portal;
+import gamesystems.architecture.setpieces.Portal;
 
 import static org.lwjgl.glfw.GLFW.*;
 

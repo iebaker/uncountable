@@ -1,5 +1,6 @@
 package gamesystems.architecture;
 
+import gamesystems.architecture.setpieces.Portal;
 import joml.Vector3f;
 
 public class Seam {

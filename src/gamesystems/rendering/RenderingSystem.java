@@ -18,7 +18,6 @@ import static org.lwjgl.opengl.GL11.glEnable;
 import static org.lwjgl.opengl.GL11.glStencilFunc;
 import static org.lwjgl.opengl.GL11.glStencilOp;
 
-import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -26,7 +25,7 @@ import core.Settings;
 import core.Uncountable;
 import gamesystems.GameSystem;
 import gamesystems.architecture.Module;
-import gamesystems.architecture.Portal;
+import gamesystems.architecture.setpieces.Portal;
 
 public class RenderingSystem extends GameSystem {
 

@@ -16,7 +16,7 @@ import joml.Matrix4f;
 import joml.Vector3f;
 import joml.Vector4f;
 import gamesystems.architecture.Seam;
-import gamesystems.architecture.Portal;
+import gamesystems.architecture.setpieces.Portal;
 import org.lwjgl.BufferUtils;
 
 public class Camera {

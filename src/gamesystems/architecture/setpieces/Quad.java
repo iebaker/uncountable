@@ -1,4 +1,4 @@
-package gamesystems.architecture;
+package gamesystems.architecture.setpieces;
 
 import static org.lwjgl.opengl.GL11.GL_TRIANGLES;
 import static org.lwjgl.opengl.GL11.GL_LINE_LOOP;
@@ -28,11 +28,11 @@ public class Quad extends Renderable implements FilledStroked {
 
     @Override
     public void setFillColor(Vector3f color) {
-        next(6, "vertexColor", color);
+        range(0, 6, "vertexColor", color);
     }
 
     @Override
     public void setStrokeColor(Vector3f color) {
-        next(4, "vertexColor", color);
+        range(6, 4, "vertexColor", color);
     }
 }

@@ -3,6 +3,7 @@ package gamesystems.architecture;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import gamesystems.architecture.setpieces.Portal;
 import gamesystems.rendering.Renderable;
 
 public class Module {
