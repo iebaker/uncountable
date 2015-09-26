@@ -16,6 +16,7 @@ import java.util.Scanner;
 
 import gamesystems.architecture.ArchitectureSystem;
 import gamesystems.rendering.Shaders;
+import gamesystems.texture.TextureSystem;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.glfw.GLFWCursorPosCallback;
 import org.lwjgl.glfw.GLFWErrorCallback;
@@ -82,6 +83,7 @@ public class Uncountable {
         initGraphics();
 
         addGameSystem(new QuitSystem());
+        addGameSystem(new TextureSystem());
         addGameSystem(new ArchitectureSystem());
         addGameSystem(new CameraControlSystem());
         addGameSystem(new RenderingSystem());

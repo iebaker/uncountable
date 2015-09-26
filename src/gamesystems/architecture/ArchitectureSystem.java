@@ -140,16 +140,16 @@ public class ArchitectureSystem extends GameSystem {
         float wallFactor = 0.1f;
 
         Quad floor = new Quad();
-        floor.setFillColor(Points.GRAY.get());
-        floor.setStrokeColor(Points.GRAY.get());
+        floor.setFillColor(Points.WHITE.get());
+        floor.setStrokeColor(Points.WHITE.get());
         floor.scale(1.005f);
         floor.rotate(3 * Points.piOver(2), Points.X__);
         floor.translate(0.5f, 0.0f, 0.5f);
         floor.scale(dimensions.x, 1.0f, dimensions.z);
 
         Quad ceiling = new Quad();
-        ceiling.setFillColor(Points.GRAY.get());
-        ceiling.setStrokeColor(Points.GRAY.get());
+        ceiling.setFillColor(Points.WHITE.get());
+        ceiling.setStrokeColor(Points.WHITE.get());
         ceiling.scale(1.005f);
         ceiling.rotate(Points.piOver(2), Points.X__);
         ceiling.translate(0.5f, dimensions.y, 0.5f);
@@ -201,6 +201,8 @@ public class ArchitectureSystem extends GameSystem {
             portal.translate(0.0f, 0.0f, 0.001f);
             portal.rotate(angle, Points._Y_);
             portal.translate(position);
+            portal.setFillColor(Points.BLACK.get());
+            portal.setStrokeColor(Points.WHITE.get());
             template.addPortal(portal, m_rulesByName.get(portalJson.getString("rule")));
         }
     }
