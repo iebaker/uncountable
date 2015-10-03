@@ -3,10 +3,12 @@
 in vec3 color;
 in vec3 worldPosition;
 in vec3 screenPosition;
+in vec3 textureCoordinate;
 
 uniform vec3 cameraEye;
 uniform bool useDiscardPlane;
 uniform vec4 discardPlane;
+uniform sampler2D texture;
 
 uniform int fogFunction;
 uniform float fogDensity;
@@ -31,5 +33,6 @@ void main() {
 		bool posFront = dot(discardPlane, vec4(worldPosition, 1.0)) > 0;
 		if(camFront != posFront) discard;
 	}
+	//vec4 textureColor = texture2D(texture, textureCoordinate);
 	fragColor = vec4(mix(color, fogColor, useDistanceFog * fogFactor(length(cameraEye - worldPosition))), 1);
 }

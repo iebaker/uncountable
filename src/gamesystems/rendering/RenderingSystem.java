@@ -26,6 +26,7 @@ import core.Uncountable;
 import gamesystems.GameSystem;
 import gamesystems.architecture.Module;
 import gamesystems.architecture.setpieces.Portal;
+import gamesystems.architecture.setpieces.Prism;
 
 public class RenderingSystem extends GameSystem {
 
@@ -36,6 +37,8 @@ public class RenderingSystem extends GameSystem {
     public RenderingSystem() {
         super();
     }
+
+
 
     @Override
     public void initialize() {
@@ -116,9 +119,9 @@ public class RenderingSystem extends GameSystem {
             glStencilFunc(GL_EQUAL, depth + 1, 0xFF);
             glStencilOp(GL_KEEP, GL_KEEP, GL_DECR);
 
-            //camera.setDiscardPlane(localPortal.getFrontPlane());
-            //currentModule.setShaderForStagedRenderables("stenciler");
-            //camera.capture(currentModule.getStagedRenderables());
+//            camera.setDiscardPlane(localPortal.getFrontPlane());
+//            currentModule.setShaderForStagedRenderables("basic");
+//            camera.capture(currentModule.getStagedRenderables());
 
             Module nextModule = currentModule.getNeighbor(localPortal);
             if (nextModule != null) {

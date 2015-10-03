@@ -1,9 +1,7 @@
 package gamesystems.texture;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 public abstract class ProceduralTexture {
 
@@ -11,9 +9,11 @@ public abstract class ProceduralTexture {
         DOTS(new DotsTexture());
 
         ProceduralTexture m_texture;
+
         Type(ProceduralTexture t) {
             m_texture = t;
         }
+
         public ProceduralTexture getProcedure() {
             return m_texture;
         }
@@ -28,17 +28,23 @@ public abstract class ProceduralTexture {
 
     private Map<Seed, Framebuffer> m_framebuffers = new HashMap<>();
 
-    public abstract Seed issueSeed();
-    public abstract void update(Seed seed, float seconds);
-    public abstract void render(Seed seed);
+    public abstract Seed doIssueSeed();
+    public abstract void doUpdate(Seed seed, float seconds);
+    public abstract void doRender(Seed seed);
 
     public void tick(float seconds) {
-        for(Seed seed : m_framebuffers.keySet()) {
+        for (Seed seed : m_framebuffers.keySet()) {
             m_framebuffers.get(seed).bind();
-            update(seed, seconds);
-            render(seed);
+            doUpdate(seed, seconds);
+            doRender(seed);
             m_framebuffers.get(seed).free();
         }
+    }
+
+    public Seed issueSeed() {
+        Seed seed = doIssueSeed();
+        m_framebuffers.put(seed, new Framebuffer(1024, 1024, 1));
+        return seed;
     }
 
     public void bindTexture(Seed seed) {

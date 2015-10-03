@@ -4,6 +4,8 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import gamesystems.architecture.setpieces.Portal;
+import gamesystems.architecture.setpieces.Prism;
+import gamesystems.rendering.Points;
 import gamesystems.rendering.Renderable;
 
 public class Module {
@@ -13,13 +15,19 @@ public class Module {
     private Map<Portal, Portal> m_links = new HashMap<>();
     private String m_name;
     private int m_openPortals;
-    private boolean m_isStaged;
     private List<Renderable> m_stagedRenderables = new ArrayList<>();
+
+    private Prism m_prism = new Prism(6);
 
     public Module(ModuleTemplate type, String name) {
         m_template = type;
         m_name = name;
         m_openPortals = m_template.getPortals().size();
+
+        m_prism.scale(0.1f);
+        m_prism.setFillColor(Points.RED.get());
+        m_prism.setStrokeColor(Points.WHITE.get());
+        m_prism.translate(1.0f, 1.0f, 1.0f);
     }
 
     public String getName() {

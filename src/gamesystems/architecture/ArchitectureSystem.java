@@ -182,7 +182,7 @@ public class ArchitectureSystem extends GameSystem {
         farWall.scale(dimensions.x, dimensions.y, 1.0f);
 
         Quad nearWall = new Quad();
-        nearWall.setFillColor(Points.BLUE.get().mul(wallFactor));
+        nearWall.setFillColor(Points.GRAY.get().mul(wallFactor));
         nearWall.setStrokeColor(Points.WHITE.get());
         //nearWall.scale(1.005f);
         nearWall.rotate(Points.piOver(1), Points._Y_);

@@ -23,7 +23,6 @@ public class Polygon extends Renderable implements FilledStroked {
         next("vertexPosition", Points.ORIGIN_3D.get());
         for(float i = 0; i <= m_sidesf; ++i) {
             float angle = i * 2 * Points.piOver(1)/ m_sidesf;
-            System.out.println((float)Math.cos(angle) + ", " + (float)Math.sin(angle));
             next("vertexPosition", (float)Math.cos(angle), (float) Math.sin(angle), 0.0f);
         }
         addInterval(GL_TRIANGLE_FAN, m_sides + 2);

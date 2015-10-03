@@ -138,6 +138,10 @@ public abstract class Renderable {
         }
     }
 
+    public void around(int n, int max, int direction, Settings settings) {
+
+    }
+
     public void scale(float factor) {
         m_modelMatrix = new Matrix4f().scaling(factor).mul(m_modelMatrix);
     }

@@ -1,12 +1,18 @@
 package gamesystems.texture;
 
+import core.Uncountable;
+import gamesystems.architecture.setpieces.Polygon;
 import gamesystems.rendering.Points;
+import gamesystems.rendering.RenderingException;
+import gamesystems.rendering.Shaders;
 import joml.Vector2f;
 
 import java.util.HashSet;
 import java.util.Set;
 
 public class DotsTexture extends ProceduralTexture {
+
+    private Polygon circle = new Polygon(50);
 
     private class Dot {
         public Dot(Vector2f p, Vector2f v, float r) {
@@ -30,12 +36,12 @@ public class DotsTexture extends ProceduralTexture {
     }
 
     @Override
-    public ProceduralTexture.Seed issueSeed() {
+    public ProceduralTexture.Seed doIssueSeed() {
         return new DotsTexture.Seed(5);
     }
 
     @Override
-    public void update(ProceduralTexture.Seed seed, float seconds) {
+    public void doUpdate(ProceduralTexture.Seed seed, float seconds) {
         DotsTexture.Seed dts = (DotsTexture.Seed)seed;
         dts.dots.forEach(dot -> {
             dot.position.add(dot.velocity.get().mul(seconds));
@@ -47,10 +53,20 @@ public class DotsTexture extends ProceduralTexture {
     }
 
     @Override
-    public void render(ProceduralTexture.Seed seed) {
+    public void doRender(ProceduralTexture.Seed seed) {
         DotsTexture.Seed dts = (DotsTexture.Seed)seed;
         dts.dots.forEach(dot -> {
-
+            try {
+                circle.clearTransforms();
+                circle.scale(dot.radius);
+                circle.translate(dot.position.x, dot.position.y, 0.0f);
+                Uncountable.game.world.camera.capture(() -> {
+                    Shaders.setShaderUniform("flatRender", true);
+                }, circle);
+            } catch (RenderingException e) {
+                e.printStackTrace();
+                System.exit(1);
+            }
         });
     }
 }

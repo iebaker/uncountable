@@ -88,10 +88,10 @@ public class Framebuffer {
     }
 
     public void bind() {
-
+        glBindFramebuffer(GL_FRAMEBUFFER, m_framebuffer);
     }
 
     public void free() {
-
+        glBindFramebuffer(GL_FRAMEBUFFER, 0);
     }
 }
