@@ -6,7 +6,7 @@ project.ext.jomlVersion = "1.8.2"
 project.ext.jsonVersion = "20160810"
 
 mainClassName = "xyz.izaak.core.Uncountable"
-applicationDefaultJvmArgs = ["-Djava.library.path=lib/lwjgl/native", "-XstartOnFirstThread"]
+applicationDefaultJvmArgs = ["-Djava.library.path=native", "-XstartOnFirstThread"]
 
 repositories {
 	mavenCentral()
