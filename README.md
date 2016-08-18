@@ -1,5 +1,4 @@
-Uncountable
+uncountable [![CircleCI](https://circleci.com/gh/iebaker/uncountable/tree/master.svg?style=shield)](https://circleci.com/gh/iebaker/uncountable/tree/master)
 ===========
 
-This will be a 3D game set in an infinite, procedurally generated maze.
-Right now it is entirely skeletal, beginning to flesh out the rendering engine.
+Uncountable is a 3D game set in an infinite procedurally generated maze. It is being built on top of Radon, a game engine I am concurrently developing.
