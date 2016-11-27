@@ -17,6 +17,10 @@ import xyz.izaak.radon.world.Scene;
 
 import java.io.IOException;
 
+import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
+import static org.lwjgl.opengl.GL11.GL_DEPTH_BUFFER_BIT;
+import static org.lwjgl.opengl.GL11.GL_STENCIL_BUFFER_BIT;
+import static org.lwjgl.opengl.GL11.glClear;
 import static xyz.izaak.radon.rendering.Camera.ASPECT_RATIO;
 import static xyz.izaak.radon.rendering.Camera.FAR_PLANE;
 import static xyz.izaak.radon.rendering.Camera.FOV;
@@ -36,8 +40,7 @@ public class RenderTestGameSystem implements GameSystem {
     @Override
     public void initialize() {
         ShaderComponents customBasicShaderComponents = new ShaderComponents();
-        customBasicShaderComponents.addVertexOut(ShaderVariableType.VEC3, "color");
-        customBasicShaderComponents.addVertexOut(ShaderVariableType.VEC3, "position");
+        customBasicShaderComponents.addVertexOut(ShaderVariableType.VEC3, "Color");
         customBasicShaderComponents.addVertexShaderBlock(Resource.stringFromFile("basic_vert_main.glsl"));
         customBasicShaderComponents.addFragmentShaderBlock(Resource.stringFromFile("basic_frag_main.glsl"));
 
@@ -56,6 +59,8 @@ public class RenderTestGameSystem implements GameSystem {
         if (shader != null) {
             System.out.println(shader.getFragmentSource());
             System.out.println(shader.getVertexSource());
+        } else {
+            System.exit(1);
         }
 
         camera = new Camera(shader);
@@ -75,6 +80,7 @@ public class RenderTestGameSystem implements GameSystem {
 
     @Override
     public void update(float seconds) {
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
         try {
             camera.capture(testScene);
         } catch (RenderingException e) {
