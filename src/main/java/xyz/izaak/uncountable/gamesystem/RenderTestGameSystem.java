@@ -12,8 +12,14 @@ import xyz.izaak.radon.rendering.shading.Shader;
 import xyz.izaak.radon.rendering.shading.ShaderCompiler;
 import xyz.izaak.radon.rendering.shading.ShaderComponents;
 import xyz.izaak.radon.rendering.shading.ShaderVariableType;
+import xyz.izaak.radon.rendering.shading.annotation.FragmentShaderBlock;
+import xyz.izaak.radon.rendering.shading.annotation.ProvidesShaderComponents;
+import xyz.izaak.radon.rendering.shading.annotation.ShaderUniform;
+import xyz.izaak.radon.rendering.shading.annotation.VertexShaderBlock;
+import xyz.izaak.radon.rendering.shading.annotation.VertexShaderOutput;
 import xyz.izaak.radon.world.Entity;
 import xyz.izaak.radon.world.Scene;
+import xyz.izaak.uncountable.rendering.BasicShaderComponents;
 
 import java.io.IOException;
 
@@ -39,18 +45,13 @@ public class RenderTestGameSystem implements GameSystem {
 
     @Override
     public void initialize() {
-        ShaderComponents customBasicShaderComponents = new ShaderComponents();
-        customBasicShaderComponents.addVertexOut(ShaderVariableType.VEC3, "Color");
-        customBasicShaderComponents.addVertexShaderBlock(Resource.stringFromFile("basic_vert_main.glsl"));
-        customBasicShaderComponents.addFragmentShaderBlock(Resource.stringFromFile("basic_frag_main.glsl"));
-
         Shader shader = null;
         try {
             shader = ShaderCompiler.instance()
-                    .with(Primitive.provideShaderComponents())
-                    .with(FilledStroked.provideShaderComponents())
-                    .with(Camera.provideShaderComponents())
-                    .with(customBasicShaderComponents)
+                    .with(Primitive.class)
+                    .with(FilledStroked.class)
+                    .with(Camera.class)
+                    .with(BasicShaderComponents.class)
                     .compile("basic");
         } catch (IOException e) {
             e.printStackTrace();
@@ -72,6 +73,7 @@ public class RenderTestGameSystem implements GameSystem {
         Quad testQuad = new Quad();
         testQuad.setFillColor(Points.RED);
         testQuad.setStrokeColor(Points.WHITE);
+        //testQuad.rotate(Points.piOver(8), Points._Y_);
 
         Entity testEntity = new Entity();
         testEntity.addPrimitives(testQuad);
