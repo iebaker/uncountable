@@ -4,6 +4,7 @@ apply plugin: 'application'
 project.ext.lwjglVersion = "3.0.0a"
 project.ext.jomlVersion = "1.8.2"
 project.ext.jsonVersion = "20160810"
+project.ext.jbulletVersion = "20101010-1"
 
 mainClassName = "xyz.izaak.uncountable.Uncountable"
 applicationDefaultJvmArgs = ["-Djava.library.path=native", "-XstartOnFirstThread"]
@@ -20,6 +21,7 @@ dependencies {
 	compile "org.lwjgl:lwjgl-platform:${lwjglVersion}:natives-osx"
 	compile "org.joml:joml:${jomlVersion}"
 	compile "org.json:json:${jsonVersion}"
+	compile "cz.advel.jbullet:jbullet:${jbulletVersion}"
 	compile name: "radon"
 }
 

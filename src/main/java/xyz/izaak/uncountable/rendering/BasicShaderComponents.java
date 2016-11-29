@@ -1,11 +1,11 @@
 package xyz.izaak.uncountable.rendering;
 
 import xyz.izaak.radon.Resource;
-import xyz.izaak.radon.rendering.shading.ShaderVariableType;
-import xyz.izaak.radon.rendering.shading.annotation.FragmentShaderBlock;
-import xyz.izaak.radon.rendering.shading.annotation.ProvidesShaderComponents;
-import xyz.izaak.radon.rendering.shading.annotation.VertexShaderBlock;
-import xyz.izaak.radon.rendering.shading.annotation.VertexShaderOutput;
+import xyz.izaak.radon.shading.ShaderVariableType;
+import xyz.izaak.radon.shading.annotation.FragmentShaderBlock;
+import xyz.izaak.radon.shading.annotation.ProvidesShaderComponents;
+import xyz.izaak.radon.shading.annotation.VertexShaderBlock;
+import xyz.izaak.radon.shading.annotation.VertexShaderOutput;
 
 /**
  * Created by ibaker on 27/11/2016.
