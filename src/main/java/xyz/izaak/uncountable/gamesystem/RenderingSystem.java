@@ -49,7 +49,8 @@ public class RenderingSystem implements GameSystem {
 
         CameraConstructionArg cameraArg = new CameraConstructionArg.Builder().aspectRatio(1).build();
         camera = new Camera(shader, cameraArg);
-        camera.translate(Points.copyOf(Points.__z).mul(10));
+        camera.translate(0, 15, 0);
+        camera.rotate(Points.piOver(2), Points.X__);
     }
 
     @Override

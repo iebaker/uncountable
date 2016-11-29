@@ -16,7 +16,7 @@ public class Uncountable {
     public static void main(String... args) {
         System.setProperty("java.library.path", "native");
 
-        Game uncountable = new Game("Uncountable", 800, 800, Points.BLUE);
+        Game uncountable = new Game("Uncountable", 800, 800, Points.GRAY);
         uncountable.addGameSystem(new KeyReleaseQuitSystem(uncountable.getWindow(), GLFW_KEY_ESCAPE));
 
         SceneConstructionArg sceneArg = new SceneConstructionArg.Builder().build();

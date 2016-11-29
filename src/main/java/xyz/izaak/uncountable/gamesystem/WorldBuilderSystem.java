@@ -30,10 +30,10 @@ public class WorldBuilderSystem implements GameSystem {
         Entity floorEntity = new Entity(floorEntityArg);
 
         QuadPrimitive floorPrimitive = new QuadPrimitive();
-        floorPrimitive.setFillColor(Points.GRAY);
+        floorPrimitive.setFillColor(new org.joml.Vector3f(0.2f, 0.2f, 0.2f));
         floorPrimitive.setStrokeColor(Points.WHITE);
         floorPrimitive.scale(10);
-        floorPrimitive.rotate(Points.piOver(4), Points.X__);
+        floorPrimitive.rotate(Points.piOver(2), Points.X__);
         floorEntity.addPrimitives(floorPrimitive);
 
         CollisionShape floorShape = new StaticPlaneShape(new Vector3f(0, 1, 0), 0.0f);
@@ -52,8 +52,22 @@ public class WorldBuilderSystem implements GameSystem {
 
         sphereEntity.translate(Points.copyOf(Points._Y_).mul(10));
 
+        EntityConstructionArg redSphereEntityArg = new EntityConstructionArg.Builder().mass(1.0f).build();
+        Entity redSphereEntity = new Entity(redSphereEntityArg);
+
+        PolarSpherePrimitive redSpherePrimitive = new PolarSpherePrimitive(20, 20);
+        redSpherePrimitive.setFillColor(Points.RED);
+        redSpherePrimitive.setStrokeColor(Points.BLACK);
+        redSphereEntity.addPrimitives(redSpherePrimitive);
+
+        CollisionShape redSphereShape = new SphereShape(1.0f);
+        redSphereEntity.setCollider(redSphereShape);
+
+        redSphereEntity.translate(0.2f, 5.0f, 0.3f);
+
         scene.addEntity(floorEntity);
         scene.addEntity(sphereEntity);
+        scene.addEntity(redSphereEntity);
     }
 
     public Scene getScene() {
