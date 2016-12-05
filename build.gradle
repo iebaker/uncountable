@@ -1,7 +1,21 @@
+import org.gradle.internal.os.OperatingSystem
+
+switch (OperatingSystem.current()) {
+	case OperatingSystem.WINDOWS:
+		project.ext.lwjglNatives = "natives-windows"
+		break
+	case OperatingSystem.LINUX:
+		project.ext.lwjglNatives = "natives-linux"
+		break
+	case OperatingSystem.MAC_OS:
+		project.ext.lwjglNatives = "natives-macos"
+		break
+}
+
 apply plugin: 'java'
 apply plugin: 'application'
 
-project.ext.lwjglVersion = "3.0.0a"
+project.ext.lwjglVersion = "3.1.0"
 project.ext.jomlVersion = "1.8.2"
 project.ext.jsonVersion = "20160810"
 project.ext.jbulletVersion = "20101010-1"
@@ -17,12 +31,18 @@ repositories {
 }
 
 dependencies {
-	compile "org.lwjgl:lwjgl:${lwjglVersion}"
-	compile "org.lwjgl:lwjgl-platform:${lwjglVersion}:natives-osx"
+	compile "org.lwjgl:lwjgl-opengl:${lwjglVersion}"
+	compile "org.lwjgl:lwjgl-glfw:${lwjglVersion}"
 	compile "org.joml:joml:${jomlVersion}"
 	compile "org.json:json:${jsonVersion}"
 	compile "cz.advel.jbullet:jbullet:${jbulletVersion}"
 	compile name: "radon"
+	runtime "org.lwjgl:lwjgl:${lwjglVersion}:${lwjglNatives}"
+	runtime "org.lwjgl:lwjgl-glfw:${lwjglVersion}:${lwjglNatives}"
+}
+
+task wrapper(type: Wrapper) {
+	gradleVersion = '3.2'
 }
 
 jar {
